@@ -1,0 +1,159 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.pnlHome{
+	-fx-font-weight: bold;
+}
+
+/* ============
+	Menu BAR
+   ============ */
+   
+.topMenu{
+	-fx-background-color: #A3A2A4;
+}
+
+/* ============
+	Menu LEFT 
+   ============ */
+   
+.leftMenu{
+	-fx-background-color: #030105;
+}
+
+
+.user-info {
+	-fx-background-color: #0D0D0C;
+}
+
+.btnUser {
+ 	-fx-background-image: url('../../../res/image/user.png');
+    -fx-background-size: 35px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 14%;
+  	-fx-background-color:#111111;
+  	-fx-background-radius: 0px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 30;
+   	-fx-min-height: 50px; 
+	-fx-max-height: 50px;
+}
+
+.btnUser:selected {
+
+}
+
+.v-box-menu{
+	-fx-padding: 15 0 10 0;
+}
+
+.text-menu{
+	-fx-text-fill: white;
+    -fx-font-size: 17px;
+    -fx-background-color: none;
+    -fx-padding: 7 0 7 20;
+    
+}
+
+.text-menu:selected {
+}
+
+.img-selection-menu{
+	-fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+
+
+/* ===================
+	Center HOME 
+   =================== */
+   
+.centerHome{ 
+	-fx-background-color: #19181B;
+	-fx-padding: 9 15 15 15;
+}
+
+.pnl-title{
+	-fx-padding: 5 0 20 20;
+}
+
+.main-title{
+    -fx-font-size: 60px;
+    -fx-fill: #E8E7E8;
+   	-fx-padding: 0 0 10 0;
+}
+
+.gridP-home {
+	-fx-background-color: grey;
+}
+
+
+.pnl-preview-home{
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-border-color: grey;
+}
+
+
+.btn-selection-center-home {
+	-fx-background-color:none;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    /*-fx-border-color: grey;*/
+   	-fx-border-radius: 4;
+
+    -fx-padding: 0 0 70 0; 
+    -fx-background-color:#111111;  	
+}
+
+
+.btn-selection-center-home.brand { 
+	-fx-background-image: url('../../../res/image/clothes.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 75%;
+}
+
+
+.btn-selection-center-home.category { 
+	-fx-background-image: url('../../../res/image/clipboard-1.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 75%;
+}
+
+.btn-selection-center-home.star { 
+	-fx-background-image: url('../../../res/image/star.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 75%;
+}
+
+.btn-selection-center-home.outfits { 
+	-fx-background-image: url('../../../res/image/dress.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 75%;
+}
+
+.btn-selection-center-home.ruler { 
+	-fx-background-image: url('../../../res/image/ruler.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 75%;
+}
+
+.btn-selection-center-home.add { 
+	-fx-background-image: url('../../../res/image/add.png');
+    -fx-background-size: 40px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 70%;
+}
+
+

@@ -1,0 +1,69 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.main-pane{
+	-fx-background-image: url("../../../res/image/login-bg-2.jpg");
+	-fx-background-position: center center;
+	/*-fx-background-repeat: stretch;
+  	-fx-background-size: 150.0 71.0;*/
+	-fx-text-fill: #EEEFEF;
+}
+
+
+.pnl-center{
+	-fx-background-color: #323539; 
+	-fx-background-radius: 7px;
+	-fx-padding: 15 15 0 15;
+	-fx-min-height:375px; 
+	-fx-min-width: 400px; 
+	-fx-max-height:375px; 
+	-fx-max-width: 400px;
+	-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
+	-fx-font-size: 15px;
+}
+
+.title-login{
+	-fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 40px;
+}
+
+.btn-login{
+	-fx-background-color:none;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: white;
+   	-fx-border-radius: 4;
+}
+
+.btn-login:hover {
+   	-fx-background-color: #464C51;
+}
+
+.btn-register{
+	-fx-background-color: none;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 0;
+    -fx-text-fill: grey;
+    -fx-padding: 0 20 0 13;
+}
+
+.btn-register:hover {
+    -fx-text-fill: white;
+}
+
+.btnBTLogin {
+	-fx-background-color: none;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 0;
+    -fx-text-fill: grey;
+    -fx-padding: 0 20 0 5;
+}
