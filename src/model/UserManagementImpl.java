@@ -3,15 +3,18 @@ package model;
 import java.util.HashSet;
 import java.util.Set;
 
+import model.interfaces.SignUp;
 import model.interfaces.User;
 import model.interfaces.UserManagement;
 
 public class UserManagementImpl implements UserManagement {
     
     protected Set<User> usersList;
+    private SignUp signUp;
     
     public UserManagementImpl() {
         this.usersList = new HashSet<>();
+        this.signUp = new SignUpImpl();
     }
     
     @Override
@@ -24,7 +27,8 @@ public class UserManagementImpl implements UserManagement {
         }
         return null;
     }
-
+    
+    
     
 
 }

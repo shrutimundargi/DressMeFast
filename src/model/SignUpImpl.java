@@ -10,9 +10,9 @@ public class SignUpImpl extends UserManagementImpl implements SignUp {
     private User user;
     private Status status;
     
-    public SignUpImpl(String signUpName, String signUpPassword) {
-        this.signUpName = signUpName;
-        this.signUpPassword = signUpPassword;
+    public SignUpImpl() {
+        this.signUpName = "";
+        this.signUpPassword = "";
         this.user = null;
     }
     
