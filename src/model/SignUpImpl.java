@@ -1,16 +1,22 @@
 package model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import model.interfaces.SignUp;
 import model.interfaces.User;
 
-public class SignUpImpl extends UserManagementImpl implements SignUp {
+public class SignUpImpl implements SignUp {
     
     private String signUpName;
     private String signUpPassword;
     private User user;
     private Status status;
+    private Set<User> usersSet ;
+   
     
     public SignUpImpl() {
+        usersSet = new HashSet<>();
         this.signUpName = "";
         this.signUpPassword = "";
         this.user = null;
@@ -24,26 +30,28 @@ public class SignUpImpl extends UserManagementImpl implements SignUp {
     }
     
     @Override
-    public Status addUser(String signUpName, String signUpPassword) {
-    	if(this.usersList.isEmpty()){
-    		this.user = new UserImpl(signUpName, signUpPassword);
-            this.usersList.add(user);
+    public Status adding(String signUpName, String signUpPassword,Set<User> usersSet) {
+        this.usersSet = usersSet;
+    	if(this.usersSet.isEmpty()){
+    	    this.user = new UserImpl(signUpName, signUpPassword);
+            this.usersSet.add(user);
     	}else{    	
-	        for(User user : this.usersList) {
+	        for(User user : this.usersSet) {
 	            if(user.getName().equals(signUpName) && user.getPassword().equals(signUpPassword)) {
 	                return Status.DUPLICATED_USER;
 	            }
 	            else if(user.getName().equals(signUpName)) {
 	                return Status.USERNAME_ALREADY_TAKEN;
-	            }
-	            else {
-	                this.user = new UserImpl(signUpName, signUpPassword);
-	                this.usersList.add(user);
-	            }
-	            
+	            }	            
 	        }
+	        this.user = new UserImpl(signUpName, signUpPassword);
+                this.usersSet.add(user);
     	}
         return Status.USER_REGISTERED;
+    }
+    
+    public Set<User> getSet(){
+        return  this.usersSet;
     }
     
     @Override

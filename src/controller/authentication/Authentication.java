@@ -5,7 +5,7 @@ import model.interfaces.User;
 
 public interface Authentication {
 	
-	public User getSpecifiedUser(String user, String pass);
+	public Status getSpecifiedUser(String user, String pass);
 	
 	public Status addUser(String user,String pass);
 	

@@ -16,24 +16,27 @@ public class ControllerImpl implements Controller {
 	private User user;
 	
 	private ControllerImpl(){
-		 auth = AuthenticationImpl.getInstance();
+	    auth = AuthenticationImpl.getInstance();
 		
 	}
 	
 	public static ControllerImpl getInstance(){
-		return SINGLETON;		
+	    return SINGLETON;		
 	}
 
 	@Override
 	public Status checkLogin(String user, String pass) {
-		// TODO Auto-generated method stub
-		return Status.DUPLICATED_USER;
+		status = auth.getSpecifiedUser(user, pass);
+		if(this.status != Status.USER_NOT_FOUND || this.status != Status.WRONG_PASSWORD){
+                    this.user = auth.getUser();
+                }
+		return status;
 	}
 
 	@Override
-	public Status singUp(String user, String pass) {
+	public Status signUp(String user, String pass) {
 		status = auth.addUser(user, pass);
-		if(this.status != Status.USERNAME_ALREADY_TAKEN && this.status == Status.DUPLICATED_USER ){
+		if(this.status != Status.USERNAME_ALREADY_TAKEN && this.status != Status.DUPLICATED_USER ){
 			this.user = auth.getUser();
 		}
 		return status;

@@ -17,10 +17,10 @@ public class AuthenticationImpl implements Authentication {
 	
 	public static final AuthenticationImpl SINGLETON = new AuthenticationImpl();
 	
-	UserManagement userM;
+	private UserManagement userM;
 	
 	private AuthenticationImpl(){
-		userM=new UserManagementImpl();
+	    userM=new UserManagementImpl();
 	}
 	
 	public static AuthenticationImpl getInstance(){
@@ -28,18 +28,23 @@ public class AuthenticationImpl implements Authentication {
 	}
 
 	@Override
-	public User getSpecifiedUser(String user, String pass) {
-		// TODO Auto-generated method stub
-		return null;
+	public Status getSpecifiedUser(String user, String pass) {
+		status = userM.getSpecifiedUser(user, pass);
+		if(this.status == Status.USER_NOT_FOUND || this.status == Status.WRONG_PASSWORD){
+		    return status;
+		}else{
+		    this.user = userM.getLoginUser();
+		    return this.status;
+		}		
 	}
 
 	@Override
 	public Status addUser(String user, String pass) {		
-		status = userM.getsignUp().addUser(user, pass);
+		status = userM.addUser(user, pass);
 		if(this.status == Status.USERNAME_ALREADY_TAKEN || this.status == Status.DUPLICATED_USER ){
 			return status;
 		}else{
-			this.user = userM.getsignUp().getUser();
+			this.user = userM.getUser();
 			return status;
 		}		
 	}

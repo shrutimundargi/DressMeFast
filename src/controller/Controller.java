@@ -9,7 +9,7 @@ public interface Controller {
 	
 	public Status checkLogin(String user, String pass);
 	
-	public Status singUp(String user, String pass);
+	public Status signUp(String user, String pass);
 	
 	public Set<Dress> getThreeLastDresses();
 	
