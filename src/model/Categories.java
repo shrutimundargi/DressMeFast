@@ -11,6 +11,10 @@ public enum Categories {
     
     private String categoryName;
     
+    public String getCategoryName() {
+        return this.categoryName;
+    }
+    
     private Categories(String categoryName) {
         this.categoryName = categoryName;
     }
