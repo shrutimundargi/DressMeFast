@@ -1,13 +1,19 @@
 package application;
 	
+import controller.Controller;
+import controller.ControllerImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-
-public class Main extends Application {
-	@Override
+public class Main /*extends Application*/ {
+	public static void main(String[] args){
+		Controller cont = ControllerImpl.getInstance();
+		System.out.println(cont.singUp("pop", "palla"));
+	}
+	
+	/*@Override
 	public void start(Stage primaryStage) {
 		try {
 			BorderPane root = new BorderPane();
@@ -23,4 +29,6 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	*/
 }
+

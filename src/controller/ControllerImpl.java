@@ -2,14 +2,21 @@ package controller;
 
 import java.util.Set;
 
-import model.Dress;
+import controller.authentication.Authentication;
+import controller.authentication.AuthenticationImpl;
+import model.Status;
+import model.interfaces.Dress;
+import model.interfaces.User;
 
 public class ControllerImpl implements Controller {
 	
 	public static final ControllerImpl SINGLETON = new ControllerImpl();
+	private Authentication auth;
+	private Status status;
+	private User user;
 	
 	private ControllerImpl(){
-		
+		 auth = AuthenticationImpl.getInstance();
 		
 	}
 	
@@ -20,13 +27,16 @@ public class ControllerImpl implements Controller {
 	@Override
 	public Status checkLogin(String user, String pass) {
 		// TODO Auto-generated method stub
-		return 0;
+		return Status.DUPLICATED_USER;
 	}
 
 	@Override
 	public Status singUp(String user, String pass) {
-		// TODO Auto-generated method stub
-		return 0;
+		status = auth.addUser(user, pass);
+		if(this.status != Status.USERNAME_ALREADY_TAKEN && this.status == Status.DUPLICATED_USER ){
+			this.user = auth.getUser();
+		}
+		return status;
 	}
 
 	@Override

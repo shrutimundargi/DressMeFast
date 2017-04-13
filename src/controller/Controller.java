@@ -2,7 +2,8 @@ package controller;
 
 import java.util.Set;
 
-import model.Dress;
+import model.interfaces.Dress;
+import model.Status;
 
 public interface Controller {
 	

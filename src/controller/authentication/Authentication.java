@@ -1,6 +1,7 @@
 package controller.authentication;
 
-import model.User;
+import model.Status;
+import model.interfaces.User;
 
 public interface Authentication {
 	

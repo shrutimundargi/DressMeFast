@@ -9,7 +9,7 @@ import model.interfaces.UserManagement;
 
 public class UserManagementImpl implements UserManagement {
     
-    protected Set<User> usersList;
+    protected Set<User> usersList  = new HashSet<>();
     private SignUp signUp;
     
     public UserManagementImpl() {
@@ -26,6 +26,10 @@ public class UserManagementImpl implements UserManagement {
            
         }
         return null;
+    }
+    
+    public SignUp getsignUp(){
+    	return this.signUp;
     }
     
     
