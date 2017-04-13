@@ -2,11 +2,13 @@ package controller;
 
 import java.util.Set;
 
+import model.Dress;
+
 public interface Controller {
 	
-	public int checkLogin(String user, String pass);
+	public Status checkLogin(String user, String pass);
 	
-	public int singUp(String user, String pass);
+	public Status singUp(String user, String pass);
 	
 	public Set<Dress> getThreeLastDresses();
 	
