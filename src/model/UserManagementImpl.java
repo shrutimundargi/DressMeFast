@@ -15,9 +15,9 @@ public class UserManagementImpl implements UserManagement {
     private Login login;
     
     public UserManagementImpl() {
-        signUp = new SignUpImpl();
         this.usersSet = new HashSet<>(); 
-        login = new LoginImpl();
+        this.login = new LoginImpl();
+        this.signUp = new SignUpImpl();
     }
     
     @Override
@@ -26,7 +26,7 @@ public class UserManagementImpl implements UserManagement {
     }
     
     public Status addUser(String signUpName, String signUpPassword) {
-        Status status = signUp.adding(signUpName, signUpPassword, this.usersSet);
+        Status status = signUp.storeUser(signUpName, signUpPassword, this.usersSet);
         usersSet = getUsersSet();
         return status;        
     }
@@ -36,7 +36,7 @@ public class UserManagementImpl implements UserManagement {
     }
     
     
-    public User getUser() {
+    public User getSignUpUser() {
         return signUp.getUser();
     }
     

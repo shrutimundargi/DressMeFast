@@ -1,6 +1,5 @@
 package model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import model.interfaces.Login;
@@ -37,7 +36,4 @@ public class LoginImpl implements Login {
     }
     
     
-
-  
-
 }

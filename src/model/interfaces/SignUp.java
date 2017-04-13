@@ -6,7 +6,9 @@ import model.Status;
 
 public interface SignUp {
     
-    Status adding(String signUpName, String signUpPassword,Set<User> usersSet);
+    Status storeUser(String signUpName, String signUpPassword,Set<User> usersSet);
+    
     Set<User> getSet();
+    
     User getUser();
 }

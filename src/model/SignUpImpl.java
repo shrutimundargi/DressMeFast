@@ -8,8 +8,6 @@ import model.interfaces.User;
 
 public class SignUpImpl implements SignUp {
     
-    private String signUpName;
-    private String signUpPassword;
     private User user;
     private Status status;
     private Set<User> usersSet ;
@@ -17,20 +15,11 @@ public class SignUpImpl implements SignUp {
     
     public SignUpImpl() {
         usersSet = new HashSet<>();
-        this.signUpName = "";
-        this.signUpPassword = "";
         this.user = null;
     }
     
-    public String getSignUpName() {
-        return this.signUpName;
-    }
-    public String getSignUpPassword() {
-        return this.signUpPassword;
-    }
-    
     @Override
-    public Status adding(String signUpName, String signUpPassword,Set<User> usersSet) {
+    public Status storeUser(String signUpName, String signUpPassword,Set<User> usersSet) {
         this.usersSet = usersSet;
     	if(this.usersSet.isEmpty()){
     	    this.user = new UserImpl(signUpName, signUpPassword);
@@ -50,8 +39,9 @@ public class SignUpImpl implements SignUp {
         return Status.USER_REGISTERED;
     }
     
+    @Override
     public Set<User> getSet(){
-        return  this.usersSet;
+        return this.usersSet;
     }
     
     @Override
