@@ -29,10 +29,11 @@ public class SignUpImpl extends UserManagementImpl implements SignUp {
             if(user.getName().equals(signUpName) && user.getPassword().equals(signUpPassword)) {
                 return Status.DUPLICATED_USER;
             }
-            if(user.getName().equals(signUpName)) {
+            else if(user.getName().equals(signUpName)) {
                 return Status.USERNAME_ALREADY_TAKEN;
             }
             else {
+                this.user = new UserImpl(signUpName, signUpPassword);
                 this.usersList.add(user);
             }
             
