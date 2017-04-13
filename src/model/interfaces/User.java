@@ -1,4 +1,4 @@
-package model;
+package model.interfaces;
 
 public interface User {
     
@@ -6,5 +6,6 @@ public interface User {
     
     String getPassword();
     
+    Wardrobe getWardobe();
     
 }
