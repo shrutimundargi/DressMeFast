@@ -6,12 +6,13 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import view.SceneSetting;
 import view.ScreensGraphic;
+import view.UI;
 
 import java.io.IOException;
 import controller.Controller;
 import javafx.event.ActionEvent;
 
-public class LoginGraphic {
+public class LoginGraphic implements UI{
 	
 	private static SceneSetting viewM;
 	private final ScreensGraphic FXMLSCREEN = ScreensGraphic.LOGIN;
