@@ -4,6 +4,9 @@ import com.sun.javafx.application.PlatformImpl;
 
 import controller.Controller;
 import controller.ControllerImpl;
+import javafx.application.Platform;
+import javafx.stage.Stage;
+import view.NameOfScreens;
 import view.SceneSetting;
 import view.login.LoginGraphic;
 
@@ -31,6 +34,19 @@ public class Main{
 		 SceneSetting setting = new SceneSetting();
 		 Controller controller = ControllerImpl.getInstance();
 		 LoginGraphic loginGraphic = new LoginGraphic(setting, controller);
+		 controller.attachUI(NameOfScreens.LOGIN, loginGraphic);
+		 
+		 Platform.runLater(() -> {
+	            try {
+	                Stage primaryStage = new Stage();
+	                primaryStage.setTitle("Dress Me Fast");
+	                setting.start(primaryStage);
+	            } catch (Exception e) {
+	                System.out.println("Unable to load graphic environment.");
+	                e.printStackTrace();
+	            }
+	            loginGraphic.show();
+	        });
 	}
 	
 }
