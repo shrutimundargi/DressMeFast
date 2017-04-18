@@ -7,7 +7,7 @@ import model.interfaces.User;
 
 public class LoginImpl implements Login {
     
-    private Status status;
+    private AuthenticationStatus status;
     private User user;
     
     public LoginImpl() {
@@ -16,17 +16,17 @@ public class LoginImpl implements Login {
     
     
     @Override
-    public Status checkLogin(String name, String pass, Set<User> usersSet) {
+    public AuthenticationStatus checkLogin(String name, String pass, Set<User> usersSet) {
         for(User user : usersSet) {
             if(user.getName().equals(name) && user.getPassword().equals(pass)) {
                 this.user = user;
-                return Status.USER_FOUND;
+                return AuthenticationStatus.USER_FOUND;
             }
             else if(user.getName().equals(name) && !user.getPassword().equals(pass)) {
-                return Status.WRONG_PASSWORD;            
+                return AuthenticationStatus.WRONG_PASSWORD;            
             }
         }
-        return Status.USER_NOT_FOUND;
+        return AuthenticationStatus.USER_NOT_FOUND;
     }
 
 

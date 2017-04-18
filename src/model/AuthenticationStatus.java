@@ -1,6 +1,6 @@
 package model;
 
-public enum Status {
+public enum AuthenticationStatus {
     
     USER_NOT_FOUND ("User not found"),
     USER_FOUND("User found."),
@@ -16,7 +16,7 @@ public enum Status {
         return this.text;
     }
     
-    private Status(String text) {
+    private AuthenticationStatus(String text) {
         this.text = text;
     }
     

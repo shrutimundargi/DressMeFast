@@ -1,6 +1,6 @@
 package model;
 
-public enum Categories {
+public enum CategoriesStatus {
     
     HEAD ("Head"),
     NECK ("Neck"),
@@ -15,7 +15,7 @@ public enum Categories {
         return this.categoryName;
     }
     
-    private Categories(String categoryName) {
+    private CategoriesStatus(String categoryName) {
         this.categoryName = categoryName;
     }
     

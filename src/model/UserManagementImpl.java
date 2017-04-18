@@ -21,12 +21,12 @@ public class UserManagementImpl implements UserManagement {
     }
     
     @Override
-    public Status getSpecifiedUser(String name, String password) {
+    public AuthenticationStatus getSpecifiedUser(String name, String password) {
         return login.checkLogin(name, password, usersSet);
     }
     
-    public Status addUser(String signUpName, String signUpPassword) {
-        Status status = signUp.storeUser(signUpName, signUpPassword, this.usersSet);
+    public AuthenticationStatus addUser(String signUpName, String signUpPassword) {
+        AuthenticationStatus status = signUp.storeUser(signUpName, signUpPassword, this.usersSet);
         usersSet = getUsersSet();
         return status;        
     }

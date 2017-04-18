@@ -1,18 +1,20 @@
 package model.interfaces;
 
-import java.awt.Image;
+import java.util.Optional;
 
 public interface Dress {
     
-    String getBrand(String dressName);
+    String getName();
     
-    Image getImage(String dressName);
+    Optional<String> getBrand();
     
-    int getSize(String dressName);
+    int getSize();
     
-    String getPurchaseDate(String dressName);
+    Optional<Integer> getPrice();
     
-    String getDescription(String dressName);
+    Optional<String> getPurchaseDate();
+    
+    Optional<String> getDescription();
     
     
 }

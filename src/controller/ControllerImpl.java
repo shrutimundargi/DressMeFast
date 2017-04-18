@@ -4,7 +4,7 @@ import java.util.Set;
 
 import controller.authentication.Authentication;
 import controller.authentication.AuthenticationImpl;
-import model.Status;
+import model.AuthenticationStatus;
 import model.interfaces.Dress;
 import model.interfaces.User;
 
@@ -12,7 +12,7 @@ public class ControllerImpl implements Controller {
 	
 	public static final ControllerImpl SINGLETON = new ControllerImpl();
 	private Authentication auth;
-	private Status status;
+	private AuthenticationStatus status;
 	private User user;
 	
 	private ControllerImpl(){
@@ -27,9 +27,9 @@ public class ControllerImpl implements Controller {
 	 * Questo metodo permette all'utente di loggarsi restituendo il risultato dell'operazione
 	 */
 	@Override
-	public Status checkLogin(String user, String pass) {
+	public AuthenticationStatus checkLogin(String user, String pass) {
 		status = auth.checkAuthentication(user, pass);
-		if(this.status != Status.USER_NOT_FOUND || this.status != Status.WRONG_PASSWORD){
+		if(this.status != AuthenticationStatus.USER_NOT_FOUND || this.status != AuthenticationStatus.WRONG_PASSWORD){
 			this.user = auth.getUser();
         }
 		return status;
@@ -39,9 +39,9 @@ public class ControllerImpl implements Controller {
 	 * Questo metodo permette all'utente di Registrarsi restituendo il risultato dell'operazione
 	 */
 	@Override
-	public Status signUp(String user, String pass) {
+	public AuthenticationStatus signUp(String user, String pass) {
 		status = auth.addUser(user, pass);
-		if(this.status != Status.USERNAME_ALREADY_TAKEN && this.status != Status.DUPLICATED_USER ){
+		if(this.status != AuthenticationStatus.USERNAME_ALREADY_TAKEN && this.status != AuthenticationStatus.DUPLICATED_USER ){
 			this.user = auth.getUser();
 		}
 		return status;

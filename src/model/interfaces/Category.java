@@ -1,8 +1,12 @@
 package model.interfaces;
 
+import model.CategoriesStatus;
+
 public interface Category {
     
-    Category getDressCategory(Dress dress);
+    Dress getDress(Dress dressName);
+    
+    CategoriesStatus addDress(Dress dress); 
     
     
 }

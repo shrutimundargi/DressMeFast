@@ -2,11 +2,11 @@ package model.interfaces;
 
 import java.util.Set;
 
-import model.Status;
+import model.AuthenticationStatus;
 
 public interface SignUp {
     
-    Status storeUser(String signUpName, String signUpPassword,Set<User> usersSet);
+    AuthenticationStatus storeUser(String signUpName, String signUpPassword,Set<User> usersSet);
     
     Set<User> getSet();
     
