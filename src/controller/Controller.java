@@ -27,4 +27,6 @@ public interface Controller {
 	
 	public Set<Dress> getDressesOfCategory();	
 	
+	public void attachUI(UI UI);
+	
 }
