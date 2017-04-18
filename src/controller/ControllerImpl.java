@@ -2,6 +2,8 @@ package controller;
 
 import java.util.Set;
 
+
+
 import controller.authentication.Authentication;
 import controller.authentication.AuthenticationImpl;
 import model.AuthenticationStatus;
@@ -94,5 +96,13 @@ public class ControllerImpl implements Controller {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void attachUI(UI UI) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 
 }
