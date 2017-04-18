@@ -53,8 +53,8 @@
                      </font>
                   </Label>
                   <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#loginPress" styleClass="btn-login" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#singupPage" styleClass="btn-register" text="Sing up" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#loginAccess" styleClass="btn-login" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#singupChange" styleClass="btn-register" text="Sing up" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </center>
