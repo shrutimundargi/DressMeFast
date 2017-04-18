@@ -27,5 +27,4 @@ public interface Controller {
 	
 	public Set<Dress> getDressesOfCategory();	
 	
-	
 }

@@ -16,23 +16,28 @@ public class ControllerImpl implements Controller {
 	private User user;
 	
 	private ControllerImpl(){
-	    auth = AuthenticationImpl.getInstance();
-		
+	    auth = AuthenticationImpl.getInstance();		
 	}
 	
 	public static ControllerImpl getInstance(){
 	    return SINGLETON;		
 	}
-
+	
+	/**
+	 * Questo metodo permette all'utente di loggarsi restituendo il risultato dell'operazione
+	 */
 	@Override
 	public Status checkLogin(String user, String pass) {
-		status = auth.getSpecifiedUser(user, pass);
+		status = auth.checkAuthentication(user, pass);
 		if(this.status != Status.USER_NOT_FOUND || this.status != Status.WRONG_PASSWORD){
-                    this.user = auth.getUser();
-                }
+			this.user = auth.getUser();
+        }
 		return status;
 	}
-
+	
+	/**
+	 * Questo metodo permette all'utente di Registrarsi restituendo il risultato dell'operazione
+	 */
 	@Override
 	public Status signUp(String user, String pass) {
 		status = auth.addUser(user, pass);
