@@ -28,7 +28,7 @@
     -fx-font-size: 40px;
 }
 
-.btn-login{
+.btn-press{
 	-fx-background-color:none;
     -fx-background-insets: 0,1,2,3,0;
     -fx-text-fill: white;
@@ -38,7 +38,7 @@
    	-fx-border-radius: 4;
 }
 
-.btn-login:hover {
+.btn-press:hover {
    	-fx-background-color: #464C51;
 }
 
@@ -57,7 +57,7 @@
     -fx-text-fill: white;
 }
 
-.btnBTLogin {
+.btnBT {
 	-fx-background-color: none;
     -fx-background-insets: 0,1,2,3,0;
     -fx-text-fill: white;

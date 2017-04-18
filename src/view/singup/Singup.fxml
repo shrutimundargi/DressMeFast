@@ -10,8 +10,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="570" prefWidth="700" styleClass="main-pane" stylesheets="@Sing-up.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="570" prefWidth="700" styleClass="main-pane" stylesheets="@Singup.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-center">
          <top>
@@ -43,13 +44,14 @@
                </padding>
                <children>
                   <Label text="User" textFill="WHITE" />
-                  <TextField GridPane.columnIndex="1" />
+                  <TextField fx:id="txfUser" GridPane.columnIndex="1" />
                   <Label text="Password" textFill="WHITE" GridPane.rowIndex="1" />
-                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <PasswordField fx:id="txfPassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Repeat password" textFill="WHITE" GridPane.rowIndex="2" />
-                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" styleClass="btn-login" text="Sing up" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" styleClass="btnBTLogin" text="Back to login" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <PasswordField fx:id="txfRepPassword" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#registerAction" styleClass="btn-press" text="Sing up" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#goToLogin" styleClass="btnBT" text="Back to login" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Text fx:id="txtError" fill="#ab1111" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="5" />
                </children>
             </GridPane>
          </center>

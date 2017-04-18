@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600" prefWidth="700" styleClass="main-pane" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" >
+<BorderPane prefHeight="600" prefWidth="700" styleClass="main-pane" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-center">
          <top>
@@ -46,15 +46,15 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField GridPane.columnIndex="1" />
+                  <TextField fx:id="txfUser" GridPane.columnIndex="1" />
                   <Label text="Password" textFill="WHITE" GridPane.rowIndex="1">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <PasswordField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" onAction="#loginAccess" styleClass="btn-login" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" onAction="#singupChange" styleClass="btn-register" text="Sing up" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <PasswordField fx:id="txfPassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#loginAction" styleClass="btn-press" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Button mnemonicParsing="false" onAction="#goToSingup" styleClass="btnBT" text="Sing up" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </center>

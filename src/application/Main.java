@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import view.NameOfScreens;
 import view.SceneSetting;
 import view.login.LoginGraphic;
+import view.singup.SingupGraphic;
 
 
 public class Main{
@@ -36,6 +37,9 @@ public class Main{
 		 LoginGraphic loginGraphic = new LoginGraphic(setting, controller);
 		 controller.attachUI(NameOfScreens.LOGIN, loginGraphic);
 		 
+		 SingupGraphic singupGraphic = new SingupGraphic(setting, controller);
+		 controller.attachUI(NameOfScreens.SINGUP, singupGraphic);
+
 		 Platform.runLater(() -> {
 	            try {
 	                Stage primaryStage = new Stage();
