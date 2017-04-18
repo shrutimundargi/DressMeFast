@@ -1,13 +1,13 @@
 package view;
 
-public enum NameOfScreen {
+public enum NameOfScreens {
 	
 	LOGIN("login"),
 	SINGUP("singup");
 	
 	private String name;
 	
-	NameOfScreen(String name){
+	NameOfScreens(String name){
 		this.name = name;
 	}
 	
