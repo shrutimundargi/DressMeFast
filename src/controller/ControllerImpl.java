@@ -1,14 +1,18 @@
 package controller;
 
+
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
-
-
 
 import controller.authentication.Authentication;
 import controller.authentication.AuthenticationImpl;
 import model.AuthenticationStatus;
 import model.interfaces.Dress;
 import model.interfaces.User;
+import view.NameOfScreens;
+import view.UI;
 
 public class ControllerImpl implements Controller {
 	
@@ -16,9 +20,12 @@ public class ControllerImpl implements Controller {
 	private Authentication auth;
 	private AuthenticationStatus status;
 	private User user;
+	private Map<NameOfScreens,UI> map;
 	
 	private ControllerImpl(){
-	    auth = AuthenticationImpl.getInstance();		
+	    auth = AuthenticationImpl.getInstance();
+	    map = new HashMap<>();
+	    
 	}
 	
 	public static ControllerImpl getInstance(){
@@ -98,9 +105,8 @@ public class ControllerImpl implements Controller {
 	}
 
 	@Override
-	public void attachUI(UI UI) {
-		// TODO Auto-generated method stub
-		
+	public void attachUI(NameOfScreens name,UI UI) {
+		map.put(name, UI);
 	}
 	
 	

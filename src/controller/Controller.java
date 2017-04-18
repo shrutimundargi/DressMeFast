@@ -3,6 +3,8 @@ package controller;
 import java.util.Set;
 
 import model.interfaces.Dress;
+import view.NameOfScreens;
+import view.UI;
 import model.AuthenticationStatus;
 
 public interface Controller {
@@ -27,6 +29,6 @@ public interface Controller {
 	
 	public Set<Dress> getDressesOfCategory();	
 	
-	public void attachUI(UI UI);
+	public void attachUI(NameOfScreens name,UI UI);
 	
 }
