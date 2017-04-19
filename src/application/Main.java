@@ -43,6 +43,7 @@ public class Main {
         SingupDialogGraphic singupPopUpGraphic = new SingupDialogGraphic(setting, controller);
         controller.attachUI(NameOfScreens.DIALOGSINGUP, singupPopUpGraphic);
 
+
         Platform.runLater(() -> {
             try {
                 Stage primaryStage = new Stage();

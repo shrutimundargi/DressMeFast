@@ -7,7 +7,9 @@ public enum AuthenticationStatus {
     DUPLICATED_USER ("User already registered"),
     WRONG_PASSWORD("The insert password is wrong"),
     USERNAME_ALREADY_TAKEN("Your username is already taken"),
-    USER_REGISTERED("The user has been registered succesfully");
+    USER_REGISTERED("The user has been registered succesfully"),
+    CHANGE_SUCCESFULL("Change succesfull");
+    
     
     
     private String text;
@@ -16,7 +18,7 @@ public enum AuthenticationStatus {
         return this.text;
     }
     
-    private AuthenticationStatus(String text) {
+    AuthenticationStatus(String text) {
         this.text = text;
     }
     

@@ -2,7 +2,6 @@ package controller;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 import controller.authentication.Authentication;
@@ -127,17 +126,10 @@ public final class ControllerImpl implements Controller {
             final String purchaseDate, final String description, final CategoriesStatus categories) {
 
         Dress dress;
+        dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size).buildPurchaseDate(purchaseDate)
+                .buildDescription(description).build();
 
-        try {
-            Objects.requireNonNull(categories);
-        } catch (NullPointerException e) {
-            return null;
-        }
-
-        dress = new DressImpl.DressBuilder().name(name).brand(brand).size(size).purchaseDate(purchaseDate)
-                .description(description).build();
-
-        return user.getWardobe().getAllCategories().addDressToCategory(categories);
+        return user.getWardobe().getAllCategories().addDressToCategory(dress, categories);
     }
 
 }
