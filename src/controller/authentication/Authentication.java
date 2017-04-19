@@ -12,7 +12,7 @@ import model.interfaces.User;
 
 public interface Authentication {
 
-    /**
+    /** 
      * @param user user
      * @param pass password
      * @return AuthenticationStatus
