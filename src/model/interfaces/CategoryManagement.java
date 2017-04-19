@@ -7,6 +7,6 @@ public interface CategoryManagement {
     
     Category getCategory(CategoriesStatus category);
     
-    CategoriesStatus addDressToCategory(CategoriesStatus category);
+    CategoriesStatus addDressToCategory(Dress dress, CategoriesStatus category);
     
 }

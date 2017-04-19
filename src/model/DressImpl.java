@@ -5,24 +5,30 @@ import java.util.Optional;
 
 import model.interfaces.Dress;
 
-public class DressImpl implements Dress {
+/**
+ * This class implements the Dress features.
+ * 
+ *
+ */
+public final class DressImpl implements Dress {
 
     private String name;
     private Optional<String> brand;
-    private int size;
+    private Optional<Integer> size;
     private Optional<Integer> price;
     private Optional<String> purchaseDate;
     private Optional<String> description;
 
-    private DressImpl(String name, Optional<String> brand, int size, Optional<Integer> price,
-            Optional<String> purchaseDate, Optional<String> description) {
+    private DressImpl(final String dressName, final Optional<String> dressBrand, final Optional<Integer> dressSize,
+            final Optional<Integer> dressPrice, final Optional<String> dressPurchaseDate,
+            final Optional<String> dressDescription) {
         super();
-        this.name = name;
-        this.brand = brand;
-        this.size = size;
-        this.price = price;
-        this.purchaseDate = purchaseDate;
-        this.description = description;
+        this.name = dressName;
+        this.brand = dressBrand;
+        this.size = dressSize;
+        this.price = dressPrice;
+        this.purchaseDate = dressPurchaseDate;
+        this.description = dressDescription;
     }
 
     @Override
@@ -36,7 +42,7 @@ public class DressImpl implements Dress {
     }
 
     @Override
-    public int getSize() {
+    public Optional<Integer> getSize() {
         return this.size;
     }
 
@@ -55,49 +61,128 @@ public class DressImpl implements Dress {
         return this.description;
     }
 
+    @Override
+    public AuthenticationStatus setName(final String dressName) {
+        this.name = dressName;
+        return AuthenticationStatus.CHANGE_SUCCESFULL;
+    }
+
+    @Override
+    public AuthenticationStatus setBrand(final String dressBrand) {
+        this.brand = Optional.of(dressBrand);
+        return AuthenticationStatus.CHANGE_SUCCESFULL;
+    }
+
+    @Override
+    public AuthenticationStatus setSize(final int dressSize) {
+        this.size = Optional.of(dressSize);
+        return AuthenticationStatus.CHANGE_SUCCESFULL;
+    }
+
+    @Override
+    public AuthenticationStatus setPrice(final int dressPrice) {
+        this.price = Optional.of(dressPrice);
+        return AuthenticationStatus.CHANGE_SUCCESFULL;
+    }
+
+    @Override
+    public AuthenticationStatus setPurchaseDate(final String dressPurchaseDate) {
+        this.purchaseDate = Optional.of(dressPurchaseDate);
+        return AuthenticationStatus.CHANGE_SUCCESFULL;
+    }
+
+    @Override
+    public AuthenticationStatus setDescription(final String dressDescription) {
+        this.description = Optional.of(dressDescription);
+        return AuthenticationStatus.CHANGE_SUCCESFULL;
+    }
+
+    /**
+     * The builder class for a dress.
+     *
+     */
     public static class DressBuilder {
 
         private String name;
         private Optional<String> brand;
-        private int size;
+        private Optional<Integer> size;
         private Optional<Integer> price;
         private Optional<String> purchaseDate;
         private Optional<String> description;
 
-        public DressBuilder name(String name) {
-            this.name = name;
+        /**
+         * @param dressName
+         *            the name of the dress
+         *
+         * @return a dress
+         */
+        public DressBuilder buildName(final String dressName) {
+            this.name = dressName;
             return this;
         }
 
-        public DressBuilder brand(String brand) {
-            this.brand = Optional.of(brand);
+        /**
+         * @param dressBrand
+         *            the brand of the dress
+         * 
+         * @return a dress
+         */
+        public DressBuilder buildBrand(final String dressBrand) {
+            this.brand = Optional.of(dressBrand);
             return this;
         }
 
-        public DressBuilder size(int size) {
-            this.size = size;
+        /**
+         * @param dressSize
+         *            the size of the dress
+         *
+         * @return a dress
+         */
+        public DressBuilder buildSize(final int dressSize) {
+            this.size = Optional.of(dressSize);
             return this;
         }
 
-        public DressBuilder price(int price) {
-            this.price = Optional.of(price);
+        /**
+         * @param dressPrice
+         *            the price of the dress
+         *
+         * @return a dress
+         */
+        public DressBuilder buildPrice(final int dressPrice) {
+            this.price = Optional.of(dressPrice);
             return this;
         }
 
-        public DressBuilder purchaseDate(String purchaseDate) {
-            this.purchaseDate = Optional.of(purchaseDate);
+        /**
+         * @param dressPurchaseDate
+         *            the purchase date of the dress
+         *
+         * @return a dress
+         */
+        public DressBuilder buildPurchaseDate(final String dressPurchaseDate) {
+            this.purchaseDate = Optional.of(dressPurchaseDate);
             return this;
         }
 
-        public DressBuilder description(String description) {
-            this.description = Optional.of(description);
+        /**
+         * @param dressDescription
+         *            the description of a dress
+         *
+         * @return a dress
+         */
+        public DressBuilder buildDescription(final String dressDescription) {
+            this.description = Optional.of(dressDescription);
             return this;
         }
 
+        /**
+         * @return a new dress object
+         */
         public Dress build() {
             Objects.requireNonNull(this.name);
-            Objects.requireNonNull(this.size);
             return new DressImpl(this.name, this.brand, this.size, this.price, this.purchaseDate, this.description);
         }
     }
+
 }
