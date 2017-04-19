@@ -2,7 +2,7 @@ package controller;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.Set;
 
 import controller.authentication.Authentication;
@@ -29,12 +29,10 @@ public final class ControllerImpl implements Controller {
     private AuthenticationStatus status;
     private User user;
     private Map<NameOfScreens, UI> map;
-    private Dress dress;
 
     private ControllerImpl() {
         auth = AuthenticationImpl.getInstance();
         map = new HashMap<>();
-
     }
 
     /**
@@ -125,11 +123,21 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public CategoriesStatus addDress(final String name, final String brand, final int size, final int price, final String purchaseDate,
-            final String description) {
+    public CategoriesStatus addDress(final String name, final String brand, final int size, final int price,
+            final String purchaseDate, final String description, final CategoriesStatus categories) {
+
+        Dress dress;
+
+        try {
+            Objects.requireNonNull(categories);
+        } catch (NullPointerException e) {
+            return null;
+        }
+
         dress = new DressImpl.DressBuilder().name(name).brand(brand).size(size).purchaseDate(purchaseDate)
                 .description(description).build();
-        return null;
+
+        return user.getWardobe().getAllCategories().addDressToCategory(categories);
     }
 
 }

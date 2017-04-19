@@ -84,9 +84,10 @@ public interface Controller {
      * @param price price
      * @param purchaseDate purchase date
      * @param description description
+     * @param categories categories
      * @return CategoriesStatus
      */
     CategoriesStatus addDress(String name, String brand, int size, int price, String purchaseDate,
-            String description);
+            String description, CategoriesStatus categories);
 
 }
