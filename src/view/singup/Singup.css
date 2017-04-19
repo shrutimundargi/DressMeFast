@@ -2,7 +2,7 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 .main-pane{
-	-fx-background-image: url("../../../res/image/login-bg-2.jpg");
+	-fx-background-image: url("../../../res/image/login-bg-4.jpg");
 	-fx-background-position: center center;
 	/*-fx-background-repeat: stretch;
   	-fx-background-size: 150.0 71.0;*/

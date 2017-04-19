@@ -3,6 +3,7 @@ package view.login;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import view.SceneSetting;
 import view.ScreensGraphic;
@@ -20,6 +21,11 @@ public class LoginGraphic implements UI{
     private final Controller controller;
     private Stage primaryStage;
     private boolean lockedPositionSlider;
+    
+	@FXML
+	private Text txtErrUser;
+	@FXML
+	private Text txtErrPassw;
 	
 	public LoginGraphic(SceneSetting environment, Controller controller) {
 		this.controller = controller;

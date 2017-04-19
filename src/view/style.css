@@ -1,0 +1,9 @@
+.title-log-sing{
+	-fx-text-fill: white;
+    -fx-font-size: 50px;
+}
+
+.txtErr{
+	-fx-fill: #9E031E;
+    -fx-font-size: 12px;
+}

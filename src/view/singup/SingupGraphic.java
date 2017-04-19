@@ -31,7 +31,11 @@ public class SingupGraphic implements UI{
 	@FXML
 	private PasswordField txfRepPassword;
 	@FXML
-	private Text txtError;
+	private Text txtErrUser;
+	@FXML
+	private Text txtErrPassw;
+	@FXML
+	private Text txtErrRepPassw;
 	
 	public SingupGraphic(SceneSetting environment, Controller controller) {
 		this.controller = controller;
@@ -55,9 +59,20 @@ public class SingupGraphic implements UI{
 			String passw = txfPassword.getText();
 			String repPassw = txfRepPassword.getText();
 			
-			if(user.length() < 5){
-				txtError.setText("Username to short, min. 5 charats");
+			txtErrUser.setText("");
+			txtErrPassw.setText("");
+			txtErrRepPassw.setText("");
+			
+			if (user.length() < 5){
+				txtErrUser.setText("Username to short, min. 5 charats");
 			}
+			if (passw.length() < 5){
+				txtErrPassw.setText("Password to short, min. 5 charats");
+			} else if (!repPassw.equals(passw)){
+				txtErrRepPassw.setText("Passwords not equal");
+			}
+			
+			
 			
 			controller.signUp(user, passw);
 		}
