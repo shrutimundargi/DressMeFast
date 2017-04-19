@@ -127,10 +127,21 @@ public final class ControllerImpl implements Controller {
 
         Dress dress;
 
+<<<<<<< HEAD
         dress = new DressImpl.DressBuilder().name(name).brand(brand).size(size).purchaseDate(purchaseDate)
                 .description(description).build();
+=======
+        try {
+            Objects.requireNonNull(categories);
+        } catch (NullPointerException e) {
+            return null;
+        }
 
-        return user.getWardobe().getAllCategories().addDressToCategory(categories);
+        dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size).buildPurchaseDate(purchaseDate)
+                .buildDescription(description).build();
+>>>>>>> 49cabe3c3c820a5a2e4d57f1173bb76d0d78d135
+
+        return user.getWardobe().getAllCategories().addDressToCategory(dress, categories);
     }
 
 }

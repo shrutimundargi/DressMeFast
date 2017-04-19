@@ -8,6 +8,4 @@ public interface Wardrobe {
     
     CategoryManagement getAllCategories();
     
-    //CategoryManagement getDresses();
-    
 }
