@@ -8,5 +8,4 @@ public interface Category {
     
     CategoriesStatus addDress(Dress dress); 
     
-    
 }

@@ -7,7 +7,8 @@ public enum CategoriesStatus {
     HANDS ("Hands"),
     BODY ("Body"),
     LEGS ("Legs"),
-    FOOT ("Foot");
+    FOOT ("Foot"),
+    NAME_ALREADY_EXISTS("Dress name already exists");
     
     private String categoryName;
     

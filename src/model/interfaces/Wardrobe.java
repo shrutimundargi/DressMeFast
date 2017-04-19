@@ -1,5 +1,13 @@
 package model.interfaces;
 
-public interface Wardrobe {
+import java.util.Map;
 
+import model.CategoriesStatus;
+
+public interface Wardrobe {
+    
+    CategoryManagement getAllCategories();
+    
+    //CategoryManagement getDresses();
+    
 }
