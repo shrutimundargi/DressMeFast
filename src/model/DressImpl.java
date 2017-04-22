@@ -1,7 +1,9 @@
 package model;
 
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 import model.interfaces.Dress;
 
@@ -12,15 +14,16 @@ import model.interfaces.Dress;
  */
 public final class DressImpl implements Dress {
 
-    private String name;
+    private UUID id;
+    private Optional<String> name;
     private Optional<String> brand;
     private Optional<Integer> size;
     private Optional<Integer> price;
-    private Optional<String> purchaseDate;
+    private Optional<Date> purchaseDate;
     private Optional<String> description;
 
-    private DressImpl(final String dressName, final Optional<String> dressBrand, final Optional<Integer> dressSize,
-            final Optional<Integer> dressPrice, final Optional<String> dressPurchaseDate,
+    private DressImpl(final Optional<String> dressName, final Optional<String> dressBrand, final Optional<Integer> dressSize,
+            final Optional<Integer> dressPrice, final Optional<Date> dressPurchaseDate,
             final Optional<String> dressDescription) {
         super();
         this.name = dressName;
@@ -29,10 +32,16 @@ public final class DressImpl implements Dress {
         this.price = dressPrice;
         this.purchaseDate = dressPurchaseDate;
         this.description = dressDescription;
+        this.id = UUID.randomUUID();
     }
 
     @Override
-    public String getName() {
+    public UUID getId() {
+        return this.id;
+    }
+
+    @Override
+    public Optional<String> getName() {
         return this.name;
     }
 
@@ -52,7 +61,7 @@ public final class DressImpl implements Dress {
     }
 
     @Override
-    public Optional<String> getPurchaseDate() {
+    public Optional<Date> getPurchaseDate() {
         return this.purchaseDate;
     }
 
@@ -63,7 +72,7 @@ public final class DressImpl implements Dress {
 
     @Override
     public AuthenticationStatus setName(final String dressName) {
-        this.name = dressName;
+        this.name = Optional.of(dressName);
         return AuthenticationStatus.CHANGE_SUCCESFULL;
     }
 
@@ -86,7 +95,7 @@ public final class DressImpl implements Dress {
     }
 
     @Override
-    public AuthenticationStatus setPurchaseDate(final String dressPurchaseDate) {
+    public AuthenticationStatus setPurchaseDate(final Date dressPurchaseDate) {
         this.purchaseDate = Optional.of(dressPurchaseDate);
         return AuthenticationStatus.CHANGE_SUCCESFULL;
     }
@@ -103,11 +112,11 @@ public final class DressImpl implements Dress {
      */
     public static class DressBuilder {
 
-        private String name;
+        private Optional<String> name;
         private Optional<String> brand;
         private Optional<Integer> size;
         private Optional<Integer> price;
-        private Optional<String> purchaseDate;
+        private Optional<Date> purchaseDate;
         private Optional<String> description;
 
         /**
@@ -117,7 +126,7 @@ public final class DressImpl implements Dress {
          * @return a dress
          */
         public DressBuilder buildName(final String dressName) {
-            this.name = dressName;
+            this.name = Optional.of(dressName);
             return this;
         }
 
@@ -160,7 +169,7 @@ public final class DressImpl implements Dress {
          *
          * @return a dress
          */
-        public DressBuilder buildPurchaseDate(final String dressPurchaseDate) {
+        public DressBuilder buildPurchaseDate(final Date dressPurchaseDate) {
             this.purchaseDate = Optional.of(dressPurchaseDate);
             return this;
         }
