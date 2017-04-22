@@ -2,6 +2,9 @@ package controller.dress;
 
 import java.util.Date;
 import java.util.Set;
+
+import controller.authentication.Authentication;
+import controller.authentication.AuthenticationImpl;
 import model.CategoriesStatus;
 import model.DressImpl;
 import model.interfaces.Dress;
@@ -13,6 +16,7 @@ import model.interfaces.User;
  */
 public final class DressControllerImpl implements DressController {
 
+    private Authentication auth;
     private User user;
 
     /**
@@ -21,7 +25,8 @@ public final class DressControllerImpl implements DressController {
     public static final DressControllerImpl SINGLETON = new DressControllerImpl();
 
     private DressControllerImpl() {
-
+        auth = AuthenticationImpl.getInstance();
+        user = auth.getUser();
     }
 
     /**
@@ -82,10 +87,15 @@ public final class DressControllerImpl implements DressController {
     @Override
     public CategoriesStatus addDress(final String name, final String brand, final int size, final int price, final Date purchaseDate,
             final String description, final CategoriesStatus categories) {
-        Dress dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size).buildPurchaseDate(purchaseDate)
+        
+        final Dress dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size).buildPurchaseDate(purchaseDate)
                 .buildDescription(description).build();
 
         return user.getWardobe().getAllCategories().addDressToCategory(dress, categories);
+    }
+    
+    public void setUser(User user){
+        this.user = user;
     }
 
 }

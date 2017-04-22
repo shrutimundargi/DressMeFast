@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import model.CategoriesStatus;
+import model.interfaces.User;
 
 
 
@@ -12,6 +13,9 @@ import model.CategoriesStatus;
  *
  */
 public interface DressController {
+    
+   void setUser(User user);
+    
     /**
      * @return Set<Dress>.
      */

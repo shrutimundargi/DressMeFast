@@ -2,7 +2,7 @@ package controller;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Objects;
 
 import controller.authentication.Authentication;
 import controller.authentication.AuthenticationImpl;
@@ -21,13 +21,11 @@ public final class ControllerImpl implements Controller {
      * Singleton.
      */
     public static final ControllerImpl SINGLETON = new ControllerImpl();
-    private final Authentication auth;
-    private final DressController dress;
-    private Map<NameOfScreens, UI> map;
+    private Authentication auth;
+    private DressController dressC;
+    private final Map<NameOfScreens, UI> map;
 
     private ControllerImpl() {
-        auth = AuthenticationImpl.getInstance();
-        dress = DressControllerImpl.getInstance();
         map = new HashMap<>();
     }
 
@@ -45,13 +43,15 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public Authentication authentication() {
-        return this.auth;
+    public Authentication authentication() {        
+        return auth = AuthenticationImpl.getInstance();
     }
 
     @Override
-    public DressController dress() {
-        return this.dress;
+    public DressController dress() {     
+        if(Objects.isNull(dressC)){
+            dressC = DressControllerImpl.getInstance();
+        }
+        return dressC;
     }
-
 }
