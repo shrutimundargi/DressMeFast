@@ -124,7 +124,6 @@ public final class ControllerImpl implements Controller {
     @Override
     public CategoriesStatus addDress(final String name, final String brand, final int size, final int price,
             final String purchaseDate, final String description, final CategoriesStatus categories) {
-
         Dress dress;
         dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size).buildPurchaseDate(purchaseDate)
                 .buildDescription(description).build();
