@@ -1,5 +1,6 @@
 package controller.dress;
 
+import java.util.Date;
 import java.util.Set;
 import model.CategoriesStatus;
 import model.DressImpl;
@@ -79,7 +80,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public CategoriesStatus addDress(final String name, final String brand, final int size, final int price, final String purchaseDate,
+    public CategoriesStatus addDress(final String name, final String brand, final int size, final int price, final Date purchaseDate,
             final String description, final CategoriesStatus categories) {
         Dress dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size).buildPurchaseDate(purchaseDate)
                 .buildDescription(description).build();

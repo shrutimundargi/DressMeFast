@@ -1,5 +1,6 @@
 package controller.dress;
 
+import java.util.Date;
 import java.util.Set;
 
 import model.CategoriesStatus;
@@ -64,6 +65,6 @@ public interface DressController {
      * @param categories categories
      * @return CategoriesStatus
      */
-    CategoriesStatus addDress(String name, String brand, int size, int price, String purchaseDate,
+    CategoriesStatus addDress(String name, String brand, int size, int price, Date purchaseDate,
             String description, CategoriesStatus categories);
 }
