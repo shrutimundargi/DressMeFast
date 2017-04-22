@@ -27,16 +27,21 @@ public enum CategoriesStatus {
      */
     LEGS("Legs"),
     /**
-     * Legs category.
+     * Foot category.
      */
     FOOT("Foot"),
     /**
-     * Foot category.
+     * The Status of a dress id.
      */
-    NAME_ALREADY_EXISTS("Dress name already exists");
+    ID_ALREADY_EXISTS("Dress id already exists"),
     /**
-     * Status of a dress name.
+     * The positive result by adding a dress.
      */
+    DRESS_ADDED("Dress added succesfully"),
+    /**
+     * The positive result by removing a dress.
+     */
+    DRESS_REMOVED("Dress removed succesfully");
 
     private String categoryName;
 
@@ -48,7 +53,7 @@ public enum CategoriesStatus {
     }
 
     /**
-     * @param categoryName
+     * @param name
      *            the category name or a particular status
      */
     CategoriesStatus(final String name) {
