@@ -3,7 +3,8 @@ package view;
 public enum NameOfScreens {
 	
 	LOGIN("login"),
-	SINGUP("singup");
+	SINGUP("singup"),
+	DIALOGSINGUP("dialogsingup");
 	
 	private String name;
 	

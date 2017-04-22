@@ -11,7 +11,12 @@ public enum ScreensGraphic {
     /**
      * Main view of the Editor.
      */
-    SINGUP("/view/singup/Singup.fxml", "/view/singup/Singup.css");
+    SINGUP("/view/singup/Singup.fxml", "/view/singup/Singup.css"),
+    
+    /**
+     * Main view of the Editor.
+     */
+    DIALOGSINGUP("/view/dialog/singupDialog.fxml", "/view/dialog/style.css");
 
     private final String resourcePath;
     private final String cssPath;

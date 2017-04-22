@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.stage.Stage;
 import view.NameOfScreens;
 import view.SceneSetting;
+import view.dialog.SingupDialogGraphic;
 import view.login.LoginGraphic;
 import view.singup.SingupGraphic;
 
@@ -38,6 +39,10 @@ public class Main {
 
         SingupGraphic singupGraphic = new SingupGraphic(setting, controller);
         controller.attachUI(NameOfScreens.SINGUP, singupGraphic);
+        
+        SingupDialogGraphic singupPopUpGraphic = new SingupDialogGraphic(setting, controller);
+        controller.attachUI(NameOfScreens.DIALOGSINGUP, singupPopUpGraphic);
+
 
         Platform.runLater(() -> {
             try {
