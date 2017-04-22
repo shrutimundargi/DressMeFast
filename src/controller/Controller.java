@@ -1,12 +1,11 @@
 package controller;
 
-import java.util.Set;
 
-import model.interfaces.Dress;
+
+import controller.authentication.Authentication;
+import controller.dress.DressController;
 import view.NameOfScreens;
 import view.UI;
-import model.AuthenticationStatus;
-import model.CategoriesStatus;
 
 /**
  *  Interface for the controller.
@@ -15,90 +14,21 @@ import model.CategoriesStatus;
 public interface Controller {
 
     /**
-     * @param user user
-     * @param pass password
-     * @return AuthenticationStatus
+     * Permette di accedere ai metodi riguardanti la gestione dell'Autenticazione di un utente.
+     * @return Authentication
      */
-    AuthenticationStatus checkLogin(String user, String pass);
+    Authentication authentication();
 
     /**
-     * @param user user
-     * @param pass password
-     * @return AuthenticationStatus
+     * permette di accedere ai metodi riguardanti la gestione dei vestiti.
+     * @return DressController
      */
-    AuthenticationStatus signUp(String user, String pass);
-
-    /**
-     * @return Set<Dress>.
-     */
-    Set<Dress> getThreeLastDresses();
-
-    /**
-     * @return Set<String>.
-     */
-    Set<String> getAllBrand();
-
-    /**
-     * @param brandName brandName
-     * @return Set<Dress>
-     */
-    Set<Dress> getDressesOfBrand(String brandName);
-
-    /**
-     * @return Set<Dress>.
-     */
-    Set<Dress> getFavoriteDresses();
-
-    /**
-     * @return Set<Integer>.
-     */
-    Set<Integer> getAllSize();
-
-    /**
-     * @param size size
-     * @return Set<Dress>
-     */
-    Set<Dress> getDressesOfSize(int size);
-
-    /**
-     * @return Set<String>
-     */
-    Set<String> getAllCategory();
-
-    /**
-     * @param categoryName categoryName
-     * @return Set<Dress>
-     */
-    Set<Dress> getDressesOfCategory(String categoryName);
+    DressController dress();
 
     /**
      * @param name name
      * @param uI user Interface
      */
     void attachUI(NameOfScreens name, UI uI);
-
-    /**
-     * @param name name
-     * @param brand brand
-     * @param size size
-     * @param price price
-     * @param purchaseDate purchase date
-     * @param description description
-     * @param categories categories
-     * @return CategoriesStatus
-     */
-    CategoriesStatus addDress(String name, String brand, int size, int price, String purchaseDate,
-            String description, CategoriesStatus categories);
-
-    /**
-     * @return String Username
-     */
-    String getUsername();
-
-    /**
-     * @return AuthenticationStatus Logout
-     */
-    AuthenticationStatus logout();
-
 }
  

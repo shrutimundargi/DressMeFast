@@ -1,5 +1,7 @@
 package controller.authentication;
 
+import java.util.Objects;
+
 import model.AuthenticationStatus;
 import model.UserManagementImpl;
 
@@ -32,13 +34,27 @@ public final class AuthenticationImpl implements Authentication {
     public static AuthenticationImpl getInstance() {
         return SINGLETON;
     }
-
     /**
-     * Esegue il SignUp dell'utente e restituisce un messaggio sello stato
-     * dell'operazione, in oltre ottiene l'User appena registrato.
+     * Restituise l'utente.
      */
     @Override
-    public AuthenticationStatus addUser(final String username, final String pass) {
+    public User getUser() {
+        return this.user;
+    }
+
+    @Override
+    public AuthenticationStatus checkLogin(final String username, final String pass) {
+        status = userM.getSpecifiedUser(username, pass);
+        if (this.status == AuthenticationStatus.USER_NOT_FOUND || this.status == AuthenticationStatus.WRONG_PASSWORD) {
+            return status;
+        } else {
+            this.user = userM.getLoginUser();
+            return this.status;
+        }
+    }
+
+    @Override
+    public AuthenticationStatus signUp(final String username, final String pass) {
         status = userM.addUser(username, pass);
         if (this.status == AuthenticationStatus.USERNAME_ALREADY_TAKEN
                 || this.status == AuthenticationStatus.DUPLICATED_USER) {
@@ -49,26 +65,18 @@ public final class AuthenticationImpl implements Authentication {
         }
     }
 
-    /**
-     * Esegue il Login dell'utente e ne restituisce lo stato dell'operzione, in
-     * oltre ottiene l'User appena loggato.
-     */
     @Override
-    public AuthenticationStatus checkAuthentication(final String username, final String pass) {
-        status = userM.getSpecifiedUser(username, pass);
-        if (this.status == AuthenticationStatus.USER_NOT_FOUND || this.status == AuthenticationStatus.WRONG_PASSWORD) {
-            return status;
-        } else {
-            this.user = userM.getLoginUser();
-            return this.status;
+    public AuthenticationStatus logout() {
+        user = null;
+        if (Objects.isNull(user)) {
+            return null;
         }
+        return null;
     }
 
-    /**
-     * Restituise l'utente.
-     */
     @Override
-    public User getUser() {
-        return this.user;
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

@@ -32,11 +32,11 @@ public class Main {
     public static void main(String[] args) {
         PlatformImpl.startup(() -> {
         });
+        
         SceneSetting setting = new SceneSetting();
         Controller controller = ControllerImpl.getInstance();
         LoginGraphic loginGraphic = new LoginGraphic(setting, controller);
         controller.attachUI(NameOfScreens.LOGIN, loginGraphic);
-
         SingupGraphic singupGraphic = new SingupGraphic(setting, controller);
         controller.attachUI(NameOfScreens.SINGUP, singupGraphic);
         
