@@ -13,9 +13,12 @@ import model.interfaces.User;
  *
  */
 public interface DressController {
-    
-   void setUser(User user);
-    
+
+    /**
+     * @param user user
+     */
+    void setUser(User user);
+
     /**
      * @return Set<Dress>.
      */

@@ -1,6 +1,5 @@
 package controller.authentication;
 
-import java.util.Objects;
 
 import model.AuthenticationStatus;
 import model.UserManagementImpl;
@@ -67,11 +66,8 @@ public final class AuthenticationImpl implements Authentication {
 
     @Override
     public AuthenticationStatus logout() {
-        user = null;
-        if (Objects.isNull(user)) {
-            return null;
-        }
-        return null;
+       this.user = null;
+        return AuthenticationStatus.CHANGE_SUCCESFULL;
     }
 
     @Override

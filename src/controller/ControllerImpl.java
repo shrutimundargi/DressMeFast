@@ -43,15 +43,21 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public Authentication authentication() {        
-        return auth = AuthenticationImpl.getInstance();
+    public Authentication authentication() {
+        auth = AuthenticationImpl.getInstance();
+        return auth;
     }
 
     @Override
-    public DressController dress() {     
-        if(Objects.isNull(dressC)){
-            dressC = DressControllerImpl.getInstance();
+    public DressController dress() {
+        if (Objects.isNull(auth.getUser())) {
+            return null;
+        } else {
+            if (Objects.isNull(dressC)) {
+                dressC = DressControllerImpl.getInstance();
+                dressC.setUser(auth.getUser());
+            }
+            return dressC;
         }
-        return dressC;
     }
 }
