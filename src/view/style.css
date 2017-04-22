@@ -1,9 +1,24 @@
 .title-log-sing{
 	-fx-text-fill: white;
-    -fx-font-size: 50px;
+    -fx-font-size: 50.0px;
 }
 
 .txtErr{
 	-fx-fill: #9E031E;
-    -fx-font-size: 12px;
+    -fx-font-size: 12.0px;
+}
+
+.btn-normal{
+	-fx-background-color:none;
+    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16.0px;
+    -fx-padding: 8 15;
+    -fx-border-color: white;
+   	-fx-border-radius: 4.0;
+}
+
+.btn-normal:hover {
+   	-fx-background-color: #464C51;
 }

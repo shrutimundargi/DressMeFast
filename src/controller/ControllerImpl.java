@@ -24,7 +24,7 @@ public final class ControllerImpl implements Controller {
      * Singleton.
      */
     public static final ControllerImpl SINGLETON = new ControllerImpl();
-    private Authentication auth;
+    private final Authentication auth;
     private AuthenticationStatus status;
     private User user;
     private Map<NameOfScreens, UI> map;
@@ -99,7 +99,7 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public Set<Dress> getFavoriteDresses(final String brandName) {
+    public Set<Dress> getFavoriteDresses() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -111,7 +111,7 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public Set<Dress> getDressesOfCategory() {
+    public Set<Dress> getDressesOfCategory(final String brandName) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -130,6 +130,18 @@ public final class ControllerImpl implements Controller {
                 .buildDescription(description).build();
 
         return user.getWardobe().getAllCategories().addDressToCategory(dress, categories);
+    }
+
+    @Override
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public AuthenticationStatus logout() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

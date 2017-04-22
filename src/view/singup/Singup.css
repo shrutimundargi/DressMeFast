@@ -12,30 +12,30 @@
 
 .pnl-center{
 	-fx-background-color: #323539; 
-	-fx-background-radius: 7px;
-	-fx-padding: 15 15 0 15;
-	-fx-min-height:375px; 
-	-fx-min-width: 400px; 
-	-fx-max-height:375px; 
-	-fx-max-width: 400px;
-	-fx-effect: dropshadow(three-pass-box, black, 10, 0, 0, 0);
-	-fx-font-size: 15px;
+	-fx-background-radius: 7.0px;
+	-fx-padding: 15.0 15.0 0.0 15.0;
+	-fx-min-height:375.0px; 
+	-fx-min-width: 400.0px; 
+	-fx-max-height:375.0px; 
+	-fx-max-width: 400.0px;
+	-fx-effect: dropshadow(three-pass-box, black, 10.0, 0.0, 0.0, 0.0);
+	-fx-font-size: 15.0px;
 }
 
 .title-login{
 	-fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 40px;
+    -fx-font-size: 40.0px;
 }
 
 .btn-press{
 	-fx-background-color:none;
-    -fx-background-insets: 0,1,2,3,0;
+    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-padding: 10 20 10 20;
+    -fx-padding: 10.0 20.0 10.0 20.0;
     -fx-border-color: white;
-   	-fx-border-radius: 4;
+   	-fx-border-radius: 4.0;
 }
 
 .btn-press:hover {
@@ -44,13 +44,13 @@
 
 .btn-register{
 	-fx-background-color: none;
-    -fx-background-insets: 0,1,2,3,0;
+    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-padding: 0;
+    -fx-font-size: 14.0px;
+    -fx-padding: 0.0;
     -fx-text-fill: grey;
-    -fx-padding: 0 20 0 13;
+    -fx-padding: 0.0 20.0 0.0 13.0;
 }
 
 .btn-register:hover {
@@ -59,11 +59,11 @@
 
 .btnBT {
 	-fx-background-color: none;
-    -fx-background-insets: 0,1,2,3,0;
+    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-padding: 0;
+    -fx-font-size: 14.0px;
+    -fx-padding: 0.0;
     -fx-text-fill: grey;
-    -fx-padding: 0 20 0 5;
+    -fx-padding: 0.0 20.0 0.0 5.0;
 }

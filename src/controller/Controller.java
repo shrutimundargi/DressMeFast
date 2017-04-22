@@ -45,10 +45,9 @@ public interface Controller {
     Set<Dress> getDressesOfBrand(String brandName);
 
     /**
-     * @param brandName brandName
      * @return Set<Dress>.
      */
-    Set<Dress> getFavoriteDresses(String brandName);
+    Set<Dress> getFavoriteDresses();
 
     /**
      * @return Set<Integer>.
@@ -67,9 +66,10 @@ public interface Controller {
     Set<String> getAllCategory();
 
     /**
+     * @param categoryName categoryName
      * @return Set<Dress>
      */
-    Set<Dress> getDressesOfCategory();
+    Set<Dress> getDressesOfCategory(String categoryName);
 
     /**
      * @param name name
@@ -90,4 +90,15 @@ public interface Controller {
     CategoriesStatus addDress(String name, String brand, int size, int price, String purchaseDate,
             String description, CategoriesStatus categories);
 
+    /**
+     * @return String Username
+     */
+    String getUsername();
+
+    /**
+     * @return AuthenticationStatus Logout
+     */
+    AuthenticationStatus logout();
+
 }
+ 
