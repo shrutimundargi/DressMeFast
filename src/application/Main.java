@@ -27,6 +27,7 @@ public class Main {
 //      //cont.authentication().logout();
 //    System.out.println(cont.authentication().checkLogin("pop", "palla"));
 //    System.out.println(cont.authentication().checkLogin("pop", "palla"));
+//  cont.authentication().logout();
 //        cont.dress().addDress("name", "brand", 10, 10, data, "", CategoriesStatus.BODY);
 //   
 //     /* System.out.println(cont.signUp("pop", "palla"));

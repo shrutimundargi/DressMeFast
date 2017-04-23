@@ -93,4 +93,9 @@ public final class DressControllerImpl implements DressController {
         this.user = user;
     }
 
+    @Override
+    public User getUser() {
+        return this.user;
+    }
+
 }

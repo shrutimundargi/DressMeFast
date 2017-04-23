@@ -14,6 +14,11 @@ import model.interfaces.User;
 public interface DressController {
 
     /**
+     * @return User
+     */
+    User getUser();
+
+    /**
      * @param user
      *            : User
      */
