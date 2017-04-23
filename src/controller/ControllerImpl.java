@@ -25,6 +25,7 @@ public final class ControllerImpl implements Controller {
      */
     public static final ControllerImpl SINGLETON = new ControllerImpl();
     private static final String ACESS_ERROR_DRESS = "User not found, you can't acess to Dress without a user";
+    private static final String ACESS_ERROR_OUTFITS = "User not found, you can't acess to Outfits without a user";
 
     private Authentication auth;
     private DressController dressCtr;
@@ -53,6 +54,17 @@ public final class ControllerImpl implements Controller {
         return auth;
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see controller.Controller#dress()
+     * 
+     * ######################################################################
+     * creare un metodo per evitare la dupplicazione id codice nei due metodi
+     * sottostanti
+     * ######################################################################
+     */
+
     @Override
     public DressController dress() {
 
@@ -77,12 +89,13 @@ public final class ControllerImpl implements Controller {
         try {
             Objects.requireNonNull(auth.getUser());
         } catch (Exception e) {
-            final RuntimeException e2 = new MyException(ACESS_ERROR_DRESS);
+            final RuntimeException e2 = new MyException(ACESS_ERROR_OUTFITS);
             throw e2;
         }
 
         if (Objects.isNull(outfistCtr)) {
             outfistCtr = OutfitsControllerImpl.getInstance();
+            //outfistCtr.setUser(auth.getUser()); in costruzione
         }
         return outfistCtr;
 
