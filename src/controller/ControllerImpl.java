@@ -2,7 +2,6 @@ package controller;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import controller.authentication.Authentication;
 import controller.authentication.AuthenticationImpl;
@@ -50,17 +49,12 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public Authentication authentication() {
-        dressCtr.setUser(null);
         return auth;
     }
 
     @Override
     public DressController dress() {
-        if (Objects.isNull(dressCtr.getUser())) {
-            dressCtr.setUser(auth.getUser());
-        }
         return dressCtr;
-
     }
 
     @Override

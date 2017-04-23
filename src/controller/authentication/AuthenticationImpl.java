@@ -1,5 +1,7 @@
 package controller.authentication;
 
+import controller.dress.DressController;
+import controller.dress.DressControllerImpl;
 import model.AuthenticationStatus;
 import model.UserManagementImpl;
 
@@ -45,6 +47,7 @@ public final class AuthenticationImpl implements Authentication {
             return status;
         } else {
             this.user = userM.getLoginUser();
+            setUser();
             return this.status;
         }
     }
@@ -57,6 +60,7 @@ public final class AuthenticationImpl implements Authentication {
             return status;
         } else {
             this.user = userM.getSignUpUser();
+            setUser();
             return status;
         }
     }
@@ -74,11 +78,17 @@ public final class AuthenticationImpl implements Authentication {
     @Override
     public AuthenticationStatus logout() {
         this.user = null;
+        setUser();
         return AuthenticationStatus.CHANGE_SUCCESFULL;
     }
 
     @Override
     public String getUsername() {
         return user.getName();
+    }
+
+    private void setUser() {
+        final DressController dressCtr = DressControllerImpl.getInstance();
+        dressCtr.setUser(user);
     }
 }
