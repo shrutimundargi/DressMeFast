@@ -12,21 +12,25 @@ import model.interfaces.User;
 public interface Authentication {
 
     /**
-     * @param user user
-     * @param pass password
-     * @return AuthenticationStatus
+     * @param user
+     *            username
+     * @param pass
+     *            password
+     * @return the status of the Login operation
      */
     AuthenticationStatus checkLogin(String user, String pass);
 
     /**
-     * @param user user
-     * @param pass password
-     * @return AuthenticationStatus
+     * @param user
+     *            username
+     * @param pass
+     *            password
+     * @return the status of the signUp operation
      */
     AuthenticationStatus signUp(String user, String pass);
 
     /**
-     * @return AuthenticationStatus
+     * @return the status of the logout operation
      */
     AuthenticationStatus logout();
 
@@ -36,7 +40,7 @@ public interface Authentication {
     User getUser();
 
     /**
-     * @return String
+     * @return the username of the User
      */
     String getUsername();
 

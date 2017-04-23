@@ -1,6 +1,5 @@
 package controller.authentication;
 
-
 import model.AuthenticationStatus;
 import model.UserManagementImpl;
 
@@ -33,9 +32,7 @@ public final class AuthenticationImpl implements Authentication {
     public static AuthenticationImpl getInstance() {
         return SINGLETON;
     }
-    /**
-     * Restituise l'utente.
-     */
+
     @Override
     public User getUser() {
         return this.user;
@@ -64,9 +61,19 @@ public final class AuthenticationImpl implements Authentication {
         }
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see controller.authentication.Authentication#logout()
+     * 
+     * #########################################################################
+     * Aspetto che il model mi crei uno stato per il logout effettuato con
+     * succeso, ho messo uno stato temporaneo di prova
+     * #########################################################################
+     */
     @Override
     public AuthenticationStatus logout() {
-       this.user = null;
+        this.user = null;
         return AuthenticationStatus.CHANGE_SUCCESFULL;
     }
 

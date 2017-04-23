@@ -3,7 +3,6 @@ package controller.dress;
 import java.util.Date;
 import java.util.Set;
 
-
 import model.CategoriesStatus;
 import model.DressImpl;
 import model.interfaces.Dress;
@@ -32,7 +31,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<DressController> getThreeLastDresses() {
+    public Set<Dress> getThreeLastDresses() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -44,13 +43,13 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<DressController> getDressesOfBrand(final String brandName) {
+    public Set<Dress> getDressesOfBrand(final String brandName) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Set<DressController> getFavoriteDresses() {
+    public Set<Dress> getFavoriteDresses() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -62,7 +61,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<DressController> getDressesOfSize(final int size) {
+    public Set<Dress> getDressesOfSize(final int size) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -74,17 +73,17 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<DressController> getDressesOfCategory(final String categoryName) {
+    public Set<Dress> getDressesOfCategory(final CategoriesStatus categoryName) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public CategoriesStatus addDress(final String name, final String brand, final int size, final int price, final Date purchaseDate,
-            final String description, final CategoriesStatus categories) {
+    public CategoriesStatus addDress(final String name, final String brand, final int size, final int price,
+            final Date purchaseDate, final String description, final CategoriesStatus categories) {
 
-        final Dress dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size).buildPurchaseDate(purchaseDate)
-                .buildDescription(description).build();
+        final Dress dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size)
+                .buildPrice(price).buildPurchaseDate(purchaseDate).buildDescription(description).build();
 
         return user.getWardobe().getAllCategories().addDressToCategory(dress, categories);
     }

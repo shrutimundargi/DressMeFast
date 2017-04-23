@@ -19,13 +19,16 @@ public class Main {
     /* test */
     
     
-//    public static void main(String[] args){ 
+//    public static void main(String[] args) { 
 //        Date data = new Date();
 //      Controller cont = ControllerImpl.getInstance(); 
 //    System.out.println(cont.authentication().signUp("pop","palla")); 
 //    System.out.println(cont.authentication().checkLogin("pop", "palla"));
-//      cont.authentication().logout();
-//    cont.dress().addDress("name", "brand", 10, 10, data, "", CategoriesStatus.BODY);
+//      //cont.authentication().logout();
+//    System.out.println(cont.authentication().checkLogin("pop", "palla"));
+//    System.out.println(cont.authentication().checkLogin("pop", "palla"));
+//        cont.dress().addDress("name", "brand", 10, 10, data, "", CategoriesStatus.BODY);
+//   
 //     /* System.out.println(cont.signUp("pop", "palla"));
 //      System.out.println(cont.signUp("ipop", "palla"));
 //      System.out.println(cont.signUp("ipeop", "palla"));
@@ -37,7 +40,7 @@ public class Main {
 //      System.out.println(cont.checkLogin("ipeop", "palla"));
 //      System.out.println(cont.checkLogin("ipoyp", "palla")); 
 //      }*/
-//     
+     
 
     public static void main(String[] args) {
         PlatformImpl.startup(() -> {
@@ -66,5 +69,5 @@ public class Main {
             loginGraphic.show();
         });
         
-    }
+   }
 }

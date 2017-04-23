@@ -1,7 +1,6 @@
 package controller;
 
 
-
 import controller.authentication.Authentication;
 import controller.dress.DressController;
 import view.NameOfScreens;
@@ -14,21 +13,26 @@ import view.UI;
 public interface Controller {
 
     /**
-     * Permette di accedere ai metodi riguardanti la gestione dell'Autenticazione di un utente.
-     * @return Authentication
+     * Allows access to all methods for authentication.
+     * 
+     * @return An Authentication date that allows access to all methods for
+     *         authentication
      */
     Authentication authentication();
 
     /**
-     * permette di accedere ai metodi riguardanti la gestione dei vestiti.
-     * @return DressController
+     * Allows access to all methods for the dress.
+     * 
+     * @return An DressController date that allows access to all methods of
+     *         the dress
      */
     DressController dress();
 
     /**
-     * @param name name
-     * @param uI user Interface
+     * @param name
+     *            nameOfScreens
+     * @param uI
+     *            : user Interface
      */
     void attachUI(NameOfScreens name, UI uI);
 }
- 
