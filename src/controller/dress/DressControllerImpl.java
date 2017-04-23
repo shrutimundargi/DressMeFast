@@ -1,8 +1,10 @@
 package controller.dress;
 
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
+import controller.exception.MyException;
 import model.CategoriesStatus;
 import model.DressImpl;
 import model.interfaces.Dress;
@@ -13,6 +15,7 @@ import model.interfaces.User;
  *
  */
 public final class DressControllerImpl implements DressController {
+    private static final String USER_ERROR = "User not found, you can't add a dress without a user";
     private User user;
 
     /**
@@ -81,6 +84,12 @@ public final class DressControllerImpl implements DressController {
     @Override
     public CategoriesStatus addDress(final String name, final String brand, final int size, final int price,
             final Date purchaseDate, final String description, final CategoriesStatus categories) {
+        try {
+            Objects.requireNonNull(user);
+        } catch (Exception e) {
+            final RuntimeException e2 = new MyException(USER_ERROR);
+            throw e2;
+        }
 
         final Dress dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size)
                 .buildPrice(price).buildPurchaseDate(purchaseDate).buildDescription(description).build();

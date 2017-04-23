@@ -8,7 +8,6 @@ import controller.authentication.Authentication;
 import controller.authentication.AuthenticationImpl;
 import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
-import controller.exception.MyException;
 import controller.outfits.OutfitsController;
 import controller.outfits.OutfitsControllerImpl;
 import view.NameOfScreens;
@@ -24,8 +23,6 @@ public final class ControllerImpl implements Controller {
      * Singleton.
      */
     public static final ControllerImpl SINGLETON = new ControllerImpl();
-    private static final String ACESS_ERROR_DRESS = "User not found, you can't acess to Dress without a user";
-    private static final String ACESS_ERROR_OUTFITS = "User not found, you can't acess to Outfits without a user";
 
     private final Authentication auth;
     private final DressController dressCtr;
@@ -57,20 +54,8 @@ public final class ControllerImpl implements Controller {
         return auth;
     }
 
-    private static void checkPermission(final Authentication auth, final String error) {
-        try {
-            Objects.requireNonNull(auth.getUser());
-        } catch (Exception e) {
-            final RuntimeException e2 = new MyException(error);
-            throw e2;
-        }
-    }
-
     @Override
     public DressController dress() {
-
-        checkPermission(auth, ACESS_ERROR_DRESS);
-
         if (Objects.isNull(dressCtr.getUser())) {
             dressCtr.setUser(auth.getUser());
         }
@@ -80,9 +65,6 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public OutfitsController outfits() {
-
-        checkPermission(auth, ACESS_ERROR_OUTFITS);
-
         return outfistCtr;
 
     }
