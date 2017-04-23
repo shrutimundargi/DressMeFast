@@ -3,6 +3,7 @@ package controller;
 
 import controller.authentication.Authentication;
 import controller.dress.DressController;
+import controller.outfits.OutfitsController;
 import view.NameOfScreens;
 import view.UI;
 
@@ -21,10 +22,10 @@ public interface Controller {
     Authentication authentication();
 
     /**
-     * Allows access to all methods for the dress.
+     * Allows access to all methods of dress.
      * 
      * @return An DressController date that allows access to all methods of
-     *         the dress
+     *         dress
      */
     DressController dress();
 
@@ -35,4 +36,12 @@ public interface Controller {
      *            : user Interface
      */
     void attachUI(NameOfScreens name, UI uI);
+
+    /**
+     * Allows access to all methods of outfits.
+     * 
+     * @return OutfitsController date that allows access to all methods of
+     *           outfits
+     */
+    OutfitsController outfits();
 }

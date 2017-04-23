@@ -9,6 +9,8 @@ import controller.authentication.AuthenticationImpl;
 import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
 import controller.exception.MyException;
+import controller.outfits.OutfitsController;
+import controller.outfits.OutfitsControllerImpl;
 import view.NameOfScreens;
 import view.UI;
 
@@ -26,6 +28,7 @@ public final class ControllerImpl implements Controller {
 
     private Authentication auth;
     private DressController dressCtr;
+    private OutfitsController outfistCtr;
     private final Map<NameOfScreens, UI> map;
 
     private ControllerImpl() {
@@ -65,6 +68,23 @@ public final class ControllerImpl implements Controller {
             dressCtr.setUser(auth.getUser());
         }
         return dressCtr;
+
+    }
+
+    @Override
+    public OutfitsController outfits() {
+
+        try {
+            Objects.requireNonNull(auth.getUser());
+        } catch (Exception e) {
+            final RuntimeException e2 = new MyException(ACESS_ERROR_DRESS);
+            throw e2;
+        }
+
+        if (Objects.isNull(outfistCtr)) {
+            outfistCtr = OutfitsControllerImpl.getInstance();
+        }
+        return outfistCtr;
 
     }
 }
