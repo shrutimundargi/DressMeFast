@@ -34,54 +34,6 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<Dress> getThreeLastDresses() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Set<String> getAllBrand() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Set<Dress> getDressesOfBrand(final String brandName) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Set<Dress> getFavoriteDresses() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Set<Integer> getAllSize() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Set<Dress> getDressesOfSize(final int size) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Set<String> getAllCategory() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Set<Dress> getDressesOfCategory(final CategoriesStatus categoryName) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public CategoriesStatus addDress(final String name, final String brand, final int size, final int price,
             final Date purchaseDate, final String description, final CategoriesStatus categories) {
         try {
@@ -98,13 +50,61 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public void setUser(final User user) {
-        this.user = user;
+    public Set<Dress> getDressesOfBrand(final String brandName) {
+        return null;
     }
 
     @Override
-    public User getUser() {
-        return this.user;
+    public Set<Dress> getDressesOfCategory(final CategoriesStatus categoryName) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<Dress> getDressesOfSize(final int size) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<Dress> getDressesResearch() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<CategoriesStatus> getAllCategory() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<String> getAllBrand() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<Integer> getAllSize() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<Dress> getFavoriteDresses() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Set<Dress> getThreeLastDresses() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void setUser(final User user) {
+        this.user = user;
     }
 
 }

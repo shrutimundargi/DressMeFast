@@ -13,6 +13,14 @@ import view.UI;
 public interface Controller {
 
     /**
+     * @param name
+     *            : nameOfScreens
+     * @param uI
+     *            : user Interface
+     */
+    void attachUI(NameOfScreens name, UI uI);
+
+    /**
      * Allows access to authentication methods and user management.
      * 
      * @return An Authentication date that allows access to authentication
@@ -27,14 +35,6 @@ public interface Controller {
      *         dress
      */
     DressController dress();
-
-    /**
-     * @param name
-     *            nameOfScreens
-     * @param uI
-     *            : user Interface
-     */
-    void attachUI(NameOfScreens name, UI uI);
 
     /**
      * Allows access to all methods of outfits.

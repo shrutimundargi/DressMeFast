@@ -35,11 +35,7 @@ public final class AuthenticationImpl implements Authentication {
         return SINGLETON;
     }
 
-    @Override
-    public User getUser() {
-        return this.user;
-    }
-
+   
     @Override
     public AuthenticationStatus checkLogin(final String username, final String pass) {
         status = userM.getSpecifiedUser(username, pass);
@@ -83,12 +79,18 @@ public final class AuthenticationImpl implements Authentication {
     }
 
     @Override
-    public String getUsername() {
-        return user.getName();
+    public User getUser() {
+        return this.user;
     }
 
     private void setUser() {
         final DressController dressCtr = DressControllerImpl.getInstance();
         dressCtr.setUser(user);
     }
+
+    @Override
+    public String getUsername() {
+        return user.getName();
+    }
+
 }
