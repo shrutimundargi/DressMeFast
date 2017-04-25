@@ -1,6 +1,8 @@
 package model.interfaces;
 
+import java.util.Date;
 import java.util.Optional;
+import java.util.UUID;
 
 import model.AuthenticationStatus;
 
@@ -12,9 +14,14 @@ import model.AuthenticationStatus;
 public interface Dress {
 
     /**
+     * @return the id of the dress
+     */
+    UUID getId();
+
+    /**
      * @return the name of the dress.
      */
-    String getName();
+    Optional<String> getName();
 
     /**
      * @return the brand of the dress.
@@ -34,7 +41,7 @@ public interface Dress {
     /**
      * @return the price of the dress.
      */
-    Optional<String> getPurchaseDate();
+    Optional<Date> getPurchaseDate();
 
     /**
      * @return the purchase date of the dress.
@@ -79,7 +86,7 @@ public interface Dress {
      *
      * @return the result of the operation
      */
-    AuthenticationStatus setPurchaseDate(String purchaseDate);
+    AuthenticationStatus setPurchaseDate(Date purchaseDate);
 
     /**
      * @param description

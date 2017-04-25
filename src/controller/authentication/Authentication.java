@@ -7,28 +7,41 @@ import model.interfaces.User;
  * 
  * Interface Used for Login/singUp a User.
  *
- *
  */
 
 public interface Authentication {
 
-    /** 
-     * @param user user
-     * @param pass password
-     * @return AuthenticationStatus
+    /**
+     * @param user
+     *            username
+     * @param pass
+     *            password
+     * @return the status of the Login operation
      */
-    AuthenticationStatus addUser(String user, String pass);
+    AuthenticationStatus checkLogin(String user, String pass);
 
     /**
-     * @param user user
-     * @param pass password
-     * @return AuthenticationStatus
+     * @param user
+     *            username
+     * @param pass
+     *            password
+     * @return the status of the signUp operation
      */
-    AuthenticationStatus checkAuthentication(String user, String pass);
+    AuthenticationStatus signUp(String user, String pass);
+
+    /**
+     * @return the status of the logout operation
+     */
+    AuthenticationStatus logout();
 
     /**
      * @return User
      */
     User getUser();
+
+    /**
+     * @return the username of the User
+     */
+    String getUsername();
 
 }

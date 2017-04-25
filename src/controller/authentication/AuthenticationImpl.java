@@ -1,5 +1,7 @@
 package controller.authentication;
 
+import controller.dress.DressController;
+import controller.dress.DressControllerImpl;
 import model.AuthenticationStatus;
 import model.UserManagementImpl;
 
@@ -33,42 +35,62 @@ public final class AuthenticationImpl implements Authentication {
         return SINGLETON;
     }
 
-    /**
-     * Esegue il SignUp dell'utente e restituisce un messaggio sello stato
-     * dell'operazione, in oltre ottiene l'User appena registrato.
-     */
+   
     @Override
-    public AuthenticationStatus addUser(final String username, final String pass) {
+    public AuthenticationStatus checkLogin(final String username, final String pass) {
+        status = userM.getSpecifiedUser(username, pass);
+        if (this.status == AuthenticationStatus.USER_NOT_FOUND || this.status == AuthenticationStatus.WRONG_PASSWORD) {
+            return status;
+        } else {
+            this.user = userM.getLoginUser();
+            setUser();
+            return this.status;
+        }
+    }
+
+    @Override
+    public AuthenticationStatus signUp(final String username, final String pass) {
         status = userM.addUser(username, pass);
         if (this.status == AuthenticationStatus.USERNAME_ALREADY_TAKEN
                 || this.status == AuthenticationStatus.DUPLICATED_USER) {
             return status;
         } else {
             this.user = userM.getSignUpUser();
+            setUser();
             return status;
         }
     }
 
-    /**
-     * Esegue il Login dell'utente e ne restituisce lo stato dell'operzione, in
-     * oltre ottiene l'User appena loggato.
+    /*
+     * (non-Javadoc)
+     * 
+     * @see controller.authentication.Authentication#logout()
+     * 
+     * #########################################################################
+     * Aspetto che il model mi crei uno stato per il logout effettuato con
+     * succeso, ho messo uno stato temporaneo di prova
+     * #########################################################################
      */
     @Override
-    public AuthenticationStatus checkAuthentication(final String username, final String pass) {
-        status = userM.getSpecifiedUser(username, pass);
-        if (this.status == AuthenticationStatus.USER_NOT_FOUND || this.status == AuthenticationStatus.WRONG_PASSWORD) {
-            return status;
-        } else {
-            this.user = userM.getLoginUser();
-            return this.status;
-        }
+    public AuthenticationStatus logout() {
+        this.user = null;
+        setUser();
+        return AuthenticationStatus.CHANGE_SUCCESFULL;
     }
 
-    /**
-     * Restituise l'utente.
-     */
     @Override
     public User getUser() {
         return this.user;
     }
+
+    private void setUser() {
+        final DressController dressCtr = DressControllerImpl.getInstance();
+        dressCtr.setUser(user);
+    }
+
+    @Override
+    public String getUsername() {
+        return user.getName();
+    }
+
 }
