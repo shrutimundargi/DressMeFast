@@ -1,5 +1,6 @@
 package model;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -10,7 +11,8 @@ import model.interfaces.Dress;
 
 public class CategoryManagementImpl implements CategoryManagement {
 
-    Map<Categories, Category> categoryMap;
+    private Map<Categories, Category> categoryMap = new EnumMap<>(Categories.class);
+    
 
     @Override
     public Category getCategory(Categories category) {

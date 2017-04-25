@@ -56,4 +56,9 @@ public class CategoryImpl implements Category {
             throw new IllegalArgumentException("Dress not found");
         }
     }
+
+    @Override
+    public Map<UUID, Dress> getAllDresses() {
+        return this.map;
+    }
 }

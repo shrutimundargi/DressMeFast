@@ -1,5 +1,6 @@
 package model.interfaces;
 
+import java.util.Map;
 import java.util.UUID;
 
 import model.Categories;
@@ -15,7 +16,7 @@ public interface Category {
      * @param dressId
      *        the id of a dress
      *
-     * @return the dress if present
+     * @return the dress if present.
      */
     Dress getDress(UUID dressId);
 
@@ -34,5 +35,10 @@ public interface Category {
      * @return the result of adding a dress.
      */
     Status addDress(Dress dress);
+
+    /**
+     * @return all the dresses of the category.
+     */
+    Map<UUID, Dress> getAllDresses();
 
 }
