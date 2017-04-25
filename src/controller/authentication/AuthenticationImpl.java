@@ -2,7 +2,7 @@ package controller.authentication;
 
 import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
-import model.AuthenticationStatus;
+import model.Status;
 import model.UserManagementImpl;
 
 import model.interfaces.User;
@@ -14,7 +14,7 @@ import model.interfaces.UserManagement;
  */
 public final class AuthenticationImpl implements Authentication {
 
-    private AuthenticationStatus status;
+    private Status status;
     private User user;
 
     /**
@@ -37,9 +37,9 @@ public final class AuthenticationImpl implements Authentication {
 
    
     @Override
-    public AuthenticationStatus checkLogin(final String username, final String pass) {
+    public Status checkLogin(final String username, final String pass) {
         status = userM.getSpecifiedUser(username, pass);
-        if (this.status == AuthenticationStatus.USER_NOT_FOUND || this.status == AuthenticationStatus.WRONG_PASSWORD) {
+        if (this.status == Status.USER_NOT_FOUND || this.status == Status.WRONG_PASSWORD) {
             return status;
         } else {
             this.user = userM.getLoginUser();
@@ -49,10 +49,10 @@ public final class AuthenticationImpl implements Authentication {
     }
 
     @Override
-    public AuthenticationStatus signUp(final String username, final String pass) {
+    public Status signUp(final String username, final String pass) {
         status = userM.addUser(username, pass);
-        if (this.status == AuthenticationStatus.USERNAME_ALREADY_TAKEN
-                || this.status == AuthenticationStatus.DUPLICATED_USER) {
+        if (this.status == Status.USERNAME_ALREADY_TAKEN
+                || this.status == Status.DUPLICATED_USER) {
             return status;
         } else {
             this.user = userM.getSignUpUser();
@@ -72,10 +72,10 @@ public final class AuthenticationImpl implements Authentication {
      * #########################################################################
      */
     @Override
-    public AuthenticationStatus logout() {
+    public Status logout() {
         this.user = null;
         setUser();
-        return AuthenticationStatus.CHANGE_SUCCESFULL;
+        return Status.CHANGE_SUCCESFULL;
     }
 
     @Override

@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
-import model.AuthenticationStatus;
+import model.Status;
 
 /**
  * The interface of an dress.
@@ -54,7 +54,7 @@ public interface Dress {
      *
      * @return the result of the operation
      */
-    AuthenticationStatus setName(String name);
+    Status setName(String name);
 
     /**
      * @param brand
@@ -62,7 +62,7 @@ public interface Dress {
      *
      * @return the result of the operation
      */
-    AuthenticationStatus setBrand(String brand);
+    Status setBrand(String brand);
 
     /**
      * @param size
@@ -70,7 +70,7 @@ public interface Dress {
      *
      * @return the result of the operation
      */
-    AuthenticationStatus setSize(int size);
+    Status setSize(int size);
 
     /**
      * @param price
@@ -78,7 +78,7 @@ public interface Dress {
      *
      * @return the result of the operation
      */
-    AuthenticationStatus setPrice(int price);
+    Status setPrice(int price);
 
     /**
      * @param purchaseDate
@@ -86,7 +86,7 @@ public interface Dress {
      *
      * @return the result of the operation
      */
-    AuthenticationStatus setPurchaseDate(Date purchaseDate);
+    Status setPurchaseDate(Date purchaseDate);
 
     /**
      * @param description
@@ -94,6 +94,6 @@ public interface Dress {
      *
      * @return the result of the operation
      */
-    AuthenticationStatus setDescription(String description);
+    Status setDescription(String description);
 
 }

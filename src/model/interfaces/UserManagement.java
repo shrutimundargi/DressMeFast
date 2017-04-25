@@ -1,12 +1,12 @@
 package model.interfaces;
 
-import model.AuthenticationStatus;
+import model.Status;
 
 public interface UserManagement {
 	 
-    AuthenticationStatus addUser(String signUpName, String signUpPassword);
+    Status addUser(String signUpName, String signUpPassword);
     
-    AuthenticationStatus getSpecifiedUser(String name, String password);
+    Status getSpecifiedUser(String name, String password);
     
     User getLoginUser();
     

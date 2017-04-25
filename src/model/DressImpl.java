@@ -71,39 +71,39 @@ public final class DressImpl implements Dress {
     }
 
     @Override
-    public AuthenticationStatus setName(final String dressName) {
+    public Status setName(final String dressName) {
         this.name = Optional.of(dressName);
-        return AuthenticationStatus.CHANGE_SUCCESFULL;
+        return Status.CHANGE_SUCCESFULL;
     }
 
     @Override
-    public AuthenticationStatus setBrand(final String dressBrand) {
+    public Status setBrand(final String dressBrand) {
         this.brand = Optional.of(dressBrand);
-        return AuthenticationStatus.CHANGE_SUCCESFULL;
+        return Status.CHANGE_SUCCESFULL;
     }
 
     @Override
-    public AuthenticationStatus setSize(final int dressSize) {
+    public Status setSize(final int dressSize) {
         this.size = Optional.of(dressSize);
-        return AuthenticationStatus.CHANGE_SUCCESFULL;
+        return Status.CHANGE_SUCCESFULL;
     }
 
     @Override
-    public AuthenticationStatus setPrice(final int dressPrice) {
+    public Status setPrice(final int dressPrice) {
         this.price = Optional.of(dressPrice);
-        return AuthenticationStatus.CHANGE_SUCCESFULL;
+        return Status.CHANGE_SUCCESFULL;
     }
 
     @Override
-    public AuthenticationStatus setPurchaseDate(final Date dressPurchaseDate) {
+    public Status setPurchaseDate(final Date dressPurchaseDate) {
         this.purchaseDate = Optional.of(dressPurchaseDate);
-        return AuthenticationStatus.CHANGE_SUCCESFULL;
+        return Status.CHANGE_SUCCESFULL;
     }
 
     @Override
-    public AuthenticationStatus setDescription(final String dressDescription) {
+    public Status setDescription(final String dressDescription) {
         this.description = Optional.of(dressDescription);
-        return AuthenticationStatus.CHANGE_SUCCESFULL;
+        return Status.CHANGE_SUCCESFULL;
     }
 
     /**

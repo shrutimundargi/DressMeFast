@@ -3,7 +3,7 @@ package controller.dress;
 import java.util.Date;
 import java.util.Set;
 
-import model.CategoriesStatus;
+import model.Categories;
 import model.interfaces.Dress;
 import model.interfaces.User;
 
@@ -30,8 +30,8 @@ public interface DressController {
      *            : categories
      * @return the status of adding a dress operation
      */
-    CategoriesStatus addDress(String name, String brand, int size, int price, Date purchaseDate, String description,
-            CategoriesStatus categories);
+    Categories addDress(String name, String brand, int size, int price, Date purchaseDate, String description,
+            Categories categories);
 
     /**
      * @param brandName
@@ -45,7 +45,7 @@ public interface DressController {
      *            : the name of category
      * @return All dresses of the specified category
      */
-    Set<Dress> getDressesOfCategory(CategoriesStatus categoryName);
+    Set<Dress> getDressesOfCategory(Categories categoryName);
 
     /**
      * @param size
@@ -62,7 +62,7 @@ public interface DressController {
     /**
      * @return All categories
      */
-    Set<CategoriesStatus> getAllCategory();
+    Set<Categories> getAllCategory();
 
     /**
      * @return All brands

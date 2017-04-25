@@ -2,7 +2,8 @@ package model.interfaces;
 
 import java.util.UUID;
 
-import model.CategoriesStatus;
+import model.Categories;
+import model.Status;
 
 /**
  * The interface of a single Category.
@@ -24,7 +25,7 @@ public interface Category {
      *
      * @return the result of removing a dress. Throws IllegalArgumentException if dress is not present.
      */
-    CategoriesStatus removeDress(UUID dressId);
+    Status removeDress(UUID dressId);
 
     /**
      * @param dress
@@ -32,6 +33,6 @@ public interface Category {
      *
      * @return the result of adding a dress.
      */
-    CategoriesStatus addDress(Dress dress);
+    Status addDress(Dress dress);
 
 }

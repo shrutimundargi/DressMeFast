@@ -10,16 +10,16 @@ import model.interfaces.Dress;
 
 public class CategoryManagementImpl implements CategoryManagement {
 
-    Map<CategoriesStatus, Category> categoryMap;
+    Map<Categories, Category> categoryMap;
 
     @Override
-    public Category getCategory(CategoriesStatus category) {
+    public Category getCategory(Categories category) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public CategoriesStatus addDressToCategory(Dress dress, CategoriesStatus category) {
+    public Categories addDressToCategory(Dress dress, Categories category) {
         // TODO Auto-generated method stub
         return null;
     }

@@ -1,6 +1,6 @@
 package controller.authentication;
 
-import model.AuthenticationStatus;
+import model.Status;
 import model.interfaces.User;
 
 /**
@@ -18,7 +18,7 @@ public interface Authentication {
      *            password
      * @return the status of the Login operation
      */
-    AuthenticationStatus checkLogin(String user, String pass);
+    Status checkLogin(String user, String pass);
 
     /**
      * @param user
@@ -27,12 +27,12 @@ public interface Authentication {
      *            password
      * @return the status of the signUp operation
      */
-    AuthenticationStatus signUp(String user, String pass);
+    Status signUp(String user, String pass);
 
     /**
      * @return the status of the logout operation
      */
-    AuthenticationStatus logout();
+    Status logout();
 
     /**
      * @return User

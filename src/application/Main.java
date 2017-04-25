@@ -10,7 +10,7 @@ import controller.authentication.Authentication;
 import controller.authentication.AuthenticationImpl;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import model.CategoriesStatus;
+import model.Categories;
 import view.NameOfScreens;
 import view.SceneSetting;
 import view.dialog.SingupDialogGraphic;
@@ -29,7 +29,7 @@ public class Main {
         System.out.println(cont.authentication().checkLogin("pop", "palla"));
         System.out.println(cont.authentication().checkLogin("pop", "palla"));
         //cont.authentication().logout();
-        cont.dress().addDress("name", "brand", 10, 10, data, "", CategoriesStatus.BODY);
+        cont.dress().addDress("name", "brand", 10, 10, data, "", Categories.BODY);
 
         /*
          * System.out.println(cont.signUp("pop", "palla"));
