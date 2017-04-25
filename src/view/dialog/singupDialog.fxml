@@ -10,41 +10,46 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="400.0" styleClass="main-pane-popup" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" >
-   <top>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-popup" text="Your in" BorderPane.alignment="CENTER" />
-   </top>
+
+<BorderPane prefHeight="328.0" prefWidth="483.0" styleClass="main-pane-log-sing" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
-      <GridPane BorderPane.alignment="CENTER">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <StackPane GridPane.rowIndex="1">
-               <children>
-                  <Text fx:id="txtPopupName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-popup" text="Text" />
-               </children>
-            </StackPane>
-         </children>
-      </GridPane>
-   </center>
-   <bottom>
-      <BorderPane>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="400.0" styleClass="main-pane-popup">
+         <top>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-popup" text="Your in" BorderPane.alignment="CENTER" />
+         </top>
          <center>
-            <Button mnemonicParsing="false" onAction="#goToHome" styleClass="btn-normal" text="Start">
-               <BorderPane.margin>
-                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-               </BorderPane.margin>
-            </Button>
+            <GridPane BorderPane.alignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <StackPane GridPane.rowIndex="1">
+                     <children>
+                        <Text fx:id="txtPopupName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-popup" text="Text" />
+                     </children>
+                  </StackPane>
+               </children>
+            </GridPane>
          </center>
+         <bottom>
+            <BorderPane>
+               <center>
+                  <Button mnemonicParsing="false" onAction="#goToHome" styleClass="btn-normal" text="Start">
+                     <BorderPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </center>
+            </BorderPane>
+         </bottom>
       </BorderPane>
-   </bottom>
+   </center>
    <stylesheets>
-      <URL value="@style.css" />
-      <URL value="@../style.css" />
+      <URL value="@SingupDialog.css" />
+      <URL value="@../mainStyle.css" />
    </stylesheets>
 </BorderPane>

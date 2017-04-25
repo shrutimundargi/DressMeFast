@@ -4,7 +4,8 @@ public enum NameOfScreens {
 	
 	LOGIN("login"),
 	SINGUP("singup"),
-	DIALOGSINGUP("dialogsingup");
+	DIALOGSINGUP("dialogsingup"),
+	HOME("home");
 	
 	private String name;
 	

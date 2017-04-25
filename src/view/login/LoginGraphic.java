@@ -19,7 +19,7 @@ import javafx.event.ActionEvent;
  */
 public class LoginGraphic implements UI {
 
-    private static final ScreensGraphic FXMLSCREEN = ScreensGraphic.LOGIN;
+    private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.LOGIN;
 
     private static SceneSetting viewM;
     private final SceneSetting environment;
@@ -39,7 +39,7 @@ public class LoginGraphic implements UI {
     public LoginGraphic (SceneSetting environment, Controller controller) {
         this.controller = controller;
         this.environment = environment;
-        this.environment.loadScreen(FXMLSCREEN, this);
+        this.environment.loadScreen(ACTUALSCREEN, this);
         this.lockedPositionSlider = false;
         this.primaryStage = this.environment.getMainStage();
     }
@@ -50,7 +50,7 @@ public class LoginGraphic implements UI {
     public void show() {
         this.primaryStage = this.environment.getMainStage();
         this.primaryStage.setOnCloseRequest(e -> System.exit(0));
-        this.environment.displayScreen(FXMLSCREEN);
+        this.environment.displayScreen(ACTUALSCREEN);
 
     }
 
@@ -60,7 +60,7 @@ public class LoginGraphic implements UI {
      */
     @FXML
     public void loginAction(ActionEvent event) {
-
+        this.environment.displayScreen(ScreensGraphic.HOME);
     }
 
     // Event Listener on Button.onAction
