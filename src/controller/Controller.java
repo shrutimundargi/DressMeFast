@@ -3,6 +3,7 @@ package controller;
 import controller.authentication.Authentication;
 import controller.dress.DressController;
 import controller.outfits.OutfitsController;
+import model.interfaces.User;
 import view.NameOfScreens;
 import view.UI;
 
@@ -43,4 +44,6 @@ public interface Controller {
      *         outfits
      */
     OutfitsController outfits();
+    
+    void setUser(User user);
 }

@@ -4,19 +4,24 @@ package view;
 public enum ScreensGraphic {
 
     /**
-     * Primary screen at the startup of application
+     * Login scene at the startup of application
      */
     LOGIN("/view/login/Login.fxml", "/view/login/Login.css"),
     
     /**
-     * Main view of the Editor.
+     * Sing up scene.
      */
     SINGUP("/view/singup/Singup.fxml", "/view/singup/Singup.css"),
     
     /**
-     * Main view of the Editor.
+     * Dialog scene after the sing in.
      */
-    DIALOGSINGUP("/view/dialog/singupDialog.fxml", "/view/dialog/style.css");
+    DIALOGSINGUP("/view/dialog/SingupDialog.fxml", "/view/dialog/SingupDialog.css"),
+    
+    /**
+     * Home scene.
+     */
+    HOME("/view/home/Home.fxml", "/view/home/Home.css");
 
     private final String resourcePath;
     private final String cssPath;
