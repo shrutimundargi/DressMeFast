@@ -19,18 +19,11 @@ public final class DressControllerImpl implements DressController {
     private User user;
 
     /**
-     * Singleton for DressControllerImpl.
+     * @param user
+     *            : user
      */
-    public static final DressControllerImpl SINGLETON = new DressControllerImpl();
-
-    private DressControllerImpl() {
-    }
-
-    /**
-     * @return SINGLETON.
-     */
-    public static DressControllerImpl getInstance() {
-        return SINGLETON;
+    public DressControllerImpl(final User user) {
+        this.user = user;
     }
 
     @Override

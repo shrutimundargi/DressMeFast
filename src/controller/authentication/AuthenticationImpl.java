@@ -1,7 +1,7 @@
 package controller.authentication;
 
-import controller.dress.DressController;
-import controller.dress.DressControllerImpl;
+import controller.Controller;
+import controller.ControllerImpl;
 import model.AuthenticationStatus;
 import model.UserManagementImpl;
 
@@ -16,26 +16,15 @@ public final class AuthenticationImpl implements Authentication {
 
     private AuthenticationStatus status;
     private User user;
-
-    /**
-     * Singleton for AuthenticationImpl.
-     */
-    public static final AuthenticationImpl SINGLETON = new AuthenticationImpl();
-
     private final UserManagement userM;
 
-    private AuthenticationImpl() {
+    /**
+     * 
+     */
+    public AuthenticationImpl() {
         userM = new UserManagementImpl();
     }
 
-    /**
-     * @return SINGLETON.
-     */
-    public static AuthenticationImpl getInstance() {
-        return SINGLETON;
-    }
-
-   
     @Override
     public AuthenticationStatus checkLogin(final String username, final String pass) {
         status = userM.getSpecifiedUser(username, pass);
@@ -84,8 +73,8 @@ public final class AuthenticationImpl implements Authentication {
     }
 
     private void setUser() {
-        final DressController dressCtr = DressControllerImpl.getInstance();
-        dressCtr.setUser(user);
+        final Controller controller = ControllerImpl.getInstance();
+        controller.setUser(user);
     }
 
     @Override

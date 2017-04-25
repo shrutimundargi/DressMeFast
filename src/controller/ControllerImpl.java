@@ -9,6 +9,7 @@ import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
 import controller.outfits.OutfitsController;
 import controller.outfits.OutfitsControllerImpl;
+import model.interfaces.User;
 import view.NameOfScreens;
 import view.UI;
 
@@ -24,14 +25,11 @@ public final class ControllerImpl implements Controller {
     public static final ControllerImpl SINGLETON = new ControllerImpl();
 
     private final Authentication auth;
-    private final DressController dressCtr;
-    private final OutfitsController outfistCtr;
     private final Map<NameOfScreens, UI> map;
+    private User user;
 
     private ControllerImpl() {
-        auth = AuthenticationImpl.getInstance();
-        dressCtr = DressControllerImpl.getInstance();
-        outfistCtr = OutfitsControllerImpl.getInstance();
+        auth = new AuthenticationImpl();
         map = new HashMap<>();
     }
 
@@ -54,12 +52,17 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public DressController dress() {
-        return dressCtr;
+       return new DressControllerImpl(user);
+
     }
 
     @Override
     public OutfitsController outfits() {
-        return outfistCtr;
+        return new OutfitsControllerImpl();
+    }
 
+    @Override
+    public void setUser(final User user) {
+        this.user = user;
     }
 }
