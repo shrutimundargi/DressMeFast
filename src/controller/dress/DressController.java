@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import model.Categories;
+import model.Status;
 import model.interfaces.Dress;
 import model.interfaces.User;
 
@@ -89,5 +90,75 @@ public interface DressController {
      *            : User
      */
     void setUser(User user);
+
+    /**
+     * @param dress
+     *            : dress
+     * @param name
+     *            : dress name
+     * @return the status of the modify dress name operation
+     */
+    Status modifyDressName(Dress dress, String name);
+
+    /**
+     * @param dress
+     *            : dress
+     * @param brand
+     *            : brand
+     * @return the status of the modify dress brand operation
+     */
+    Status modifyDressBrand(Dress dress, String brand);
+
+    /**
+     * @param dress
+     *            : dress
+     * @param size
+     *            : new size
+     * @return the status of the modify dress size operation
+     */
+    Status modifyDressSize(Dress dress, int size);
+
+    /**
+     * @param dress
+     *            : dress
+     * @param data
+     *            : new data
+     * @return the status of the modify dress purchase date operation
+     */
+    Status modifyDressPurchaseDate(Dress dress, Date data);
+
+    /**
+     * @param dress
+     *            : dress
+     * @param description
+     *            : new description
+     * @return the status of the modify dress description operation
+     */
+    Status modifyDressDescription(Dress dress, String description);
+
+    /**
+     * @param dress
+     *            : dress
+     * @return the description dress
+     */
+    String getDressDescription(Dress dress);
+
+    /**
+     * @param dress
+     *            : dress
+     * @param category
+     *            : new category
+     * @return the status of the modify dress category operation
+     */
+    Status modifyDressCategory(Dress dress, Categories category);
+
+    /**
+     * @param dress
+     *            : dress
+     * @param favorite
+     *            : new favorite
+     * @return the status of the modify favorite tag operation
+     */
+    Status modifyFavoriteTag(Dress dress, Boolean favorite);
 
 }

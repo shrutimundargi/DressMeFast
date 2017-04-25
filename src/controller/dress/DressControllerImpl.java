@@ -7,6 +7,7 @@ import java.util.Set;
 import controller.exception.MyException;
 import model.Categories;
 import model.DressImpl;
+import model.Status;
 import model.interfaces.Dress;
 import model.interfaces.User;
 
@@ -98,6 +99,54 @@ public final class DressControllerImpl implements DressController {
     @Override
     public void setUser(final User user) {
         this.user = user;
+    }
+
+    @Override
+    public Status modifyDressName(final Dress dress, final String name) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyDressBrand(final Dress dress, final String brand) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyDressSize(final Dress dress, final int size) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyDressPurchaseDate(final Dress dress, final Date data) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyDressDescription(final Dress dress, final String description) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getDressDescription(final Dress dress) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyDressCategory(final Dress dress, final Categories category) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyFavoriteTag(final Dress dress, final Boolean favorite) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

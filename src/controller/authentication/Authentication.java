@@ -1,7 +1,6 @@
 package controller.authentication;
 
 import model.Status;
-import model.interfaces.User;
 
 /**
  * 
@@ -33,11 +32,6 @@ public interface Authentication {
      * @return the status of the logout operation
      */
     Status logout();
-
-    /**
-     * @return User
-     */
-    User getUser();
 
     /**
      * @return the username of the User

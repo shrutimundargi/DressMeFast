@@ -1,13 +1,9 @@
 package controller.authentication;
 
-
-import controller.dress.DressController;
-import controller.dress.DressControllerImpl;
 import model.Status;
 
 import controller.Controller;
 import controller.ControllerImpl;
-import model.Status;
 import model.UserManagementImpl;
 
 import model.interfaces.User;
@@ -55,26 +51,11 @@ public final class AuthenticationImpl implements Authentication {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see controller.authentication.Authentication#logout()
-     * 
-     * #########################################################################
-     * Aspetto che il model mi crei uno stato per il logout effettuato con
-     * succeso, ho messo uno stato temporaneo di prova
-     * #########################################################################
-     */
     @Override
     public Status logout() {
         this.user = null;
         setUser();
-        return Status.CHANGE_SUCCESFULL;
-    }
-
-    @Override
-    public User getUser() {
-        return this.user;
+        return Status.LOGOUT_SUCCESFULL;
     }
 
     private void setUser() {

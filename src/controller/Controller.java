@@ -44,6 +44,10 @@ public interface Controller {
      *         outfits
      */
     OutfitsController outfits();
-    
+
+    /**
+     * @param user
+     *            : User
+     */
     void setUser(User user);
 }
