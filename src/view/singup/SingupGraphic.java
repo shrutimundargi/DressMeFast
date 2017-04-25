@@ -33,7 +33,7 @@ import javafx.event.ActionEvent;
  */
 public class SingupGraphic implements UI {
 
-    private static final ScreensGraphic FXMLSCREEN = ScreensGraphic.SINGUP;
+    private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.SINGUP;
     private static final int MIN_LENGTH = 5;
     
     private static SceneSetting viewM;
@@ -63,7 +63,7 @@ public class SingupGraphic implements UI {
     public SingupGraphic(final SceneSetting environment, final Controller controller) {
         this.controller = controller;
         this.environment = environment;
-        this.environment.loadScreen(FXMLSCREEN, this);
+        this.environment.loadScreen(ACTUALSCREEN, this);
         this.lockedPositionSlider = false;
         this.primaryStage = this.environment.getMainStage();
     }
@@ -74,7 +74,7 @@ public class SingupGraphic implements UI {
     public void show() {
         this.primaryStage = this.environment.getMainStage();
         this.primaryStage.setOnCloseRequest(e -> System.exit(0));
-        this.environment.displayScreen(FXMLSCREEN);
+        this.environment.displayScreen(ACTUALSCREEN);
 
     }
 

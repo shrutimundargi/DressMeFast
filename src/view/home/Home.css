@@ -6,65 +6,12 @@
 
 /* ============
 	Menu BAR
-   ============ */
+   ============ 
+   * 
+   * Moved in file "mainStyle.css"
+   * 
+   * */
    
-.topMenu{
-	-fx-background-color: #A3A2A4;
-}
-
-/* ============
-	Menu LEFT 
-   ============ */
-   
-.leftMenu{
-	-fx-background-color: #030105;
-}
-
-
-.user-info {
-	-fx-background-color: #0D0D0C;
-}
-
-.btnUser {
- 	-fx-background-image: url('../../../res/image/user.png');
-    -fx-background-size: 35px;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: 14%;
-  	-fx-background-color:#111111;
-  	-fx-background-radius: 0px;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-padding: 10 20 10 30;
-   	-fx-min-height: 50px; 
-	-fx-max-height: 50px;
-}
-
-.btnUser:selected {
-
-}
-
-.v-box-menu{
-	-fx-padding: 15 0 10 0;
-}
-
-.text-menu{
-	-fx-text-fill: white;
-    -fx-font-size: 17px;
-    -fx-background-color: none;
-    -fx-padding: 7 0 7 20;
-    
-}
-
-.text-menu:selected {
-}
-
-.img-selection-menu{
-	-fx-padding: 5px;
-    -fx-border-insets: 5px;
-    -fx-background-insets: 5px;
-}
-
-
 
 /* ===================
 	Center HOME 
@@ -72,7 +19,7 @@
    
 .centerHome{ 
 	-fx-background-color: #19181B;
-	-fx-padding: 9 15 15 15;
+	-fx-padding: 9 30 30 30;
 }
 
 .pnl-title{
@@ -100,16 +47,14 @@
 
 
 .btn-selection-center-home {
-	-fx-background-color:none;
     -fx-background-insets: 0,1,2,3,0;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
-    /*-fx-border-color: grey;*/
    	-fx-border-radius: 4;
-
     -fx-padding: 0 0 70 0; 
-    -fx-background-color:#111111;  	
+    -fx-background-color:#262728; 
+   	-fx-effect: dropshadow(three-pass-box, #171917, 10.0, 0.0, 0.0, 0.0); 	
 }
 
 

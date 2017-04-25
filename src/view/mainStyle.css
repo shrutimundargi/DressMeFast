@@ -1,0 +1,109 @@
+
+/*	==========================
+ 	 LOGIN & SING UP STYLE
+ 	========================== */
+
+.main-pane-log-sing{
+	-fx-background-image: url("../../res/image/login-bg-4.jpg");
+	-fx-background-position: center center;
+	/*-fx-background-repeat: stretch;
+  	-fx-background-size: 150.0 71.0;*/
+	-fx-text-fill: #EEEFEF;
+}
+
+.title-log-sing{
+	-fx-text-fill: white;
+    -fx-font-size: 50.0px;
+}
+
+.txtErr{
+	-fx-fill: #9E031E;
+    -fx-font-size: 12.0px;
+}
+
+
+
+/*	==========================
+ 	 BUTTON STYLE
+ 	========================== */
+
+.btn-normal{
+	-fx-background-color:none;
+    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16.0px;
+    -fx-padding: 8 15;
+    -fx-border-color: white;
+   	-fx-border-radius: 4.0;
+}
+
+.btn-normal:hover {
+   	-fx-background-color: #464C51;
+}
+
+
+/* ============
+	Menu BAR
+   ============ */
+   
+.topMenu{
+	-fx-background-color: #A3A2A4;
+}
+
+/* ============
+	Menu LEFT 
+   ============ */
+   
+.leftMenu{
+	-fx-background-color: #030105;
+}
+
+
+.user-info {
+	-fx-background-color: #0D0D0C;
+}
+
+.btnUser {
+ 	-fx-background-image: url('../../res/image/user.png');
+    -fx-background-size: 35px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 14%;
+  	-fx-background-color:#111111;
+  	-fx-background-radius: 0px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 30;
+   	-fx-min-height: 50px; 
+	-fx-max-height: 50px;
+}
+
+.btnUser:selected {
+
+}
+
+.btn-menu:hover .text-menu{
+	-fx-text-fill: #BEBFBF;
+}
+
+.v-box-menu{
+	-fx-padding: 15 0 10 0;
+}
+
+.text-menu{
+	-fx-text-fill: white;
+    -fx-font-size: 17px;
+    -fx-background-color: none;
+    -fx-padding: 7 0 7 20;
+    
+}
+
+.text-menu:selected {
+}
+
+.img-selection-menu{
+	-fx-padding: 5px;
+	-fx-margin: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
