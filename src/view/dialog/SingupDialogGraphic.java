@@ -34,7 +34,7 @@ public class SingupDialogGraphic implements UI {
         this.environment.loadScreen(ACTUALSCREEN, this);
         this.lockedPositionSlider = false;
         this.primaryStage = this.environment.getMainStage();
-        txtPopupName.setText("Thank you " + "" + " for joining in Dress Me Fast");
+        txtPopupName.setText("Thank you " + controller.authentication().getUsername() + " for joining in Dress Me Fast");
     }
 
     // Event Listener on Button.onAction
@@ -49,5 +49,10 @@ public class SingupDialogGraphic implements UI {
         this.primaryStage = this.environment.getMainStage();
         this.primaryStage.setOnCloseRequest(e -> System.exit(0));
         this.environment.displayScreen(ACTUALSCREEN);
+    }
+
+    @Override
+    public void showNowContent() {
+        txtPopupName.setText("Thank you " + controller.authentication().getUsername() + " for joining in Dress Me Fast");
     }
 }

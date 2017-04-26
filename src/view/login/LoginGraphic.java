@@ -71,4 +71,10 @@ public class LoginGraphic implements UI {
     public void goToSingup(ActionEvent event) {
         this.environment.displayScreen(ScreensGraphic.SINGUP);
     }
+
+    @Override
+    public void showNowContent() {
+        // TODO Auto-generated method stub
+        
+    }
 }

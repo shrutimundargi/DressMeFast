@@ -8,7 +8,6 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -28,82 +27,152 @@
             <Insets left="1.0" />
          </opaqueInsets>
          <top>
-            <VBox BorderPane.alignment="CENTER">
+            <StackPane BorderPane.alignment="CENTER">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-title" text="Home">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Text>
+                  <VBox>
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-title" text="Home">
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </Text>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
+            </StackPane>
          </top>
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <VBox prefHeight="214.0" prefWidth="602.0" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="214.0" prefWidth="602.0" style="back: black;" BorderPane.alignment="CENTER">
                      <children>
-                        <GridPane prefHeight="244.0" prefWidth="615.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home">
-                                 <center>
-                                    <StackPane styleClass="pnl-img-dress-preview">
-                                       <children>
-                                          <Circle fx:id="imagePreviewDress1" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
-                                       </children>
-                                    </StackPane>
-                                 </center>
-                                 <bottom>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" BorderPane.alignment="CENTER">
-                                       <BorderPane.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </BorderPane.margin></Text>
-                                 </bottom>
-                                 <GridPane.margin>
-                                    <Insets right="30.0" />
-                                 </GridPane.margin>
-                              </BorderPane>
-                              <BorderPane prefHeight="200.0" prefWidth="202.0" styleClass="pnl-preview-home" GridPane.columnIndex="1">
-                                 <bottom>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" BorderPane.alignment="CENTER">
-                                       <BorderPane.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </BorderPane.margin></Text>
-                                 </bottom>
-                                 <GridPane.margin>
-                                    <Insets right="20.0" />
-                                 </GridPane.margin>
-                                 <center>
-                                    <Circle fx:id="imagePreviewDress2" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
-                                 </center>
-                              </BorderPane>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home" GridPane.columnIndex="2">
-                                 <bottom>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" BorderPane.alignment="CENTER">
-                                       <BorderPane.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </BorderPane.margin></Text>
-                                 </bottom>
-                                 <GridPane.margin>
-                                    <Insets left="20.0" />
-                                 </GridPane.margin>
-                                 <center>
-                                    <Circle fx:id="imagePreviewDress3" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
-                                 </center>
-                              </BorderPane>
-                           </children>
+                        <BorderPane>
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
-                        </GridPane>
+                           <center>
+                              <GridPane prefHeight="244.0" prefWidth="615.0" style="-fx-background-color: #313131;" styleClass="grid-preview-home">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home">
+                                       <center>
+                                          <VBox BorderPane.alignment="CENTER">
+                                             <children>
+                                                <StackPane>
+                                                   <children>
+                                                      <Circle fx:id="imagePreviewDress1" fill="DODGERBLUE" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
+                                                   </children>
+                                                </StackPane>
+                                                <StackPane>
+                                                   <children>
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                </StackPane>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </center>
+                                    </BorderPane>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home" GridPane.columnIndex="1">
+                                       <center>
+                                          <VBox BorderPane.alignment="CENTER">
+                                             <children>
+                                                <StackPane>
+                                                   <children>
+                                                      <Circle fx:id="imagePreviewDress2" fill="DODGERBLUE" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
+                                                   </children>
+                                                </StackPane>
+                                                <StackPane>
+                                                   <children>
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                </StackPane>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </center>
+                                    </BorderPane>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home" GridPane.columnIndex="2">
+                                       <center>
+                                          <VBox BorderPane.alignment="CENTER">
+                                             <children>
+                                                <StackPane>
+                                                   <children>
+                                                      <Circle fx:id="imagePreviewDress3" fill="DODGERBLUE" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
+                                                   </children>
+                                                </StackPane>
+                                                <StackPane>
+                                                   <children>
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                </StackPane>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </center>
+                                    </BorderPane>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home" GridPane.columnIndex="3">
+                                       <center>
+                                          <VBox BorderPane.alignment="CENTER">
+                                             <children>
+                                                <StackPane>
+                                                   <children>
+                                                      <Circle fx:id="imagePreviewDress4" fill="DODGERBLUE" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
+                                                   </children>
+                                                </StackPane>
+                                                <StackPane>
+                                                   <children>
+                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" />
+                                                   </children>
+                                                   <padding>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </padding>
+                                                </StackPane>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </VBox>
+                                       </center>
+                                    </BorderPane>
+                                 </children>
+                              </GridPane>
+                           </center>
+                           <top>
+                              <AnchorPane style="-fx-background-color: #292929;">
+                                 <children>
+                                    <Label text="List of last adding" textFill="#f5f5f5">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" top="5.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </top>
+                        </BorderPane>
                      </children>
                   </VBox>
                </top>
@@ -121,9 +190,22 @@
                               <RowConstraints minHeight="70.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
+                              <AnchorPane>
+                                 <children>
+                                    <Button fx:id="btnCenterBrand" mnemonicParsing="false" text="Brand" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                       <styleClass>
+                                          <String fx:value="btn-selection-center-home" />
+                                          <String fx:value="brand" />
+                                       </styleClass>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
                               <AnchorPane GridPane.rowIndex="1">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Outfits" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
+                                    <Button fx:id="btnCenterOutfits" mnemonicParsing="false" text="Outfits" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="outfits" />
@@ -136,7 +218,7 @@
                               </AnchorPane>
                               <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Size" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
+                                    <Button fx:id="btnCenterSize" mnemonicParsing="false" text="Size" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="ruler" />
@@ -147,22 +229,9 @@
                                     </Button>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane>
-                                 <children>
-                                    <Button mnemonicParsing="false" text="Brand" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
-                                       <styleClass>
-                                          <String fx:value="btn-selection-center-home" />
-                                          <String fx:value="brand" />
-                                       </styleClass>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                              </AnchorPane>
                               <AnchorPane GridPane.columnIndex="1">
                                  <children>
-                                    <Button layoutX="10.0" layoutY="5.0" mnemonicParsing="false" text="Add" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="btnCenterAdd" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" text="Add" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="add" />
@@ -175,7 +244,7 @@
                               </AnchorPane>
                               <AnchorPane GridPane.columnIndex="2">
                                  <children>
-                                    <Button mnemonicParsing="false" text="Preferiti" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="btnCenterFavorite" mnemonicParsing="false" text="Favorite" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="star" />
@@ -188,7 +257,7 @@
                               </AnchorPane>
                               <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
-                                    <Button layoutX="-7.0" layoutY="32.0" mnemonicParsing="false" text="Category" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                                    <Button fx:id="btnCenterCategory" layoutX="-7.0" layoutY="32.0" mnemonicParsing="false" text="Category" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="category" />
@@ -224,10 +293,7 @@
                      <buttons>
                         <HBox>
                            <children>
-                              <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
-                                 <image>
-                                    <Image url="@../../../res/image/hoodie.png" />
-                                 </image>
+                              <ImageView fx:id="logoHomePage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
                                  <HBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </HBox.margin>
@@ -241,86 +307,86 @@
                         </HBox>
                      </buttons>
                   </ButtonBar>
-                  <ButtonBar styleClass="btn-menu">
+                  <ButtonBar fx:id="btnMenuBrand" styleClass="btn-menu">
                      <buttons>
                         <HBox>
                            <children>
-                              <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
+                              <ImageView fx:id="logoBrandPage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
                                  <HBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label fx:id="btnMenuBrand" prefHeight="36.0" prefWidth="157.0" styleClass="text-menu" text="Brand" />
+                              <Label prefHeight="36.0" prefWidth="157.0" styleClass="text-menu" text="Brand" />
                            </children>
                         </HBox>
                      </buttons>
                   </ButtonBar>
-                  <ButtonBar styleClass="btn-menu">
+                  <ButtonBar fx:id="btnMenuAdd" styleClass="btn-menu">
                      <buttons>
                         <HBox>
                            <children>
-                              <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
+                              <ImageView fx:id="logoAddPage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
                                  <HBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label fx:id="btnMenuAdd" prefHeight="36.0" prefWidth="156.0" styleClass="text-menu" text="Add +" />
+                              <Label prefHeight="36.0" prefWidth="156.0" styleClass="text-menu" text="Add +" />
                            </children>
                         </HBox>
                      </buttons>
                   </ButtonBar>
-                  <ButtonBar styleClass="btn-menu">
+                  <ButtonBar fx:id="btnMenuFavorite" styleClass="btn-menu">
                      <buttons>
                         <HBox>
                            <children>
-                              <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
+                              <ImageView fx:id="logoFavoritePage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
                                  <HBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label prefHeight="36.0" prefWidth="153.0" styleClass="text-menu" text="Favorite" />
+                              <Label prefHeight="36.0" prefWidth="157.0" styleClass="text-menu" text="Favorite" />
                            </children>
                         </HBox>
                      </buttons>
                   </ButtonBar>
-                  <ButtonBar styleClass="btn-menu">
+                  <ButtonBar fx:id="btnMenuOutfits" styleClass="btn-menu">
                      <buttons>
                         <HBox>
                            <children>
-                              <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
+                              <ImageView fx:id="logoOutfitsPage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
                                  <HBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label prefHeight="36.0" prefWidth="155.0" styleClass="text-menu" text="Outfits" />
+                              <Label prefHeight="36.0" prefWidth="157.0" styleClass="text-menu" text="Outfits" />
                            </children>
                         </HBox>
                      </buttons>
                   </ButtonBar>
-                  <ButtonBar styleClass="btn-menu">
+                  <ButtonBar fx:id="btnMenuSize" styleClass="btn-menu">
                      <buttons>
                         <HBox>
                            <children>
-                              <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
+                              <ImageView fx:id="logoSizePage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
                                  <HBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label fx:id="btnMenuSize" prefHeight="36.0" prefWidth="159.0" styleClass="text-menu" text="Size" />
+                              <Label prefHeight="36.0" prefWidth="159.0" styleClass="text-menu" text="Size" />
                            </children>
                         </HBox>
                      </buttons>
                   </ButtonBar>
-                  <ButtonBar styleClass="btn-menu">
+                  <ButtonBar fx:id="btnMenuCategory" styleClass="btn-menu">
                      <buttons>
                         <HBox>
                            <children>
-                              <ImageView fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
+                              <ImageView fx:id="logoCategoryPage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
                                  <HBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label fx:id="btnMenuCategory" prefHeight="36.0" prefWidth="159.0" styleClass="text-menu" text="Category" />
+                              <Label prefHeight="36.0" prefWidth="159.0" styleClass="text-menu" text="Category" />
                            </children>
                         </HBox>
                      </buttons>
