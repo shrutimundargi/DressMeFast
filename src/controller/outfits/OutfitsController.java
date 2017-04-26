@@ -12,7 +12,7 @@ import model.interfaces.Dress;
  */
 public interface OutfitsController {
     
-     Status addOutfits(Set<UUID> id);
+     /*Status addOutfits(Set<UUID> id);
      
      Set<Outfits> getAllOutfits();
      
@@ -20,7 +20,7 @@ public interface OutfitsController {
      
      Outfits getOutfits(UUID id);
      
-     Status modifyOutfits(UUID id, Set<UUID> changeDresses);
+     Status modifyOutfits(UUID id, Set<UUID> changeDresses);*/
      
      
 
