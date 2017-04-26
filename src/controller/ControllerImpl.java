@@ -10,7 +10,6 @@ import controller.dress.DressControllerImpl;
 import controller.outfits.OutfitsController;
 import controller.outfits.OutfitsControllerImpl;
 import model.interfaces.User;
-import view.NameOfScreens;
 import view.ScreensGraphic;
 import view.UI;
 
