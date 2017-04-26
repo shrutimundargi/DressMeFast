@@ -21,7 +21,13 @@ public enum ScreensGraphic {
     /**
      * Home scene.
      */
-    HOME("/view/home/Home.fxml", "/view/home/Home.css");
+    HOME("/view/home/Home.fxml", "/view/home/Home.css"),
+    
+    /**
+     * Statistics scene.
+     */
+    STATISTICS("/view/statistics/Statistics.fxml", "/view/statistics/Statistics.css");
+    
 
     private final String resourcePath;
     private final String cssPath;

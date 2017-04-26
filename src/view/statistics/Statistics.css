@@ -1,0 +1,49 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.main-pane-logout{
+	-fx-background-color: #595959;
+}
+
+
+
+.pnl-center{
+	-fx-background-color: #494949; 
+	-fx-background-radius: 7.0px;
+	-fx-padding: 15.0 15.0 0.0 15.0;
+	-fx-min-height: 500.0px; 
+	-fx-min-width: 600.0px; 
+	-fx-max-height: 500.0px; 
+	-fx-max-width: 600.0px;
+	-fx-effect: dropshadow(three-pass-box, #494949, 10.0, 0.0, 0.0, 0.0);
+}
+
+.title-login{
+	
+}
+
+.btn-press{
+	-fx-background-color:none;
+    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14.0px;
+    -fx-padding: 10.0 20.0 10.0 20.0;
+    -fx-border-color: white;
+   	-fx-border-radius: 4.0;
+}
+
+.btn-press:hover {
+   	-fx-background-color: #464C51;
+}
+
+.btnBT{
+	-fx-background-color: none;
+    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
+    -fx-font-weight: bold;
+    -fx-font-size: 14.0px;
+    -fx-text-fill: grey;
+    -fx-padding: 0.0 20.0 0.0 13.0;
+}
+
+.btnBT:hover {
+    -fx-text-fill: white;
+}

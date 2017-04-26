@@ -28,7 +28,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Categories addDress(final String name, final String brand, final int size, final int price,
+    public Status addDress(final String name, final String brand, final int size, final int price,
             final Date purchaseDate, final String description, final Categories categories) {
         try {
             Objects.requireNonNull(user);

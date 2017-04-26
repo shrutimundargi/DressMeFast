@@ -10,7 +10,7 @@
 }
 
 .text-popup{
-	-fx-fill: white;
+	-fx-text-fill: white;
 	-fx-font-size: 18.0px;
 }
 

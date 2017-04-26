@@ -4,7 +4,7 @@
  	========================== */
 
 .main-pane-log-sing{
-	-fx-background-image: url("../../res/image/login-bg-4.jpg");
+	-fx-background-image: url("../../res/images/login-bg-4.jpg");
 	-fx-background-position: center center;
 	/*-fx-background-repeat: stretch;
   	-fx-background-size: 150.0 71.0;*/
@@ -65,10 +65,10 @@
 }
 
 .btnUser {
- 	-fx-background-image: url('../../res/image/user.png');
-    -fx-background-size: 35px;
+ 	-fx-background-image: url('../../res/images/user.png');
+    -fx-background-size: 30px;
     -fx-background-repeat: no-repeat;
-    -fx-background-position: 14%;
+    -fx-background-position: 10%;
   	-fx-background-color:#111111;
   	-fx-background-radius: 0px;
     -fx-text-fill: white;

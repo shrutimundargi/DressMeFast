@@ -4,7 +4,7 @@ import controller.authentication.Authentication;
 import controller.dress.DressController;
 import controller.outfits.OutfitsController;
 import model.interfaces.User;
-import view.NameOfScreens;
+import view.ScreensGraphic;
 import view.UI;
 
 /**
@@ -19,7 +19,13 @@ public interface Controller {
      * @param uI
      *            : user Interface
      */
-    void attachUI(NameOfScreens name, UI uI);
+    void attachUI(ScreensGraphic name, UI uI);
+    
+    /**
+     * @param name : name of Screen Graphic
+     * @return UI
+     */
+    UI getUI(ScreensGraphic name);
 
     /**
      * Allows access to authentication methods and user management.

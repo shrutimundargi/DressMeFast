@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.Status;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.UI;
@@ -35,7 +36,7 @@ public class SingupGraphic implements UI {
 
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.SINGUP;
     private static final int MIN_LENGTH = 5;
-    
+
     private static SceneSetting viewM;
     private final SceneSetting environment;
     private final Controller controller;
@@ -57,8 +58,10 @@ public class SingupGraphic implements UI {
 
     /**
      * 
-     * @param environment from the main to have the same instance
-     * @param controller from the main to have the same instance
+     * @param environment
+     *            from the main to have the same instance
+     * @param controller
+     *            from the main to have the same instance
      */
     public SingupGraphic(final SceneSetting environment, final Controller controller) {
         this.controller = controller;
@@ -80,7 +83,8 @@ public class SingupGraphic implements UI {
 
     /**
      * 
-     * @param event of action
+     * @param event
+     *            of action
      */
     // Event Listener on Button.onAction
     @FXML
@@ -104,21 +108,36 @@ public class SingupGraphic implements UI {
         } else if (!repPassw.equals(passw)) {
             txtErrRepPassw.setText("Passwords not equal");
             allRight = false;
+        } else if (allRight) {
+            if (controller.authentication().signUp(user, passw) == Status.DUPLICATED_USER) {
+                txtErrUser.setText(Status.DUPLICATED_USER.getText());
+            } else {
+                this.environment.displayScreen(ScreensGraphic.DIALOGSINGUP);
+                this.controller.getUI(ScreensGraphic.DIALOGSINGUP).showNowContent();
+            }
         }
-
-        if (allRight) {
-            controller.authentication().signUp(user, passw);
-            this.environment.displayScreen(ScreensGraphic.DIALOGSINGUP);
-        } 
     }
 
     /**
      * 
-     * @param event of action
+     * @param event
+     *            of action
      */
     // Event Listener on Button.onAction
     @FXML
     public void goToLogin(final ActionEvent event) {
         this.environment.displayScreen(ScreensGraphic.LOGIN);
+    }
+
+    @Override
+    public void showNowContent() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void setLastPage(ScreensGraphic screen) {
+        // TODO Auto-generated method stub
+        
     }
 }
