@@ -44,6 +44,10 @@ public final class ControllerImpl implements Controller {
     public void attachUI(final NameOfScreens name, final UI uI) {
         map.put(name, uI);
     }
+    
+    public UI getUI(NameOfScreens name){
+    	return map.get(name);
+    }
 
     @Override
     public Authentication authentication() {
