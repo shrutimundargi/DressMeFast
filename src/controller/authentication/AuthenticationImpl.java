@@ -1,11 +1,9 @@
 package controller.authentication;
 
-import model.Status;
-
 import controller.Controller;
 import controller.ControllerImpl;
-import model.UserManagementImpl;
-
+import model.classes.UserManagementImpl;
+import model.enumerations.Status;
 import model.interfaces.User;
 import model.interfaces.UserManagement;
 

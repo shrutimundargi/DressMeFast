@@ -1,4 +1,4 @@
-package model;
+package model.enumerations;
 
 /**
  * This enumeration is used to express a particular state.
@@ -42,6 +42,10 @@ public enum Status {
      * The positive result by adding a dress.
      */
     DRESS_ADDED("Dress added succesfully"),
+    /**
+     * The negative result by adding a dress.
+     */
+    DRESS_NOT_ADDED("Failed to add dress"),
     /**
      * The positive result by removing a dress.
      */

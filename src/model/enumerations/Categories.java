@@ -1,4 +1,4 @@
-package model;
+package model.enumerations;
 
 /**
  * An enumeration for the dresses categories and status.
@@ -34,7 +34,7 @@ public enum Categories {
     private String categoryName;
 
     /**
-     * @return the category name or a particular status
+     * @return the category name.
      */
     public String getCategoryName() {
         return this.categoryName;
@@ -42,7 +42,7 @@ public enum Categories {
 
     /**
      * @param name
-     *            the category name or a particular status
+     *            the category name.
      */
     Categories(final String name) {
         this.categoryName = name;

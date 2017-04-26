@@ -1,6 +1,6 @@
 package controller.authentication;
 
-import model.Status;
+import model.enumerations.Status;
 
 /**
  * 

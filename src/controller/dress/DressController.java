@@ -3,8 +3,8 @@ package controller.dress;
 import java.util.Date;
 import java.util.Set;
 
-import model.Categories;
-import model.Status;
+import model.enumerations.Categories;
+import model.enumerations.Status;
 import model.interfaces.Dress;
 import model.interfaces.User;
 

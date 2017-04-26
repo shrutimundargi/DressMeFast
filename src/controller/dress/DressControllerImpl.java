@@ -5,9 +5,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import controller.exception.MyException;
-import model.Categories;
-import model.DressImpl;
-import model.Status;
+import model.classes.DressImpl;
+import model.enumerations.Categories;
+import model.enumerations.Status;
 import model.interfaces.Dress;
 import model.interfaces.User;
 

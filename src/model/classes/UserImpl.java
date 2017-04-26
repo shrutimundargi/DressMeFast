@@ -1,4 +1,4 @@
-package model;
+package model.classes;
 
 import model.interfaces.User;
 import model.interfaces.Wardrobe;

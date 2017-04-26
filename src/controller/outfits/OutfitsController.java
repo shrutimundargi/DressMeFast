@@ -3,7 +3,7 @@ package controller.outfits;
 import java.util.Set;
 import java.util.UUID;
 
-import model.Status;
+import model.enumerations.Status;
 import model.interfaces.Dress;
 
 /**

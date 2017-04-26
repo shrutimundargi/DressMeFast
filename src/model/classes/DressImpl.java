@@ -1,10 +1,11 @@
-package model;
+package model.classes;
 
 import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
+import model.enumerations.Status;
 import model.interfaces.Dress;
 
 /**
@@ -189,7 +190,6 @@ public final class DressImpl implements Dress {
          * @return a new dress object
          */
         public Dress build() {
-            Objects.requireNonNull(this.name);
             return new DressImpl(this.name, this.brand, this.size, this.price, this.purchaseDate, this.description);
         }
     }

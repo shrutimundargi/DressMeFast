@@ -1,8 +1,9 @@
-package model;
+package model.classes;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import model.enumerations.Status;
 import model.interfaces.Login;
 import model.interfaces.SignUp;
 import model.interfaces.User;

@@ -1,7 +1,8 @@
-package model;
+package model.classes;
 
 import java.util.Set;
 
+import model.enumerations.Status;
 import model.interfaces.Login;
 import model.interfaces.User;
 

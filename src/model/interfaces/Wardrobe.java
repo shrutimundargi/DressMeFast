@@ -2,7 +2,7 @@ package model.interfaces;
 
 import java.util.Map;
 
-import model.Categories;
+import model.enumerations.Categories;
 
 public interface Wardrobe {
     

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import controller.Controller;
 import controller.ControllerImpl;
-import model.Categories;
+import model.enumerations.Categories;
 
 public class Main {
     public static void main(String[] args) {
