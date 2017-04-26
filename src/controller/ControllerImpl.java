@@ -26,7 +26,7 @@ public final class ControllerImpl implements Controller {
     public static final ControllerImpl SINGLETON = new ControllerImpl();
 
     private final Authentication auth;
-    private final Map<NameOfScreens, UI> map;
+    private final Map<ScreensGraphic, UI> map;
     private User user;
 
     private ControllerImpl() {
