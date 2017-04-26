@@ -20,6 +20,8 @@ public interface Controller {
      *            : user Interface
      */
     void attachUI(NameOfScreens name, UI uI);
+    
+    UI getUI(NameOfScreens name);
 
     /**
      * Allows access to authentication methods and user management.
