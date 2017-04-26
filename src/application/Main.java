@@ -11,7 +11,6 @@ import controller.authentication.AuthenticationImpl;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import model.Categories;
-import view.NameOfScreens;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.dialog.SingupDialogGraphic;
