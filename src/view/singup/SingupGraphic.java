@@ -107,7 +107,7 @@ public class SingupGraphic implements UI {
         }
 
         if (allRight) {
-            controller.signUp(user, passw);
+            controller.authentication().signUp(user, passw);
             this.environment.displayScreen(ScreensGraphic.DIALOGSINGUP);
         } 
     }

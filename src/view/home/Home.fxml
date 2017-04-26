@@ -16,10 +16,12 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="687.0" prefWidth="832.0" styleClass="pnlHome" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="750.0" prefWidth="1200.0" styleClass="pnlHome" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="650.0" prefWidth="645.0" styleClass="centerHome">
          <opaqueInsets>
@@ -53,15 +55,11 @@
                            <children>
                               <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home">
                                  <center>
-                                    <AnchorPane BorderPane.alignment="CENTER">
+                                    <StackPane styleClass="pnl-img-dress-preview">
                                        <children>
-                                          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../res/image/login-bg-3.jpg" />
-                                             </image>
-                                          </ImageView>
+                                          <Circle fx:id="imagePreviewDress1" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
                                        </children>
-                                    </AnchorPane>
+                                    </StackPane>
                                  </center>
                                  <bottom>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" BorderPane.alignment="CENTER">
@@ -69,25 +67,9 @@
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </BorderPane.margin></Text>
                                  </bottom>
-                              </BorderPane>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home" GridPane.columnIndex="2">
-                                 <bottom>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" BorderPane.alignment="CENTER">
-                                       <BorderPane.margin>
-                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                       </BorderPane.margin></Text>
-                                 </bottom>
-                                 <center>
-                                    <AnchorPane BorderPane.alignment="CENTER">
-                                       <children>
-                                          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../res/image/login-bg-3.jpg" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </AnchorPane>
-                                 </center>
+                                 <GridPane.margin>
+                                    <Insets right="30.0" />
+                                 </GridPane.margin>
                               </BorderPane>
                               <BorderPane prefHeight="200.0" prefWidth="202.0" styleClass="pnl-preview-home" GridPane.columnIndex="1">
                                  <bottom>
@@ -96,16 +78,25 @@
                                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                        </BorderPane.margin></Text>
                                  </bottom>
+                                 <GridPane.margin>
+                                    <Insets right="20.0" />
+                                 </GridPane.margin>
                                  <center>
-                                    <AnchorPane BorderPane.alignment="CENTER">
-                                       <children>
-                                          <ImageView fitHeight="172.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../res/image/login-bg-4.jpg" />
-                                             </image>
-                                          </ImageView>
-                                       </children>
-                                    </AnchorPane>
+                                    <Circle fx:id="imagePreviewDress2" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
+                                 </center>
+                              </BorderPane>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home" GridPane.columnIndex="2">
+                                 <bottom>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                       <BorderPane.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </BorderPane.margin></Text>
+                                 </bottom>
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                 <center>
+                                    <Circle fx:id="imagePreviewDress3" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER" />
                                  </center>
                               </BorderPane>
                            </children>

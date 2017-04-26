@@ -42,9 +42,18 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
-    -fx-border-color: grey;
+
 }
 
+.pnl-img-dress-preview{
+	-fx-border-radius: 20px;
+}
+
+.img-dress-preview{
+   	-fx-background-radius: 5;
+   	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+   	
+}
 
 .btn-selection-center-home {
     -fx-background-insets: 0,1,2,3,0;
@@ -56,6 +65,8 @@
     -fx-background-color:#262728; 
    	-fx-effect: dropshadow(three-pass-box, #171917, 10.0, 0.0, 0.0, 0.0); 	
 }
+
+
 
 
 .btn-selection-center-home.brand { 
