@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import model.Categories;
 import view.NameOfScreens;
 import view.SceneSetting;
+import view.ScreensGraphic;
 import view.dialog.SingupDialogGraphic;
 import view.home.HomeGraphic;
 import view.login.LoginGraphic;
@@ -25,15 +26,15 @@ public class Main{
          SceneSetting setting = new SceneSetting();
          Controller controller =  ControllerImpl.getInstance();
          LoginGraphic loginGraphic = new LoginGraphic(setting, controller);
-         controller.attachUI(NameOfScreens.LOGIN, loginGraphic);
+         controller.attachUI(ScreensGraphic.LOGIN, loginGraphic);
          SingupGraphic singupGraphic = new SingupGraphic(setting, controller);
-         controller.attachUI(NameOfScreens.SINGUP, singupGraphic);
+         controller.attachUI(ScreensGraphic.SINGUP, singupGraphic);
         
          SingupDialogGraphic singupPopUpGraphic = new SingupDialogGraphic(setting, controller);
-         controller.attachUI(NameOfScreens.DIALOGSINGUP, singupPopUpGraphic);
+         controller.attachUI(ScreensGraphic.DIALOGSINGUP, singupPopUpGraphic);
          
          HomeGraphic homeGraphic = new HomeGraphic(setting, controller);
-         controller.attachUI(NameOfScreens.HOME, homeGraphic);
+         controller.attachUI(ScreensGraphic.HOME, homeGraphic);
         
         
          Platform.runLater(() -> {

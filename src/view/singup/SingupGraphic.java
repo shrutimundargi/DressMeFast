@@ -113,6 +113,7 @@ public class SingupGraphic implements UI {
                 txtErrUser.setText(Status.DUPLICATED_USER.getText());
             } else {
                 this.environment.displayScreen(ScreensGraphic.DIALOGSINGUP);
+                this.controller.getUI(ScreensGraphic.DIALOGSINGUP);
             }
         }
     }
