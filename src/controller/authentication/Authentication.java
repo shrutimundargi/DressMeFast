@@ -12,9 +12,9 @@ public interface Authentication {
 
 	/**
 	 * @param user
-	 *            username
+	 *            : username
 	 * @param pass
-	 *            password
+	 *            : password
 	 * @return the status of the Login operation.
 	 *         <p>
 	 *         Return USER_NOT_FOUND if the username don't exist, and
@@ -26,9 +26,9 @@ public interface Authentication {
 
 	/**
 	 * @param user
-	 *            username
+	 *            : username
 	 * @param pass
-	 *            password
+	 *            : password
 	 * @return the status of the signUp operation.
 	 *         <P>
 	 *         Return USERNAME_ALREADY_TAKEN if the username already exist

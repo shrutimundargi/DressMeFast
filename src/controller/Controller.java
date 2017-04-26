@@ -21,6 +21,10 @@ public interface Controller {
      */
     void attachUI(ScreensGraphic name, UI uI);
     
+    /**
+     * @param name : name of Screen Graphic
+     * @return UI
+     */
     UI getUI(ScreensGraphic name);
 
     /**
