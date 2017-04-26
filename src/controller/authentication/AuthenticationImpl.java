@@ -41,7 +41,7 @@ public final class AuthenticationImpl implements Authentication {
         status = userM.addUser(username, pass);
         if (this.status == Status.USERNAME_ALREADY_TAKEN
                 || this.status == Status.DUPLICATED_USER) {
-            return status.USERNAME_ALREADY_TAKEN;
+            return Status.USERNAME_ALREADY_TAKEN;
         } else {
             this.user = userM.getSignUpUser();
             setUser();
