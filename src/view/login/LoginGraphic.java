@@ -77,4 +77,10 @@ public class LoginGraphic implements UI {
         // TODO Auto-generated method stub
         
     }
+
+    @Override
+    public void setLastPage(ScreensGraphic screen) {
+        // TODO Auto-generated method stub
+        
+    }
 }

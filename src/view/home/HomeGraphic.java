@@ -13,11 +13,13 @@ import java.nio.file.Paths;
 import javax.imageio.ImageIO;
 
 import controller.Controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -62,6 +64,8 @@ public class HomeGraphic implements UI{
     @FXML
     private Button btnCenterCategory;
     @FXML
+    private Button btnUser;
+    @FXML
     private ImageView logoHomePage;
     @FXML
     private Label btnMenuHome;
@@ -90,6 +94,7 @@ public class HomeGraphic implements UI{
     @FXML
     private ImageView logoCategoryPage;
 
+
     
     public HomeGraphic(final SceneSetting environment, final Controller controller){
         this.controller = controller;
@@ -103,6 +108,7 @@ public class HomeGraphic implements UI{
         
         Image logo = new Image(getClass().getResourceAsStream("/images/hoodie.png"));
         logoHomePage.setImage(logo);
+        
     }
 
     @Override
@@ -114,6 +120,20 @@ public class HomeGraphic implements UI{
 
     @Override
     public void showNowContent() {
+        btnUser.setText(controller.authentication().getUsername());
+    }
+    
+    /**
+     * @param event
+     */
+    @FXML
+    public void goStatistics(ActionEvent event) {
+        this.environment.displayScreen(ScreensGraphic.STATISTICS);
+        this.controller.getUI(ScreensGraphic.STATISTICS).setLastPage(ACTUALSCREEN);
+    }
+
+    @Override
+    public void setLastPage(ScreensGraphic screen) {
         // TODO Auto-generated method stub
         
     }

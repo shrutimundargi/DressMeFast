@@ -66,9 +66,9 @@
 
 .btnUser {
  	-fx-background-image: url('../../res/images/user.png');
-    -fx-background-size: 35px;
+    -fx-background-size: 30px;
     -fx-background-repeat: no-repeat;
-    -fx-background-position: 14%;
+    -fx-background-position: 10%;
   	-fx-background-color:#111111;
   	-fx-background-radius: 0px;
     -fx-text-fill: white;

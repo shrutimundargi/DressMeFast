@@ -113,7 +113,7 @@ public class SingupGraphic implements UI {
                 txtErrUser.setText(Status.DUPLICATED_USER.getText());
             } else {
                 this.environment.displayScreen(ScreensGraphic.DIALOGSINGUP);
-                this.controller.getUI(ScreensGraphic.DIALOGSINGUP);
+                this.controller.getUI(ScreensGraphic.DIALOGSINGUP).showNowContent();
             }
         }
     }
@@ -131,6 +131,12 @@ public class SingupGraphic implements UI {
 
     @Override
     public void showNowContent() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void setLastPage(ScreensGraphic screen) {
         // TODO Auto-generated method stub
         
     }

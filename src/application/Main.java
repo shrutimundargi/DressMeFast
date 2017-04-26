@@ -17,6 +17,7 @@ import view.dialog.SingupDialogGraphic;
 import view.home.HomeGraphic;
 import view.login.LoginGraphic;
 import view.singup.SingupGraphic;
+import view.statistics.StatisticsGraphic;
 public class Main{
          public static void main(String[] args) {
          PlatformImpl.startup(() -> {
@@ -34,6 +35,9 @@ public class Main{
          
          HomeGraphic homeGraphic = new HomeGraphic(setting, controller);
          controller.attachUI(ScreensGraphic.HOME, homeGraphic);
+         
+         StatisticsGraphic statisticsGraphic = new StatisticsGraphic(setting, controller);
+         controller.attachUI(ScreensGraphic.STATISTICS, statisticsGraphic);
         
         
          Platform.runLater(() -> {
