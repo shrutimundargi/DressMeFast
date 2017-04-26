@@ -32,22 +32,22 @@ public class CategoryImpl implements Category {
     }
 
     @Override
-    public CategoriesStatus removeDress(final UUID dressId) {
+    public Status removeDress(final UUID dressId) {
         this.checkDressPresence(dressId);
         this.idList.remove(dressId);
         this.map.remove(dressId);
-        return CategoriesStatus.DRESS_REMOVED;
+        return Status.DRESS_REMOVED;
     }
 
     @Override
-    public CategoriesStatus addDress(final Dress dress) {
+    public Status addDress(final Dress dress) {
         final UUID id = dress.getId();
         if (!this.map.containsKey(id)) {
             this.map.put(id, dress);
             this.idList.add(id);
-            return CategoriesStatus.DRESS_ADDED;
+            return Status.DRESS_ADDED;
         }
-        return CategoriesStatus.ID_ALREADY_EXISTS;
+        return Status.ID_ALREADY_EXISTS;
 
     }
 
@@ -55,5 +55,10 @@ public class CategoryImpl implements Category {
         if (!this.idList.contains(id)) {
             throw new IllegalArgumentException("Dress not found");
         }
+    }
+
+    @Override
+    public Map<UUID, Dress> getAllDresses() {
+        return this.map;
     }
 }

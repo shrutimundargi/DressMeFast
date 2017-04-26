@@ -1,12 +1,11 @@
 package model.interfaces;
 
-
-import model.CategoriesStatus;
+import model.Categories;
 
 public interface CategoryManagement {
-    
-    Category getCategory(CategoriesStatus category);
-    
-    CategoriesStatus addDressToCategory(Dress dress, CategoriesStatus category);
-    
+
+    Category getCategory(Categories category);
+
+    Categories addDressToCategory(Dress dress, Categories category);
+
 }

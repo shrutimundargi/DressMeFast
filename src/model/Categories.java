@@ -4,7 +4,7 @@ package model;
  * An enumeration for the dresses categories and status.
  *
  */
-public enum CategoriesStatus {
+public enum Categories {
 
     /**
      * Head category.
@@ -29,19 +29,7 @@ public enum CategoriesStatus {
     /**
      * Foot category.
      */
-    FOOT("Foot"),
-    /**
-     * The Status of a dress id.
-     */
-    ID_ALREADY_EXISTS("Dress id already exists"),
-    /**
-     * The positive result by adding a dress.
-     */
-    DRESS_ADDED("Dress added succesfully"),
-    /**
-     * The positive result by removing a dress.
-     */
-    DRESS_REMOVED("Dress removed succesfully");
+    FOOT("Foot");
 
     private String categoryName;
 
@@ -56,7 +44,7 @@ public enum CategoriesStatus {
      * @param name
      *            the category name or a particular status
      */
-    CategoriesStatus(final String name) {
+    Categories(final String name) {
         this.categoryName = name;
     }
 

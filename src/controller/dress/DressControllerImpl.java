@@ -5,8 +5,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import controller.exception.MyException;
-import model.CategoriesStatus;
+import model.Categories;
 import model.DressImpl;
+import model.Status;
 import model.interfaces.Dress;
 import model.interfaces.User;
 
@@ -19,23 +20,16 @@ public final class DressControllerImpl implements DressController {
     private User user;
 
     /**
-     * Singleton for DressControllerImpl.
+     * @param user
+     *            : user
      */
-    public static final DressControllerImpl SINGLETON = new DressControllerImpl();
-
-    private DressControllerImpl() {
-    }
-
-    /**
-     * @return SINGLETON.
-     */
-    public static DressControllerImpl getInstance() {
-        return SINGLETON;
+    public DressControllerImpl(final User user) {
+        this.user = user;
     }
 
     @Override
-    public CategoriesStatus addDress(final String name, final String brand, final int size, final int price,
-            final Date purchaseDate, final String description, final CategoriesStatus categories) {
+    public Categories addDress(final String name, final String brand, final int size, final int price,
+            final Date purchaseDate, final String description, final Categories categories) {
         try {
             Objects.requireNonNull(user);
         } catch (Exception e) {
@@ -55,7 +49,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<Dress> getDressesOfCategory(final CategoriesStatus categoryName) {
+    public Set<Dress> getDressesOfCategory(final Categories categoryName) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -73,7 +67,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<CategoriesStatus> getAllCategory() {
+    public Set<Categories> getAllCategory() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -105,6 +99,54 @@ public final class DressControllerImpl implements DressController {
     @Override
     public void setUser(final User user) {
         this.user = user;
+    }
+
+    @Override
+    public Status modifyDressName(final Dress dress, final String name) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyDressBrand(final Dress dress, final String brand) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyDressSize(final Dress dress, final int size) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyDressPurchaseDate(final Dress dress, final Date data) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyDressDescription(final Dress dress, final String description) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getDressDescription(final Dress dress) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyDressCategory(final Dress dress, final Categories category) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status modifyFavoriteTag(final Dress dress, final Boolean favorite) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
