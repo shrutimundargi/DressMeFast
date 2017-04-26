@@ -52,8 +52,7 @@ public class HomeGraphic implements UI{
         this.lockedPositionSlider = false;
         this.primaryStage = this.environment.getMainStage();
         
-
-        Image im = new Image(getClass().getResourceAsStream("login-bg-3.jpg"));
+        Image im = new Image(getClass().getResourceAsStream("/image/login-bg-3.jpg"));
         imagePreviewDress1.setFill(new ImagePattern(im));
     }
 
