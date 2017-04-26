@@ -11,6 +11,7 @@ import controller.outfits.OutfitsController;
 import controller.outfits.OutfitsControllerImpl;
 import model.interfaces.User;
 import view.NameOfScreens;
+import view.ScreensGraphic;
 import view.UI;
 
 /**
@@ -41,11 +42,11 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public void attachUI(final NameOfScreens name, final UI uI) {
+    public void attachUI(final ScreensGraphic name, final UI uI) {
         map.put(name, uI);
     }
     
-    public UI getUI(NameOfScreens name){
+    public UI getUI(ScreensGraphic name){
     	return map.get(name);
     }
 
