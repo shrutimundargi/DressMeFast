@@ -22,14 +22,13 @@ public class Main{
          });
         
          SceneSetting setting = new SceneSetting();
-         Controller controller = ControllerImpl.getInstance();
+         Controller controller =  ControllerImpl.getInstance();
          LoginGraphic loginGraphic = new LoginGraphic(setting, controller);
          controller.attachUI(NameOfScreens.LOGIN, loginGraphic);
          SingupGraphic singupGraphic = new SingupGraphic(setting, controller);
          controller.attachUI(NameOfScreens.SINGUP, singupGraphic);
         
-         SingupDialogGraphic singupPopUpGraphic = new
-         SingupDialogGraphic(setting, controller);
+         SingupDialogGraphic singupPopUpGraphic = new SingupDialogGraphic(setting, controller);
          controller.attachUI(NameOfScreens.DIALOGSINGUP, singupPopUpGraphic);
         
         

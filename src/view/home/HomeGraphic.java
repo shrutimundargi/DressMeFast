@@ -52,7 +52,8 @@ public class HomeGraphic implements UI{
         this.lockedPositionSlider = false;
         this.primaryStage = this.environment.getMainStage();
         
-        
+//        String pathToImageSortBy = "dmf_project/res/image/filling.png";
+//        ImageIcon SortByIcon = new ImageIcon(getClass().getClassLoader().getResource(pathToImageSortBy));
         Image im = new Image(getClass().getResourceAsStream("login-bg-3.jpg"));
         imagePreviewDress1.setFill(new ImagePattern(im));
     }
