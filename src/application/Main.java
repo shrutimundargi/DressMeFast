@@ -14,6 +14,7 @@ import model.Categories;
 import view.NameOfScreens;
 import view.SceneSetting;
 import view.dialog.SingupDialogGraphic;
+import view.home.HomeGraphic;
 import view.login.LoginGraphic;
 import view.singup.SingupGraphic;
 public class Main{
@@ -30,6 +31,9 @@ public class Main{
         
          SingupDialogGraphic singupPopUpGraphic = new SingupDialogGraphic(setting, controller);
          controller.attachUI(NameOfScreens.DIALOGSINGUP, singupPopUpGraphic);
+         
+         HomeGraphic homeGraphic = new HomeGraphic(setting, controller);
+         controller.attachUI(NameOfScreens.HOME, homeGraphic);
         
         
          Platform.runLater(() -> {
