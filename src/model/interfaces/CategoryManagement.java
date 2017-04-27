@@ -12,7 +12,6 @@ import model.enumerations.Status;
  *
  */
 /**
- * @author Pop
  *
  */
 public interface CategoryManagement {
@@ -20,7 +19,7 @@ public interface CategoryManagement {
     /**
      * This method starts the initialization of the default categories. 
      */
-    void initializeAllCategories();
+    Status initializeAllCategories();
 
     /**
      * @param category

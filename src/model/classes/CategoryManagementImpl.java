@@ -1,5 +1,7 @@
 package model.classes;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -18,8 +20,8 @@ import model.interfaces.Dress;
  */
 public class CategoryManagementImpl implements CategoryManagement {
 
-    private Map<Categories, Category> categoryMap;
-    private Set<UUID> idSet;
+    private final Map<Categories, Category> categoryMap;
+    private final Set<UUID> idSet;
 
     /**
      * Creates the container to store all the categories and the ids of all the dresses.
@@ -30,11 +32,15 @@ public class CategoryManagementImpl implements CategoryManagement {
     }
 
     @Override
-    public void initializeAllCategories() {
-        for (Categories categoryName : Categories.values()) {
+    public Status initializeAllCategories() {
+        if (!this.categoryMap.isEmpty()) {
+            return Status.CATEGORIES_ALREADY_INITIALIZED;
+        }
+        for (final Categories categoryName : Categories.values()) {
             this.categoryMap.put(categoryName, new CategoryImpl());
         }
         System.out.println(this.categoryMap.toString());
+        return Status.CATEGORIES_INITIALIZED;
     }
 
     @Override

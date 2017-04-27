@@ -14,7 +14,7 @@ import model.interfaces.Dress;
  */
 public class CategoryImpl extends CategoryManagementImpl implements Category {
 
-    private Map<UUID, Dress> map;
+    private final Map<UUID, Dress> map;
 
     /**
      * Creates a new category.
@@ -31,7 +31,6 @@ public class CategoryImpl extends CategoryManagementImpl implements Category {
     @Override
     public Status removeDress(final UUID dressId) {
         this.checkDressPresence(dressId);
-        // this.idList.remove(dressId);
         this.getIdSet().remove(dressId);
         this.map.remove(dressId);
         return Status.DRESS_REMOVED;
@@ -42,7 +41,6 @@ public class CategoryImpl extends CategoryManagementImpl implements Category {
         final UUID id = dress.getId();
         if (!this.map.containsKey(id)) {
             this.map.put(id, dress);
-            // this.idList.add(id);
             this.getIdSet().add(id);
             System.out.println(Status.DRESS_ADDED.getText());
             return Status.DRESS_ADDED;

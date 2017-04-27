@@ -16,8 +16,8 @@ import model.interfaces.UserManagement;
 public class UserManagementImpl implements UserManagement {
 
     private Set<User> usersSet;
-    private SignUp signUp;
-    private Login login;
+    private final SignUp signUp;
+    private final Login login;
 
     /**
      * Creates a container for the users.
@@ -36,7 +36,7 @@ public class UserManagementImpl implements UserManagement {
     @Override
     public Status addUser(final String signUpName, final String signUpPassword) {
         Status status = signUp.storeUser(signUpName, signUpPassword, this.usersSet);
-        usersSet = getUsersSet();
+        this.usersSet = getUsersSet();
         return status;
     }
 

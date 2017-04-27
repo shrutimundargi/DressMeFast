@@ -53,7 +53,15 @@ public enum Status {
     /**
      * The status of the logout operation.
      */
-    LOGOUT_SUCCESFULL("Logging out");
+    LOGOUT_SUCCESFULL("Logging out"),
+    /**
+     * A status of the default categories.
+     */
+    CATEGORIES_INITIALIZED("Categories initialized succesfully"),
+    /**
+     * A status of the default categories.
+     */
+    CATEGORIES_ALREADY_INITIALIZED("Categories are already initialized");
 
     private String text;
 

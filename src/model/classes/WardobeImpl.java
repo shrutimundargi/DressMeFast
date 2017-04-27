@@ -1,23 +1,25 @@
 package model.classes;
 
-import java.util.Map;
-
-import model.interfaces.Category;
 import model.interfaces.CategoryManagement;
 import model.interfaces.Wardrobe;
 
+/**
+ * The user's personal wardrobe.
+ *
+ */
 public class WardobeImpl implements Wardrobe {
-    
-    private CategoryManagement categoryManagement;
-    
+
+    private final CategoryManagement categoryManagement;
+
+    /**
+     * Creates a container for the categories and outfits.
+     */
     public WardobeImpl() {
-        
+        this.categoryManagement = new CategoryManagementImpl();
     }
 
     @Override
     public CategoryManagement getAllCategories() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.categoryManagement;
     }
-    
 }

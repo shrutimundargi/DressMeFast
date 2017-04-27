@@ -14,16 +14,9 @@ public class LoginImpl implements Login {
 
     private User user;
 
-    /**
-     * 
-     */
-    public LoginImpl() {
-
-    }
-
     @Override
     public Status checkLogin(final String name, final String pass, final Set<User> usersSet) {
-        for (User user : usersSet) {
+        for (final User user : usersSet) {
             if (user.getName().equals(name) && user.getPassword().equals(pass)) {
                 this.user = user;
                 return Status.USER_FOUND;
