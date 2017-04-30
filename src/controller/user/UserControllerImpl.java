@@ -1,11 +1,9 @@
-package controller.authentication;
-
-import model.Status;
+package controller.user;
 
 import controller.Controller;
 import controller.ControllerImpl;
-import model.UserManagementImpl;
-
+import model.classes.UserManagementImpl;
+import model.enumerations.Status;
 import model.interfaces.User;
 import model.interfaces.UserManagement;
 
@@ -13,16 +11,17 @@ import model.interfaces.UserManagement;
  * An implementation of the Authentication.
  *
  */
-public final class AuthenticationImpl implements Authentication {
+public final class UserControllerImpl implements UserController {
 
     private Status status;
+    private String statusInizializedCategory = "not yet inizialized";
     private User user;
     private final UserManagement userM;
 
     /**
      * 
      */
-    public AuthenticationImpl() {
+    public UserControllerImpl() {
         userM = new UserManagementImpl();
     }
 
@@ -33,6 +32,7 @@ public final class AuthenticationImpl implements Authentication {
             return status;
         } else {
             this.user = userM.getLoginUser();
+            inizializedCategory();
             setUser();
             return this.status;
         }
@@ -41,11 +41,11 @@ public final class AuthenticationImpl implements Authentication {
     @Override
     public Status signUp(final String username, final String pass) {
         status = userM.addUser(username, pass);
-        if (this.status == Status.USERNAME_ALREADY_TAKEN
-                || this.status == Status.DUPLICATED_USER) {
-            return status.USERNAME_ALREADY_TAKEN;
+        if (this.status == Status.USERNAME_ALREADY_TAKEN || this.status == Status.DUPLICATED_USER) {
+            return Status.USERNAME_ALREADY_TAKEN;
         } else {
             this.user = userM.getSignUpUser();
+            inizializedCategory();
             setUser();
             return status;
         }
@@ -61,6 +61,13 @@ public final class AuthenticationImpl implements Authentication {
     private void setUser() {
         final Controller controller = ControllerImpl.getInstance();
         controller.setUser(user);
+    }
+
+    private void inizializedCategory() {
+        if (!statusInizializedCategory.equals(Status.CATEGORIES_INITIALIZED.getText())) {
+            statusInizializedCategory = user.getWardobe().getAllCategories().initializeAllCategories().getText();
+        }
+
     }
 
     @Override

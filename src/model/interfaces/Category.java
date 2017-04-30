@@ -3,8 +3,7 @@ package model.interfaces;
 import java.util.Map;
 import java.util.UUID;
 
-import model.Categories;
-import model.Status;
+import model.enumerations.Status;
 
 /**
  * The interface of a single Category.

@@ -1,8 +1,9 @@
-package model;
+package model.classes;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import model.enumerations.Status;
 import model.interfaces.SignUp;
 import model.interfaces.User;
 
@@ -30,7 +31,7 @@ public class SignUpImpl implements SignUp {
             this.user = new UserImpl(signUpName, signUpPassword);
             this.usersSet.add(user);
         } else {
-            for (User user : this.usersSet) {
+            for (final User user : this.usersSet) {
                 if (user.getName().equals(signUpName) && user.getPassword().equals(signUpPassword)) {
                     return Status.DUPLICATED_USER;
                 } else if (user.getName().equals(signUpName)) {

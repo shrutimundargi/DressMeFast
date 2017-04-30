@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
-import model.Status;
+import model.enumerations.Status;
 
 /**
  * The interface of an dress.

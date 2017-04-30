@@ -5,9 +5,9 @@ import java.util.Objects;
 import java.util.Set;
 
 import controller.exception.MyException;
-import model.Categories;
-import model.DressImpl;
-import model.Status;
+import model.classes.DressImpl;
+import model.enumerations.Categories;
+import model.enumerations.Status;
 import model.interfaces.Dress;
 import model.interfaces.User;
 
@@ -28,7 +28,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Categories addDress(final String name, final String brand, final int size, final int price,
+    public Status addDress(final String name, final String brand, final int size, final int price,
             final Date purchaseDate, final String description, final Categories categories) {
         try {
             Objects.requireNonNull(user);
@@ -145,6 +145,12 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status modifyFavoriteTag(final Dress dress, final Boolean favorite) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Status deleteDress(final Dress dress) {
         // TODO Auto-generated method stub
         return null;
     }

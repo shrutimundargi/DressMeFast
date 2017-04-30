@@ -3,12 +3,12 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import controller.authentication.Authentication;
-import controller.authentication.AuthenticationImpl;
 import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
 import controller.outfits.OutfitsController;
 import controller.outfits.OutfitsControllerImpl;
+import controller.user.UserController;
+import controller.user.UserControllerImpl;
 import model.interfaces.User;
 import view.ScreensGraphic;
 import view.UI;
@@ -24,12 +24,12 @@ public final class ControllerImpl implements Controller {
      */
     public static final ControllerImpl SINGLETON = new ControllerImpl();
 
-    private final Authentication auth;
+    private final UserController auth;
     private final Map<ScreensGraphic, UI> map;
     private User user;
 
     private ControllerImpl() {
-        auth = new AuthenticationImpl();
+        auth = new UserControllerImpl();
         map = new HashMap<>();
     }
 
@@ -44,13 +44,13 @@ public final class ControllerImpl implements Controller {
     public void attachUI(final ScreensGraphic name, final UI uI) {
         map.put(name, uI);
     }
-    
-    public UI getUI(ScreensGraphic name){
-    	return map.get(name);
+    @Override
+    public UI getUI(final ScreensGraphic name) {
+        return map.get(name);
     }
 
     @Override
-    public Authentication authentication() {
+    public UserController userController() {
         return auth;
     }
 

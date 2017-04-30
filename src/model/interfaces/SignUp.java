@@ -2,7 +2,7 @@ package model.interfaces;
 
 import java.util.Set;
 
-import model.Status;
+import model.enumerations.Status;
 
 /**
  * This interface defines the methods to manage the sign up step.

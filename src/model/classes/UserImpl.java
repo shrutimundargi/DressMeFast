@@ -1,4 +1,4 @@
-package model;
+package model.classes;
 
 import model.interfaces.User;
 import model.interfaces.Wardrobe;
@@ -9,15 +9,16 @@ import model.interfaces.Wardrobe;
  */
 public class UserImpl implements User {
 
-    private String userName;
-    private String userPassword;
-    private Wardrobe wardrobe;
+    private final String userName;
+    private final String userPassword;
+    private final Wardrobe wardrobe;
 
     /**
      * @param userName
-     *
+     *        the user's name.
      *
      * @param userPassword
+     *          the user's password.
      */
     public UserImpl(final String userName, final String userPassword) {
         this.userName = userName;

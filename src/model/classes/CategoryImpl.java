@@ -1,29 +1,26 @@
-package model;
+package model.classes;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import model.enumerations.Status;
 import model.interfaces.Category;
 import model.interfaces.Dress;
 
 /**
- * Class used to add or remove dresses to/from a particular Category.
+ * Class used to manage a particular Category.
  *
  */
-public class CategoryImpl implements Category {
+public class CategoryImpl extends CategoryManagementImpl implements Category {
 
-    private Map<UUID, Dress> map;
-    private List<UUID> idList;
+    private final Map<UUID, Dress> map;
 
     /**
      * Creates a new category.
      */
     public CategoryImpl() {
         this.map = new HashMap<UUID, Dress>();
-        this.idList = new LinkedList<>();
     }
 
     @Override
@@ -34,7 +31,7 @@ public class CategoryImpl implements Category {
     @Override
     public Status removeDress(final UUID dressId) {
         this.checkDressPresence(dressId);
-        this.idList.remove(dressId);
+        this.getIdSet().remove(dressId);
         this.map.remove(dressId);
         return Status.DRESS_REMOVED;
     }
@@ -44,15 +41,17 @@ public class CategoryImpl implements Category {
         final UUID id = dress.getId();
         if (!this.map.containsKey(id)) {
             this.map.put(id, dress);
-            this.idList.add(id);
+            this.getIdSet().add(id);
+            System.out.println(Status.DRESS_ADDED.getText());
             return Status.DRESS_ADDED;
         }
+        System.out.println(Status.DRESS_NOT_ADDED.getText());
         return Status.ID_ALREADY_EXISTS;
 
     }
 
     private void checkDressPresence(final UUID id) {
-        if (!this.idList.contains(id)) {
+        if (!this.getIdSet().contains(id)) {
             throw new IllegalArgumentException("Dress not found");
         }
     }

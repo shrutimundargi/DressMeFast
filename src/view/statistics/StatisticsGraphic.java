@@ -46,7 +46,7 @@ public class StatisticsGraphic implements UI{
 	@FXML
 	public void logout(ActionEvent event) {
         this.environment.displayScreen(ScreensGraphic.LOGIN);
-        this.controller.authentication().logout();
+        this.controller.userController().logout();
 	}
 
     @Override

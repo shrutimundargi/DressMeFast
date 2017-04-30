@@ -6,11 +6,11 @@ import com.sun.javafx.application.PlatformImpl;
 
 import controller.Controller;
 import controller.ControllerImpl;
-import controller.authentication.Authentication;
-import controller.authentication.AuthenticationImpl;
+import controller.user.UserController;
+import controller.user.UserControllerImpl;
 import javafx.application.Platform;
 import javafx.stage.Stage;
-import model.Categories;
+import model.enumerations.Categories;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.dialog.SingupDialogGraphic;

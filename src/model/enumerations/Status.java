@@ -1,4 +1,4 @@
-package model;
+package model.enumerations;
 
 /**
  * This enumeration is used to express a particular state.
@@ -43,13 +43,25 @@ public enum Status {
      */
     DRESS_ADDED("Dress added succesfully"),
     /**
+     * The negative result by adding a dress.
+     */
+    DRESS_NOT_ADDED("Failed to add dress"),
+    /**
      * The positive result by removing a dress.
      */
     DRESS_REMOVED("Dress removed succesfully"),
     /**
      * The status of the logout operation.
      */
-    LOGOUT_SUCCESFULL("Logging out");
+    LOGOUT_SUCCESFULL("Logging out"),
+    /**
+     * A status of the default categories.
+     */
+    CATEGORIES_INITIALIZED("Categories initialized succesfully"),
+    /**
+     * A status of the default categories.
+     */
+    CATEGORIES_ALREADY_INITIALIZED("Categories are already initialized");
 
     private String text;
 

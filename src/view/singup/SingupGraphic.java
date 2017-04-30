@@ -109,7 +109,7 @@ public class SingupGraphic implements UI {
             txtErrRepPassw.setText("Passwords not equal");
             allRight = false;
         } else if (allRight) {
-            if (controller.authentication().signUp(user, passw) == Status.DUPLICATED_USER) {
+            if (controller.userController().signUp(user, passw) == Status.DUPLICATED_USER) {
                 txtErrUser.setText(Status.DUPLICATED_USER.getText());
             } else {
                 this.environment.displayScreen(ScreensGraphic.DIALOGSINGUP);

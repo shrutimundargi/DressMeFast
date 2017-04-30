@@ -1,8 +1,8 @@
 package controller;
 
-import controller.authentication.Authentication;
 import controller.dress.DressController;
 import controller.outfits.OutfitsController;
+import controller.user.UserController;
 import model.interfaces.User;
 import view.ScreensGraphic;
 import view.UI;
@@ -20,9 +20,10 @@ public interface Controller {
      *            : user Interface
      */
     void attachUI(ScreensGraphic name, UI uI);
-    
+
     /**
-     * @param name : name of Screen Graphic
+     * @param name
+     *            : name of Screen Graphic
      * @return UI
      */
     UI getUI(ScreensGraphic name);
@@ -33,7 +34,7 @@ public interface Controller {
      * @return An Authentication date that allows access to authentication
      *         methods and user management
      */
-    Authentication authentication();
+    UserController userController();
 
     /**
      * Allows access to all methods of dress.

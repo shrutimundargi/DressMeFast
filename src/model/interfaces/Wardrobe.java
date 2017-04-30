@@ -1,11 +1,14 @@
 package model.interfaces;
 
-import java.util.Map;
-
-import model.Categories;
-
+/**
+ * This interface is used to manage a user's wardrobe.
+ *
+ */
 public interface Wardrobe {
-    
+
+    /**
+     * @return all the categories objects.
+     */
     CategoryManagement getAllCategories();
-    
+
 }
