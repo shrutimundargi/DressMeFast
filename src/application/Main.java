@@ -23,20 +23,20 @@ public class Main{
          PlatformImpl.startup(() -> {
          });
         
-         SceneSetting setting = new SceneSetting();
          Controller controller =  ControllerImpl.getInstance();
-         LoginGraphic loginGraphic = new LoginGraphic(setting, controller);
+         SceneSetting sceneSetting = new SceneSetting(controller);
+         LoginGraphic loginGraphic = new LoginGraphic(sceneSetting, controller);
          controller.attachUI(ScreensGraphic.LOGIN, loginGraphic);
-         SingupGraphic singupGraphic = new SingupGraphic(setting, controller);
+         SingupGraphic singupGraphic = new SingupGraphic(sceneSetting, controller);
          controller.attachUI(ScreensGraphic.SINGUP, singupGraphic);
         
-         SingupDialogGraphic singupPopUpGraphic = new SingupDialogGraphic(setting, controller);
+         SingupDialogGraphic singupPopUpGraphic = new SingupDialogGraphic(sceneSetting, controller);
          controller.attachUI(ScreensGraphic.DIALOGSINGUP, singupPopUpGraphic);
          
-         HomeGraphic homeGraphic = new HomeGraphic(setting, controller);
+         HomeGraphic homeGraphic = new HomeGraphic(sceneSetting, controller);
          controller.attachUI(ScreensGraphic.HOME, homeGraphic);
          
-         StatisticsGraphic statisticsGraphic = new StatisticsGraphic(setting, controller);
+         StatisticsGraphic statisticsGraphic = new StatisticsGraphic(sceneSetting, controller);
          controller.attachUI(ScreensGraphic.STATISTICS, statisticsGraphic);
         
         
@@ -44,7 +44,7 @@ public class Main{
          try {
          Stage primaryStage = new Stage();
          primaryStage.setTitle("Dress Me Fast");
-         setting.start(primaryStage);
+         sceneSetting.start(primaryStage);
          } catch (Exception e) {
          System.out.println("Unable to load graphic environment.");
          e.printStackTrace();

@@ -2,7 +2,7 @@ package view;
 
 import java.io.IOException;
 
-
+import controller.Controller;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import view.login.LoginGraphic;
@@ -13,12 +13,15 @@ import javafx.fxml.FXMLLoader;
 
 public class SceneSetting extends Application {
 	
+    private final Controller controller;
 	private final ScreenLoader loader;
     private final Pane mainPane;
     private final Scene mainScene;
     private Stage primaryStage;
+    
 	
-	public SceneSetting() {
+	public SceneSetting(Controller controller) {
+        this.controller = controller;
         this.mainPane = new StackPane();
         this.mainScene = new Scene(this.mainPane);
         loader = new ScreenLoader();
@@ -31,6 +34,8 @@ public class SceneSetting extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        this.primaryStage.setMinWidth(900);
+        this.primaryStage.setMinHeight(700);
         this.primaryStage.setScene(mainScene);
         this.primaryStage.setOnCloseRequest(e -> System.exit(0));
 
@@ -46,8 +51,9 @@ public class SceneSetting extends Application {
     /**
      * Display the main window
      */
-    public void show() {
+    public void show(ScreensGraphic screen) {
         this.primaryStage.show();
+        controller.getUI(screen).showNowContent();
     }
 
     /**
@@ -56,7 +62,7 @@ public class SceneSetting extends Application {
     public void displayScreen(ScreensGraphic screen) {
         try {
             this.loader.loadScreen(screen, this.mainPane);
-            show();
+            show(screen);
         } catch (IOException e) {
             System.out.println("Unable to display screen " + screen);
             e.printStackTrace();

@@ -1,7 +1,7 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 .pnl-center{
-	-fx-background-color: #323539; 
+	-fx-background-color: #3D3D3D; 
 	-fx-background-radius: 7.0px;
 	-fx-padding: 15.0 15.0 0.0 15.0;
 	-fx-min-height: 325.0px; 

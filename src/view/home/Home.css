@@ -18,7 +18,7 @@
    =================== */
    
 .centerHome{ 
-	-fx-background-color: #19181B;
+	-fx-background-color: #292929;
 	-fx-padding: 9 30 30 30;
 }
 
@@ -39,16 +39,29 @@
 
 
 
-.grid-preview-home{
-	
-}
+
 
 .pnl-preview-home{
+	-fx-border-radius: 12;
+	-fx-border-color: #515252;
+	-fx-background-color: #313131;
+	-fx-background-radius: 12px;
+}
+
+.pnl-preview-home-title{
+	-fx-background-radius: 12px;
+}
+
+.pnl-preview-home-no-title{
+
     -fx-background-insets: 0,1,2,3,0;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 14px;
+}
 
+.grid-preview-home{
+	
 }
 
 .pnl-img-dress-preview{
@@ -62,13 +75,13 @@
 }
 
 .btn-selection-center-home {
-    -fx-background-insets: 0,1,2,3,0;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 20px;
-   	-fx-border-radius: 4;
+   	-fx-border-radius: 12;
+   	-fx-background-radius: 12;
     -fx-padding: 0 0 70 0; 
-    -fx-background-color:#262728; 
+    -fx-background-color:#3D3D3D; 
    	-fx-effect: dropshadow(three-pass-box, #171917, 10.0, 0.0, 0.0, 0.0); 	
 }
 

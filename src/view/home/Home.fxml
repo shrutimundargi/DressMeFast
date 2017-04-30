@@ -43,14 +43,14 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <VBox prefHeight="214.0" prefWidth="602.0" style="back: black;" BorderPane.alignment="CENTER">
+                  <VBox prefHeight="260.0" prefWidth="602.0" style="back: black;" BorderPane.alignment="CENTER">
                      <children>
-                        <BorderPane>
+                        <BorderPane prefHeight="400.0" prefWidth="940.0" styleClass="pnl-preview-home">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin>
                            <center>
-                              <GridPane prefHeight="244.0" prefWidth="615.0" style="-fx-background-color: #313131;" styleClass="grid-preview-home">
+                              <GridPane prefHeight="400.0" prefWidth="938.0" styleClass="pnl-preview-home-no-title">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -61,7 +61,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home">
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
                                        <center>
                                           <VBox BorderPane.alignment="CENTER">
                                              <children>
@@ -72,11 +72,21 @@
                                                 </StackPane>
                                                 <StackPane>
                                                    <children>
-                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" />
+                                                      <Text fx:id="txtPreviewDress1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" />
                                                    </children>
                                                    <padding>
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </padding>
+                                                </StackPane>
+                                                <StackPane prefHeight="150.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnPreviewDress1" mnemonicParsing="false" text="See more">
+                                                         <styleClass>
+                                                            <String fx:value="btn-small" />
+                                                            <String fx:value="btn-normal" />
+                                                         </styleClass>
+                                                      </Button>
+                                                   </children>
                                                 </StackPane>
                                              </children>
                                              <padding>
@@ -85,7 +95,7 @@
                                           </VBox>
                                        </center>
                                     </BorderPane>
-                                    <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home" GridPane.columnIndex="1">
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <center>
                                           <VBox BorderPane.alignment="CENTER">
                                              <children>
@@ -102,6 +112,16 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </padding>
                                                 </StackPane>
+                                                <StackPane prefHeight="150.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnPreviewDress2" mnemonicParsing="false" text="See more">
+                                                         <styleClass>
+                                                            <String fx:value="btn-small" />
+                                                            <String fx:value="btn-normal" />
+                                                         </styleClass>
+                                                      </Button>
+                                                   </children>
+                                                </StackPane>
                                              </children>
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -109,7 +129,7 @@
                                           </VBox>
                                        </center>
                                     </BorderPane>
-                                    <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home" GridPane.columnIndex="2">
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
                                        <center>
                                           <VBox BorderPane.alignment="CENTER">
                                              <children>
@@ -126,6 +146,16 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </padding>
                                                 </StackPane>
+                                                <StackPane prefHeight="150.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnPreviewDress3" mnemonicParsing="false" text="See more">
+                                                         <styleClass>
+                                                            <String fx:value="btn-small" />
+                                                            <String fx:value="btn-normal" />
+                                                         </styleClass>
+                                                      </Button>
+                                                   </children>
+                                                </StackPane>
                                              </children>
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -133,7 +163,7 @@
                                           </VBox>
                                        </center>
                                     </BorderPane>
-                                    <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-preview-home" GridPane.columnIndex="3">
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
                                        <center>
                                           <VBox BorderPane.alignment="CENTER">
                                              <children>
@@ -150,6 +180,16 @@
                                                       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                                    </padding>
                                                 </StackPane>
+                                                <StackPane prefHeight="150.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnPreviewDress4" mnemonicParsing="false" text="See more">
+                                                         <styleClass>
+                                                            <String fx:value="btn-small" />
+                                                            <String fx:value="btn-normal" />
+                                                         </styleClass>
+                                                      </Button>
+                                                   </children>
+                                                </StackPane>
                                              </children>
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -161,11 +201,11 @@
                               </GridPane>
                            </center>
                            <top>
-                              <AnchorPane style="-fx-background-color: #292929;">
+                              <AnchorPane style="-fx-background-color: #3D3D3D;" styleClass="pnl-preview-home-title">
                                  <children>
-                                    <Label text="List of last adding" textFill="#f5f5f5">
+                                    <Label text="List of last adding" textFill="#cdcaca">
                                        <padding>
-                                          <Insets bottom="5.0" left="5.0" top="5.0" />
+                                          <Insets bottom="5.0" left="11.0" top="5.0" />
                                        </padding>
                                     </Label>
                                  </children>
@@ -281,7 +321,10 @@
          <bottom>
             <AnchorPane>
                <children>
-                  <Button fx:id="btnUser" mnemonicParsing="false" onAction="#goStatistics" prefHeight="50.0" prefWidth="193.0" styleClass="btnUser" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="btnUser" mnemonicParsing="false" onAction="#goStatistics" prefHeight="50.0" prefWidth="193.0" styleClass="btnUser" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </AnchorPane>
          </bottom>

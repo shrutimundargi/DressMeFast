@@ -116,6 +116,7 @@ public class HomeGraphic implements UI{
         this.primaryStage = this.environment.getMainStage();
         this.primaryStage.setOnCloseRequest(e -> System.exit(0));
         this.environment.displayScreen(ACTUALSCREEN);
+        System.out.println("Ciao");
     }
 
     @Override

@@ -44,7 +44,6 @@ public class SingupDialogGraphic implements UI {
     public void goToHome(ActionEvent event) {
         pressed = true;
         this.environment.displayScreen(ScreensGraphic.HOME);
-        this.controller.getUI(ScreensGraphic.HOME).showNowContent();
     }
 
     @Override
