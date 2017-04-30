@@ -149,4 +149,10 @@ public final class DressControllerImpl implements DressController {
         return null;
     }
 
+    @Override
+    public Status deleteDress(final Dress dress) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

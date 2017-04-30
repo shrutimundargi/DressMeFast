@@ -56,7 +56,7 @@ public class SingupDialogGraphic implements UI {
 
     @Override
     public void showNowContent() {
-        txtPopupName.setText("Thank you " + controller.authentication().getUsername() + " for joining in Dress Me Fast");
+        txtPopupName.setText("Thank you " + controller.userController().getUsername() + " for joining in Dress Me Fast");
     }
 
     @Override

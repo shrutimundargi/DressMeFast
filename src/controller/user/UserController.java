@@ -1,4 +1,4 @@
-package controller.authentication;
+package controller.user;
 
 import model.enumerations.Status;
 
@@ -8,7 +8,7 @@ import model.enumerations.Status;
  *
  */
 
-public interface Authentication {
+public interface UserController {
 
     /**
      * @param user

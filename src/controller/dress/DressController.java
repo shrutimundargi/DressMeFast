@@ -166,4 +166,11 @@ public interface DressController {
      */
     Status modifyFavoriteTag(Dress dress, Boolean favorite);
 
+    /**
+     * @param dress
+     *            : the dress that you want delete
+     * @return the status of the delete dress operation
+     */
+    Status deleteDress(Dress dress);
+
 }

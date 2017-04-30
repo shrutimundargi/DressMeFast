@@ -120,7 +120,7 @@ public class HomeGraphic implements UI{
 
     @Override
     public void showNowContent() {
-        btnUser.setText(controller.authentication().getUsername());
+        btnUser.setText(controller.userController().getUsername());
     }
     
     /**
