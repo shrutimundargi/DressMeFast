@@ -9,6 +9,17 @@ public interface Wardrobe {
     /**
      * @return all the categories objects.
      */
-    CategoryManagement getAllCategories();
+    CategoryManagement getCategories();
+
+    /**
+     * @return all the outfits objects.
+     */
+    OutfitsManagement getOutfits();
+
+    int countDresses();
+
+    int countOutfits();
+
+    String getMostPopularBrand();
 
 }

@@ -1,9 +1,6 @@
 package model.classes;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -21,14 +18,13 @@ import model.interfaces.Dress;
 public class CategoryManagementImpl implements CategoryManagement {
 
     private final Map<Categories, Category> categoryMap;
-    private final Set<UUID> idSet;
 
     /**
-     * Creates the container to store all the categories and the ids of all the dresses.
+     * Creates the container to store all the categories and the ids of all the
+     * dresses.
      */
     public CategoryManagementImpl() {
-        this.categoryMap = new EnumMap<>(Categories.class);
-        this.idSet = new HashSet<>();
+        this.categoryMap = new HashMap<>();
     }
 
     @Override
@@ -36,8 +32,9 @@ public class CategoryManagementImpl implements CategoryManagement {
         if (!this.categoryMap.isEmpty()) {
             return Status.CATEGORIES_ALREADY_INITIALIZED;
         }
-        for (final Categories categoryName : Categories.values()) {
-            this.categoryMap.put(categoryName, new CategoryImpl());
+        Categories[] categoriesList = Categories.values();
+        for (int i = 0; i < categoriesList.length; i++) {
+            this.categoryMap.put(categoriesList[i], new CategoryImpl());
         }
         System.out.println(this.categoryMap.toString());
         return Status.CATEGORIES_INITIALIZED;
@@ -54,12 +51,13 @@ public class CategoryManagementImpl implements CategoryManagement {
             return Status.DRESS_NOT_ADDED;
         }
         this.categoryMap.get(category).addDress(dress);
+        System.out.println(this.categoryMap.get(category));
         return Status.DRESS_ADDED;
     }
 
     @Override
     public Set<UUID> getIdSet() {
-        return this.idSet;
+        return ModelSingleton.getInstance().getIdSet();
     }
 
     @Override

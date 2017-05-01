@@ -47,6 +47,14 @@ public enum Status {
      */
     DRESS_NOT_ADDED("Failed to add dress"),
     /**
+     * The positive result by adding an outfit.
+     */
+    OUTFIT_ADDED("Dress added succesfully"),
+    /**
+     * The negative result by adding an outfit..
+     */
+    OUTFIT_NOT_ADDED("Failed to add dress"),
+    /**
      * The positive result by removing a dress.
      */
     DRESS_REMOVED("Dress removed succesfully"),
@@ -61,7 +69,15 @@ public enum Status {
     /**
      * A status of the default categories.
      */
-    CATEGORIES_ALREADY_INITIALIZED("Categories are already initialized");
+    CATEGORIES_ALREADY_INITIALIZED("Categories are already initialized"),
+    /**
+     * A status of the outfits types.
+     */
+    OUTFITS_INITIALIZED("Outfits initialized succesfully"),
+    /**
+     * A status of the outfits types.
+     */
+    OUTFITS_ALREADY_INITIALIZED("Outfits are already initialized");
 
     private String text;
 
