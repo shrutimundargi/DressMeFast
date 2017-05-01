@@ -102,6 +102,8 @@ public interface DressController {
      * @param name
      *            : dress name
      * @return the status of the modify dress name operation
+     *         <P>
+     *         If everything goes well return CHANGE_SUCCESFULL
      */
     Status modifyDressName(Dress dress, String name);
 
@@ -111,6 +113,8 @@ public interface DressController {
      * @param brand
      *            : brand
      * @return the status of the modify dress brand operation
+     *         <P>
+     *         If everything goes well return CHANGE_SUCCESFULL
      */
     Status modifyDressBrand(Dress dress, String brand);
 
@@ -120,6 +124,8 @@ public interface DressController {
      * @param size
      *            : new size
      * @return the status of the modify dress size operation
+     *         <P>
+     *         If everything goes well return CHANGE_SUCCESFULL
      */
     Status modifyDressSize(Dress dress, int size);
 
@@ -129,6 +135,8 @@ public interface DressController {
      * @param data
      *            : new data
      * @return the status of the modify dress purchase date operation
+     *         <P>
+     *         If everything goes well return CHANGE_SUCCESFULL
      */
     Status modifyDressPurchaseDate(Dress dress, Date data);
 
@@ -138,6 +146,8 @@ public interface DressController {
      * @param description
      *            : new description
      * @return the status of the modify dress description operation
+     *         <P>
+     *         If everything goes well return CHANGE_SUCCESFULL
      */
     Status modifyDressDescription(Dress dress, String description);
 
@@ -154,6 +164,8 @@ public interface DressController {
      * @param category
      *            : new category
      * @return the status of the modify dress category operation
+     *         <P>
+     *         If everything goes well return CHANGE_SUCCESFULL
      */
     Status modifyDressCategory(Dress dress, Categories category);
 
@@ -163,6 +175,8 @@ public interface DressController {
      * @param favorite
      *            : new favorite
      * @return the status of the modify favorite tag operation
+     *         <P>
+     *         If everything goes well return CHANGE_SUCCESFULL
      */
     Status modifyFavoriteTag(Dress dress, Boolean favorite);
 

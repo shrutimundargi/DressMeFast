@@ -23,7 +23,7 @@ public class Tester {
     }
 
     /**
-     * 
+     * This test check the correct sing up of the User.
      */
     @Test
     public void singUpTest() {
@@ -33,7 +33,7 @@ public class Tester {
     }
 
     /**
-     * 
+     * This test check the correct login of the User.
      */
     @Test
     public void loginTest() {
@@ -45,7 +45,7 @@ public class Tester {
     }
 
     /**
-     * 
+     * This test check the correct logout of the User.
      */
     @Test
     public void logoutTest() {
@@ -53,7 +53,7 @@ public class Tester {
     }
 
     /**
-     * 
+     * This test check the correct adding of a dress.
      */
     @Test
     public void addDress() {
@@ -62,6 +62,14 @@ public class Tester {
         assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("name", "brand", 10, 10, data, "", Categories.BODY)));
         assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("name", "brand", 10, 10, data, "", Categories.BODY)));
         assertEquals(Status.LOGOUT_SUCCESFULL, (cont.userController().logout()));
+
+    }
+
+    /**
+     * This test check modification of the dress properties.
+     */
+    @Test
+    public void modifyDressProperties() {
 
     }
 

@@ -45,6 +45,7 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Set<Dress> getDressesOfBrand(final String brandName) {
+        // TODO Auto-generated method stub
         return null;
     }
 
@@ -103,38 +104,32 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status modifyDressName(final Dress dress, final String name) {
-        // TODO Auto-generated method stub
-        return null;
+        return dress.setName(name);
     }
 
     @Override
     public Status modifyDressBrand(final Dress dress, final String brand) {
-        // TODO Auto-generated method stub
-        return null;
+        return dress.setBrand(brand);
     }
 
     @Override
     public Status modifyDressSize(final Dress dress, final int size) {
-        // TODO Auto-generated method stub
-        return null;
+        return dress.setSize(size);
     }
 
     @Override
     public Status modifyDressPurchaseDate(final Dress dress, final Date data) {
-        // TODO Auto-generated method stub
-        return null;
+        return dress.setPurchaseDate(data);
     }
 
     @Override
     public Status modifyDressDescription(final Dress dress, final String description) {
-        // TODO Auto-generated method stub
-        return null;
+        return dress.setDescription(description);
     }
 
     @Override
     public String getDressDescription(final Dress dress) {
-        // TODO Auto-generated method stub
-        return null;
+        return dress.getDescription().get();
     }
 
     @Override
