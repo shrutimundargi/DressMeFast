@@ -1,7 +1,7 @@
 package model.enumerations;
 
 /**
- * An enumeration for the dresses categories and status.
+ * An enumeration for the dresses categories.
  *
  */
 public enum Categories {

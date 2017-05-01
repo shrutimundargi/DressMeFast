@@ -17,7 +17,9 @@ import model.enumerations.Status;
 public interface CategoryManagement {
 
     /**
-     * This method starts the initialization of the default categories. 
+     * This method starts the initialization of the default categories.
+     * 
+     *  @return the result of the initialization.
      */
     Status initializeAllCategories();
 

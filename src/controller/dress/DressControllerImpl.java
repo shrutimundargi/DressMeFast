@@ -40,7 +40,7 @@ public final class DressControllerImpl implements DressController {
         final Dress dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size)
                 .buildPrice(price).buildPurchaseDate(purchaseDate).buildDescription(description).build();
 
-        return user.getWardobe().getAllCategories().addDressToCategory(dress, categories);
+        return user.getWardobe().getCategories().addDressToCategory(dress, categories);
     }
 
     @Override
