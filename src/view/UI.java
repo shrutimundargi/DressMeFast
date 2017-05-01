@@ -12,5 +12,4 @@ public interface UI {
 	
 	public void showNowContent();
 	
-    public void setLastPage(ScreensGraphic screen);
 }

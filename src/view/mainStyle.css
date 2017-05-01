@@ -24,6 +24,18 @@
 
 
 /*	==========================
+ 	 TITLE STYLE
+ 	========================== */
+
+.main-title{
+    -fx-font-size: 60px;
+    -fx-fill: #E8E7E8;
+   	-fx-padding: 0 0 10 0;
+}
+
+
+
+/*	==========================
  	 BUTTON STYLE
  	========================== */
 
@@ -47,6 +59,26 @@
     -fx-padding: 3 8;
 }
 
+
+.toolbar-header{
+	-fx-background-color: black;
+}
+
+.btn-backahead{
+	-fx-background-color:none;
+    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
+    -fx-text-fill: #0075F2;
+    -fx-font-weight: bold;
+    -fx-font-size:20.0px;
+}
+
+.btn-back{
+	-fx-padding: 1 9 1 8;
+}
+
+.btn-ahead{
+	-fx-padding: 1 8 1 9;
+}
 
 /* ============
 	Menu BAR

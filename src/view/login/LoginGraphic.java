@@ -2,9 +2,13 @@ package view.login;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.enumerations.Status;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.UI;
@@ -27,6 +31,10 @@ public class LoginGraphic implements UI {
     private Stage primaryStage;
     private boolean lockedPositionSlider;
 
+    @FXML
+    private TextField txfUser;
+    @FXML
+    private PasswordField txfPassword;
     @FXML
     private Text txtErrUser;
     @FXML
@@ -60,7 +68,22 @@ public class LoginGraphic implements UI {
      */
     @FXML
     public void loginAction(ActionEvent event) {
-        this.environment.displayScreen(ScreensGraphic.HOME);
+        final String user = txfUser.getText();
+        final String passw = txfPassword.getText();
+        final Status status = controller.userController().checkLogin(user, passw);
+        this.clearErrorField();
+        if (status == Status.USER_FOUND) {
+            this.environment.displayScreen(ScreensGraphic.HOME);
+        } else if (status == Status.USER_NOT_FOUND) {
+            txtErrUser.setText("User not found");
+        } else if (status == Status.WRONG_PASSWORD) {
+            txtErrPassw.setText("Wrong password");
+        }
+    }
+    
+    private void clearErrorField(){
+        txtErrUser.setText("");
+        txtErrPassw.setText("");
     }
 
     // Event Listener on Button.onAction
@@ -78,9 +101,4 @@ public class LoginGraphic implements UI {
         
     }
 
-    @Override
-    public void setLastPage(ScreensGraphic screen) {
-        // TODO Auto-generated method stub
-        
-    }
 }

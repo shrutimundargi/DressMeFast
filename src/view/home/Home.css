@@ -26,12 +26,6 @@
 	-fx-padding: 5 0 20 20;
 }
 
-.main-title{
-    -fx-font-size: 60px;
-    -fx-fill: #E8E7E8;
-   	-fx-padding: 0 0 10 0;
-}
-
 .gridP-home {
 	-fx-background-color: grey;
 }

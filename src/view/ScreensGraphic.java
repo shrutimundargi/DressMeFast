@@ -26,7 +26,7 @@ public enum ScreensGraphic {
     /**
      * Statistics scene.
      */
-    STATISTICS("/view/statistics/Statistics.fxml", "/view/statistics/Statistics.css");
+    USER("/view/user/User.fxml", "/view/user/User.css");
     
 
     private final String resourcePath;

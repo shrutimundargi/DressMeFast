@@ -29,17 +29,20 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import view.ProgramUI;
 import view.SceneSetting;
 import view.ScreensGraphic;
+import view.SetupView;
 import view.UI;
 
-public class HomeGraphic implements UI{
+public class HomeGraphic implements UI, ProgramUI{
 
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.HOME;
     
     private static SceneSetting viewM;
     private final SceneSetting environment;
     private final Controller controller;
+    private final SetupView setup;
     private Stage primaryStage;
     private boolean lockedPositionSlider;
     
@@ -51,6 +54,10 @@ public class HomeGraphic implements UI{
     private Circle imagePreviewDress3;
     @FXML
     private Circle imagePreviewDress4;
+    @FXML
+    private Button btnGoBack;
+    @FXML
+    private Button btnGoAhead;
     @FXML
     private Button btnCenterBrand;
     @FXML
@@ -96,9 +103,10 @@ public class HomeGraphic implements UI{
 
 
     
-    public HomeGraphic(final SceneSetting environment, final Controller controller){
+    public HomeGraphic(final SceneSetting environment, final Controller controller, final SetupView setup){
         this.controller = controller;
         this.environment = environment;
+        this.setup = setup;
         this.environment.loadScreen(ACTUALSCREEN, this);
         this.lockedPositionSlider = false;
         this.primaryStage = this.environment.getMainStage();
@@ -116,11 +124,22 @@ public class HomeGraphic implements UI{
         this.primaryStage = this.environment.getMainStage();
         this.primaryStage.setOnCloseRequest(e -> System.exit(0));
         this.environment.displayScreen(ACTUALSCREEN);
-        System.out.println("Ciao");
     }
 
     @Override
     public void showNowContent() {
+        if(setup.haveBackQueue()){
+            btnGoBack.setStyle("-fx-text-fill: #0075F2;");
+        } else {
+            btnGoBack.setStyle("-fx-text-fill: grey;");
+        }
+        
+        if(setup.haveAheadQueue()){
+            btnGoAhead.setStyle("-fx-text-fill: #0075F2;");
+        } else {
+            btnGoAhead.setStyle("-fx-text-fill: grey;");
+        }
+        
         btnUser.setText(controller.userController().getUsername());
     }
     
@@ -129,14 +148,22 @@ public class HomeGraphic implements UI{
      */
     @FXML
     public void goStatistics(ActionEvent event) {
-        this.environment.displayScreen(ScreensGraphic.STATISTICS);
-        this.controller.getUI(ScreensGraphic.STATISTICS).setLastPage(ACTUALSCREEN);
+        this.environment.displayScreen(ScreensGraphic.USER);
+    }
+    
+    /**
+     * @param event
+     */
+    @FXML
+    public void goBack(ActionEvent event) {
+    }
+    
+    /**
+     * @param event
+     */
+    @FXML
+    public void goAhead(ActionEvent event) {
     }
 
-    @Override
-    public void setLastPage(ScreensGraphic screen) {
-        // TODO Auto-generated method stub
-        
-    }
 }
 
