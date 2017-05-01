@@ -1,25 +1,21 @@
 package view.user;
 
+import controller.Controller;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import view.ProgramUI;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
 import view.UI;
-import controller.Controller;
-import javafx.event.ActionEvent;
+import view.generalUI.ProgramUIImpl;
 
-public class UserGraphic implements UI, ProgramUI{
+public class UserGraphic extends ProgramUIImpl implements UI{
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.USER;
 
     private ScreensGraphic lastPage;
     private static SceneSetting viewM;
-    private final SceneSetting environment;
-    private final Controller controller;
-    private final SetupView setup;
     private Stage primaryStage;
     private boolean lockedPositionSlider;
 
@@ -27,22 +23,22 @@ public class UserGraphic implements UI, ProgramUI{
     private Button btnGoBack;
     @FXML
     private Button btnGoAhead;
-    @FXML
-    private Button btnUser;
 	@FXML
 	private Button btnLogout;
+	@FXML
+    private Text txtUser;
 	
 	/**
      * @param environment
      * @param controller
      */
     public UserGraphic (final SceneSetting environment, final Controller controller, final SetupView setup){
-        this.controller = controller;
-        this.environment = environment;
-        this.setup = setup;
+        super(environment, controller, setup, ACTUALSCREEN);
         this.environment.loadScreen(ACTUALSCREEN, this);
         this.lockedPositionSlider = false;
         this.primaryStage = this.environment.getMainStage();
+        btnUser.setStyle("-fx-background-color: #292929");
+
     }
 
     @Override
@@ -53,41 +49,11 @@ public class UserGraphic implements UI, ProgramUI{
 
     @Override
     public void showNowContent() {
-        if(setup.haveBackQueue()){
-            btnGoBack.setStyle("-fx-text-fill: #0075F2;");
-        } else {
-            btnGoBack.setStyle("-fx-text-fill: grey;");
-        }
-        
-        if(setup.haveAheadQueue()){
-            btnGoAhead.setStyle("-fx-text-fill: #0075F2;");
-        } else {
-            btnGoAhead.setStyle("-fx-text-fill: grey;");
-        }
-        
-        btnUser.setText(controller.userController().getUsername());
-
+        super.setupButtonsBH();
+        txtUser.setText(controller.userController().getUsername());
     }
     
     public void setLastPage(ScreensGraphic screen){
         lastPage = screen;
-    }
-
-    @Override
-    public void goStatistics(ActionEvent event) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void goBack(ActionEvent event) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void goAhead(ActionEvent event) {
-        // TODO Auto-generated method stub
-        
     }
 }

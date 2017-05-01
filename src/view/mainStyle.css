@@ -119,7 +119,21 @@
 
 }
 
-.btn-menu:hover .text-menu{
+.btn-menu {
+    -fx-background-size: 30px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10%;
+  	-fx-background-color: transparent;
+  	-fx-background-radius: 0px;
+    -fx-text-fill: white;
+    -fx-font-size: 17px;
+    -fx-padding: 10 20 10 60;
+   	-fx-min-height: 50px; 
+	-fx-max-height: 50px;
+	-fx-alignment: center-left;
+}
+	
+.btn-menu:hover{
 	-fx-text-fill: #BEBFBF;
 }
 
