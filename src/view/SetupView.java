@@ -1,13 +1,11 @@
 package view;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 import com.sun.javafx.application.PlatformImpl;
 
 import controller.Controller;
-import controller.ControllerImpl;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import view.dialog.SingupDialogGraphic;
@@ -68,9 +66,17 @@ public class SetupView {
      * 
      * @param screen to put in the back queue
      */
-    public void addScreenBack(final ScreensGraphic screen) {
-        if (screen != null) {
-            backScreensQueue.add(screen);
+    public void addScreenBack(final ScreensGraphic screenToQueue, final ScreensGraphic futureScreen) {
+        if (screenToQueue != null && screenToQueue != futureScreen && screenToQueue != backScreensQueue.peek()) {
+            backScreensQueue.add(screenToQueue);
+        }
+        
+        if (futureScreen == backScreensQueue.peek()){
+            backScreensQueue.remove();
+        }
+        
+        if (futureScreen == aheadScreensQueue.peek()){
+            aheadScreensQueue.remove();
         }
     }
 
@@ -78,9 +84,17 @@ public class SetupView {
      * 
      * @param screen to put in the ahead queue
      */
-    public void addScreenAhead(final ScreensGraphic screen) {
-        if (screen != null) {
-            aheadScreensQueue.add(screen);
+    public void addScreenAhead(final ScreensGraphic screenToQueue, final ScreensGraphic futureScreen) {
+        if (screenToQueue != null && screenToQueue != futureScreen && screenToQueue != aheadScreensQueue.peek()) {
+            aheadScreensQueue.add(screenToQueue);
+        }
+        
+        if (futureScreen == backScreensQueue.peek()){
+            backScreensQueue.remove();
+        }
+        
+        if (futureScreen == backScreensQueue.peek()){
+            backScreensQueue.remove();
         }
     }
 
