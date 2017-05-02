@@ -24,12 +24,12 @@ public final class ControllerImpl implements Controller {
      */
     public static final ControllerImpl SINGLETON = new ControllerImpl();
 
-    private final UserController auth;
+    private final UserController userCtr;
     private final Map<ScreensGraphic, UI> map;
     private User user;
 
     private ControllerImpl() {
-        auth = new UserControllerImpl();
+        userCtr = new UserControllerImpl();
         map = new HashMap<>();
     }
 
@@ -51,7 +51,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public UserController userController() {
-        return auth;
+        return userCtr;
     }
 
     @Override

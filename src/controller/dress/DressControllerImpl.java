@@ -131,7 +131,6 @@ public final class DressControllerImpl implements DressController {
     public String getDressDescription(final Dress dress) {
         return dress.getDescription().get();
     }
-    
 
     @Override
     public Status modifyDressCategory(final Dress dress, final Categories category) {
