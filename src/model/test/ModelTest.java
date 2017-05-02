@@ -5,12 +5,18 @@ import java.util.Date;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 import model.classes.DressImpl;
+import model.classes.UserManagementImpl;
 import model.classes.WardobeImpl;
 import model.enumerations.Categories;
 import model.enumerations.Outfits;
+import model.enumerations.Status;
 import model.interfaces.Dress;
+import model.interfaces.UserManagement;
 import model.interfaces.Wardrobe;
 
 /**
@@ -27,11 +33,13 @@ public final class ModelTest {
      */
     @Test
     public void testCategory() {
-        /*final CategoryManagement allCategories = new CategoryManagementImpl();
-        final OutfitsManagement allOutfits = new OutfitsManagementImpl();
-        */
+
         final Wardrobe wardrobe = new WardobeImpl();
         final Date date = new Date();
+        final UserManagement userManagement = new UserManagementImpl();
+        assertEquals(Status.USER_REGISTERED, (userManagement.addUser("pop", "palla")));
+        assertEquals(Status.DUPLICATED_USER, (userManagement.addUser("pop", "palla")));
+
 
         wardrobe.getCategories().initializeAllCategories();
         wardrobe.getOutfits().initializeAllOutfits();
@@ -46,10 +54,10 @@ public final class ModelTest {
         assertTrue(wardrobe.getOutfits().getAllOutfits().keySet().contains(Outfits.USER));
         assertTrue(wardrobe.getOutfits().getAllOutfits().keySet().contains(Outfits.AI));
 
-        final Dress dress = new DressImpl.DressBuilder().buildBrand("Levis").buildDescription("Ruined Jeans")
+        final Dress dress = new DressImpl.DressBuilder().buildBrand("Lee").buildDescription("Ruined Jeans")
                 .buildName("Fav Jeans").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
 
-        assertTrue(dress.getBrand().get().equals("Levis"));
+        assertTrue(dress.getBrand().get().equals("Lee"));
         assertTrue(dress.getDescription().get().equals("Ruined Jeans"));
         assertTrue(dress.getName().get().equals("Fav Jeans"));
         assertTrue(dress.getPrice().get().equals(PRICE));
@@ -90,6 +98,9 @@ public final class ModelTest {
         assertNotNull((wardrobe.getCategories().getAllCategories().get(Categories.BODY).getDress(dress1.getId())));
         assertTrue(wardrobe.getCategories().getAllCategories().get(Categories.BODY).getDress(dress1.getId()).equals(dress1));
         System.out.println((wardrobe.countDresses()));
-
+        wardrobe.getCategories().getCategory(Categories.HEAD).removeDress(dress.getId());
+        assertNull((wardrobe.getCategories().getAllCategories().get(Categories.HEAD).getDress(dress.getId())));
+        System.out.println((wardrobe.countDresses()));
+        System.out.println(wardrobe.getCategories().getAllCategories().toString());
     }
 }

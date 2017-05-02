@@ -49,6 +49,11 @@ public interface Dress {
     Optional<String> getDescription();
 
     /**
+     * @return true if the dress is set to preferred, false otherwise.
+     */
+    Boolean getFavourited();
+
+    /**
      * @param name
      *            the name of the dress
      *
@@ -95,5 +100,13 @@ public interface Dress {
      * @return the result of the operation
      */
     Status setDescription(String description);
+
+    /**
+     * @param favourited
+     *        true if the dress is set to preferred, false otherwise.
+     *
+     * @return the result of the operation
+     */
+    Status setFavourited(Boolean favourited);
 
 }

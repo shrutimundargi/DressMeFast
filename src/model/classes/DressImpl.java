@@ -21,6 +21,7 @@ public final class DressImpl implements Dress {
     private Optional<Integer> price;
     private Optional<Date> purchaseDate;
     private Optional<String> description;
+    private Boolean favourited;
 
     /**
      * This constructor is used to build a dress.
@@ -49,6 +50,7 @@ public final class DressImpl implements Dress {
         this.purchaseDate = dressPurchaseDate;
         this.description = dressDescription;
         this.id = UUID.randomUUID();
+        this.favourited = false;
     }
 
     @Override
@@ -85,6 +87,10 @@ public final class DressImpl implements Dress {
     public Optional<String> getDescription() {
         return this.description;
     }
+    @Override
+    public Boolean getFavourited() {
+        return favourited;
+    }
 
     @Override
     public Status setName(final String dressName) {
@@ -119,6 +125,11 @@ public final class DressImpl implements Dress {
     @Override
     public Status setDescription(final String dressDescription) {
         this.description = Optional.of(dressDescription);
+        return Status.CHANGE_SUCCESFULL;
+    }
+    @Override
+    public Status setFavourited(final Boolean favourited) {
+        this.favourited = favourited;
         return Status.CHANGE_SUCCESFULL;
     }
 
