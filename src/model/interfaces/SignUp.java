@@ -1,6 +1,5 @@
 package model.interfaces;
 
-import java.util.Set;
 
 import model.enumerations.Status;
 
@@ -17,17 +16,9 @@ public interface SignUp {
      * @param signUpPassword
      *        the password chosen at sign up.
      *
-     * @param usersSet
-     *        the set of the current users stored.
-     *
      * @return if the user can sign up with the parameters.
      */
-    Status storeUser(String signUpName, String signUpPassword, Set<User> usersSet);
-
-    /**
-     * @return the set of the users stored.
-     */
-    Set<User> getSet();
+    Status storeUser(String signUpName, String signUpPassword);
 
     /**
      * @return the user at sign up step.

@@ -1,6 +1,5 @@
 package model.classes;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import model.enumerations.Status;
@@ -15,7 +14,6 @@ import model.interfaces.UserManagement;
  */
 public class UserManagementImpl implements UserManagement {
 
-    private Set<User> usersSet;
     private final SignUp signUp;
     private final Login login;
 
@@ -23,26 +21,23 @@ public class UserManagementImpl implements UserManagement {
      * Creates a container for the users.
      */
     public UserManagementImpl() {
-        this.usersSet = new HashSet<>();
         this.login = new LoginImpl();
         this.signUp = new SignUpImpl();
     }
 
     @Override
     public Status getSpecifiedUser(final String name, final String password) {
-        return login.checkLogin(name, password, usersSet);
+        return login.checkLogin(name, password, ModelSingleton.getInstance().getUserSet());
     }
 
     @Override
     public Status addUser(final String signUpName, final String signUpPassword) {
-        Status status = signUp.storeUser(signUpName, signUpPassword, this.usersSet);
-        this.usersSet = getUsersSet();
-        return status;
+        return this.signUp.storeUser(signUpName, signUpPassword);
     }
 
     @Override
     public Set<User> getUsersSet() {
-        return signUp.getSet();
+        return ModelSingleton.getInstance().getUserSet();
     }
 
     @Override
