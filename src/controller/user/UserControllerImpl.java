@@ -65,7 +65,7 @@ public final class UserControllerImpl implements UserController {
 
     private void inizializedCategory() {
         if (!statusInizializedCategory.equals(Status.CATEGORIES_INITIALIZED.getText())) {
-            statusInizializedCategory = user.getWardobe().getAllCategories().initializeAllCategories().getText();
+            statusInizializedCategory = user.getWardobe().getCategories().initializeAllCategories().getText();
         }
 
     }

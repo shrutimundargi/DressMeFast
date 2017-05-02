@@ -5,14 +5,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -270,7 +268,7 @@
                               </AnchorPane>
                               <AnchorPane GridPane.columnIndex="1">
                                  <children>
-                                    <Button fx:id="btnCenterAdd" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" text="Add" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="btnCenterAdd" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" text="Add Dress" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="add" />
@@ -321,7 +319,7 @@
          <bottom>
             <AnchorPane>
                <children>
-                  <Button fx:id="btnUser" mnemonicParsing="false" onAction="#goStatistics" prefHeight="50.0" prefWidth="193.0" styleClass="btnUser" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Button fx:id="btnUser" mnemonicParsing="false" onAction="#goUser" prefHeight="50.0" prefWidth="193.0" styleClass="btnUser" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
@@ -331,108 +329,69 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v-box-menu" BorderPane.alignment="CENTER">
                <children>
-                  <ButtonBar styleClass="btn-menu">
-                     <buttons>
-                        <HBox>
-                           <children>
-                              <ImageView fx:id="logoHomePage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label fx:id="btnMenuHome" prefHeight="36.0" prefWidth="159.0" styleClass="text-menu" text="Home">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </buttons>
-                  </ButtonBar>
-                  <ButtonBar fx:id="btnMenuBrand" styleClass="btn-menu">
-                     <buttons>
-                        <HBox>
-                           <children>
-                              <ImageView fx:id="logoBrandPage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label prefHeight="36.0" prefWidth="157.0" styleClass="text-menu" text="Brand" />
-                           </children>
-                        </HBox>
-                     </buttons>
-                  </ButtonBar>
-                  <ButtonBar fx:id="btnMenuAdd" styleClass="btn-menu">
-                     <buttons>
-                        <HBox>
-                           <children>
-                              <ImageView fx:id="logoAddPage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label prefHeight="36.0" prefWidth="156.0" styleClass="text-menu" text="Add +" />
-                           </children>
-                        </HBox>
-                     </buttons>
-                  </ButtonBar>
-                  <ButtonBar fx:id="btnMenuFavorite" styleClass="btn-menu">
-                     <buttons>
-                        <HBox>
-                           <children>
-                              <ImageView fx:id="logoFavoritePage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label prefHeight="36.0" prefWidth="157.0" styleClass="text-menu" text="Favorite" />
-                           </children>
-                        </HBox>
-                     </buttons>
-                  </ButtonBar>
-                  <ButtonBar fx:id="btnMenuOutfits" styleClass="btn-menu">
-                     <buttons>
-                        <HBox>
-                           <children>
-                              <ImageView fx:id="logoOutfitsPage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label prefHeight="36.0" prefWidth="157.0" styleClass="text-menu" text="Outfits" />
-                           </children>
-                        </HBox>
-                     </buttons>
-                  </ButtonBar>
-                  <ButtonBar fx:id="btnMenuSize" styleClass="btn-menu">
-                     <buttons>
-                        <HBox>
-                           <children>
-                              <ImageView fx:id="logoSizePage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label prefHeight="36.0" prefWidth="159.0" styleClass="text-menu" text="Size" />
-                           </children>
-                        </HBox>
-                     </buttons>
-                  </ButtonBar>
-                  <ButtonBar fx:id="btnMenuCategory" styleClass="btn-menu">
-                     <buttons>
-                        <HBox>
-                           <children>
-                              <ImageView fx:id="logoCategoryPage" fitHeight="27.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" styleClass="img-selection-menu">
-                                 <HBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <Label prefHeight="36.0" prefWidth="159.0" styleClass="text-menu" text="Category" />
-                           </children>
-                        </HBox>
-                     </buttons>
-                  </ButtonBar>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnHome" mnemonicParsing="false" onAction="#goHome" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Home" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnBrand" mnemonicParsing="false" onAction="#goBrand" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Brand" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnAddDress" mnemonicParsing="false" onAction="#goAddDress" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Add Dress" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnFavorite" mnemonicParsing="false" onAction="#goFavorite" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Favorite" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnOutfits" mnemonicParsing="false" onAction="#goOutfits" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Outfits" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnSize" mnemonicParsing="false" onAction="#goSize" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Size" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnCategory" mnemonicParsing="false" onAction="#goCategory" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Category" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                </children>
             </VBox>
          </center>
@@ -442,4 +401,28 @@
       <URL value="@Home.css" />
       <URL value="@../mainStyle.css" />
    </stylesheets>
+   <top>
+      <ToolBar styleClass="toolbar-header" BorderPane.alignment="CENTER">
+         <items>
+          <Button fx:id="btnGoBack" contentDisplay="TOP" mnemonicParsing="false" onAction="#goBack" text="&lt;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="btn-backahead" />
+                  <String fx:value="btn-back" />
+               </styleClass>
+            </Button>
+            <Button fx:id="btnGoAhead" mnemonicParsing="false" onAction="#goAhead" text="&gt;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="btn-backahead" />
+                  <String fx:value="btn-ahead" />
+               </styleClass>
+            </Button>
+         </items>
+      </ToolBar>
+   </top>
 </BorderPane>

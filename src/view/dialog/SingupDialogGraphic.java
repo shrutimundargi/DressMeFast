@@ -36,7 +36,6 @@ public class SingupDialogGraphic implements UI {
         this.lockedPositionSlider = false;
         this.primaryStage = this.environment.getMainStage();
         txtPopupName.setWrapText(true);
-        txtPopupName.setAlignment(Pos.CENTER);
     }
 
     // Event Listener on Button.onAction
@@ -58,9 +57,4 @@ public class SingupDialogGraphic implements UI {
         txtPopupName.setText("Thank you " + controller.userController().getUsername() + " for joining in Dress Me Fast");
     }
 
-    @Override
-    public void setLastPage(ScreensGraphic screen) {
-        // TODO Auto-generated method stub
-        
-    }
 }
