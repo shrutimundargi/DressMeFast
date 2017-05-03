@@ -1,5 +1,6 @@
 package model.interfaces;
 
+import java.util.Queue;
 import java.util.Set;
 
 /**
@@ -67,5 +68,5 @@ public interface Wardrobe {
     /**
      * @return the last added dresses.
      */
-    Set<Dress> getLastAddedDresses();
+    Queue<Dress> getLastAddedDresses();
 }

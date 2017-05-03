@@ -2,6 +2,7 @@ package model.classes;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Queue;
 import java.util.Set;
 
 import model.interfaces.CategoryManagement;
@@ -101,9 +102,8 @@ public class WardobeImpl implements Wardrobe {
     }
 
     @Override
-    public Set<Dress> getLastAddedDresses() {
-        // TODO Auto-generated method stub
-        return null;
+    public Queue<Dress> getLastAddedDresses() {
+        return ModelSingleton.getInstance().getDressQueue();
     }
 
 }
