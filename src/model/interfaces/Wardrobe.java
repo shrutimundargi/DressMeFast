@@ -56,4 +56,16 @@ public interface Wardrobe {
      * @return all the preferred dresses. 
      */
     Set<Dress> getFavouritedDresses();
+
+    /**@param size
+     *        the size of the dresses to find. 
+     * 
+     * @return all the dresses with the specified size.
+     */
+    Set<Dress> getDressesOfSize(int size);
+
+    /**
+     * @return the last added dresses.
+     */
+    Set<Dress> getLastAddedDresses();
 }

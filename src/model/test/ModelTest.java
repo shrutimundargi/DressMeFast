@@ -11,6 +11,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import model.classes.DressImpl;
+import model.classes.ModelSingleton;
 import model.classes.UserManagementImpl;
 import model.classes.WardobeImpl;
 import model.enumerations.Categories;
@@ -103,14 +104,16 @@ public final class ModelTest {
         assertNotNull((wardrobe.getCategories().getAllCategories().get(Categories.BODY).getDress(dress1.getId())));
         assertTrue(wardrobe.getCategories().getAllCategories().get(Categories.BODY).getDress(dress1.getId()).equals(dress1));
         System.out.println((wardrobe.countDresses()));
+        System.out.println(wardrobe.getCategories().getAllCategories().toString());
         wardrobe.getCategories().getCategory(Categories.HEAD).removeDress(dress.getId());
         assertNull((wardrobe.getCategories().getAllCategories().get(Categories.HEAD).getDress(dress.getId())));
         System.out.println((wardrobe.countDresses()));
-        System.out.println(wardrobe.getCategories().getAllCategories().toString());
+        System.out.println("\n\n" + wardrobe.getCategories().getAllCategories().toString());
         final Set<String> brands = wardrobe.getAllBrands();
         System.out.println(brands.toString());
         final Set<Dress> dressesOfBrand = wardrobe.getDressesOfBrand("Levis");
         System.out.println(dressesOfBrand.toString());
+        System.out.println(ModelSingleton.getInstance().getDressQueue().toString());
 
     }
 }

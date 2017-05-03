@@ -89,4 +89,21 @@ public class WardobeImpl implements Wardrobe {
         return Collections.unmodifiableSet(dressesFavourited);
     }
 
+    @Override
+    public Set<Dress> getDressesOfSize(final int size) {
+        final Set<Dress> dressesOfSize = new HashSet<>();
+        ModelSingleton.getInstance().getDressSet().forEach(dress -> {
+            if (dress.getSize().get().equals(size)) {
+                dressesOfSize.add(dress);
+            }
+        });
+        return Collections.unmodifiableSet(dressesOfSize);
+    }
+
+    @Override
+    public Set<Dress> getLastAddedDresses() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

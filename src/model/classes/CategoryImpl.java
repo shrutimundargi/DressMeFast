@@ -34,6 +34,7 @@ public class CategoryImpl implements Category {
         this.checkDressPresence(dressId);
         // this.getIdSet().remove(dressId);
         this.removeDressFromSet(this.map.get(dressId));
+        this.removeDressFromQueue(this.map.get(dressId));
         this.map.remove(dressId);
         System.out.println(Status.DRESS_REMOVED.getText());
         return Status.DRESS_REMOVED;
@@ -47,6 +48,7 @@ public class CategoryImpl implements Category {
             this.map.put(id, dress);
             // this.getIdSet().add(id);
             this.addDressToSet(dress);
+            this.addDressToQueue(dress);
             // System.out.println(this.getIdSet().size());
             System.out.println(ModelSingleton.getInstance().getDressSet().size());
             System.out.println(Status.DRESS_ADDED.getText());
@@ -82,5 +84,18 @@ public class CategoryImpl implements Category {
 
     private void removeDressFromSet(final Dress dress) {
         ModelSingleton.getInstance().getDressSet().remove(dress);
+    }
+
+    private void addDressToQueue(final Dress dress) {
+        if (ModelSingleton.getInstance().getDressQueue().size() < 4) {
+            ModelSingleton.getInstance().getDressQueue().add(dress);
+        } else {
+            ModelSingleton.getInstance().getDressQueue().remove();
+            ModelSingleton.getInstance().getDressQueue().add(dress);
+        }
+    }
+
+    private void removeDressFromQueue(final Dress dress) {
+        ModelSingleton.getInstance().getDressQueue().remove(dress);
     }
 }
