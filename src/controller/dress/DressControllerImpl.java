@@ -103,6 +103,36 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
+    public String getDressName(final Dress dress) {
+        return dress.getName().get();
+    }
+
+    @Override
+    public String getDressBrand(final Dress dress) {
+        return dress.getBrand().get();
+    }
+
+    @Override
+    public int getDressSize(final Dress dress) {
+        return dress.getSize().get();
+    }
+
+    @Override
+    public Date getDressPurchaseDate(final Dress dress) {
+        return dress.getPurchaseDate().get();
+    }
+
+    @Override
+    public String getDressDescription(final Dress dress) {
+        return dress.getDescription().get();
+    }
+
+    @Override
+    public Boolean getFavoriteTag(final Dress dress) {
+        return dress.getFavourited();
+    }
+
+    @Override
     public Status modifyDressName(final Dress dress, final String name) {
         return dress.setName(name);
     }
@@ -128,11 +158,6 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public String getDressDescription(final Dress dress) {
-        return dress.getDescription().get();
-    }
-
-    @Override
     public Status modifyDressCategory(final Dress dress, final Categories category) {
         // TODO Auto-generated method stub
         return null;
@@ -140,8 +165,7 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status modifyFavoriteTag(final Dress dress, final Boolean favorite) {
-        // TODO Auto-generated method stub
-        return null;
+        return dress.setFavourited(favorite);
     }
 
     @Override

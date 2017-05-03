@@ -99,6 +99,48 @@ public interface DressController {
     /**
      * @param dress
      *            : dress
+     * @return Return the name of dress
+     */
+    String getDressName(Dress dress);
+
+    /**
+     * @param dress
+     *            : dress
+     * @return Return the brand of dress
+     */
+    String getDressBrand(Dress dress);
+
+    /**
+     * @param dress
+     *            : dress
+     * @return Return the dress size
+     */
+    int getDressSize(Dress dress);
+
+    /**
+     * @param dress
+     *            : dress
+     * @return Return the purchase date of the dress
+     */
+    Date getDressPurchaseDate(Dress dress);
+
+    /**
+     * @param dress
+     *            : dress
+     * @return the description dress
+     */
+    String getDressDescription(Dress dress);
+
+    /**
+     * @param dress
+     *            : dress
+     * @return Return true if the favorite tag is true, otherwise false
+     */
+    Boolean getFavoriteTag(Dress dress);
+
+    /**
+     * @param dress
+     *            : dress
      * @param name
      *            : dress name
      * @return the status of the modify dress name operation
@@ -150,13 +192,6 @@ public interface DressController {
      *         If everything goes well return CHANGE_SUCCESFULL
      */
     Status modifyDressDescription(Dress dress, String description);
-
-    /**
-     * @param dress
-     *            : dress
-     * @return the description dress
-     */
-    String getDressDescription(Dress dress);
 
     /**
      * @param dress

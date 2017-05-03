@@ -57,7 +57,6 @@ public final class ControllerImpl implements Controller {
     @Override
     public DressController dress() {
        return new DressControllerImpl(user);
-
     }
 
     @Override

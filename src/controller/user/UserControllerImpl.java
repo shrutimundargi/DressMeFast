@@ -12,7 +12,7 @@ import model.interfaces.UserManagement;
  *
  */
 public final class UserControllerImpl implements UserController {
-    private static final String STATUSINITCATEGORY = "not yet inizialized";
+    private static final String STATUS_INIT_CATEGORY = "not yet inizialized";
 
     private Status status;
     private String statusInizializedCategory;
@@ -23,7 +23,7 @@ public final class UserControllerImpl implements UserController {
      * 
      */
     public UserControllerImpl() {
-        statusInizializedCategory = STATUSINITCATEGORY;
+        statusInizializedCategory = STATUS_INIT_CATEGORY;
         userM = new UserManagementImpl();
     }
 
@@ -56,7 +56,7 @@ public final class UserControllerImpl implements UserController {
     @Override
     public Status logout() {
         this.user = null;
-        statusInizializedCategory = STATUSINITCATEGORY;
+        statusInizializedCategory = STATUS_INIT_CATEGORY;
         setUser();
         return Status.LOGOUT_SUCCESFULL;
     }
