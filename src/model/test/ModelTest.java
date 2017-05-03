@@ -1,6 +1,7 @@
 package model.test;
 
 import java.util.Date;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -44,7 +45,7 @@ public final class ModelTest {
         wardrobe.getCategories().initializeAllCategories();
         wardrobe.getOutfits().initializeAllOutfits();
 
-        assertTrue(wardrobe.getCategories().getIdSet().isEmpty());
+        assertTrue(wardrobe.getCategories().getDressSet().isEmpty());
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Categories.HEAD));
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Categories.BODY));
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Categories.FOOT));
@@ -88,9 +89,13 @@ public final class ModelTest {
                 .buildName("prova").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
 
         wardrobe.getCategories().addDressToCategory(dress, Categories.HEAD);
+        System.out.println(dress.getCategoryName().getCategoryName());
         wardrobe.getCategories().addDressToCategory(dress2, Categories.HEAD);
+        System.out.println(dress2.getCategoryName().getCategoryName());
         wardrobe.getCategories().addDressToCategory(dress1, Categories.BODY);
+        System.out.println(dress1.getCategoryName().getCategoryName());
         wardrobe.getCategories().addDressToCategory(dress3, Categories.HEAD);
+        System.out.println(dress3.getCategoryName().getCategoryName());
         assertNotNull((wardrobe.getCategories().getAllCategories().get(Categories.HEAD).getDress(dress.getId())));
         assertTrue(wardrobe.getCategories().getAllCategories().get(Categories.HEAD).getDress(dress.getId()).equals(dress));
         assertNotNull((wardrobe.getCategories().getAllCategories().get(Categories.HEAD).getDress(dress2.getId())));
@@ -102,5 +107,10 @@ public final class ModelTest {
         assertNull((wardrobe.getCategories().getAllCategories().get(Categories.HEAD).getDress(dress.getId())));
         System.out.println((wardrobe.countDresses()));
         System.out.println(wardrobe.getCategories().getAllCategories().toString());
+        final Set<String> brands = wardrobe.getAllBrands();
+        System.out.println(brands.toString());
+        final Set<Dress> dressesOfBrand = wardrobe.getDressesOfBrand("Levis");
+        System.out.println(dressesOfBrand.toString());
+
     }
 }

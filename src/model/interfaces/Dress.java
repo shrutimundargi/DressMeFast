@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
+import model.enumerations.Categories;
 import model.enumerations.Status;
 
 /**
@@ -52,6 +53,11 @@ public interface Dress {
      * @return true if the dress is set to preferred, false otherwise.
      */
     Boolean getFavourited();
+
+    /**
+     * @return the category name in which the dress is stored. 
+     */
+    Categories getCategoryName();
 
     /**
      * @param name
@@ -108,5 +114,13 @@ public interface Dress {
      * @return the result of the operation
      */
     Status setFavourited(Boolean favourited);
+
+    /**
+     * @param category
+     *        the name of the category in which save the dress.
+     *
+     * @return the result of the operation.
+     */
+    Status setCategoryName(Categories category);
 
 }

@@ -7,5 +7,5 @@ package model.interfaces;
  *
  */
 public interface Outfit {
-    
+
 }

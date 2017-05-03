@@ -29,7 +29,11 @@ public enum Categories {
     /**
      * Foot category.
      */
-    FOOT("Foot");
+    FOOT("Foot"),
+    /**
+     * Category not chosen yet.
+     */
+    EMPTY("Empty");
 
     private String categoryName;
 

@@ -2,7 +2,6 @@ package model.interfaces;
 
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import model.enumerations.Categories;
 import model.enumerations.Status;
@@ -43,9 +42,9 @@ public interface CategoryManagement {
     Status addDressToCategory(Dress dress, Categories category);
 
     /**
-     * @return the set with the ids of all the dresses inside all categories.
+     * @return the set with all the dresses stored.
      */
-    Set<UUID> getIdSet();
+    Set<Dress> getDressSet();
 
     /**
      * @return the map which contains the default categories.

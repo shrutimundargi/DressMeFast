@@ -2,8 +2,8 @@ package model.classes;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
+import model.interfaces.Dress;
 import model.interfaces.User;
 
 /**
@@ -12,7 +12,7 @@ import model.interfaces.User;
  */
 public final class ModelSingleton {
 
-    private final Set<UUID> idSet;
+    private final Set<Dress> dressSet;
     private final Set<User> userSet;
 
     private static class SafeSingleton {
@@ -20,7 +20,7 @@ public final class ModelSingleton {
     }
 
     private ModelSingleton() {
-        this.idSet = new HashSet<>();
+        this.dressSet = new HashSet<>();
         this.userSet = new HashSet<>();
     }
 
@@ -32,10 +32,10 @@ public final class ModelSingleton {
     }
 
     /**
-     * @return the set containing all the ids of all the dresses.
+     * @return the set containing all the dresses.
      */
-    public Set<UUID> getIdSet() {
-        return this.idSet;
+    public Set<Dress> getDressSet() {
+        return this.dressSet;
     }
 
     /**

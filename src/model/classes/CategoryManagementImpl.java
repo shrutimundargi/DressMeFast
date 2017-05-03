@@ -3,7 +3,6 @@ package model.classes;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
 
 import model.enumerations.Categories;
 import model.enumerations.Status;
@@ -32,10 +31,12 @@ public class CategoryManagementImpl implements CategoryManagement {
         if (!this.categoryMap.isEmpty()) {
             return Status.CATEGORIES_ALREADY_INITIALIZED;
         }
-        Categories[] categoriesList = Categories.values();
-        for (int i = 0; i < categoriesList.length; i++) {
-            this.categoryMap.put(categoriesList[i], new CategoryImpl());
-        }
+        this.categoryMap.put(Categories.HEAD, new CategoryImpl());
+        this.categoryMap.put(Categories.NECK, new CategoryImpl());
+        this.categoryMap.put(Categories.HANDS, new CategoryImpl());
+        this.categoryMap.put(Categories.BODY, new CategoryImpl());
+        this.categoryMap.put(Categories.LEGS, new CategoryImpl());
+        this.categoryMap.put(Categories.FOOT, new CategoryImpl());
         System.out.println(this.categoryMap.toString());
         return Status.CATEGORIES_INITIALIZED;
     }
@@ -50,14 +51,14 @@ public class CategoryManagementImpl implements CategoryManagement {
         if (!this.categoryMap.containsKey(category)) {
             return Status.DRESS_NOT_ADDED;
         }
-        this.categoryMap.get(category).addDress(dress);
+        this.categoryMap.get(category).addDress(dress, category);
         System.out.println(this.categoryMap.get(category));
         return Status.DRESS_ADDED;
     }
 
     @Override
-    public Set<UUID> getIdSet() {
-        return ModelSingleton.getInstance().getIdSet();
+    public Set<Dress> getDressSet() {
+        return ModelSingleton.getInstance().getDressSet();
     }
 
     @Override
