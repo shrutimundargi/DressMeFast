@@ -44,6 +44,7 @@ public final class ControllerImpl implements Controller {
     public void attachUI(final ScreensGraphic name, final UI uI) {
         map.put(name, uI);
     }
+
     @Override
     public UI getUI(final ScreensGraphic name) {
         return map.get(name);
@@ -56,7 +57,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public DressController dress() {
-       return new DressControllerImpl(user);
+        return new DressControllerImpl(user);
     }
 
     @Override
@@ -68,4 +69,5 @@ public final class ControllerImpl implements Controller {
     public void setUser(final User user) {
         this.user = user;
     }
+
 }

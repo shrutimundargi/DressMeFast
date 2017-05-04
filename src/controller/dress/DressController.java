@@ -5,6 +5,7 @@ import java.util.Set;
 
 import model.enumerations.Categories;
 import model.enumerations.Status;
+import model.interfaces.Category;
 import model.interfaces.Dress;
 import model.interfaces.User;
 
@@ -68,7 +69,7 @@ public interface DressController {
     /**
      * @return All categories
      */
-    Set<Categories> getAllCategory();
+    Set<Category> getAllCategory();
 
     /**
      * @return All brands
@@ -88,7 +89,7 @@ public interface DressController {
     /**
      * @return the last three dresses added
      */
-    Set<Dress> getThreeLastDresses();
+    Set<Dress> getLastAddedDresses();
 
     /**
      * @param user

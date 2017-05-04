@@ -83,7 +83,7 @@ public class CategoryImpl implements Category {
     }
 
     private void removeDressFromSet(final Dress dress) {
-        ModelSingleton.getInstance().getDressSet().remove(dress);
+        System.out.println(ModelSingleton.getInstance().getDressSet().remove(dress));
     }
 
     private void addDressToQueue(final Dress dress) {

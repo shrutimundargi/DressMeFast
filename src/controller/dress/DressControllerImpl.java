@@ -1,6 +1,7 @@
 package controller.dress;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import controller.exception.MyException;
 import model.classes.DressImpl;
 import model.enumerations.Categories;
 import model.enumerations.Status;
+import model.interfaces.Category;
 import model.interfaces.Dress;
 import model.interfaces.User;
 
@@ -25,6 +27,7 @@ public final class DressControllerImpl implements DressController {
      */
     public DressControllerImpl(final User user) {
         this.user = user;
+
     }
 
     @Override
@@ -45,20 +48,17 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Set<Dress> getDressesOfBrand(final String brandName) {
-        // TODO Auto-generated method stub
-        return null;
+        return user.getWardobe().getDressesOfBrand(brandName);
     }
 
     @Override
     public Set<Dress> getDressesOfCategory(final Categories categoryName) {
-        // TODO Auto-generated method stub
-        return null;
+        return new HashSet<>(user.getWardobe().getCategories().getCategory(categoryName).getAllDresses().values());
     }
 
     @Override
     public Set<Dress> getDressesOfSize(final int size) {
-        // TODO Auto-generated method stub
-        return null;
+        return user.getWardobe().getDressesOfSize(size);
     }
 
     @Override
@@ -68,33 +68,28 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<Categories> getAllCategory() {
-        // TODO Auto-generated method stub
-        return null;
+    public Set<Category> getAllCategory() {
+        return new HashSet<>(user.getWardobe().getCategories().getAllCategories().values());
     }
 
     @Override
     public Set<String> getAllBrand() {
-        // TODO Auto-generated method stub
-        return null;
+        return user.getWardobe().getAllBrands();
     }
 
     @Override
     public Set<Integer> getAllSize() {
-        // TODO Auto-generated method stub
-        return null;
+        return user.getWardobe().getAllSizes();
     }
 
     @Override
     public Set<Dress> getFavoriteDresses() {
-        // TODO Auto-generated method stub
-        return null;
+        return user.getWardobe().getFavouritedDresses();
     }
 
     @Override
-    public Set<Dress> getThreeLastDresses() {
-        // TODO Auto-generated method stub
-        return null;
+    public Set<Dress> getLastAddedDresses() {
+        return new HashSet<>(user.getWardobe().getLastAddedDresses());
     }
 
     @Override
@@ -170,8 +165,8 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status deleteDress(final Dress dress) {
-        // TODO Auto-generated method stub
-        return null;
+        return user.getWardobe().getCategories().getCategory(dress.getCategoryName()).removeDress(dress.getId());
+       
     }
 
 }
