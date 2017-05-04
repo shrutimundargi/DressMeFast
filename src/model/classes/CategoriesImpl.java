@@ -4,23 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import model.enumerations.Categories;
+import model.enumerations.Category;
 import model.enumerations.Status;
-import model.interfaces.Category;
+import model.interfaces.Categories;
 import model.interfaces.Dress;
 
 /**
- * Class used to manage a particular Category.
+ * Class used to manage a particular category.
  *
  */
-public class CategoryImpl implements Category {
+public class CategoriesImpl implements Categories {
 
     private final Map<UUID, Dress> map;
 
     /**
      * Creates a new category.
      */
-    public CategoryImpl() {
+    public CategoriesImpl() {
         this.map = new HashMap<UUID, Dress>();
     }
 
@@ -41,7 +41,7 @@ public class CategoryImpl implements Category {
     }
 
     @Override
-    public Status addDress(final Dress dress, final Categories categoryName) {
+    public Status addDress(final Dress dress, final Category categoryName) {
         final UUID id = dress.getId();
         if (!this.map.containsKey(id)) {
             dress.setCategoryName(categoryName);

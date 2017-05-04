@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Queue;
 import java.util.Set;
 
-import model.interfaces.CategoryManagement;
+import model.interfaces.CategoriesManagement;
 import model.interfaces.Dress;
 import model.interfaces.OutfitsManagement;
 import model.interfaces.Wardrobe;
@@ -16,19 +16,19 @@ import model.interfaces.Wardrobe;
  */
 public class WardobeImpl implements Wardrobe {
 
-    private final CategoryManagement categoryManagement;
+    private final CategoriesManagement categoryManagement;
     private final OutfitsManagement outfitsManagement;
 
     /**
      * Creates a container for the categories and outfits.
      */
     public WardobeImpl() {
-        this.categoryManagement = new CategoryManagementImpl();
+        this.categoryManagement = new CategoriesManagementImpl();
         this.outfitsManagement = new OutfitsManagementImpl();
     }
 
     @Override
-    public CategoryManagement getCategories() {
+    public CategoriesManagement getCategories() {
         return this.categoryManagement;
     }
 

@@ -6,6 +6,6 @@ package model.interfaces;
  * created.
  *
  */
-public interface Outfit {
+public interface Outfits {
 
 }

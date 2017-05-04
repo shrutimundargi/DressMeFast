@@ -3,9 +3,9 @@ package controller.dress;
 import java.util.Date;
 import java.util.Set;
 
-import model.enumerations.Categories;
+import model.enumerations.Category;
 import model.enumerations.Status;
-import model.interfaces.Category;
+import model.interfaces.Categories;
 import model.interfaces.Dress;
 import model.interfaces.User;
 
@@ -38,7 +38,7 @@ public interface DressController {
      *         otherwise return DRESS_ADDED
      */
     Status addDress(String name, String brand, int size, int price, Date purchaseDate, String description,
-            Categories categories);
+            Category categories);
 
     /**
      * @param brandName
@@ -52,7 +52,7 @@ public interface DressController {
      *            : the name of category
      * @return All dresses of the specified category
      */
-    Set<Dress> getDressesOfCategory(Categories categoryName);
+    Set<Dress> getDressesOfCategory(Category categoryName);
 
     /**
      * @param size
@@ -69,7 +69,7 @@ public interface DressController {
     /**
      * @return All categories
      */
-    Set<Category> getAllCategory();
+    Set<Categories> getAllCategory();
 
     /**
      * @return All brands
@@ -203,7 +203,7 @@ public interface DressController {
      *         <P>
      *         If everything goes well return CHANGE_SUCCESFULL
      */
-    Status modifyDressCategory(Dress dress, Categories category);
+    Status modifyDressCategory(Dress dress, Category category);
 
     /**
      * @param dress

@@ -3,14 +3,14 @@ package model.interfaces;
 import java.util.Map;
 import java.util.UUID;
 
-import model.enumerations.Categories;
+import model.enumerations.Category;
 import model.enumerations.Status;
 
 /**
  * The interface of a single Category.
  *
  */
-public interface Category {
+public interface Categories {
 
     /**
      * @param dressId
@@ -37,7 +37,7 @@ public interface Category {
      *
      * @return the result of adding a dress.
      */
-    Status addDress(Dress dress, Categories categoryName);
+    Status addDress(Dress dress, Category categoryName);
 
     /**
      * @return all the dresses of the category.

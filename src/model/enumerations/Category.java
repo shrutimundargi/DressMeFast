@@ -4,7 +4,7 @@ package model.enumerations;
  * An enumeration for the dresses categories.
  *
  */
-public enum Categories {
+public enum Category {
 
     /**
      * Head category.
@@ -48,7 +48,7 @@ public enum Categories {
      * @param name
      *            the category name.
      */
-    Categories(final String name) {
+    Category(final String name) {
         this.categoryName = name;
     }
 
