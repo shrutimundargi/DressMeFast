@@ -2,7 +2,7 @@ package model.interfaces;
 
 import java.util.Map;
 
-import model.enumerations.Outfits;
+import model.enumerations.Outfit;
 import model.enumerations.Status;
 
 /**
@@ -24,7 +24,7 @@ public interface OutfitsManagement {
      *
      * @return the object outfit pointed by its type. 
      */
-    Outfit getOutfit(Outfits outfit);
+    Outfits getOutfit(Outfit outfit);
 
     /**
      * @param outfit
@@ -35,10 +35,10 @@ public interface OutfitsManagement {
      *
      * @return the result of adding an outfit object to the specified type.
      */
-    Status addOutfit(Outfit outfit, Outfits type);
+    Status addOutfit(Outfits outfit, Outfit type);
 
     /**
      * @return the map which contains the default types of outfit.
      */
-    Map<Outfits, Outfit> getAllOutfits();
+    Map<Outfit, Outfits> getAllOutfits();
 }

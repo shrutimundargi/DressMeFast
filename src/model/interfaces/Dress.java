@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
-import model.enumerations.Categories;
+import model.enumerations.Category;
 import model.enumerations.Status;
 
 /**
@@ -57,7 +57,7 @@ public interface Dress {
     /**
      * @return the category name in which the dress is stored. 
      */
-    Categories getCategoryName();
+    Category getCategoryName();
 
     /**
      * @param name
@@ -121,6 +121,6 @@ public interface Dress {
      *
      * @return the result of the operation.
      */
-    Status setCategoryName(Categories category);
+    Status setCategoryName(Category category);
 
 }

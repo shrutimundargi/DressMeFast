@@ -4,25 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import model.enumerations.Categories;
+import model.enumerations.Category;
 import model.enumerations.Status;
-import model.interfaces.Category;
-import model.interfaces.CategoryManagement;
+import model.interfaces.Categories;
+import model.interfaces.CategoriesManagement;
 import model.interfaces.Dress;
 
 /**
  * The class used to manage a multitude of categories.
  *
  */
-public class CategoryManagementImpl implements CategoryManagement {
+public class CategoriesManagementImpl implements CategoriesManagement {
 
-    private final Map<Categories, Category> categoryMap;
+    private final Map<Category, Categories> categoryMap;
 
     /**
      * Creates the container to store all the categories and the ids of all the
      * dresses.
      */
-    public CategoryManagementImpl() {
+    public CategoriesManagementImpl() {
         this.categoryMap = new HashMap<>();
     }
 
@@ -31,23 +31,23 @@ public class CategoryManagementImpl implements CategoryManagement {
         if (!this.categoryMap.isEmpty()) {
             return Status.CATEGORIES_ALREADY_INITIALIZED;
         }
-        this.categoryMap.put(Categories.HEAD, new CategoryImpl());
-        this.categoryMap.put(Categories.NECK, new CategoryImpl());
-        this.categoryMap.put(Categories.HANDS, new CategoryImpl());
-        this.categoryMap.put(Categories.BODY, new CategoryImpl());
-        this.categoryMap.put(Categories.LEGS, new CategoryImpl());
-        this.categoryMap.put(Categories.FOOT, new CategoryImpl());
+        this.categoryMap.put(Category.HEAD, new CategoriesImpl());
+        this.categoryMap.put(Category.NECK, new CategoriesImpl());
+        this.categoryMap.put(Category.HANDS, new CategoriesImpl());
+        this.categoryMap.put(Category.BODY, new CategoriesImpl());
+        this.categoryMap.put(Category.LEGS, new CategoriesImpl());
+        this.categoryMap.put(Category.FOOT, new CategoriesImpl());
         System.out.println(this.categoryMap.toString());
         return Status.CATEGORIES_INITIALIZED;
     }
 
     @Override
-    public Category getCategory(final Categories category) {
+    public Categories getCategory(final Category category) {
         return this.categoryMap.get(category);
     }
 
     @Override
-    public Status addDressToCategory(final Dress dress, final Categories category) {
+    public Status addDressToCategory(final Dress dress, final Category category) {
         if (!this.categoryMap.containsKey(category)) {
             return Status.DRESS_NOT_ADDED;
         }
@@ -62,7 +62,7 @@ public class CategoryManagementImpl implements CategoryManagement {
     }
 
     @Override
-    public Map<Categories, Category> getAllCategories() {
+    public Map<Category, Categories> getAllCategories() {
         return this.categoryMap;
     }
 

@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
-import model.enumerations.Categories;
+import model.enumerations.Category;
 import model.enumerations.Status;
 import model.interfaces.Dress;
 
@@ -23,7 +23,7 @@ public final class DressImpl implements Dress {
     private Optional<Date> purchaseDate;
     private Optional<String> description;
     private Boolean favourited;
-    private Categories category;
+    private Category category;
 
     /**
      * This constructor is used to build a dress.
@@ -53,7 +53,7 @@ public final class DressImpl implements Dress {
         this.description = dressDescription;
         this.id = UUID.randomUUID();
         this.favourited = false;
-        this.category = Categories.EMPTY;
+        this.category = Category.EMPTY;
     }
 
     @Override
@@ -96,7 +96,7 @@ public final class DressImpl implements Dress {
     }
 
     @Override
-    public Categories getCategoryName() {
+    public Category getCategoryName() {
         return this.category;
     }
 
@@ -142,7 +142,7 @@ public final class DressImpl implements Dress {
     }
 
     @Override
-    public Status setCategoryName(final Categories category) {
+    public Status setCategoryName(final Category category) {
         this.category = category;
         return Status.CHANGE_SUCCESFULL;
     }

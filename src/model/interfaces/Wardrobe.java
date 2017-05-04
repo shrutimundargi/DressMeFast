@@ -13,7 +13,7 @@ public interface Wardrobe {
     /**
      * @return all the categories objects.
      */
-    CategoryManagement getCategories();
+    CategoriesManagement getCategories();
 
     /**
      * @return all the outfits objects.

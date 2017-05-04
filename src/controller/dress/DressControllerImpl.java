@@ -6,7 +6,7 @@ import java.util.Set;
 
 import controller.exception.MyException;
 import model.classes.DressImpl;
-import model.enumerations.Categories;
+import model.enumerations.Category;
 import model.enumerations.Status;
 import model.interfaces.Dress;
 import model.interfaces.User;
@@ -29,7 +29,7 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status addDress(final String name, final String brand, final int size, final int price,
-            final Date purchaseDate, final String description, final Categories categories) {
+            final Date purchaseDate, final String description, final Category categories) {
         try {
             Objects.requireNonNull(user);
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<Dress> getDressesOfCategory(final Categories categoryName) {
+    public Set<Dress> getDressesOfCategory(final Category categoryName) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -68,7 +68,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<Categories> getAllCategory() {
+    public Set<Category> getAllCategory() {
         // TODO Auto-generated method stub
         return null;
     }
@@ -158,7 +158,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Status modifyDressCategory(final Dress dress, final Categories category) {
+    public Status modifyDressCategory(final Dress dress, final Category category) {
         // TODO Auto-generated method stub
         return null;
     }

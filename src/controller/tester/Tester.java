@@ -10,7 +10,7 @@ import org.junit.Test;
 import controller.Controller;
 import controller.ControllerImpl;
 import model.classes.UserManagementImpl;
-import model.enumerations.Categories;
+import model.enumerations.Category;
 import model.enumerations.Status;
 import model.interfaces.Dress;
 import model.interfaces.User;
@@ -42,10 +42,10 @@ public class Tester {
     }
 
     private UUID getIdDess() {
-        return usr.getWardobe().getCategories().getCategory(Categories.BODY).getAllDresses().keySet().iterator().next();
+        return usr.getWardobe().getCategories().getCategory(Category.BODY).getAllDresses().keySet().iterator().next();
     }
 
-    private Dress getDress(final Categories categories, final UUID id) {
+    private Dress getDress(final Category categories, final UUID id) {
         return usr.getWardobe().getCategories().getCategory(categories).getDress(id);
     }
 
@@ -83,9 +83,9 @@ public class Tester {
      */
     @Test
     public void addDress() {
-        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("dress", "brand", 10, 10, data, "", Categories.BODY)));
-        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("dress2", "brand", 10, 10, data, "", Categories.BODY)));
-        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("dress3", "brand", 10, 10, data, "", Categories.BODY)));
+        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("dress", "brand", 10, 10, data, "", Category.BODY)));
+        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("dress2", "brand", 10, 10, data, "", Category.BODY)));
+        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("dress3", "brand", 10, 10, data, "", Category.BODY)));
         assertEquals(Status.LOGOUT_SUCCESFULL, (cont.userController().logout()));
 
     }
@@ -99,12 +99,12 @@ public class Tester {
         user();
 
         assertEquals(Status.DRESS_ADDED,
-                (cont.dress().addDress("dress4", "armani", 10, 10, data, "", Categories.BODY)));
+                (cont.dress().addDress("dress4", "armani", 10, 10, data, "", Category.BODY)));
 
         idDress = getIdDess();
 
         assertEquals(Status.CHANGE_SUCCESFULL,
-                (cont.dress().modifyDressName(getDress(Categories.BODY, idDress), "new name")));
-        assertEquals("new name", cont.dress().getDressName(getDress(Categories.BODY, idDress)));
+                (cont.dress().modifyDressName(getDress(Category.BODY, idDress), "new name")));
+        assertEquals("new name", cont.dress().getDressName(getDress(Category.BODY, idDress)));
     }
 }
