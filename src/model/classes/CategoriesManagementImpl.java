@@ -1,8 +1,8 @@
 package model.classes;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import model.enumerations.Category;
 import model.enumerations.Status;
@@ -57,8 +57,8 @@ public class CategoriesManagementImpl implements CategoriesManagement {
     }
 
     @Override
-    public Set<Dress> getDressSet() {
-        return ModelSingleton.getInstance().getDressSet();
+    public List<Dress> getDressSet() {
+        return ModelSingleton.getInstance().getDressList();
     }
 
     @Override

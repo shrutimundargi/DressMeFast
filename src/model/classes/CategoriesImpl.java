@@ -50,7 +50,7 @@ public class CategoriesImpl implements Categories {
             this.addDressToSet(dress);
             this.addDressToQueue(dress);
             // System.out.println(this.getIdSet().size());
-            System.out.println(ModelSingleton.getInstance().getDressSet().size());
+            System.out.println(ModelSingleton.getInstance().getDressList().size());
             System.out.println(Status.DRESS_ADDED.getText());
             return Status.DRESS_ADDED;
         }
@@ -60,7 +60,7 @@ public class CategoriesImpl implements Categories {
     }
 
     private Status checkDressPresence(final UUID id) {
-        for (final Dress dress : ModelSingleton.getInstance().getDressSet()) {
+        for (final Dress dress : ModelSingleton.getInstance().getDressList()) {
             if ((dress.getId().equals(id))) {
                 return Status.DRESS_FOUND;
             }
@@ -79,11 +79,11 @@ public class CategoriesImpl implements Categories {
     }
 
     private void addDressToSet(final Dress dress) {
-        ModelSingleton.getInstance().getDressSet().add(dress);
+        ModelSingleton.getInstance().getDressList().add(dress);
     }
 
     private void removeDressFromSet(final Dress dress) {
-        ModelSingleton.getInstance().getDressSet().remove(dress);
+        ModelSingleton.getInstance().getDressList().remove(dress);
     }
 
     private void addDressToQueue(final Dress dress) {
