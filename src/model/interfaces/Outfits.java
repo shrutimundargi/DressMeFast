@@ -1,5 +1,7 @@
 package model.interfaces;
 
+import java.util.UUID;
+
 /**
  * The interface of a single outfit. In this case, an outfit is represented by a
  * multitude of dresses and it's divided in two types: user created and AI
@@ -7,5 +9,5 @@ package model.interfaces;
  *
  */
 public interface Outfits {
-
+    UUID getId();
 }

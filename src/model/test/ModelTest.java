@@ -1,7 +1,10 @@
 package model.test;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import org.junit.Test;
 
@@ -13,11 +16,13 @@ import static org.junit.Assert.assertNull;
 import model.classes.DressImpl;
 import model.classes.ModelSingleton;
 import model.classes.UserManagementImpl;
+import model.classes.UserOutfit;
 import model.classes.WardobeImpl;
 import model.enumerations.Category;
 import model.enumerations.Outfit;
 import model.enumerations.Status;
 import model.interfaces.Dress;
+import model.interfaces.Outfits;
 import model.interfaces.UserManagement;
 import model.interfaces.Wardrobe;
 
@@ -39,6 +44,8 @@ public final class ModelTest {
         final Wardrobe wardrobe = new WardobeImpl();
         final Date date = new Date();
         final UserManagement userManagement = new UserManagementImpl();
+        List<UUID> someDresses = new LinkedList<>();
+        Outfits firstOutfit;
         assertEquals(Status.USER_REGISTERED, (userManagement.addUser("pop", "palla")));
         assertEquals(Status.DUPLICATED_USER, (userManagement.addUser("pop", "palla")));
 
@@ -53,8 +60,7 @@ public final class ModelTest {
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.HANDS));
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.LEGS));
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.NECK));
-        assertTrue(wardrobe.getOutfits().getAllOutfits().keySet().contains(Outfit.USER));
-        assertTrue(wardrobe.getOutfits().getAllOutfits().keySet().contains(Outfit.AI));
+
 
         final Dress dress = new DressImpl.DressBuilder().buildBrand("Lee").buildDescription("Ruined Jeans")
                 .buildName("Fav Jeans").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
@@ -118,6 +124,15 @@ public final class ModelTest {
         final Set<Dress> dressesOfBrand = wardrobe.getDressesOfBrand("Levis");
         System.out.println(dressesOfBrand.toString());
         System.out.println(ModelSingleton.getInstance().getDressQueue().toString());
+        System.out.println("\n\n\n\n\n");
 
+        someDresses.add(dress1.getId());
+        firstOutfit = new UserOutfit().createOutfit(someDresses);
+        wardrobe.getOutfits().addOutfit(firstOutfit, Outfit.USER);
+        System.out.println(ModelSingleton.getInstance().getOutfitsList().size());
+
+        ModelSingleton mo = ModelSingleton.getInstance();
+
+        System.out.println("");
     }
 }

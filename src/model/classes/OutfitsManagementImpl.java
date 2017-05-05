@@ -1,7 +1,10 @@
 package model.classes;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import model.enumerations.Outfit;
 import model.enumerations.Status;
@@ -14,13 +17,13 @@ import model.interfaces.OutfitsManagement;
  */
 public class OutfitsManagementImpl implements OutfitsManagement {
 
-    private final Map<Outfit, Outfits> outfitsMap;
+   private Map<Outfit, List<UUID>> outfitsMap;
 
     /**
      * Creates a container for all the outfits.
      */
     public OutfitsManagementImpl() {
-       this.outfitsMap = new HashMap<Outfit, Outfits>();
+       this.outfitsMap = new HashMap<>();
     }
 
     @Override
@@ -28,15 +31,19 @@ public class OutfitsManagementImpl implements OutfitsManagement {
         if (!this.outfitsMap.isEmpty()) {
             return Status.OUTFITS_ALREADY_INITIALIZED;
         }
-        this.outfitsMap.put(Outfit.USER, new UserOutfit());
-        this.outfitsMap.put(Outfit.AI, new AIOutfit());
+        this.outfitsMap.put(Outfit.USER, new LinkedList<>());
+        this.outfitsMap.put(Outfit.AI, new LinkedList<>());
         System.out.println(this.outfitsMap.toString());
         return Status.OUTFITS_INITIALIZED;
     }
-
     @Override
-    public Outfits getOutfit(final Outfit outfit) {
-        return this.outfitsMap.get(outfit);
+    public Outfits getOutfit(final UUID outfitId) {
+       for (final Outfits outfit : ModelSingleton.getInstance().getOutfitsList()) {
+           if (outfit.getId().equals(outfitId)) {
+               return outfit;
+           }
+       }
+       return null; 
     }
 
     @Override
@@ -44,12 +51,8 @@ public class OutfitsManagementImpl implements OutfitsManagement {
         if (!this.outfitsMap.containsKey(type)) {
             return Status.OUTFIT_NOT_ADDED;
         }
-        //this.outfitsMap.get(type).addOutfit(outfit);
+        ModelSingleton.getInstance().getOutfitsList().add(outfit);
+        outfitsMap.get(type).add(outfit.getId());
         return Status.OUTFIT_ADDED;
-    }
-
-    @Override
-    public Map<Outfit, Outfits> getAllOutfits() {
-        return this.outfitsMap;
     }
 }

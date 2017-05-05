@@ -1,6 +1,6 @@
 package model.interfaces;
 
-import java.util.Map;
+import java.util.UUID;
 
 import model.enumerations.Outfit;
 import model.enumerations.Status;
@@ -19,12 +19,12 @@ public interface OutfitsManagement {
     Status initializeAllOutfits();
 
     /**
-     * @param outfit
-     *        the type of outfit in the enumeration "Outfits".
+     * @param outfitId
+     *        the id of an outfit.
      *
-     * @return the object outfit pointed by its type. 
+     * @return the object outfit pointed by its id. 
      */
-    Outfits getOutfit(Outfit outfit);
+    Outfits getOutfit(UUID outfitId);
 
     /**
      * @param outfit
@@ -36,9 +36,4 @@ public interface OutfitsManagement {
      * @return the result of adding an outfit object to the specified type.
      */
     Status addOutfit(Outfits outfit, Outfit type);
-
-    /**
-     * @return the map which contains the default types of outfit.
-     */
-    Map<Outfit, Outfits> getAllOutfits();
 }

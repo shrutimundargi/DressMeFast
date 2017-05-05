@@ -1,5 +1,7 @@
 package model.classes;
 
+import java.util.UUID;
+
 import model.interfaces.Outfits;
 
 /**
@@ -7,5 +9,11 @@ import model.interfaces.Outfits;
  *
  */
 public class AIOutfit implements Outfits {
+
+    @Override
+    public UUID getId() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }
