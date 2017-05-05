@@ -2,6 +2,7 @@ package model.classes;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ import model.interfaces.User;
 
 public final class ModelSingleton {
 
-    private final Set<Dress> dressSet;
+    private final List<Dress> dressList;
     private final Set<User> userSet;
     private final Queue<Dress> dressQueue;
 
@@ -24,7 +25,7 @@ public final class ModelSingleton {
     }
 
     private ModelSingleton() {
-        this.dressSet = new HashSet<>();
+        this.dressList = new LinkedList<>();
         this.userSet = new HashSet<>();
         this.dressQueue = new LinkedList<Dress>();
     }
@@ -37,10 +38,10 @@ public final class ModelSingleton {
     }
 
     /**
-     * @return the set containing all the dresses.
+     * @return the list containing all the dresses.
      */
-    public Set<Dress> getDressSet() {
-        return this.dressSet;
+    public List<Dress> getDressList() {
+        return this.dressList;
     }
 
     /**

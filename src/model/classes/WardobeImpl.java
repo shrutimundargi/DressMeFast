@@ -39,7 +39,7 @@ public class WardobeImpl implements Wardrobe {
 
     @Override
     public int countDresses() {
-        return this.categoryManagement.getDressSet().size();
+        return this.categoryManagement.getDressList().size();
     }
 
     @Override

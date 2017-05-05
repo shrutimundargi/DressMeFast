@@ -57,7 +57,7 @@ public class CategoriesManagementImpl implements CategoriesManagement {
     }
 
     @Override
-    public List<Dress> getDressSet() {
+    public List<Dress> getDressList() {
         return ModelSingleton.getInstance().getDressList();
     }
 

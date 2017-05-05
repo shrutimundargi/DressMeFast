@@ -132,7 +132,7 @@ public class Tester {
     private void checkGetLastAddedDresses() {
         Set<Dress> lastAddedDresses = new HashSet<>();
         lastAddedDresses = cont.dress().getLastAddedDresses();
-        assertEquals(3, lastAddedDresses.size());
+        assertEquals(4, lastAddedDresses.size());
 
     }
 

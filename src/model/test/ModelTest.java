@@ -46,7 +46,7 @@ public final class ModelTest {
         wardrobe.getCategories().initializeAllCategories();
         wardrobe.getOutfits().initializeAllOutfits();
 
-        assertTrue(wardrobe.getCategories().getDressSet().isEmpty());
+        assertTrue(wardrobe.getCategories().getDressList().isEmpty());
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.HEAD));
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.BODY));
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.FOOT));
