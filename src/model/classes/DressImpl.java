@@ -152,7 +152,9 @@ public final class DressImpl implements Dress {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((brand == null) ? 0 : brand.hashCode());
+        result = prime * result + ((category == null) ? 0 : category.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((favourited == null) ? 0 : favourited.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((price == null) ? 0 : price.hashCode());
@@ -180,11 +182,21 @@ public final class DressImpl implements Dress {
         } else if (!brand.equals(other.brand)) {
             return false;
         }
+        if (category != other.category) {
+            return false;
+        }
         if (description == null) {
             if (other.description != null) {
                 return false;
             }
         } else if (!description.equals(other.description)) {
+            return false;
+        }
+        if (favourited == null) {
+            if (other.favourited != null) {
+                return false;
+            }
+        } else if (!favourited.equals(other.favourited)) {
             return false;
         }
         if (id == null) {

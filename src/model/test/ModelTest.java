@@ -105,10 +105,14 @@ public final class ModelTest {
         assertTrue(wardrobe.getCategories().getAllCategories().get(Category.BODY).getDress(dress1.getId()).equals(dress1));
         System.out.println((wardrobe.countDresses()));
         System.out.println(wardrobe.getCategories().getAllCategories().toString());
+        System.out.println(ModelSingleton.getInstance().getDressList().toString());
+        wardrobe.getCategories().getCategory(Category.HEAD).getDress(dress.getId()).setName("new name");
+        System.out.println(wardrobe.getCategories().getCategory(Category.HEAD).getDress(dress.getId()));
         wardrobe.getCategories().getCategory(Category.HEAD).removeDress(dress.getId());
         assertNull((wardrobe.getCategories().getAllCategories().get(Category.HEAD).getDress(dress.getId())));
         System.out.println((wardrobe.countDresses()));
         System.out.println("\n\n" + wardrobe.getCategories().getAllCategories().toString());
+        System.out.println(ModelSingleton.getInstance().getDressList().toString());
         final Set<String> brands = wardrobe.getAllBrands();
         System.out.println(brands.toString());
         final Set<Dress> dressesOfBrand = wardrobe.getDressesOfBrand("Levis");

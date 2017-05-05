@@ -1,7 +1,7 @@
 package model.interfaces;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import model.enumerations.Category;
 import model.enumerations.Status;
@@ -42,9 +42,9 @@ public interface CategoriesManagement {
     Status addDressToCategory(Dress dress, Category category);
 
     /**
-     * @return the set with all the dresses stored.
+     * @return the list with all the dresses stored.
      */
-    Set<Dress> getDressSet();
+    List<Dress> getDressList();
 
     /**
      * @return the map which contains the default categories.

@@ -99,7 +99,7 @@ public class Tester {
         assertEquals(Status.DRESS_ADDED,
                 (cont.dress().addDress("occhiali", "rayban", 0, 500, data, "ho speso troppo", Category.HEAD)));
 
-        assertEquals(NUMBER_OF_DRESSES_ADDED, model.getDressSet().size());
+        assertEquals(NUMBER_OF_DRESSES_ADDED, model.getDressList().size());
     }
 
     private void checkGetDressesOf(final String brandName) {
@@ -107,7 +107,7 @@ public class Tester {
         final Set<UUID> dress1 = new HashSet<>();
         final Set<UUID> dress2 = new HashSet<>();
 
-        for (final Dress dress : model.getDressSet()) {
+        for (final Dress dress : model.getDressList()) {
             if (dress.getBrand().get().equals(brandName)) {
                 dress1.add(dress.getId());
             }
@@ -140,7 +140,7 @@ public class Tester {
         id = addtIdDess(Category.BODY);
 
         cont.dress().deleteDress(getDress(Category.BODY, id));
-        assertEquals(NUMBER_OF_DRESSES_ADDED - 1, model.getDressSet().size());
+        assertEquals(NUMBER_OF_DRESSES_ADDED - 1, model.getDressList().size());
     }
 
     private void checkGetAll() {
