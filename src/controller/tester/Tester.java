@@ -31,6 +31,28 @@ public class Tester {
     private UUID id = null;
     private User usr;
 
+    /**
+     * 
+     */
+    @Test
+    public void dressTest() {
+
+        userTest();
+
+        addDress();
+
+        checkGetDressesOf("armani");
+
+        checkModifyDressName();
+
+        checkGetLastAddedDresses();
+        
+        removeDress();
+
+        checkGetAll();
+
+    }
+
     private void user(final String name, final String pass) {
         final UserManagement userM = new UserManagementImpl();
         userM.addUser(name, pass);
@@ -46,24 +68,6 @@ public class Tester {
 
     private Dress getDress(final Category categories, final UUID id) {
         return usr.getWardobe().getCategories().getCategory(categories).getDress(id);
-    }
-
-    /**
-     * 
-     */
-    @Test
-    public void dressTest() {
-
-        userTest();
-
-        addDress();
-
-        checkGetDressesOfBrand("armani");
-
-        checkmodifyDressName();
-
-        removeDress();
-
     }
 
     private void userTest() {
@@ -98,7 +102,7 @@ public class Tester {
         assertEquals(NUMBER_OF_DRESSES_ADDED, model.getDressSet().size());
     }
 
-    private void checkGetDressesOfBrand(final String brandName) {
+    private void checkGetDressesOf(final String brandName) {
 
         final Set<UUID> dress1 = new HashSet<>();
         final Set<UUID> dress2 = new HashSet<>();
@@ -117,21 +121,36 @@ public class Tester {
         assertEquals(dress1, dress2);
     }
 
-    private void checkmodifyDressName() {
+    private void checkModifyDressName() {
 
         id = addtIdDess(Category.BODY);
-        cont.dress().modifyDressName(getDress(Category.BODY, id), "name changed");
 
-        assertEquals("name changed", getDress(Category.BODY, id).getName().get());
         assertEquals(Status.CHANGE_SUCCESFULL, (cont.dress().modifyDressName(getDress(Category.BODY, id), "new name")));
         assertEquals("new name", cont.dress().getDressName(getDress(Category.BODY, id)));
     }
 
+    private void checkGetLastAddedDresses() {
+        Set<Dress> lastAddedDresses = new HashSet<>();
+        lastAddedDresses = cont.dress().getLastAddedDresses();
+        assertEquals(3, lastAddedDresses.size());
+
+    }
+
     private void removeDress() {
+        id = addtIdDess(Category.BODY);
 
         cont.dress().deleteDress(getDress(Category.BODY, id));
-
         assertEquals(NUMBER_OF_DRESSES_ADDED - 1, model.getDressSet().size());
+    }
+
+    private void checkGetAll() {
+        final Set<String> brandSet = new HashSet<>();
+        brandSet.add("armani");
+        brandSet.add("Lee");
+        brandSet.add("rayban");
+        brandSet.add("nike");
+
+        assertEquals(brandSet, cont.dress().getAllBrand());
     }
 
 }
