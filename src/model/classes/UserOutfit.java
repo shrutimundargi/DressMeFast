@@ -16,35 +16,38 @@ public class UserOutfit implements Outfits {
 
     private final UUID id;
     private Optional<String> name;
-    private List<UUID> userOutfits;
+    private List<UUID> outfit;
     // private final Set<CategoryManagement> categoryM;
 
+    /**
+     * Creates a container of a single user outfit.
+     */
     public UserOutfit() {
         this.id = UUID.randomUUID();
         this.name = Optional.empty();
-        this.userOutfits = new LinkedList<>();
+        this.outfit = new LinkedList<>();
     }
     @Override
     public UUID getId() {
         return this.id;
     }
-
-    public List<UUID> getOutfits() {
-        return this.userOutfits;
+    @Override
+    public List<UUID> getOutfit() {
+        return this.outfit;
     }
-
+    @Override
     public Optional<String> getName() {
         return this.name;
     }
-
-    public UserOutfit createOutfit(final List<UUID> dressList) {
+    @Override
+    public Outfits createOutfit(final List<UUID> dressList) {
         if (dressList.isEmpty()) {
             return null;
         }
-        this.userOutfits = dressList;
+        this.outfit = dressList;
         return this;
     }
-
+    @Override
     public Status setName(final String name) {
         this.name = Optional.ofNullable(name);
         return Status.CHANGE_SUCCESFULL;

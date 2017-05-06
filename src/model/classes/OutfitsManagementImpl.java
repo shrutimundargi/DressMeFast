@@ -17,7 +17,7 @@ import model.interfaces.OutfitsManagement;
  */
 public class OutfitsManagementImpl implements OutfitsManagement {
 
-   private Map<Outfit, List<UUID>> outfitsMap;
+   private final Map<Outfit, List<UUID>> outfitsMap;
 
     /**
      * Creates a container for all the outfits.
@@ -54,5 +54,10 @@ public class OutfitsManagementImpl implements OutfitsManagement {
         ModelSingleton.getInstance().getOutfitsList().add(outfit);
         outfitsMap.get(type).add(outfit.getId());
         return Status.OUTFIT_ADDED;
+    }
+
+    @Override
+    public Map<Outfit, List<UUID>> getAllOutfits() {
+        return this.outfitsMap;
     }
 }

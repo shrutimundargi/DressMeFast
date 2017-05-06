@@ -1,5 +1,7 @@
 package model.interfaces;
 
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import model.enumerations.Outfit;
@@ -25,6 +27,11 @@ public interface OutfitsManagement {
      * @return the object outfit pointed by its id. 
      */
     Outfits getOutfit(UUID outfitId);
+
+    /**
+     * @return the container of all the outfits. 
+     */
+    Map<Outfit, List<UUID>> getAllOutfits();
 
     /**
      * @param outfit

@@ -44,7 +44,7 @@ public final class ModelTest {
         final Wardrobe wardrobe = new WardobeImpl();
         final Date date = new Date();
         final UserManagement userManagement = new UserManagementImpl();
-        List<UUID> someDresses = new LinkedList<>();
+        final List<UUID> someDresses = new LinkedList<>();
         Outfits firstOutfit;
         assertEquals(Status.USER_REGISTERED, (userManagement.addUser("pop", "palla")));
         assertEquals(Status.DUPLICATED_USER, (userManagement.addUser("pop", "palla")));
@@ -130,9 +130,5 @@ public final class ModelTest {
         firstOutfit = new UserOutfit().createOutfit(someDresses);
         wardrobe.getOutfits().addOutfit(firstOutfit, Outfit.USER);
         System.out.println(ModelSingleton.getInstance().getOutfitsList().size());
-
-        ModelSingleton mo = ModelSingleton.getInstance();
-
-        System.out.println("");
     }
 }
