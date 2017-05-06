@@ -62,7 +62,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public OutfitsController outfits() {
-        return new OutfitsControllerImpl();
+        return new OutfitsControllerImpl(user);
     }
 
     @Override

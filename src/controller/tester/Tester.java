@@ -27,8 +27,8 @@ public class Tester {
     private static final int NUMBER_OF_DRESSES_ADDED = 5;
     private final Controller cont = ControllerImpl.getInstance();
     private final Date data = new Date();
-    private ModelSingleton model = ModelSingleton.getInstance();
-    private UUID id = null;
+    private final ModelSingleton model = ModelSingleton.getInstance();
+    private  UUID id = null;
     private User usr;
 
     /**

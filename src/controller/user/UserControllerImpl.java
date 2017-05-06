@@ -12,10 +12,10 @@ import model.interfaces.UserManagement;
  *
  */
 public final class UserControllerImpl implements UserController {
-    private static final String STATUS_INIT_CATEGORY = "not yet inizialized";
+    private static final String STATUS_INIT = "not yet inizialized";
 
     private Status status;
-    private String statusInizializedCategory;
+    private String statusInizializedCategoryAndOutfits;
     private User user;
     private final UserManagement userM;
 
@@ -23,7 +23,7 @@ public final class UserControllerImpl implements UserController {
      * 
      */
     public UserControllerImpl() {
-        statusInizializedCategory = STATUS_INIT_CATEGORY;
+        statusInizializedCategoryAndOutfits = STATUS_INIT;
         userM = new UserManagementImpl();
     }
 
@@ -34,7 +34,7 @@ public final class UserControllerImpl implements UserController {
             return status;
         } else {
             this.user = userM.getLoginUser();
-            inizializedCategory();
+            inizialized();
             setUser();
             return this.status;
         }
@@ -47,7 +47,7 @@ public final class UserControllerImpl implements UserController {
             return Status.USERNAME_ALREADY_TAKEN;
         } else {
             this.user = userM.getSignUpUser();
-            inizializedCategory();
+            inizialized();
             setUser();
             return status;
         }
@@ -56,7 +56,7 @@ public final class UserControllerImpl implements UserController {
     @Override
     public Status logout() {
         this.user = null;
-        statusInizializedCategory = STATUS_INIT_CATEGORY;
+        statusInizializedCategoryAndOutfits = STATUS_INIT;
         setUser();
         return Status.LOGOUT_SUCCESFULL;
     }
@@ -66,11 +66,11 @@ public final class UserControllerImpl implements UserController {
         controller.setUser(user);
     }
 
-    private void inizializedCategory() {
-        if (!statusInizializedCategory.equals(Status.CATEGORIES_INITIALIZED.getText())) {
-            statusInizializedCategory = user.getWardobe().getCategories().initializeAllCategories().getText();
+    private void inizialized() {
+        if (statusInizializedCategoryAndOutfits.equals(STATUS_INIT)) {
+            statusInizializedCategoryAndOutfits = user.getWardobe().getCategories().initializeAllCategories().getText();
+            statusInizializedCategoryAndOutfits = user.getWardobe().getOutfits().initializeAllOutfits().getText();
         }
-
     }
 
     @Override
