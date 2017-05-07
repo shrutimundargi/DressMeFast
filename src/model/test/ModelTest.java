@@ -127,6 +127,7 @@ public final class ModelTest {
         System.out.println("\n\n\n\n\n");
 
         someDresses.add(dress1.getId());
+        someDresses.add(dress2.getId());
         firstOutfit = new UserOutfit().createOutfit(someDresses);
         wardrobe.getOutfits().addOutfit(firstOutfit, Outfit.USER);
         System.out.println(ModelSingleton.getInstance().getOutfitsList().size());

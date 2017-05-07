@@ -1,8 +1,16 @@
 package model.classes;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 
 import model.enumerations.Category;
 import model.enumerations.Status;
@@ -15,7 +23,9 @@ import model.interfaces.Dress;
  */
 public final class DressImpl implements Dress {
 
+    private static final Logger LOGGER = Logger.getLogger(DressImpl.class.getName());
     private final UUID id;
+    private final Image image;
     private Optional<String> name;
     private Optional<String> brand;
     private Optional<Integer> size;
@@ -28,6 +38,8 @@ public final class DressImpl implements Dress {
     /**
      * This constructor is used to build a dress.
      * 
+     * @param dressImage
+     *            the image of the dress.
      * @param dressName
      *            the name of the dress.
      * @param dressBrand
@@ -41,10 +53,11 @@ public final class DressImpl implements Dress {
      * @param dressDescription
      *            the description of a dress.
      */
-    protected DressImpl(final Optional<String> dressName, final Optional<String> dressBrand,
+    protected DressImpl(final Image dressImage, final Optional<String> dressName, final Optional<String> dressBrand,
             final Optional<Integer> dressSize, final Optional<Integer> dressPrice,
             final Optional<Date> dressPurchaseDate, final Optional<String> dressDescription) {
         super();
+        this.image = dressImage;
         this.name = dressName;
         this.brand = dressBrand;
         this.size = dressSize;
@@ -59,6 +72,11 @@ public final class DressImpl implements Dress {
     @Override
     public UUID getId() {
         return this.id;
+    }
+
+    @Override
+    public Image getImage() {
+        return this.image;
     }
 
     @Override
@@ -90,6 +108,7 @@ public final class DressImpl implements Dress {
     public Optional<String> getDescription() {
         return this.description;
     }
+
     @Override
     public Boolean getFavourited() {
         return this.favourited;
@@ -135,6 +154,7 @@ public final class DressImpl implements Dress {
         this.description = Optional.of(dressDescription);
         return Status.CHANGE_SUCCESFULL;
     }
+
     @Override
     public Status setFavourited(final Boolean favourited) {
         this.favourited = favourited;
@@ -249,12 +269,28 @@ public final class DressImpl implements Dress {
      */
     public static class DressBuilder {
 
+        private BufferedImage image;
         private Optional<String> name = Optional.empty();
         private Optional<String> brand = Optional.empty();
         private Optional<Integer> size = Optional.empty();
         private Optional<Integer> price = Optional.empty();
         private Optional<Date> purchaseDate = Optional.empty();
         private Optional<String> description = Optional.empty();
+
+        /**
+         * @param image
+         *            the image of the dress.
+         *
+         * @return a dress.
+         */
+        public DressBuilder buildImage(final File image) {
+            try {
+                this.image = ImageIO.read(image);
+            } catch (IOException e) {
+                LOGGER.log(Level.SEVERE, "Failed to load image", e);
+            }
+            return this;
+        }
 
         /**
          * @param dressName
@@ -326,7 +362,8 @@ public final class DressImpl implements Dress {
          * @return a new dress object
          */
         public Dress build() {
-            return new DressImpl(this.name, this.brand, this.size, this.price, this.purchaseDate, this.description);
+            return new DressImpl(this.image, this.name, this.brand, this.size, this.price, this.purchaseDate,
+                    this.description);
         }
     }
 

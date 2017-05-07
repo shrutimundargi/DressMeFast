@@ -1,5 +1,6 @@
 package model.interfaces;
 
+import java.awt.Image;
 import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,6 +19,11 @@ public interface Dress {
      * @return the id of the dress
      */
     UUID getId();
+
+    /**
+     * @return the image of the dress.
+     */
+    Image getImage();
 
     /**
      * @return the name of the dress.
@@ -55,7 +61,7 @@ public interface Dress {
     Boolean getFavourited();
 
     /**
-     * @return the category name in which the dress is stored. 
+     * @return the category name in which the dress is stored.
      */
     Category getCategoryName();
 
@@ -109,7 +115,7 @@ public interface Dress {
 
     /**
      * @param favourited
-     *        true if the dress is set to preferred, false otherwise.
+     *            true if the dress is set to preferred, false otherwise.
      *
      * @return the result of the operation
      */
@@ -117,7 +123,7 @@ public interface Dress {
 
     /**
      * @param category
-     *        the name of the category in which save the dress.
+     *            the name of the category in which save the dress.
      *
      * @return the result of the operation.
      */
