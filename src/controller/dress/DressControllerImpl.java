@@ -2,6 +2,7 @@ package controller.dress;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -82,6 +83,11 @@ public final class DressControllerImpl implements DressController {
     @Override
     public Set<Integer> getAllSize() {
         return user.getWardobe().getAllSizes();
+    }
+
+    @Override
+    public List<Dress> getAllDresses() {
+        return user.getWardobe().getCategories().getDressList();
     }
 
     @Override
