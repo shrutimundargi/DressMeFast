@@ -1,6 +1,7 @@
 package controller.dress;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import model.enumerations.Category;
@@ -80,6 +81,11 @@ public interface DressController {
      * @return All sizes of dresses
      */
     Set<Integer> getAllSize();
+
+    /**
+     * @return Return all Dresses
+     */
+    List<Dress> getAllDresses();
 
     /**
      * @return User favorite dresses
