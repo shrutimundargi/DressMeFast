@@ -66,7 +66,7 @@ public final class OutfitsControllerImpl implements OutfitsController {
 
     @Override
     public Status modifyOutfits(final UUID outfitsid, final List<UUID> changeDresses) {
-        user.getWardobe().getOutfits().getOutfit(outfitsid).createOutfit(changeDresses);           
+        user.getWardobe().getOutfits().getOutfit(outfitsid).createOutfit(changeDresses);
         return Status.CHANGE_SUCCESFULL;
     }
 
