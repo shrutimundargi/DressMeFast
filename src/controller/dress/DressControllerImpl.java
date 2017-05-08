@@ -107,27 +107,27 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public String getDressName(final Dress dress) {
-        return dress.getName().get();
+        return dress.getName();
     }
 
     @Override
     public String getDressBrand(final Dress dress) {
-        return dress.getBrand().get();
+        return dress.getBrand();
     }
 
     @Override
     public int getDressSize(final Dress dress) {
-        return dress.getSize().get();
+        return dress.getSize();
     }
 
     @Override
     public Date getDressPurchaseDate(final Dress dress) {
-        return dress.getPurchaseDate().get();
+        return dress.getPurchaseDate();
     }
 
     @Override
     public String getDressDescription(final Dress dress) {
-        return dress.getDescription().get();
+        return dress.getDescription();
     }
 
     @Override
