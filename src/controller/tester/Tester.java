@@ -26,6 +26,12 @@ import model.interfaces.UserManagement;
  *
  */
 public class Tester {
+    private static final int PRICE_OCCHIALE = 500;
+    private static final int PRICE_COSTUME = 150;
+    private static final int SIZE_COSTUME = 44;
+    private static final int PRICE_FELPA = 1000000;
+    private static final int PRICE_MAGLIETTA = 10000;
+    private static final int SIZE = 38;
     private static final String ARMANI = "armani";
     private static final int NUMBER_OF_DRESSES_ADDED = 5;
     private final Controller cont = ControllerImpl.getInstance();
@@ -93,20 +99,20 @@ public class Tester {
     }
 
     private void addDress() {
-        assertEquals(Status.DRESS_ADDED,
-                (cont.dress().addDress("maglietta", ARMANI, 38, 10000, data, "ho speso troppo", Category.BODY)));
+        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("maglietta", ARMANI, SIZE, PRICE_MAGLIETTA, data,
+                "ho speso troppo", Category.BODY)));
 
-        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("felpa", ARMANI, 38, 1000000, data,
+        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("felpa", ARMANI, SIZE, PRICE_FELPA, data,
                 "ho venduto la casa per una felpa", Category.BODY)));
 
         assertEquals(Status.DRESS_ADDED,
-                (cont.dress().addDress("pantaloni", "Lee", 38, 0, data, "li ho rubati", Category.LEGS)));
+                (cont.dress().addDress("pantaloni", "Lee", SIZE, 0, data, "li ho rubati", Category.LEGS)));
 
-        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("costume", "nike", 44, 150, data,
+        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("costume", "nike", SIZE_COSTUME, PRICE_COSTUME, data,
                 "sono ingrassato ho dovuto cambiare taglia", Category.LEGS)));
 
         assertEquals(Status.DRESS_ADDED,
-                (cont.dress().addDress("occhiali", "rayban", 0, 500, data, "ho speso troppo", Category.HEAD)));
+                (cont.dress().addDress("occhiali", "rayban", 0, PRICE_OCCHIALE, data, "ho speso troppo", Category.HEAD)));
 
         assertEquals(NUMBER_OF_DRESSES_ADDED, model.getDressList().size());
     }
@@ -165,7 +171,7 @@ public class Tester {
     private void checkOutfits() {
         UUID idOutfits;
         final List<UUID> idDress = new LinkedList<>();
-        for (final Dress dress : model.getDressList()) {
+        for (final Dress dress : cont.dress().getAllDresses()) {
             idDress.add(dress.getId());
         }
         assertEquals(Status.OUTFIT_ADDED, cont.outfits().addOutfits(idDress));
@@ -178,6 +184,7 @@ public class Tester {
 
         cont.outfits().modifyOutfitsName(idOutfits, "Outfits new name");
         assertEquals("Outfits new name", cont.outfits().getOutfits(idOutfits).getName().get());
+        assertEquals(4, cont.outfits().getOutfits(idOutfits).getOutfit().size());
     }
 
 }
