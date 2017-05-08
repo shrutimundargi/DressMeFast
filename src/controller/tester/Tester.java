@@ -123,7 +123,7 @@ public class Tester {
         final Set<UUID> dress2 = new HashSet<>();
 
         for (final Dress dress : model.getDressList()) {
-            if (dress.getBrand().get().equals(brandName)) {
+            if (dress.getBrand().equals(brandName)) {
                 dress1.add(dress.getId());
             }
         }
