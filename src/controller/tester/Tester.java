@@ -183,7 +183,7 @@ public class Tester {
         assertEquals(idOutfits, cont.outfits().getOutfits(idOutfits).getId());
 
         cont.outfits().modifyOutfitsName(idOutfits, "Outfits new name");
-        assertEquals("Outfits new name", cont.outfits().getOutfits(idOutfits).getName().get());
+        assertEquals("Outfits new name", cont.outfits().getOutfits(idOutfits).getName());
         assertEquals(4, cont.outfits().getOutfits(idOutfits).getOutfit().size());
     }
 
