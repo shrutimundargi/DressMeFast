@@ -81,7 +81,15 @@ public enum Status {
     /**
      * The positive result of finding a dress.
      */
-    DRESS_FOUND("Dress found");
+    DRESS_FOUND("Dress found"),
+    /**
+     * The positive result of finding an outfit.
+     */
+    OUTFIT_FOUND("Outfit found"),
+    /**
+     * The positive result by removing an outfit.
+     */
+    OUTFIT_REMOVED("Outfit removed succesfully");
 
     private String text;
 

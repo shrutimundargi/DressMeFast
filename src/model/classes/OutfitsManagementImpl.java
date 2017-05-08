@@ -17,13 +17,13 @@ import model.interfaces.OutfitsManagement;
  */
 public class OutfitsManagementImpl implements OutfitsManagement {
 
-   private final Map<Outfit, List<UUID>> outfitsMap;
+    private final Map<Outfit, List<UUID>> outfitsMap;
 
     /**
      * Creates a container for all the outfits.
      */
     public OutfitsManagementImpl() {
-       this.outfitsMap = new HashMap<>();
+        this.outfitsMap = new HashMap<>();
     }
 
     @Override
@@ -36,14 +36,15 @@ public class OutfitsManagementImpl implements OutfitsManagement {
         System.out.println(this.outfitsMap.toString());
         return Status.OUTFITS_INITIALIZED;
     }
+
     @Override
     public Outfits getOutfit(final UUID outfitId) {
-       for (final Outfits outfit : ModelSingleton.getInstance().getOutfitsList()) {
-           if (outfit.getId().equals(outfitId)) {
-               return outfit;
-           }
-       }
-       return null; 
+        for (final Outfits outfit : ModelSingleton.getInstance().getOutfitsList()) {
+            if (outfit.getId().equals(outfitId)) {
+                return outfit;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -52,12 +53,28 @@ public class OutfitsManagementImpl implements OutfitsManagement {
             return Status.OUTFIT_NOT_ADDED;
         }
         ModelSingleton.getInstance().getOutfitsList().add(outfit);
-        outfitsMap.get(type).add(outfit.getId());
+        this.outfitsMap.get(type).add(outfit.getId());
         return Status.OUTFIT_ADDED;
+    }
+    @Override
+    public Status removeOutfit(final Outfits outfit, final Outfit type) {
+        this.checkOutfitPresence(outfit);
+        ModelSingleton.getInstance().getOutfitsList().remove(outfit);
+        this.outfitsMap.get(type).remove(outfit);
+        return Status.OUTFIT_REMOVED;
     }
 
     @Override
     public Map<Outfit, List<UUID>> getAllOutfits() {
         return this.outfitsMap;
+    }
+
+    private Status checkOutfitPresence(final Outfits outfitToCheck) {
+        for (final Outfits outfit : ModelSingleton.getInstance().getOutfitsList()) {
+            if ((outfit.getId().equals(outfitToCheck.getId()))) {
+                return Status.OUTFIT_FOUND;
+            }
+        }
+        throw new IllegalArgumentException("Outfit not found");
     }
 }

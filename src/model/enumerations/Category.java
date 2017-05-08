@@ -1,10 +1,12 @@
 package model.enumerations;
 
+import java.io.Serializable;
+
 /**
  * An enumeration for the dresses categories.
  *
  */
-public enum Category {
+public enum Category implements Serializable {
 
     /**
      * Head category.
