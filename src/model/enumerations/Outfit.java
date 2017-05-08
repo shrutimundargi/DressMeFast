@@ -4,7 +4,7 @@ package model.enumerations;
  * An enumeration for the types of an outfit.
  *
  */
-public enum Outfits {
+public enum Outfit {
 
     /**
      * User outfit.
@@ -28,7 +28,7 @@ public enum Outfits {
      * @param name
      *            the outfit type.
      */
-    Outfits(final String type) {
+    Outfit(final String type) {
         this.outfitType = type;
     }
 }

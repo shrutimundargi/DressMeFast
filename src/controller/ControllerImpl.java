@@ -24,12 +24,12 @@ public final class ControllerImpl implements Controller {
      */
     public static final ControllerImpl SINGLETON = new ControllerImpl();
 
-    private final UserController auth;
+    private final UserController userCtr;
     private final Map<ScreensGraphic, UI> map;
     private User user;
 
     private ControllerImpl() {
-        auth = new UserControllerImpl();
+        userCtr = new UserControllerImpl();
         map = new HashMap<>();
     }
 
@@ -44,6 +44,7 @@ public final class ControllerImpl implements Controller {
     public void attachUI(final ScreensGraphic name, final UI uI) {
         map.put(name, uI);
     }
+
     @Override
     public UI getUI(final ScreensGraphic name) {
         return map.get(name);
@@ -51,22 +52,22 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public UserController userController() {
-        return auth;
+        return userCtr;
     }
 
     @Override
     public DressController dress() {
-       return new DressControllerImpl(user);
-
+        return new DressControllerImpl(user);
     }
 
     @Override
     public OutfitsController outfits() {
-        return new OutfitsControllerImpl();
+        return new OutfitsControllerImpl(user);
     }
 
     @Override
     public void setUser(final User user) {
         this.user = user;
     }
+
 }

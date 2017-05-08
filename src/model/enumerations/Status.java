@@ -31,7 +31,7 @@ public enum Status {
      */
     USER_REGISTERED("The user has been registered succesfully"),
     /**
-     * Change succesfull.
+     * Change successful.
      */
     CHANGE_SUCCESFULL("Change succesfull"),
     /**
@@ -77,7 +77,19 @@ public enum Status {
     /**
      * A status of the outfits types.
      */
-    OUTFITS_ALREADY_INITIALIZED("Outfits are already initialized");
+    OUTFITS_ALREADY_INITIALIZED("Outfits are already initialized"),
+    /**
+     * The positive result of finding a dress.
+     */
+    DRESS_FOUND("Dress found"),
+    /**
+     * The positive result of finding an outfit.
+     */
+    OUTFIT_FOUND("Outfit found"),
+    /**
+     * The positive result by removing an outfit.
+     */
+    OUTFIT_REMOVED("Outfit removed succesfully");
 
     private String text;
 

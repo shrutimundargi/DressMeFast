@@ -1,10 +1,9 @@
 package model.interfaces;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 
-import model.enumerations.Categories;
+import model.enumerations.Category;
 import model.enumerations.Status;
 
 /**
@@ -14,7 +13,7 @@ import model.enumerations.Status;
 /**
  *
  */
-public interface CategoryManagement {
+public interface CategoriesManagement {
 
     /**
      * This method starts the initialization of the default categories.
@@ -29,7 +28,7 @@ public interface CategoryManagement {
      *
      * @return the object category pointed by its name. 
      */
-    Category getCategory(Categories category);
+    Categories getCategory(Category category);
 
     /**
      * @param dress
@@ -40,16 +39,16 @@ public interface CategoryManagement {
      *
      * @return the result of adding a dress object to the specified category.
      */
-    Status addDressToCategory(Dress dress, Categories category);
+    Status addDressToCategory(Dress dress, Category category);
 
     /**
-     * @return the set with the ids of all the dresses inside all categories.
+     * @return the list with all the dresses stored.
      */
-    Set<UUID> getIdSet();
+    List<Dress> getDressList();
 
     /**
      * @return the map which contains the default categories.
      */
-    Map<Categories, Category> getAllCategories();
+    Map<Category, Categories> getAllCategories();
 
 }

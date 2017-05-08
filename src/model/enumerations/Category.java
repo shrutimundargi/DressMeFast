@@ -1,10 +1,12 @@
 package model.enumerations;
 
+import java.io.Serializable;
+
 /**
  * An enumeration for the dresses categories.
  *
  */
-public enum Categories {
+public enum Category implements Serializable {
 
     /**
      * Head category.
@@ -29,7 +31,11 @@ public enum Categories {
     /**
      * Foot category.
      */
-    FOOT("Foot");
+    FOOT("Foot"),
+    /**
+     * Category not chosen yet.
+     */
+    EMPTY("Empty");
 
     private String categoryName;
 
@@ -44,7 +50,7 @@ public enum Categories {
      * @param name
      *            the category name.
      */
-    Categories(final String name) {
+    Category(final String name) {
         this.categoryName = name;
     }
 

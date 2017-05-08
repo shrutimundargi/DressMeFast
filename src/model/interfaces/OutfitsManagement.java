@@ -1,8 +1,10 @@
 package model.interfaces;
 
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
-import model.enumerations.Outfits;
+import model.enumerations.Outfit;
 import model.enumerations.Status;
 
 /**
@@ -14,31 +16,42 @@ public interface OutfitsManagement {
     /**
      * This method starts the initialization of the user and AI outfits.
      * 
-     *  @return the result of the initialization.
+     * @return the result of the initialization.
      */
     Status initializeAllOutfits();
 
     /**
-     * @param outfit
-     *        the type of outfit in the enumeration "Outfits".
+     * @param outfitId
+     *            the id of an outfit.
      *
-     * @return the object outfit pointed by its type. 
+     * @return the object outfit pointed by its id.
      */
-    Outfit getOutfit(Outfits outfit);
+    Outfits getOutfit(UUID outfitId);
+
+    /**
+     * @return the container of all the outfits.
+     */
+    Map<Outfit, List<UUID>> getAllOutfits();
 
     /**
      * @param outfit
-     *        an outfit object.
+     *            an outfit object.
      *
      * @param type
-     *        an outfit type in the enumeration "Outfits".
+     *            an outfit type in the enumeration "Outfit".
      *
-     * @return the result of adding an outfit object to the specified type.
+     * @return the result of adding an outfit to the specified type.
      */
-    Status addOutfit(Outfit outfit, Outfits type);
+    Status addOutfit(Outfits outfit, Outfit type);
 
     /**
-     * @return the map which contains the default types of outfit.
+     * @param outfit
+     *            an outfit object.
+     * 
+     * @param type
+     *            an outfit type in the enumeration "Outfit".
+     * 
+     * @return the result of removing an outfit from the specified type.
      */
-    Map<Outfits, Outfit> getAllOutfits();
+    Status removeOutfit(Outfits outfit, Outfit type);
 }
