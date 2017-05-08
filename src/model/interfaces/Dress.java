@@ -1,8 +1,8 @@
 package model.interfaces;
 
-import java.awt.Image;
+import java.io.File;
+import java.io.Serializable;
 import java.util.Date;
-import java.util.Optional;
 import java.util.UUID;
 
 import model.enumerations.Category;
@@ -13,7 +13,7 @@ import model.enumerations.Status;
  *
  */
 
-public interface Dress {
+public interface Dress extends Serializable {
 
     /**
      * @return the id of the dress
@@ -23,42 +23,47 @@ public interface Dress {
     /**
      * @return the image of the dress.
      */
-    Image getImage();
+    File getImage();
 
     /**
      * @return the name of the dress.
      */
-    Optional<String> getName();
+    String getName();
 
     /**
      * @return the brand of the dress.
      */
-    Optional<String> getBrand();
+    String getBrand();
 
     /**
      * @return the size of the dress.
      */
-    Optional<Integer> getSize();
+    Integer getSize();
 
     /**
      * @return the price of the dress.
      */
-    Optional<Integer> getPrice();
+    Integer getPrice();
 
     /**
      * @return the price of the dress.
      */
-    Optional<Date> getPurchaseDate();
+    Date getPurchaseDate();
 
     /**
      * @return the purchase date of the dress.
      */
-    Optional<String> getDescription();
+    String getDescription();
 
     /**
      * @return true if the dress is set to preferred, false otherwise.
      */
     Boolean getFavourited();
+
+    /**
+     * @return how many times a dress was worn.
+     */
+    Integer getWornCount();
 
     /**
      * @return the category name in which the dress is stored.
@@ -120,6 +125,13 @@ public interface Dress {
      * @return the result of the operation
      */
     Status setFavourited(Boolean favourited);
+
+    /**
+     * This method increments by one the worn count of a particular dress.
+     * 
+     * @return the result of the operation.
+     */
+    Status setWornCount();
 
     /**
      * @param category

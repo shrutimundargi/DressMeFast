@@ -1,7 +1,7 @@
 package model.interfaces;
 
+import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import model.enumerations.Status;
@@ -12,7 +12,7 @@ import model.enumerations.Status;
  * created.
  *
  */
-public interface Outfits {
+public interface Outfits extends Serializable {
 
     /**
      * @return the id of an outfit.
@@ -27,11 +27,16 @@ public interface Outfits {
     /**
      * @return the name of an outfit.
      */
-    Optional<String> getName();
+    String getName();
+
+    /**
+     * @return how many times an outfit was worn.
+     */
+    Integer getWornCount();
 
     /**
      * @param dressList
-     *        a container with some dresses.
+     *            a container with some dresses.
      *
      * @return a new outfit.
      */
@@ -39,8 +44,15 @@ public interface Outfits {
 
     /**
      * @param name
-     *        the name of the outfit to assign.
+     *            the name of the outfit to assign.
      * @return the result of the operation.
      */
     Status setName(String name);
+
+    /**
+     * This method increments by one the worn count of a particular outfit.
+     * 
+     * @return the result of the operation.
+     */
+    Status setWornCount();
 }
