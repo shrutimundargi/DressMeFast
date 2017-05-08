@@ -1,7 +1,9 @@
 package model.classes;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Date;
-import java.util.Optional;
 import java.util.UUID;
 
 import model.enumerations.Category;
@@ -15,19 +17,27 @@ import model.interfaces.Dress;
  */
 public final class DressImpl implements Dress {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8127816404845045598L;
     private final UUID id;
-    private Optional<String> name;
-    private Optional<String> brand;
-    private Optional<Integer> size;
-    private Optional<Integer> price;
-    private Optional<Date> purchaseDate;
-    private Optional<String> description;
+    private final File image;
+    private String name;
+    private String brand;
+    private Integer size;
+    private Integer price;
+    private Date purchaseDate;
+    private String description;
     private Boolean favourited;
+    private Integer wornCount;
     private Category category;
 
     /**
      * This constructor is used to build a dress.
      * 
+     * @param dressImage
+     *            the image of the dress.
      * @param dressName
      *            the name of the dress.
      * @param dressBrand
@@ -41,10 +51,10 @@ public final class DressImpl implements Dress {
      * @param dressDescription
      *            the description of a dress.
      */
-    protected DressImpl(final Optional<String> dressName, final Optional<String> dressBrand,
-            final Optional<Integer> dressSize, final Optional<Integer> dressPrice,
-            final Optional<Date> dressPurchaseDate, final Optional<String> dressDescription) {
+    protected DressImpl(final File dressImage, final String dressName, final String dressBrand, final Integer dressSize,
+            final Integer dressPrice, final Date dressPurchaseDate, final String dressDescription) {
         super();
+        this.image = dressImage;
         this.name = dressName;
         this.brand = dressBrand;
         this.size = dressSize;
@@ -53,6 +63,7 @@ public final class DressImpl implements Dress {
         this.description = dressDescription;
         this.id = UUID.randomUUID();
         this.favourited = false;
+        this.wornCount = 0;
         this.category = Category.EMPTY;
     }
 
@@ -62,37 +73,48 @@ public final class DressImpl implements Dress {
     }
 
     @Override
-    public Optional<String> getName() {
+    public File getImage() {
+        return this.image;
+    }
+
+    @Override
+    public String getName() {
         return this.name;
     }
 
     @Override
-    public Optional<String> getBrand() {
+    public String getBrand() {
         return this.brand;
     }
 
     @Override
-    public Optional<Integer> getSize() {
+    public Integer getSize() {
         return this.size;
     }
 
     @Override
-    public Optional<Integer> getPrice() {
+    public Integer getPrice() {
         return this.price;
     }
 
     @Override
-    public Optional<Date> getPurchaseDate() {
+    public Date getPurchaseDate() {
         return this.purchaseDate;
     }
 
     @Override
-    public Optional<String> getDescription() {
+    public String getDescription() {
         return this.description;
     }
+
     @Override
     public Boolean getFavourited() {
         return this.favourited;
+    }
+
+    @Override
+    public Integer getWornCount() {
+        return this.wornCount;
     }
 
     @Override
@@ -102,42 +124,49 @@ public final class DressImpl implements Dress {
 
     @Override
     public Status setName(final String dressName) {
-        this.name = Optional.of(dressName);
+        this.name = dressName;
         return Status.CHANGE_SUCCESFULL;
     }
 
     @Override
     public Status setBrand(final String dressBrand) {
-        this.brand = Optional.of(dressBrand);
+        this.brand = dressBrand;
         return Status.CHANGE_SUCCESFULL;
     }
 
     @Override
     public Status setSize(final int dressSize) {
-        this.size = Optional.of(dressSize);
+        this.size = dressSize;
         return Status.CHANGE_SUCCESFULL;
     }
 
     @Override
     public Status setPrice(final int dressPrice) {
-        this.price = Optional.of(dressPrice);
+        this.price = dressPrice;
         return Status.CHANGE_SUCCESFULL;
     }
 
     @Override
     public Status setPurchaseDate(final Date dressPurchaseDate) {
-        this.purchaseDate = Optional.of(dressPurchaseDate);
+        this.purchaseDate = dressPurchaseDate;
         return Status.CHANGE_SUCCESFULL;
     }
 
     @Override
     public Status setDescription(final String dressDescription) {
-        this.description = Optional.of(dressDescription);
+        this.description = dressDescription;
         return Status.CHANGE_SUCCESFULL;
     }
+
     @Override
     public Status setFavourited(final Boolean favourited) {
         this.favourited = favourited;
+        return Status.CHANGE_SUCCESFULL;
+    }
+
+    @Override
+    public Status setWornCount() {
+        this.wornCount++;
         return Status.CHANGE_SUCCESFULL;
     }
 
@@ -156,10 +185,12 @@ public final class DressImpl implements Dress {
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((favourited == null) ? 0 : favourited.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((image == null) ? 0 : image.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((price == null) ? 0 : price.hashCode());
         result = prime * result + ((purchaseDate == null) ? 0 : purchaseDate.hashCode());
         result = prime * result + ((size == null) ? 0 : size.hashCode());
+        result = prime * result + ((wornCount == null) ? 0 : wornCount.hashCode());
         return result;
     }
 
@@ -206,6 +237,13 @@ public final class DressImpl implements Dress {
         } else if (!id.equals(other.id)) {
             return false;
         }
+        if (image == null) {
+            if (other.image != null) {
+                return false;
+            }
+        } else if (!image.equals(other.image)) {
+            return false;
+        }
         if (name == null) {
             if (other.name != null) {
                 return false;
@@ -234,6 +272,13 @@ public final class DressImpl implements Dress {
         } else if (!size.equals(other.size)) {
             return false;
         }
+        if (wornCount == null) {
+            if (other.wornCount != null) {
+                return false;
+            }
+        } else if (!wornCount.equals(other.wornCount)) {
+            return false;
+        }
         return true;
     }
 
@@ -243,18 +288,34 @@ public final class DressImpl implements Dress {
                 + ", purchaseDate=" + purchaseDate + ", description=" + description + "]";
     }
 
+    private void writeObject(final ObjectOutputStream stream) throws IOException {
+        stream.defaultWriteObject();
+    }
+
     /**
      * The builder class for a dress.
      *
      */
     public static class DressBuilder {
 
-        private Optional<String> name = Optional.empty();
-        private Optional<String> brand = Optional.empty();
-        private Optional<Integer> size = Optional.empty();
-        private Optional<Integer> price = Optional.empty();
-        private Optional<Date> purchaseDate = Optional.empty();
-        private Optional<String> description = Optional.empty();
+        private File builderImage;
+        private String builderName;
+        private String builderBrand;
+        private Integer builderSize;
+        private Integer builderPrice;
+        private Date builderPurchaseDate;
+        private String builderDescription;
+
+        /**
+         * @param imagePath
+         *            the image path of the dress.
+         *
+         * @return a dress.
+         */
+        public DressBuilder buildImage(final String imagePath) {
+            this.builderImage = new File(imagePath);
+            return this;
+        }
 
         /**
          * @param dressName
@@ -263,7 +324,7 @@ public final class DressImpl implements Dress {
          * @return a dress
          */
         public DressBuilder buildName(final String dressName) {
-            this.name = Optional.ofNullable(dressName);
+            this.builderName = dressName;
             return this;
         }
 
@@ -274,7 +335,7 @@ public final class DressImpl implements Dress {
          * @return a dress
          */
         public DressBuilder buildBrand(final String dressBrand) {
-            this.brand = Optional.ofNullable(dressBrand);
+            this.builderBrand = dressBrand;
             return this;
         }
 
@@ -285,7 +346,7 @@ public final class DressImpl implements Dress {
          * @return a dress
          */
         public DressBuilder buildSize(final int dressSize) {
-            this.size = Optional.ofNullable(dressSize);
+            this.builderSize = dressSize;
             return this;
         }
 
@@ -296,7 +357,7 @@ public final class DressImpl implements Dress {
          * @return a dress
          */
         public DressBuilder buildPrice(final int dressPrice) {
-            this.price = Optional.ofNullable(dressPrice);
+            this.builderPrice = dressPrice;
             return this;
         }
 
@@ -307,7 +368,7 @@ public final class DressImpl implements Dress {
          * @return a dress
          */
         public DressBuilder buildPurchaseDate(final Date dressPurchaseDate) {
-            this.purchaseDate = Optional.ofNullable(dressPurchaseDate);
+            this.builderPurchaseDate = dressPurchaseDate;
             return this;
         }
 
@@ -318,7 +379,7 @@ public final class DressImpl implements Dress {
          * @return a dress
          */
         public DressBuilder buildDescription(final String dressDescription) {
-            this.description = Optional.ofNullable(dressDescription);
+            this.builderDescription = dressDescription;
             return this;
         }
 
@@ -326,7 +387,8 @@ public final class DressImpl implements Dress {
          * @return a new dress object
          */
         public Dress build() {
-            return new DressImpl(this.name, this.brand, this.size, this.price, this.purchaseDate, this.description);
+            return new DressImpl(this.builderImage, this.builderName, this.builderBrand, this.builderSize,
+                    this.builderPrice, this.builderPurchaseDate, this.builderDescription);
         }
     }
 
