@@ -24,7 +24,7 @@ public class Main{
 
          final Controller controller =  ControllerImpl.getInstance();
          SetupView setUp = new SetupView(controller);
-         controller.userController().signUp("AleRiccardi", "11111");
+         controller.userController().signUp("a", "1");
          controller.userController().logout();
    }
 }

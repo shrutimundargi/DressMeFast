@@ -48,6 +48,7 @@
     -fx-padding: 8 15;
     -fx-border-color: white;
    	-fx-border-radius: 4.0;
+   	-fx-cursor: hand;
 }
 
 .btn-normal:hover {
