@@ -229,4 +229,17 @@ public interface DressController {
      */
     Status deleteDress(Dress dress);
 
+    /**
+     * @param dress
+     *            : the dress that you wore
+     */
+    void dressWorn(Dress dress);
+
+    /**
+     * @param dress
+     *            : the dress that you wont the information
+     * @return Return the number of time that the dress was worn
+     */
+    int numberTimeDressWorn(Dress dress);
+
 }

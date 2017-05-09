@@ -177,4 +177,14 @@ public final class DressControllerImpl implements DressController {
 
     }
 
+    @Override
+    public void dressWorn(final Dress dress) {
+        dress.setWornCount();
+    }
+
+    @Override
+    public int numberTimeDressWorn(final Dress dress) {
+        return dress.getWornCount();
+    }
+
 }
