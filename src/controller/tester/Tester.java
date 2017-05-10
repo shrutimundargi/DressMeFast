@@ -13,7 +13,6 @@ import org.junit.Test;
 
 import controller.Controller;
 import controller.ControllerImpl;
-import model.classes.ModelSingleton;
 import model.classes.UserManagementImpl;
 import model.enumerations.Category;
 import model.enumerations.Status;
@@ -36,7 +35,6 @@ public class Tester {
     private static final int NUMBER_OF_DRESSES_ADDED = 5;
     private final Controller cont = ControllerImpl.getInstance();
     private final Date data = new Date();
-    private final ModelSingleton model = ModelSingleton.getInstance();
     private UUID id;
     private User usr;
 
@@ -114,7 +112,7 @@ public class Tester {
         assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("occhiali", "rayban", 0, PRICE_OCCHIALE, data,
                 "ho speso troppo", Category.HEAD)));
 
-        assertEquals(NUMBER_OF_DRESSES_ADDED, model.getDressList().size());
+        assertEquals(NUMBER_OF_DRESSES_ADDED, usr.getWardobe().countDresses());
     }
 
     private void checkGetDressesOf(final String brandName) {
@@ -122,7 +120,7 @@ public class Tester {
         final Set<UUID> dress1 = new HashSet<>();
         final Set<UUID> dress2 = new HashSet<>();
 
-        for (final Dress dress : model.getDressList()) {
+        for (final Dress dress : usr.getWardobe().getCategories().getAllDresses()) {
             if (dress.getBrand().equals(brandName)) {
                 dress1.add(dress.getId());
             }
@@ -155,7 +153,7 @@ public class Tester {
         id = addtIdDess(Category.BODY);
         System.out.println("\n\t vestito eliminiato --> " + getDress(Category.BODY, id) + "\n");
         cont.dress().deleteDress(getDress(Category.BODY, id));
-        assertEquals(NUMBER_OF_DRESSES_ADDED - 1, model.getDressList().size());
+        assertEquals(NUMBER_OF_DRESSES_ADDED - 1, usr.getWardobe().countDresses());
     }
 
     private void checkGetAll() {
@@ -175,7 +173,7 @@ public class Tester {
             idDress.add(dress.getId());
         }
         assertEquals(Status.OUTFIT_ADDED, cont.outfits().addOutfits(idDress));
-        assertEquals(1, model.getOutfitsList().size());
+        assertEquals(1, usr.getWardobe().countOutfits());
         assertEquals(1, cont.outfits().getAllOutfits().size());
         assertEquals(0, cont.outfits().getAIOutfits().size());
         assertEquals(1, cont.outfits().getUserOutfits().size());
