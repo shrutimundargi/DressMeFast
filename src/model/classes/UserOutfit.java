@@ -73,4 +73,9 @@ public class UserOutfit implements Outfits {
         return Status.CHANGE_SUCCESFULL;
     }
 
+    @Override
+    public Outfits createOutfit() {
+        throw new UnsupportedOperationException();
+    }
+
 }

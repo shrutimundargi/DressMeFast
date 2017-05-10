@@ -30,14 +30,14 @@ public class CategoriesImpl implements Categories {
     }
 
     @Override
-    public Status removeDress(final UUID dressId) {
-        this.checkDressPresence(dressId);
-        // this.getIdSet().remove(dressId);
-        this.removeDressFromSet(this.map.get(dressId));
-        this.removeDressFromQueue(this.map.get(dressId));
-        this.map.remove(dressId);
-        System.out.println(Status.DRESS_REMOVED.getText());
-        return Status.DRESS_REMOVED;
+    public Status removeDress(final Dress dress) {
+        if (this.map.containsKey(dress.getId())) {
+            this.removeDressFromQueue(this.map.get(dress.getId()));
+            this.map.remove(dress.getId());
+            System.out.println(Status.DRESS_REMOVED.getText());
+            return Status.DRESS_REMOVED;
+        }
+        return Status.DRESS_NOT_FOUND;
     }
 
     @Override
@@ -46,26 +46,13 @@ public class CategoriesImpl implements Categories {
         if (!this.map.containsKey(id)) {
             dress.setCategoryName(categoryName);
             this.map.put(id, dress);
-            // this.getIdSet().add(id);
-            this.addDressToSet(dress);
             this.addDressToQueue(dress);
-            // System.out.println(this.getIdSet().size());
-            System.out.println(ModelSingleton.getInstance().getDressList().size());
             System.out.println(Status.DRESS_ADDED.getText());
             return Status.DRESS_ADDED;
         }
         System.out.println(Status.DRESS_NOT_ADDED.getText());
-        return Status.ID_ALREADY_EXISTS;
+        return Status.DRESS_NOT_ADDED;
 
-    }
-
-    private Status checkDressPresence(final UUID id) {
-        for (final Dress dress : ModelSingleton.getInstance().getDressList()) {
-            if ((dress.getId().equals(id))) {
-                return Status.DRESS_FOUND;
-            }
-        }
-        throw new IllegalArgumentException("Dress not found");
     }
 
     @Override
@@ -76,15 +63,6 @@ public class CategoriesImpl implements Categories {
     @Override
     public String toString() {
         return "CategoryImpl [map=" + map + ", toString()=" + super.toString() + "]";
-    }
-
-    private void addDressToSet(final Dress dress) {
-        ModelSingleton.getInstance().getDressList().add(dress);
-    }
-
-    private void removeDressFromSet(final Dress dress) {
-        System.out.println(ModelSingleton.getInstance().getDressList().remove(dress));
-        ModelSingleton.getInstance().getDressList().remove(dress);
     }
 
     private void addDressToQueue(final Dress dress) {

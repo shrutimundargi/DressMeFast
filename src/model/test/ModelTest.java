@@ -1,5 +1,10 @@
 package model.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,13 +13,7 @@ import java.util.UUID;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-
 import model.classes.DressImpl;
-import model.classes.ModelSingleton;
 import model.classes.UserManagementImpl;
 import model.classes.UserOutfit;
 import model.classes.WardobeImpl;
@@ -52,7 +51,6 @@ public final class ModelTest {
         wardrobe.getCategories().initializeAllCategories();
         wardrobe.getOutfits().initializeAllOutfits();
 
-        assertTrue(wardrobe.getCategories().getDressList().isEmpty());
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.HEAD));
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.BODY));
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.FOOT));
@@ -70,10 +68,10 @@ public final class ModelTest {
         assertTrue(dress.getPurchaseDate().equals(date));
         assertTrue(dress.getSize().equals(SIZE));
 
-        final Dress dress2 = new DressImpl.DressBuilder().buildBrand("Levis").buildDescription("Cool Jeans")
+        final Dress dress2 = new DressImpl.DressBuilder().buildBrand("Denny Rose").buildDescription("Cool Jeans")
                 .buildName("Jeans").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
 
-        assertTrue(dress2.getBrand().equals("Levis"));
+        assertTrue(dress2.getBrand().equals("Denny Rose"));
         assertTrue(dress2.getDescription().equals("Cool Jeans"));
         assertTrue(dress2.getName().equals("Jeans"));
         assertTrue(dress2.getPrice().equals(PRICE));
@@ -111,30 +109,32 @@ public final class ModelTest {
         assertNotNull((wardrobe.getCategories().getAllCategories().get(Category.BODY).getDress(dress1.getId())));
         assertTrue(
                 wardrobe.getCategories().getAllCategories().get(Category.BODY).getDress(dress1.getId()).equals(dress1));
+        System.out.println("Prova getAllDresses\n\n");
+        System.out.println(wardrobe.getCategories().getAllDresses());
+        System.out.println(wardrobe.getCategories().getAllDresses().size());
         System.out.println((wardrobe.countDresses()));
         System.out.println(wardrobe.getCategories().getAllCategories().toString());
-        System.out.println(ModelSingleton.getInstance().getDressList().toString());
         wardrobe.getCategories().getCategory(Category.HEAD).getDress(dress.getId()).setName("new name");
         System.out.println(wardrobe.getCategories().getCategory(Category.HEAD).getDress(dress.getId()));
-        wardrobe.getCategories().getCategory(Category.HEAD).removeDress(dress.getId());
+        wardrobe.getCategories().removeDressFromCategory(dress, dress.getCategoryName());
         assertNull((wardrobe.getCategories().getAllCategories().get(Category.HEAD).getDress(dress.getId())));
         System.out.println((wardrobe.countDresses()));
         System.out.println("\n\n" + wardrobe.getCategories().getAllCategories().toString());
-        System.out.println(ModelSingleton.getInstance().getDressList().toString());
         final Set<String> brands = wardrobe.getAllBrands();
         System.out.println(brands.toString());
+        System.out.println("prova dresses of brand");
         final Set<Dress> dressesOfBrand = wardrobe.getDressesOfBrand("Levis");
         System.out.println(dressesOfBrand.toString());
-        System.out.println(ModelSingleton.getInstance().getDressQueue().toString());
+        //System.out.println(ModelSingleton.getInstance().getDressQueue().toString());
         System.out.println("\n\n\n\n\n");
 
         someDresses.add(dress1.getId());
         someDresses.add(dress2.getId());
         firstOutfit = new UserOutfit().createOutfit(someDresses);
         wardrobe.getOutfits().addOutfit(firstOutfit, Outfit.USER);
-        System.out.println(ModelSingleton.getInstance().getOutfitsList().size());
+        System.out.println(wardrobe.countOutfits());
         wardrobe.getOutfits().removeOutfit(firstOutfit, Outfit.USER);
-        System.out.println(ModelSingleton.getInstance().getOutfitsList().size());
+        System.out.println(wardrobe.countOutfits());
 
     }
 }

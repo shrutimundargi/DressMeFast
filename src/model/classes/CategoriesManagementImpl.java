@@ -1,6 +1,8 @@
 package model.classes;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -57,13 +59,30 @@ public class CategoriesManagementImpl implements CategoriesManagement {
     }
 
     @Override
-    public List<Dress> getDressList() {
-        return ModelSingleton.getInstance().getDressList();
+    public Status removeDressFromCategory(final Dress dress, final Category category) {
+        if (!this.categoryMap.containsKey(category)) {
+            return Status.DRESS_NOT_FOUND;
+        }
+        this.categoryMap.get(category).removeDress(dress);
+        System.out.println(this.categoryMap.get(category));
+        return Status.DRESS_REMOVED;
     }
 
     @Override
     public Map<Category, Categories> getAllCategories() {
         return this.categoryMap;
+    }
+
+    @Override
+    public List<Dress> getAllDresses() {
+        final List<Dress> tmpList = new LinkedList<Dress>();
+        this.categoryMap.values().forEach(category -> {
+            category.getAllDresses().values().forEach(dress -> {
+                tmpList.add(dress);
+            });
+        });
+        return Collections.unmodifiableList(tmpList);
+
     }
 
 }

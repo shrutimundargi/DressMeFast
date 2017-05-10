@@ -54,8 +54,7 @@ public class AIOutfit implements Outfits {
 
     @Override
     public Outfits createOutfit(final List<UUID> dressList) {
-        // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -68,6 +67,12 @@ public class AIOutfit implements Outfits {
     public Status setWornCount() {
         this.wornCount++;
         return Status.CHANGE_SUCCESFULL;
+    }
+
+    @Override
+    public Outfits createOutfit() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
