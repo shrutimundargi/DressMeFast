@@ -196,7 +196,7 @@
                                     <Label styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
-                              <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#pressLogout" text="Logout">
+                              <Button mnemonicParsing="false" text="Logout">
                                  <styleClass>
                                     <String fx:value="btn-normal" />
                                     <String fx:value="btn-logout" />
@@ -218,8 +218,8 @@
          </styleClass>
       </AnchorPane>
    </center>
-      <stylesheets>
-      <URL value="@User.css" />
+   <stylesheets>
       <URL value="@../mainStyle.css" />
+      <URL value="@Outfits.css" />
    </stylesheets>
 </BorderPane>

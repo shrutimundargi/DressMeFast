@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="750.0" prefWidth="1200.0" styleClass="pnlHome" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="750.0" prefWidth="1000.0" styleClass="pnlHome" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="650.0" prefWidth="645.0" styleClass="centerHome">
          <opaqueInsets>
@@ -229,7 +229,7 @@
                            <children>
                               <AnchorPane>
                                  <children>
-                                    <Button fx:id="btnCenterBrand" mnemonicParsing="false" text="Brand" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="btnCenterBrand" mnemonicParsing="false" onAction="#goCenterBrand" text="Brand" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="brand" />
@@ -242,7 +242,7 @@
                               </AnchorPane>
                               <AnchorPane GridPane.rowIndex="1">
                                  <children>
-                                    <Button fx:id="btnCenterOutfits" mnemonicParsing="false" text="Outfits" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
+                                    <Button fx:id="btnCenterOutfits" mnemonicParsing="false" onAction="#goCenterOutfits" text="Outfits" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="15.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="outfits" />
@@ -255,7 +255,7 @@
                               </AnchorPane>
                               <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <Button fx:id="btnCenterSize" mnemonicParsing="false" text="Size" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
+                                    <Button fx:id="btnCenterSize" mnemonicParsing="false" onAction="#goCenterSize" text="Size" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="15.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="ruler" />
@@ -268,7 +268,7 @@
                               </AnchorPane>
                               <AnchorPane GridPane.columnIndex="1">
                                  <children>
-                                    <Button fx:id="btnCenterAdd" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" text="Add Dress" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="btnCenterAdd" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" onAction="#goCenterAdd" text="Add Dress" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="add" />
@@ -281,7 +281,7 @@
                               </AnchorPane>
                               <AnchorPane GridPane.columnIndex="2">
                                  <children>
-                                    <Button fx:id="btnCenterFavorite" mnemonicParsing="false" text="Favorite" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="btnCenterFavorite" mnemonicParsing="false" onAction="#goCenterFavorite" text="Favorite" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="star" />
@@ -294,7 +294,7 @@
                               </AnchorPane>
                               <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <children>
-                                    <Button fx:id="btnCenterCategory" layoutX="-7.0" layoutY="32.0" mnemonicParsing="false" text="Category" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                                    <Button fx:id="btnCenterCategory" layoutX="-7.0" layoutY="32.0" mnemonicParsing="false" onAction="#goCenterCategory" text="Category" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="category" />
