@@ -212,7 +212,7 @@ public interface DressController {
      *            : new category
      * @return the status of the modify dress category operation
      *         <P>
-     *         If everything goes well return CHANGE_SUCCESFULL
+     *         If everything goes well return DRESS_MODIFIED otherwise DRESS_NOT_MODIFIED
      */
     Status modifyDressCategory(Dress dress, Category category);
 

@@ -168,8 +168,7 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status modifyDressCategory(final Dress dress, final Category category) {
-        // TODO Auto-generated method stub
-        return null;
+        return user.getWardobe().getCategories().modifyCategoryOfDress(dress, category);
     }
 
     @Override
