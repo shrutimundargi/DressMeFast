@@ -88,6 +88,11 @@ public interface DressController {
     List<Dress> getAllDresses();
 
     /**
+     * @return Return the number of dresses added
+     */
+    int getNumberOfDresses();
+
+    /**
      * @return User favorite dresses
      */
     Set<Dress> getFavoriteDresses();

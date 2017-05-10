@@ -102,7 +102,7 @@ public class Tester {
         assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("occhiali", "rayban", 0, PRICE_OCCHIALE, data,
                 "ho speso troppo", Category.HEAD)));
 
-        assertEquals(NUMBER_OF_DRESSES_ADDED, cont.dress().getAllDresses().size());
+        assertEquals(NUMBER_OF_DRESSES_ADDED, cont.dress().getNumberOfDresses());
     }
 
     private void checkGetDressesOf(final String brandName) {
@@ -143,7 +143,7 @@ public class Tester {
         id = addtIdDess(Category.BODY);
         System.out.println("\n\t vestito eliminiato --> " + getDress(Category.BODY, id) + "\n");
         cont.dress().deleteDress(getDress(Category.BODY, id));
-        assertEquals(NUMBER_OF_DRESSES_ADDED - 1, cont.dress().getAllDresses().size());
+        assertEquals(NUMBER_OF_DRESSES_ADDED - 1, cont.dress().getNumberOfDresses());
     }
 
     private void checkGetAll() {

@@ -91,6 +91,11 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
+    public int getNumberOfDresses() {
+        return getAllDresses().size();
+    }
+
+    @Override
     public Set<Dress> getFavoriteDresses() {
         return user.getWardobe().getFavouritedDresses();
     }
