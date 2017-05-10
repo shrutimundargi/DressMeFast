@@ -17,7 +17,7 @@ import model.interfaces.User;
  */
 public class SavingDataImpl implements SavingData {
 
-    private static final String MAIN_PATH = System.getProperty("user.home") + File.separator + "dmsData";
+    private static final String MAIN_PATH = System.getProperty("user.home") + File.separator + "dmfData";
     private static final String IMAGE_PATH = MAIN_PATH + File.separator + "images";
 
     /**
@@ -54,11 +54,11 @@ public class SavingDataImpl implements SavingData {
                 new BufferedOutputStream(new FileOutputStream(new File(MAIN_PATH + "test.dat"))))) {
             outS.writeObject(user);
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            final RuntimeException e2 = new MyException("problem with the creation of images folder");
+            throw e2;
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            final RuntimeException e2 = new MyException("problem with the creation of images folder");
+            throw e2;
         }
 
         return null;

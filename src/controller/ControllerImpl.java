@@ -12,7 +12,6 @@ import controller.saving.SavingDataImpl;
 import controller.user.UserController;
 import controller.user.UserControllerImpl;
 import model.enumerations.Status;
-import model.interfaces.User;
 import view.ScreensGraphic;
 import view.UI;
 
@@ -30,7 +29,6 @@ public final class ControllerImpl implements Controller {
     private final UserController userCtr;
     private final SavingData save;
     private final Map<ScreensGraphic, UI> map;
-    private User user;
 
     private ControllerImpl() {
         save = new SavingDataImpl();
@@ -52,7 +50,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public Status saveData() {
-        return save.save(user);
+        return save.save(userCtr.getUser());
     }
 
     @Override
@@ -72,17 +70,12 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public DressController dress() {
-        return new DressControllerImpl(user);
+        return new DressControllerImpl(userCtr.getUser());
     }
 
     @Override
     public OutfitsController outfits() {
-        return new OutfitsControllerImpl(user);
-    }
-
-    @Override
-    public void setUser(final User user) {
-        this.user = user;
+        return new OutfitsControllerImpl(userCtr.getUser());
     }
 
 }

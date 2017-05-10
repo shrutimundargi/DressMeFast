@@ -1,6 +1,7 @@
 package controller.user;
 
 import model.enumerations.Status;
+import model.interfaces.User;
 
 /**
  * 
@@ -47,5 +48,10 @@ public interface UserController {
      * @return the username of the User
      */
     String getUsername();
+
+    /**
+     * @return Return the user
+     */
+    User getUser();
 
 }
