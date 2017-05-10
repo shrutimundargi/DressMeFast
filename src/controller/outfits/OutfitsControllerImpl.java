@@ -1,10 +1,8 @@
 package controller.outfits;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
-import model.classes.ModelSingleton;
 import model.classes.UserOutfit;
 import model.enumerations.Outfit;
 import model.enumerations.Status;
@@ -34,29 +32,18 @@ public final class OutfitsControllerImpl implements OutfitsController {
 
     @Override
     public List<Outfits> getAllOutfits() {
-        return ModelSingleton.getInstance().getOutfitsList();
+        return user.getWardobe().getOutfits().getOutfitsList();
     }
 
     @Override
     public List<Outfits> getAIOutfits() {
-        final List<Outfits> outfitsList = new LinkedList<>();
-        final List<UUID> idList = user.getWardobe().getOutfits().getAllOutfits().get(Outfit.AI);
-        for (final UUID id : idList) {
-            outfitsList.add(user.getWardobe().getOutfits().getOutfit(id));
-        }
+        return user.getWardobe().getOutfits().getAllOutfits().get(Outfit.AI);
 
-        return outfitsList;
     }
 
     @Override
     public List<Outfits> getUserOutfits() {
-        final List<Outfits> outfitsList = new LinkedList<>();
-        final List<UUID> idList = user.getWardobe().getOutfits().getAllOutfits().get(Outfit.USER);
-        for (final UUID id : idList) {
-            outfitsList.add(user.getWardobe().getOutfits().getOutfit(id));
-        }
-
-        return outfitsList;
+        return user.getWardobe().getOutfits().getAllOutfits().get(Outfit.USER);
     }
 
     @Override

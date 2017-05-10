@@ -13,13 +13,9 @@ import org.junit.Test;
 
 import controller.Controller;
 import controller.ControllerImpl;
-import model.classes.ModelSingleton;
-import model.classes.UserManagementImpl;
 import model.enumerations.Category;
 import model.enumerations.Status;
 import model.interfaces.Dress;
-import model.interfaces.User;
-import model.interfaces.UserManagement;
 
 /**
  * 
@@ -36,9 +32,7 @@ public class Tester {
     private static final int NUMBER_OF_DRESSES_ADDED = 5;
     private final Controller cont = ControllerImpl.getInstance();
     private final Date data = new Date();
-    private final ModelSingleton model = ModelSingleton.getInstance();
     private UUID id;
-    private User usr;
 
     /**
      * 
@@ -59,21 +53,13 @@ public class Tester {
         removeDress();
 
         checkGetAll();
+
         checkOutfits();
 
     }
 
-    private void user(final String name, final String pass) {
-        final UserManagement userM = new UserManagementImpl();
-        userM.addUser(name, pass);
-        usr = userM.getSignUpUser();
-        usr.getWardobe().getCategories().initializeAllCategories().getText();
-        usr.getWardobe().getOutfits().initializeAllOutfits().getText();
-        cont.setUser(usr);
-    }
-
     private UUID addtIdDess(final Category categories) {
-        return usr.getWardobe().getCategories().getCategory(categories).getAllDresses().keySet().iterator().next();
+        return cont.dress().getDressesOfCategory(categories).iterator().next().getId();
 
     }
 
@@ -82,20 +68,22 @@ public class Tester {
     }
 
     private Dress getDress(final Category categories, final UUID id) {
-        return usr.getWardobe().getCategories().getCategory(categories).getDress(id);
+        for (final Dress dress : cont.dress().getDressesOfCategory(categories)) {
+            if (dress.getId().equals(id)) {
+                return dress;
+            }
+        }
+        return null;
     }
 
     private void userTest() {
         assertEquals(Status.USER_REGISTERED, (cont.userController().signUp("pop", "palla")));
         assertEquals(Status.USERNAME_ALREADY_TAKEN, (cont.userController().signUp("pop", "palla")));
         assertEquals(Status.USER_REGISTERED, (cont.userController().signUp("pippo", "pollo")));
-
+        assertEquals(Status.LOGOUT_SUCCESFULL, (cont.userController().logout()));
         assertEquals(Status.USER_FOUND, (cont.userController().checkLogin("pop", "palla")));
         assertEquals(Status.USER_NOT_FOUND, (cont.userController().checkLogin("pollo", "fifa")));
         assertEquals(Status.WRONG_PASSWORD, (cont.userController().checkLogin("pippo", "pippo")));
-
-        assertEquals(Status.LOGOUT_SUCCESFULL, (cont.userController().logout()));
-        user("carlo", "bello");
     }
 
     private void addDress() {
@@ -111,10 +99,10 @@ public class Tester {
         assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("costume", "nike", SIZE_COSTUME, PRICE_COSTUME, data,
                 "sono ingrassato ho dovuto cambiare taglia", Category.LEGS)));
 
-        assertEquals(Status.DRESS_ADDED,
-                (cont.dress().addDress("occhiali", "rayban", 0, PRICE_OCCHIALE, data, "ho speso troppo", Category.HEAD)));
+        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("occhiali", "rayban", 0, PRICE_OCCHIALE, data,
+                "ho speso troppo", Category.HEAD)));
 
-        assertEquals(NUMBER_OF_DRESSES_ADDED, model.getDressList().size());
+        assertEquals(NUMBER_OF_DRESSES_ADDED, cont.dress().getNumberOfDresses());
     }
 
     private void checkGetDressesOf(final String brandName) {
@@ -122,7 +110,7 @@ public class Tester {
         final Set<UUID> dress1 = new HashSet<>();
         final Set<UUID> dress2 = new HashSet<>();
 
-        for (final Dress dress : model.getDressList()) {
+        for (final Dress dress : cont.dress().getAllDresses()) {
             if (dress.getBrand().equals(brandName)) {
                 dress1.add(dress.getId());
             }
@@ -155,7 +143,7 @@ public class Tester {
         id = addtIdDess(Category.BODY);
         System.out.println("\n\t vestito eliminiato --> " + getDress(Category.BODY, id) + "\n");
         cont.dress().deleteDress(getDress(Category.BODY, id));
-        assertEquals(NUMBER_OF_DRESSES_ADDED - 1, model.getDressList().size());
+        assertEquals(NUMBER_OF_DRESSES_ADDED - 1, cont.dress().getNumberOfDresses());
     }
 
     private void checkGetAll() {
@@ -175,7 +163,6 @@ public class Tester {
             idDress.add(dress.getId());
         }
         assertEquals(Status.OUTFIT_ADDED, cont.outfits().addOutfits(idDress));
-        assertEquals(1, model.getOutfitsList().size());
         assertEquals(1, cont.outfits().getAllOutfits().size());
         assertEquals(0, cont.outfits().getAIOutfits().size());
         assertEquals(1, cont.outfits().getUserOutfits().size());

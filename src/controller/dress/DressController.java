@@ -88,6 +88,11 @@ public interface DressController {
     List<Dress> getAllDresses();
 
     /**
+     * @return Return the number of dresses added
+     */
+    int getNumberOfDresses();
+
+    /**
      * @return User favorite dresses
      */
     Set<Dress> getFavoriteDresses();
@@ -207,7 +212,7 @@ public interface DressController {
      *            : new category
      * @return the status of the modify dress category operation
      *         <P>
-     *         If everything goes well return CHANGE_SUCCESFULL
+     *         If everything goes well return DRESS_MODIFIED otherwise DRESS_NOT_MODIFIED
      */
     Status modifyDressCategory(Dress dress, Category category);
 
@@ -228,5 +233,23 @@ public interface DressController {
      * @return the status of the delete dress operation
      */
     Status deleteDress(Dress dress);
+
+    /**
+     * @param dress
+     *            : the dress that you wore
+     */
+    void dressWorn(Dress dress);
+
+    /**
+     * @param dress
+     *            : the dress that you wont the information
+     * @return Return the number of time that the dress was worn
+     */
+    int numberTimeDressWorn(Dress dress);
+
+    /**
+     * @return Return all popular brand
+     */
+    List<String> getPopularBrand();
 
 }

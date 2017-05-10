@@ -7,9 +7,11 @@ import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
 import controller.outfits.OutfitsController;
 import controller.outfits.OutfitsControllerImpl;
+import controller.saving.SavingData;
+import controller.saving.SavingDataImpl;
 import controller.user.UserController;
 import controller.user.UserControllerImpl;
-import model.interfaces.User;
+import model.enumerations.Status;
 import view.ScreensGraphic;
 import view.UI;
 
@@ -25,12 +27,14 @@ public final class ControllerImpl implements Controller {
     public static final ControllerImpl SINGLETON = new ControllerImpl();
 
     private final UserController userCtr;
+    private final SavingData save;
     private final Map<ScreensGraphic, UI> map;
-    private User user;
 
     private ControllerImpl() {
+        save = new SavingDataImpl();
         userCtr = new UserControllerImpl();
         map = new HashMap<>();
+        loadData();
     }
 
     /**
@@ -38,6 +42,15 @@ public final class ControllerImpl implements Controller {
      */
     public static ControllerImpl getInstance() {
         return SINGLETON;
+    }
+
+    private void loadData() {
+        save.load();
+    }
+
+    @Override
+    public Status saveData() {
+        return save.save(userCtr.getUser());
     }
 
     @Override
@@ -57,17 +70,12 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public DressController dress() {
-        return new DressControllerImpl(user);
+        return new DressControllerImpl(userCtr.getUser());
     }
 
     @Override
     public OutfitsController outfits() {
-        return new OutfitsControllerImpl(user);
-    }
-
-    @Override
-    public void setUser(final User user) {
-        this.user = user;
+        return new OutfitsControllerImpl(userCtr.getUser());
     }
 
 }

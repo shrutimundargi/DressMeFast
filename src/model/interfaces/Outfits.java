@@ -43,6 +43,12 @@ public interface Outfits extends Serializable {
     Outfits createOutfit(List<UUID> dressList);
 
     /**
+     *
+     * @return a new outfit (generated).
+     */
+    Outfits createOutfit();
+
+    /**
      * @param name
      *            the name of the outfit to assign.
      * @return the result of the operation.

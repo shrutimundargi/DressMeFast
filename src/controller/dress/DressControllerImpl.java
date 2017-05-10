@@ -87,7 +87,13 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public List<Dress> getAllDresses() {
-        return user.getWardobe().getCategories().getDressList();
+        return user.getWardobe().getCategories().getAllDresses();
+    }
+
+    @Override
+
+    public int getNumberOfDresses() {
+        return getAllDresses().size();
     }
 
     @Override
@@ -162,8 +168,7 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status modifyDressCategory(final Dress dress, final Category category) {
-        // TODO Auto-generated method stub
-        return null;
+        return user.getWardobe().getCategories().modifyCategoryOfDress(dress, category);
     }
 
     @Override
@@ -173,8 +178,24 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status deleteDress(final Dress dress) {
-        return user.getWardobe().getCategories().getCategory(dress.getCategoryName()).removeDress(dress.getId());
+        return user.getWardobe().getCategories().getCategory(dress.getCategoryName()).removeDress(dress);
 
+    }
+
+    @Override
+    public void dressWorn(final Dress dress) {
+        dress.setWornCount();
+    }
+
+    @Override
+    public int numberTimeDressWorn(final Dress dress) {
+        return dress.getWornCount();
+    }
+
+    @Override
+    public List<String> getPopularBrand() {
+        user.getWardobe().getMostPopularBrand();
+        return null;
     }
 
 }
