@@ -87,6 +87,14 @@ public enum Status {
      */
     DRESS_NOT_FOUND("Dress not found"),
     /**
+     * The positive result of modifying a dress category.
+     */
+    DRESS_MODIFIED("Dress modified successfully"),
+    /**
+     * The negative result of modifying a dress category.
+     */
+    DRESS_NOT_MODIFIED("Dress not modified"),
+    /**
      * The positive result of finding an outfit.
      */
     OUTFIT_FOUND("Outfit found"),

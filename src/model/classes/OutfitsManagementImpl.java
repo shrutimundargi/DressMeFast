@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.UUID;
 
 import model.enumerations.Outfit;
@@ -19,12 +20,14 @@ import model.interfaces.OutfitsManagement;
 public class OutfitsManagementImpl implements OutfitsManagement {
 
     private final Map<Outfit, List<Outfits>> outfitsMap;
+    private final Queue<Outfits> outfitsQueue;
 
     /**
      * Creates a container for all the outfits.
      */
     public OutfitsManagementImpl() {
         this.outfitsMap = new HashMap<>();
+        this.outfitsQueue = new LinkedList<>();
     }
 
     @Override
@@ -56,6 +59,7 @@ public class OutfitsManagementImpl implements OutfitsManagement {
             return Status.OUTFIT_NOT_ADDED;
         }
         this.outfitsMap.get(type).add(outfit);
+        this.addOutfitToQueue(outfit);
         return Status.OUTFIT_ADDED;
     }
 
@@ -65,6 +69,7 @@ public class OutfitsManagementImpl implements OutfitsManagement {
             return Status.OUTFIT_NOT_FOUND;
         }
         this.outfitsMap.get(type).remove(outfit);
+        this.removeOutfitFromQueue(outfit);
         return Status.OUTFIT_REMOVED;
     }
 
@@ -82,6 +87,29 @@ public class OutfitsManagementImpl implements OutfitsManagement {
             });
         });
         return Collections.unmodifiableList(tmpOutfits);
+    }
+
+    @Override
+    public Status addOutfitToQueue(final Outfits outfit) {
+        if (this.outfitsQueue.size() < 4) {
+            this.outfitsQueue.add(outfit);
+            return Status.OUTFIT_ADDED;
+        } else {
+            this.outfitsQueue.remove();
+            this.outfitsQueue.add(outfit);
+            return Status.DRESS_ADDED;
+        }
+    }
+
+    @Override
+    public Status removeOutfitFromQueue(final Outfits outfit) {
+        this.outfitsQueue.remove(outfit);
+        return Status.OUTFIT_REMOVED;
+    }
+
+    @Override
+    public Queue<Outfits> getLastOutfitsAdded() {
+        return this.outfitsQueue;
     }
 
 }

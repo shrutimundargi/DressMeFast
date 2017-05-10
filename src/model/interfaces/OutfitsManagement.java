@@ -2,6 +2,7 @@ package model.interfaces;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.UUID;
 
 import model.enumerations.Outfit;
@@ -59,4 +60,25 @@ public interface OutfitsManagement {
      * @return a list with all the outfits (user created and AI created).
      */
     List<Outfits> getOutfitsList();
+
+    /**
+     * @param outfit
+     *            an outfit object.
+     * 
+     * @return the result of adding an outfit.
+     */
+    Status addOutfitToQueue(Outfits outfit);
+
+    /**
+     * @param outfit
+     *            an outfit object.
+     * 
+     * @return the result of removing an outfit.
+     */
+    Status removeOutfitFromQueue(Outfits outfit);
+
+    /**
+     * @return the last outfits added.
+     */
+    Queue<Outfits> getLastOutfitsAdded();
 }
