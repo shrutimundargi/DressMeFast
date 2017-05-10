@@ -1,7 +1,5 @@
 package controller.user;
 
-import controller.Controller;
-import controller.ControllerImpl;
 import model.classes.UserManagementImpl;
 import model.enumerations.Status;
 import model.interfaces.User;
@@ -35,7 +33,6 @@ public final class UserControllerImpl implements UserController {
         } else {
             this.user = userM.getLoginUser();
             inizialized();
-            setUser();
             return this.status;
         }
     }
@@ -48,7 +45,6 @@ public final class UserControllerImpl implements UserController {
         } else {
             this.user = userM.getSignUpUser();
             inizialized();
-            setUser();
             return status;
         }
     }
@@ -57,13 +53,7 @@ public final class UserControllerImpl implements UserController {
     public Status logout() {
         this.user = null;
         statusInizializedCategoryAndOutfits = STATUS_INIT;
-        setUser();
         return Status.LOGOUT_SUCCESFULL;
-    }
-
-    private void setUser() {
-        final Controller controller = ControllerImpl.getInstance();
-        controller.setUser(user);
     }
 
     private void inizialized() {
@@ -76,6 +66,11 @@ public final class UserControllerImpl implements UserController {
     @Override
     public String getUsername() {
         return user.getName();
+    }
+
+    @Override
+    public User getUser() {
+        return user;
     }
 
 }

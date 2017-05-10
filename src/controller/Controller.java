@@ -4,7 +4,6 @@ import controller.dress.DressController;
 import controller.outfits.OutfitsController;
 import controller.user.UserController;
 import model.enumerations.Status;
-import model.interfaces.User;
 import view.ScreensGraphic;
 import view.UI;
 
@@ -52,12 +51,6 @@ public interface Controller {
      *         outfits
      */
     OutfitsController outfits();
-
-    /**
-     * @param user
-     *            : User
-     */
-    void setUser(User user);
 
     /**
      * @return Return the status of the saving data
