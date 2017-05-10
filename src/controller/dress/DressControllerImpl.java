@@ -87,7 +87,7 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public List<Dress> getAllDresses() {
-        return user.getWardobe().getCategories().getDressList();
+        return user.getWardobe().getCategories().getAllDresses();
     }
 
     @Override
@@ -173,7 +173,7 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status deleteDress(final Dress dress) {
-        return user.getWardobe().getCategories().getCategory(dress.getCategoryName()).removeDress(dress.getId());
+        return user.getWardobe().getCategories().getCategory(dress.getCategoryName()).removeDress(dress);
 
     }
 

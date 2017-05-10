@@ -21,12 +21,12 @@ public interface Categories {
     Dress getDress(UUID dressId);
 
     /**
-     * @param dressId
-     *        the id of a dress
+     * @param dress
+     *        a particular dress.
      *
-     * @return the result of removing a dress. Throws IllegalArgumentException if dress is not present.
+     * @return the result of removing a dress.
      */
-    Status removeDress(UUID dressId);
+    Status removeDress(Dress dress);
 
     /**
      * @param dress
