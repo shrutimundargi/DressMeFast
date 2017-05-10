@@ -111,8 +111,8 @@ public class Tester {
         assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("costume", "nike", SIZE_COSTUME, PRICE_COSTUME, data,
                 "sono ingrassato ho dovuto cambiare taglia", Category.LEGS)));
 
-        assertEquals(Status.DRESS_ADDED,
-                (cont.dress().addDress("occhiali", "rayban", 0, PRICE_OCCHIALE, data, "ho speso troppo", Category.HEAD)));
+        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("occhiali", "rayban", 0, PRICE_OCCHIALE, data,
+                "ho speso troppo", Category.HEAD)));
 
         assertEquals(NUMBER_OF_DRESSES_ADDED, model.getDressList().size());
     }
