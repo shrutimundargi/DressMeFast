@@ -54,4 +54,9 @@ public interface OutfitsManagement {
      * @return the result of removing an outfit from the specified type.
      */
     Status removeOutfit(Outfits outfit, Outfit type);
+
+    /**
+     * @return a list with all the outfits (user created and AI created).
+     */
+    List<Outfits> getOutfitsList();
 }

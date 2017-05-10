@@ -1,5 +1,6 @@
 package model.classes;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -71,4 +72,16 @@ public class OutfitsManagementImpl implements OutfitsManagement {
     public Map<Outfit, List<Outfits>> getAllOutfits() {
         return this.outfitsMap;
     }
+
+    @Override
+    public List<Outfits> getOutfitsList() {
+        final List<Outfits> tmpOutfits = new LinkedList<>();
+        this.getAllOutfits().values().forEach(outfits -> {
+            outfits.forEach(outfit -> {
+                tmpOutfits.add(outfit);
+            });
+        });
+        return Collections.unmodifiableList(tmpOutfits);
+    }
+
 }
