@@ -91,6 +91,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
+
     public int getNumberOfDresses() {
         return getAllDresses().size();
     }
@@ -190,6 +191,12 @@ public final class DressControllerImpl implements DressController {
     @Override
     public int numberTimeDressWorn(final Dress dress) {
         return dress.getWornCount();
+    }
+
+    @Override
+    public List<String> getPopularBrand() {
+        user.getWardobe().getMostPopularBrand();
+        return null;
     }
 
 }

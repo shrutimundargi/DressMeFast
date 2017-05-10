@@ -247,4 +247,9 @@ public interface DressController {
      */
     int numberTimeDressWorn(Dress dress);
 
+    /**
+     * @return Return all popular brand
+     */
+    List<String> getPopularBrand();
+
 }
