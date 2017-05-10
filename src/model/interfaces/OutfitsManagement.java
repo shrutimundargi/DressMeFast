@@ -31,7 +31,7 @@ public interface OutfitsManagement {
     /**
      * @return the container of all the outfits.
      */
-    Map<Outfit, List<UUID>> getAllOutfits();
+    Map<Outfit, List<Outfits>> getAllOutfits();
 
     /**
      * @param outfit
