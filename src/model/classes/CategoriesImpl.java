@@ -32,7 +32,6 @@ public class CategoriesImpl implements Categories {
     @Override
     public Status removeDress(final Dress dress) {
         if (this.map.containsKey(dress.getId())) {
-            this.removeDressFromQueue(this.map.get(dress.getId()));
             this.map.remove(dress.getId());
             System.out.println(Status.DRESS_REMOVED.getText());
             return Status.DRESS_REMOVED;
@@ -46,7 +45,6 @@ public class CategoriesImpl implements Categories {
         if (!this.map.containsKey(id)) {
             dress.setCategoryName(categoryName);
             this.map.put(id, dress);
-            this.addDressToQueue(dress);
             System.out.println(Status.DRESS_ADDED.getText());
             return Status.DRESS_ADDED;
         }
@@ -63,18 +61,5 @@ public class CategoriesImpl implements Categories {
     @Override
     public String toString() {
         return "CategoryImpl [map=" + map + ", toString()=" + super.toString() + "]";
-    }
-
-    private void addDressToQueue(final Dress dress) {
-        if (ModelSingleton.getInstance().getDressQueue().size() < 4) {
-            ModelSingleton.getInstance().getDressQueue().add(dress);
-        } else {
-            ModelSingleton.getInstance().getDressQueue().remove();
-            ModelSingleton.getInstance().getDressQueue().add(dress);
-        }
-    }
-
-    private void removeDressFromQueue(final Dress dress) {
-        ModelSingleton.getInstance().getDressQueue().remove(dress);
     }
 }

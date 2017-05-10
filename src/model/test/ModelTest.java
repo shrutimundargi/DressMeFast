@@ -1,6 +1,7 @@
 package model.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -116,6 +117,12 @@ public final class ModelTest {
         System.out.println(wardrobe.getCategories().getAllCategories().toString());
         wardrobe.getCategories().getCategory(Category.HEAD).getDress(dress.getId()).setName("new name");
         System.out.println(wardrobe.getCategories().getCategory(Category.HEAD).getDress(dress.getId()));
+        System.out.println("Prova modifyCategoryOfDress\n\n");
+        wardrobe.getCategories().modifyCategoryOfDress(dress, Category.LEGS);
+        assertTrue(wardrobe.getCategories().getAllCategories().get(Category.LEGS).getAllDresses()
+                .containsKey(dress.getId()));
+        assertFalse(wardrobe.getCategories().getAllCategories().get(Category.HEAD).getAllDresses()
+                .containsKey(dress.getId()));
         wardrobe.getCategories().removeDressFromCategory(dress, dress.getCategoryName());
         assertNull((wardrobe.getCategories().getAllCategories().get(Category.HEAD).getDress(dress.getId())));
         System.out.println((wardrobe.countDresses()));
@@ -125,7 +132,7 @@ public final class ModelTest {
         System.out.println("prova dresses of brand");
         final Set<Dress> dressesOfBrand = wardrobe.getDressesOfBrand("Levis");
         System.out.println(dressesOfBrand.toString());
-        //System.out.println(ModelSingleton.getInstance().getDressQueue().toString());
+        // System.out.println(ModelSingleton.getInstance().getDressQueue().toString());
         System.out.println("\n\n\n\n\n");
 
         someDresses.add(dress1.getId());
