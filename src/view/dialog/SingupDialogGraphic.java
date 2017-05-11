@@ -1,60 +1,60 @@
 package view.dialog;
 
+import controller.Controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.UI;
-import controller.Controller;
-import javafx.event.ActionEvent;
 
+/**
+ * 
+ * Screen that appear when the User is register.
+ *
+ */
 public class SingupDialogGraphic implements UI {
 
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.DIALOGSINGUP;
-    private static final int MIN_LENGTH = 5;
 
-    private static SceneSetting viewM;
     private final SceneSetting environment;
     private final Controller controller;
-    private Stage primaryStage;
-    private boolean lockedPositionSlider;
 
     @FXML
     private Label txtPopupName;
     @FXML
     private Text txtPopupPassw;
 
-    boolean pressed = false;
-
+    /**
+     * 
+     * @param environment
+     *            a reference of the instance of the class SceneSetting
+     * @param controller
+     *            a reference of the instance of the class Controller
+     */
     public SingupDialogGraphic(final SceneSetting environment, final Controller controller) {
         this.controller = controller;
         this.environment = environment;
         this.environment.loadScreen(ACTUALSCREEN, this);
-        this.lockedPositionSlider = false;
-        this.primaryStage = this.environment.getMainStage();
         txtPopupName.setWrapText(true);
     }
 
-    // Event Listener on Button.onAction
-    @FXML
-    public void goToHome(ActionEvent event) {
-        pressed = true;
+    /**
+     * Pressing of the button GO HOME in the dialog screen after the
+     * registration.
+     * 
+     * @param event
+     *            javafx.scene.control.Button has been fired
+     */
+    public void goToHome(final ActionEvent event) {
         this.environment.displayScreen(ScreensGraphic.HOME);
     }
 
     @Override
-    public void show() {
-        this.primaryStage = this.environment.getMainStage();
-        this.primaryStage.setOnCloseRequest(e -> System.exit(0));
-        this.environment.displayScreen(ACTUALSCREEN);
-    }
-
-    @Override
     public void showNowContent() {
-        txtPopupName.setText("Thank you " + controller.userController().getUsername() + " for joining in Dress Me Fast");
+        txtPopupName
+                .setText("Thank you " + controller.userController().getUsername() + " for joining in Dress Me Fast");
     }
 
 }

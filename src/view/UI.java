@@ -1,15 +1,14 @@
 package view;
+
 /**
  * 
  *
  *
  */
 public interface UI {
+
     /**
-     * 
+     * Method loaded when you switch in this specific page.
      */
-	public void show();
-	
-	public void showNowContent();
-	
+    void showNowContent();
 }

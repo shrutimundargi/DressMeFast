@@ -1,9 +1,5 @@
 package application;
 
-import java.util.Date;
-
-import com.sun.javafx.application.PlatformImpl;
-
 import controller.Controller;
 import controller.ControllerImpl;
 import controller.user.UserController;
@@ -14,11 +10,6 @@ import model.enumerations.Category;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
-import view.dialog.SingupDialogGraphic;
-import view.home.HomeGraphic;
-import view.login.LoginGraphic;
-import view.singup.SingupGraphic;
-import view.user.UserGraphic;
 public class Main{
          public static void main(String[] args) {
 

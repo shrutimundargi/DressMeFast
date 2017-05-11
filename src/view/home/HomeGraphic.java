@@ -1,7 +1,7 @@
 package view.home;
 
-
 import controller.Controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -16,14 +16,16 @@ import view.UI;
 import view.generalUI.ProgramUI;
 import view.generalUI.ProgramUIImpl;
 
-public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI{
+/**
+ * 
+ * Class extended from all the screens that implements a standard graphic (with
+ * standard menu and screen queue).
+ *
+ */
+public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
 
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.HOME;
-    
-    private static SceneSetting viewM;
-    private Stage primaryStage;
-    private boolean lockedPositionSlider;
-    
+
     @FXML
     private Circle imagePreviewDress1;
     @FXML
@@ -54,47 +56,106 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI{
     private Button btnCenterFavorite;
     @FXML
     private Button btnCenterCategory;
-    @FXML
-    private Button btnHome;
-    @FXML
-    private Button btnBrand;
-    @FXML
-    private Button btnAddDress;
-    @FXML
-    private Button btnFavorite;
-    @FXML
-    private Button btnOutfits;
-    @FXML
-    private Button btnSize;
-    @FXML
-    private Button btnCategory;
 
-
-    
-    public HomeGraphic(final SceneSetting environment, final Controller controller, final SetupView setup){
+    /**
+     * 
+     * @param environment
+     *            a reference of the instance of the class SceneSetting
+     * @param controller
+     *            a reference of the instance of the class Controller
+     * @param setup
+     *            a reference of the instance of the class SetupView that permit
+     *            to manage the important thing of the view, like
+     */
+    public HomeGraphic(final SceneSetting environment, final Controller controller, final SetupView setup) {
         super(environment, controller, setup, ACTUALSCREEN);
-        this.environment.loadScreen(ACTUALSCREEN, this);
-        this.lockedPositionSlider = false;
-        this.primaryStage = this.environment.getMainStage();
-
-        btnHome.setStyle("-fx-background-image: url('/images/hoodie.png');");
-
-        Image im = new Image(getClass().getResourceAsStream("/images/vans-t-shirt.jpg"));
-        imagePreviewDress1.setFill(new ImagePattern(im));
-        
-    }
-
-    @Override
-    public void show() {
-        this.primaryStage = this.environment.getMainStage();
-        this.primaryStage.setOnCloseRequest(e -> System.exit(0));
-        this.environment.displayScreen(ACTUALSCREEN);
+        super.getSceneSetting().loadScreen(ACTUALSCREEN, this);
+        super.getBtnHome().setStyle("-fx-background-image: url('/images/hoodie.png');");
+        /*
+         * btnHome.setStyle("-fx-background-image: url('/images/hoodie.png');");
+         * 
+         * Image im = new
+         * Image(getClass().getResourceAsStream("/images/vans-t-shirt.jpg"));
+         * imagePreviewDress1.setFill(new ImagePattern(im));
+         */
     }
 
     @Override
     public void showNowContent() {
-        super.setupButtonsBH();
+        super.setupColorButtonsBH();
     }
 
-}
+    /**
+     * Pressing of the button ADD in the center menu.
+     * 
+     * @param event
+     *            javafx.scene.control.Button has been fired
+     */
+    @FXML
+    public void goCenterBrand(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+    }
 
+    /**
+     * Pressing of the button ADD in the center menu.
+     * 
+     * @param event
+     *            javafx.scene.control.Button has been fired
+     */
+    @FXML
+    public void goCenterAdd(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+    }
+
+    /**
+     * Pressing of the button ADD in the center menu.
+     * 
+     * @param event
+     *            javafx.scene.control.Button has been fired
+     */
+    @FXML
+    public void goCenterFavorite(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+    }
+
+    /**
+     * Pressing of the button ADD in the center menu.
+     * 
+     * @param event
+     *            javafx.scene.control.Button has been fired
+     */
+    @FXML
+    public void goCenterOutfits(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+    }
+    
+    /**
+     * Pressing of the button ADD in the center menu.
+     * 
+     * @param event
+     *            javafx.scene.control.Button has been fired
+     */
+    @FXML
+    public void goCenterSize(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+    }
+
+    /**
+     * Pressing of the button ADD in the center menu.
+     * 
+     * @param event
+     *            javafx.scene.control.Button has been fired
+     */
+    @FXML
+    public void goCenterCategory(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+    }
+
+
+}

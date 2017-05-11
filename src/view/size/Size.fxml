@@ -12,10 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<<<<<<< HEAD
-<?import javafx.scene.layout.StackPane?>
-=======
->>>>>>> feature-view
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -55,7 +51,7 @@
                   </AnchorPane>
                   <AnchorPane>
                      <children>
-                        <Button fx:id="btnAddDress" mnemonicParsing="false" onAction="#goAddDress" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Add ithem" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Button fx:id="btnAddDress" mnemonicParsing="false" onAction="#goAddDress" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Add Dress" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -128,57 +124,6 @@
       </ToolBar>
    </top>
    <center>
-<<<<<<< HEAD
-      <AnchorPane styleClass="main-pane-user">
-         <children>
-            <ScrollPane hbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <content>
-                  <VBox>
-                     <children>
-                        <Text fx:id="txtUser" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-title" text="User" />
-                        <Label styleClass="text-registration" text="Registred in the 1 march 2017" textFill="WHITE" />
-                        <Separator prefHeight="5.0" prefWidth="594.0" />
-                        <Label styleClass="title-page" text="Statistics" />
-                        <HBox>
-                           <children>
-                              <Label styleClass="text-information" text="Number of ithem:" />
-                           </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label styleClass="text-information" text="Number of outfits:" />
-                           </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label styleClass="text-information" text="Number of favorited ithem: " />
-                           </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label styleClass="text-information" text="Average size:" />
-                           </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label styleClass="text-information" text="Largest category:" />
-                           </children>
-                        </HBox>
-                        <HBox>
-                           <children>
-                              <Label styleClass="text-information" text="Brand more expensive:" />
-                           </children>
-                        </HBox>
-                        <StackPane styleClass="panel-logout">
-                           <children>
-                              <Button mnemonicParsing="false" styleClass="btn-normal" text="Logout" />
-                           </children>
-                        </StackPane>
-                     </children>
-                  </VBox>
-               </content>
-            </ScrollPane>
-=======
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
             <VBox layoutX="15.0" layoutY="10.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
@@ -251,7 +196,7 @@
                                     <Label styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
-                              <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#pressLogout" text="Logout">
+                              <Button mnemonicParsing="false" text="Logout">
                                  <styleClass>
                                     <String fx:value="btn-normal" />
                                     <String fx:value="btn-logout" />
@@ -266,7 +211,6 @@
                   </ScrollPane>
                </children>
             </VBox>
->>>>>>> feature-view
          </children>
          <styleClass>
             <String fx:value="main-pane-user" />
@@ -274,8 +218,8 @@
          </styleClass>
       </AnchorPane>
    </center>
-      <stylesheets>
-      <URL value="@User.css" />
+   <stylesheets>
       <URL value="@../mainStyle.css" />
+      <URL value="@Size.css" />
    </stylesheets>
 </BorderPane>
