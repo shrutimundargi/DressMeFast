@@ -31,7 +31,7 @@ public enum Status {
      */
     USER_REGISTERED("The user has been registered succesfully"),
     /**
-     * Change succesfull.
+     * Change successful.
      */
     CHANGE_SUCCESFULL("Change succesfull"),
     /**
@@ -47,6 +47,14 @@ public enum Status {
      */
     DRESS_NOT_ADDED("Failed to add dress"),
     /**
+     * The positive result by adding an outfit.
+     */
+    OUTFIT_ADDED("Dress added succesfully"),
+    /**
+     * The negative result by adding an outfit..
+     */
+    OUTFIT_NOT_ADDED("Failed to add dress"),
+    /**
      * The positive result by removing a dress.
      */
     DRESS_REMOVED("Dress removed succesfully"),
@@ -61,7 +69,43 @@ public enum Status {
     /**
      * A status of the default categories.
      */
-    CATEGORIES_ALREADY_INITIALIZED("Categories are already initialized");
+    CATEGORIES_ALREADY_INITIALIZED("Categories are already initialized"),
+    /**
+     * A status of the outfits types.
+     */
+    OUTFITS_INITIALIZED("Outfits initialized succesfully"),
+    /**
+     * A status of the outfits types.
+     */
+    OUTFITS_ALREADY_INITIALIZED("Outfits are already initialized"),
+    /**
+     * The positive result of finding a dress.
+     */
+    DRESS_FOUND("Dress found"),
+    /**
+     * The negative result of searching for a dress.
+     */
+    DRESS_NOT_FOUND("Dress not found"),
+    /**
+     * The positive result of modifying a dress category.
+     */
+    DRESS_MODIFIED("Dress modified successfully"),
+    /**
+     * The negative result of modifying a dress category.
+     */
+    DRESS_NOT_MODIFIED("Dress not modified"),
+    /**
+     * The positive result of finding an outfit.
+     */
+    OUTFIT_FOUND("Outfit found"),
+    /**
+     * The negative result of finding an outfit.
+     */
+    OUTFIT_NOT_FOUND("Outfit not found"),
+    /**
+     * The positive result by removing an outfit.
+     */
+    OUTFIT_REMOVED("Outfit removed succesfully");
 
     private String text;
 

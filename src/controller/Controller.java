@@ -3,7 +3,7 @@ package controller;
 import controller.dress.DressController;
 import controller.outfits.OutfitsController;
 import controller.user.UserController;
-import model.interfaces.User;
+import model.enumerations.Status;
 import view.ScreensGraphic;
 import view.UI;
 
@@ -53,8 +53,7 @@ public interface Controller {
     OutfitsController outfits();
 
     /**
-     * @param user
-     *            : User
+     * @return Return the status of the saving data
      */
-    void setUser(User user);
+    Status saveData();
 }

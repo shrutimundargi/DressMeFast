@@ -4,22 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import model.enumerations.Category;
 import model.enumerations.Status;
-import model.interfaces.Category;
+import model.interfaces.Categories;
 import model.interfaces.Dress;
 
 /**
- * Class used to manage a particular Category.
+ * Class used to manage a particular category.
  *
  */
-public class CategoryImpl extends CategoryManagementImpl implements Category {
+public class CategoriesImpl implements Categories {
 
     private final Map<UUID, Dress> map;
 
     /**
      * Creates a new category.
      */
-    public CategoryImpl() {
+    public CategoriesImpl() {
         this.map = new HashMap<UUID, Dress>();
     }
 
@@ -29,35 +30,36 @@ public class CategoryImpl extends CategoryManagementImpl implements Category {
     }
 
     @Override
-    public Status removeDress(final UUID dressId) {
-        this.checkDressPresence(dressId);
-        this.getIdSet().remove(dressId);
-        this.map.remove(dressId);
-        return Status.DRESS_REMOVED;
+    public Status removeDress(final Dress dress) {
+        if (this.map.containsKey(dress.getId())) {
+            this.map.remove(dress.getId());
+            System.out.println(Status.DRESS_REMOVED.getText());
+            return Status.DRESS_REMOVED;
+        }
+        return Status.DRESS_NOT_FOUND;
     }
 
     @Override
-    public Status addDress(final Dress dress) {
+    public Status addDress(final Dress dress, final Category categoryName) {
         final UUID id = dress.getId();
         if (!this.map.containsKey(id)) {
+            dress.setCategoryName(categoryName);
             this.map.put(id, dress);
-            this.getIdSet().add(id);
             System.out.println(Status.DRESS_ADDED.getText());
             return Status.DRESS_ADDED;
         }
         System.out.println(Status.DRESS_NOT_ADDED.getText());
-        return Status.ID_ALREADY_EXISTS;
+        return Status.DRESS_NOT_ADDED;
 
-    }
-
-    private void checkDressPresence(final UUID id) {
-        if (!this.getIdSet().contains(id)) {
-            throw new IllegalArgumentException("Dress not found");
-        }
     }
 
     @Override
     public Map<UUID, Dress> getAllDresses() {
         return this.map;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryImpl [map=" + map + ", toString()=" + super.toString() + "]";
     }
 }

@@ -3,13 +3,14 @@ package model.interfaces;
 import java.util.Map;
 import java.util.UUID;
 
+import model.enumerations.Category;
 import model.enumerations.Status;
 
 /**
  * The interface of a single Category.
  *
  */
-public interface Category {
+public interface Categories {
 
     /**
      * @param dressId
@@ -20,20 +21,23 @@ public interface Category {
     Dress getDress(UUID dressId);
 
     /**
-     * @param dressId
-     *        the id of a dress
+     * @param dress
+     *        a particular dress.
      *
-     * @return the result of removing a dress. Throws IllegalArgumentException if dress is not present.
+     * @return the result of removing a dress.
      */
-    Status removeDress(UUID dressId);
+    Status removeDress(Dress dress);
 
     /**
      * @param dress
      *        the dress Object
+     * 
+     * @param categoryName
+     *        the name of the category in which store the dress.
      *
      * @return the result of adding a dress.
      */
-    Status addDress(Dress dress);
+    Status addDress(Dress dress, Category categoryName);
 
     /**
      * @return all the dresses of the category.

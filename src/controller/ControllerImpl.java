@@ -7,9 +7,11 @@ import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
 import controller.outfits.OutfitsController;
 import controller.outfits.OutfitsControllerImpl;
+import controller.saving.SavingData;
+import controller.saving.SavingDataImpl;
 import controller.user.UserController;
 import controller.user.UserControllerImpl;
-import model.interfaces.User;
+import model.enumerations.Status;
 import view.ScreensGraphic;
 import view.UI;
 
@@ -24,13 +26,15 @@ public final class ControllerImpl implements Controller {
      */
     public static final ControllerImpl SINGLETON = new ControllerImpl();
 
-    private final UserController auth;
+    private final UserController userCtr;
+    private final SavingData save;
     private final Map<ScreensGraphic, UI> map;
-    private User user;
 
     private ControllerImpl() {
-        auth = new UserControllerImpl();
+        save = new SavingDataImpl();
+        userCtr = new UserControllerImpl();
         map = new HashMap<>();
+        loadData();
     }
 
     /**
@@ -40,10 +44,20 @@ public final class ControllerImpl implements Controller {
         return SINGLETON;
     }
 
+    private void loadData() {
+        save.load();
+    }
+
+    @Override
+    public Status saveData() {
+        return save.save(userCtr.getUser());
+    }
+
     @Override
     public void attachUI(final ScreensGraphic name, final UI uI) {
         map.put(name, uI);
     }
+
     @Override
     public UI getUI(final ScreensGraphic name) {
         return map.get(name);
@@ -51,22 +65,17 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public UserController userController() {
-        return auth;
+        return userCtr;
     }
 
     @Override
     public DressController dress() {
-       return new DressControllerImpl(user);
-
+        return new DressControllerImpl(userCtr.getUser());
     }
 
     @Override
     public OutfitsController outfits() {
-        return new OutfitsControllerImpl();
+        return new OutfitsControllerImpl(userCtr.getUser());
     }
 
-    @Override
-    public void setUser(final User user) {
-        this.user = user;
-    }
 }
