@@ -1,9 +1,12 @@
 package model.classes;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
 
@@ -67,7 +70,32 @@ public class WardobeImpl implements Wardrobe {
 
     @Override
     public String getMostPopularBrand() {
-        return null;
+        List<Dress> dressList = new LinkedList<>();
+        Map<String, Integer> tmpMap = new HashMap<>();
+        Entry<String, Integer> maxEntry = null;
+
+        this.categoryManagement.getAllCategories().values().forEach(category -> {
+            category.getAllDresses().values().forEach(dress -> {
+                dressList.add(dress);
+            });
+        });
+
+        dressList.forEach(dress -> {
+            if (!tmpMap.containsKey(dress.getBrand())) {
+                tmpMap.put(dress.getBrand(), 0);
+            } else if (tmpMap.containsKey(dress.getBrand())) {
+                int tmp = tmpMap.get(dress.getBrand()).intValue();
+                tmp++;
+                tmpMap.put(dress.getBrand(), tmp);
+            }
+        });
+
+        for (Entry<String, Integer> entry : tmpMap.entrySet()) {
+            if (maxEntry == null || entry.getValue() > maxEntry.getValue()) {
+                maxEntry = entry;
+            }
+        }
+        return maxEntry.getKey();
     }
 
     @Override
