@@ -2,9 +2,13 @@ package model.classes;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import model.enumerations.Category;
 import model.enumerations.Status;
+import model.interfaces.Categories;
+import model.interfaces.Dress;
 import model.interfaces.Outfits;
 
 /**
@@ -70,9 +74,19 @@ public class AIOutfit implements Outfits {
     }
 
     @Override
-    public Outfits createOutfit() {
-        // TODO Auto-generated method stub
-        return null;
+    public Outfits createOutfit(final Map<Category, Categories> categoryMap) {
+        List<Dress> dressList = new LinkedList<Dress>();
+        categoryMap.values().forEach(category -> {
+            category.getAllDresses().values().forEach(dress -> {
+                dressList.add(dress);
+            });
+        });
+        dressList.forEach(dress -> {
+            if (dress.getFavourited().booleanValue()) {
+                this.outfit.add(dress.getId());
+            }
+        });
+        return this;
     }
 
 }

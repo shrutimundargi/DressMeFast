@@ -2,9 +2,12 @@ package model.classes;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import model.enumerations.Category;
 import model.enumerations.Status;
+import model.interfaces.Categories;
 import model.interfaces.Outfits;
 
 /**
@@ -74,7 +77,7 @@ public class UserOutfit implements Outfits {
     }
 
     @Override
-    public Outfits createOutfit() {
+    public Outfits createOutfit(final Map<Category, Categories> categoryMap) {
         throw new UnsupportedOperationException();
     }
 
