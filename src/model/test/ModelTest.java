@@ -14,6 +14,7 @@ import java.util.UUID;
 
 import org.junit.Test;
 
+import model.classes.AIOutfit;
 import model.classes.DressImpl;
 import model.classes.UserManagementImpl;
 import model.classes.UserOutfit;
@@ -46,6 +47,7 @@ public final class ModelTest {
         final UserManagement userManagement = new UserManagementImpl();
         final List<UUID> someDresses = new LinkedList<>();
         Outfits firstOutfit;
+        Outfits secondOutfit;
         assertEquals(Status.USER_REGISTERED, (userManagement.addUser("pop", "palla")));
         assertEquals(Status.DUPLICATED_USER, (userManagement.addUser("pop", "palla")));
 
@@ -93,6 +95,9 @@ public final class ModelTest {
         final Dress dress3 = new DressImpl.DressBuilder().buildBrand("Levis").buildDescription("prova")
                 .buildName("prova").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
 
+        final Dress dress4 = new DressImpl.DressBuilder().buildBrand("Denny Rose").buildDescription("nice jeans")
+                .buildName("White Jeans").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
+
         wardrobe.getCategories().addDressToCategory(dress, Category.HEAD);
         System.out.println(dress.getCategoryName().getCategoryName());
         wardrobe.getCategories().addDressToCategory(dress2, Category.HEAD);
@@ -101,6 +106,7 @@ public final class ModelTest {
         System.out.println(dress1.getCategoryName().getCategoryName());
         wardrobe.getCategories().addDressToCategory(dress3, Category.HEAD);
         System.out.println(dress3.getCategoryName().getCategoryName());
+        wardrobe.getCategories().addDressToCategory(dress4, Category.LEGS);
         assertNotNull((wardrobe.getCategories().getAllCategories().get(Category.HEAD).getDress(dress.getId())));
         assertTrue(
                 wardrobe.getCategories().getAllCategories().get(Category.HEAD).getDress(dress.getId()).equals(dress));
@@ -133,13 +139,20 @@ public final class ModelTest {
         final Set<Dress> dressesOfBrand = wardrobe.getDressesOfBrand("Levis");
         System.out.println(dressesOfBrand.toString());
         // System.out.println(ModelSingleton.getInstance().getDressQueue().toString());
+        assertTrue(wardrobe.getMostPopularBrand().equals("Denny Rose"));
         System.out.println("\n\n\n\n\n");
 
         someDresses.add(dress1.getId());
         someDresses.add(dress2.getId());
+        dress3.setFavourited(true);
         firstOutfit = new UserOutfit().createOutfit(someDresses);
         wardrobe.getOutfits().addOutfit(firstOutfit, Outfit.USER);
         System.out.println(wardrobe.countOutfits());
+        secondOutfit = new AIOutfit().createOutfit(wardrobe.getCategories().getAllCategories());
+        wardrobe.getOutfits().addOutfit(secondOutfit, Outfit.AI);
+        System.out.println(wardrobe.countOutfits());
+        System.out.println(secondOutfit.getOutfit().toString());
+        assertTrue(secondOutfit.getOutfit().contains(dress3.getId()));
         wardrobe.getOutfits().removeOutfit(firstOutfit, Outfit.USER);
         System.out.println(wardrobe.countOutfits());
 

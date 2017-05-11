@@ -89,4 +89,9 @@ public class AIOutfit implements Outfits {
         return this;
     }
 
+    @Override
+    public String toString() {
+        return "AIOutfit [id=" + id + ", name=" + name + ", wornCount=" + wornCount + ", outfit=" + outfit + "]";
+    }
+
 }

@@ -81,4 +81,9 @@ public class UserOutfit implements Outfits {
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public String toString() {
+        return "UserOutfit [id=" + id + ", name=" + name + ", wornCount=" + wornCount + ", outfit=" + outfit + "]";
+    }
+
 }
