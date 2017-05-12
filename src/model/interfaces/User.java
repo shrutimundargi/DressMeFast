@@ -1,10 +1,12 @@
 package model.interfaces;
 
+import java.io.Serializable;
+
 /**
  * This interface of an User.
  *
  */
-public interface User {
+public interface User extends Serializable {
 
     /**
      * @return the name of the user.

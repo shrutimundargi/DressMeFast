@@ -1,5 +1,6 @@
 package model.interfaces;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -14,7 +15,7 @@ import model.enumerations.Status;
 /**
  *
  */
-public interface CategoriesManagement {
+public interface CategoriesManagement extends Serializable {
 
     /**
      * This method starts the initialization of the default categories.
