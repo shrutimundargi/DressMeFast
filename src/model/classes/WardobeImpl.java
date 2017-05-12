@@ -21,6 +21,10 @@ import model.interfaces.Wardrobe;
  */
 public class WardobeImpl implements Wardrobe {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4418864464274282296L;
     private final CategoriesManagement categoryManagement;
     private final OutfitsManagement outfitsManagement;
 
@@ -166,6 +170,50 @@ public class WardobeImpl implements Wardrobe {
     @Override
     public Queue<Dress> getLastAddedDresses() {
         return this.categoryManagement.getLastDressesAdded();
+    }
+
+    @Override
+    public String toString() {
+        return "WardobeImpl [categoryManagement=" + categoryManagement + ", outfitsManagement=" + outfitsManagement
+                + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((categoryManagement == null) ? 0 : categoryManagement.hashCode());
+        result = prime * result + ((outfitsManagement == null) ? 0 : outfitsManagement.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof WardobeImpl)) {
+            return false;
+        }
+        WardobeImpl other = (WardobeImpl) obj;
+        if (categoryManagement == null) {
+            if (other.categoryManagement != null) {
+                return false;
+            }
+        } else if (!categoryManagement.equals(other.categoryManagement)) {
+            return false;
+        }
+        if (outfitsManagement == null) {
+            if (other.outfitsManagement != null) {
+                return false;
+            }
+        } else if (!outfitsManagement.equals(other.outfitsManagement)) {
+            return false;
+        }
+        return true;
     }
 
 }

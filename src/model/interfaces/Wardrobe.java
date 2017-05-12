@@ -1,5 +1,6 @@
 package model.interfaces;
 
+import java.io.Serializable;
 import java.util.Queue;
 import java.util.Set;
 
@@ -8,7 +9,7 @@ import java.util.Set;
  *
  */
 
-public interface Wardrobe {
+public interface Wardrobe extends Serializable {
 
     /**
      * @return all the categories objects.

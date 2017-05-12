@@ -19,6 +19,10 @@ import model.interfaces.OutfitsManagement;
  */
 public class OutfitsManagementImpl implements OutfitsManagement {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8825469807177612824L;
     private final Map<Outfit, List<Outfits>> outfitsMap;
     private final Queue<Outfits> outfitsQueue;
 
@@ -110,6 +114,41 @@ public class OutfitsManagementImpl implements OutfitsManagement {
     @Override
     public Queue<Outfits> getLastOutfitsAdded() {
         return this.outfitsQueue;
+    }
+
+    @Override
+    public String toString() {
+        return "OutfitsManagementImpl [outfitsMap=" + outfitsMap + ", outfitsQueue=" + outfitsQueue + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((outfitsMap == null) ? 0 : outfitsMap.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof OutfitsManagementImpl)) {
+            return false;
+        }
+        OutfitsManagementImpl other = (OutfitsManagementImpl) obj;
+        if (outfitsMap == null) {
+            if (other.outfitsMap != null) {
+                return false;
+            }
+        } else if (!outfitsMap.equals(other.outfitsMap)) {
+            return false;
+        }
+        return true;
     }
 
 }
