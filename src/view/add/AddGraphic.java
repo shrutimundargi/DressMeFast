@@ -3,21 +3,27 @@ package view.add;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Locale;
 import java.util.logging.Logger;
 
 import controller.Controller;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -41,8 +47,9 @@ public class AddGraphic extends ProgramUIImpl implements UI {
             + " add a photo and then fill all the information about it.";
     @FXML
     private ScrollPane scrollPnl;
-    private ImageView imageView;
-    private StackPane contentPane;
+    private ImageView imvItem;
+    private StackPane imageStackPnl;
+    private Image imgItem;
 
     /**
      * 
@@ -60,17 +67,17 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         super.getBtnAdd().setStyle("-fx-background-image: url('/images/add.png');");
 
         /* Container (PANE) */
-        VBox vBox = new VBox();
-        StackPane titleStackPnl = new StackPane();
+        final VBox vBox = new VBox();
+        final StackPane titleStackPnl = new StackPane();
 
         /* Title_______________ */
-        Text titlePane = new Text(NAMEOFSCREEN);
+        final Text titlePane = new Text(NAMEOFSCREEN);
         titlePane.getStyleClass().add("main-title");
         titleStackPnl.getChildren().add(titlePane);
         /* ____________________ */
 
         /* Description_________ */
-        Label descriptionLabel = new Label(DESCRIPTIONOFPANE);
+        final Label descriptionLabel = new Label(DESCRIPTIONOFPANE);
         descriptionLabel.getStyleClass().add("text-description");
         descriptionLabel.setWrapText(true);
         descriptionLabel.setTextAlignment(TextAlignment.JUSTIFY);
@@ -78,65 +85,154 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         /* ____________________ */
 
         /* Separator___________ */
-        Separator sepTitle = new Separator();
+        final Separator sepTitle = new Separator();
         sepTitle.getStyleClass().add("sep-title");
         /* ____________________ */
 
-        /* Brand_______________ */
-        Text txtBrand = new Text("Select the brand");
-        ChoiceBox chbBrand = new ChoiceBox();
-        StackPane pnlBrandTitle = new StackPane();
-        StackPane pnlBrandChb = new StackPane();
-        txtBrand.getStyleClass().add("add-title-info");
-        pnlBrandTitle.getStyleClass().add("add-cont-title-info-first");
-        chbBrand.getStyleClass().add("");
-        pnlBrandTitle.getChildren().add(txtBrand);
-        pnlBrandChb.getChildren().add(chbBrand);
+        /* Category_______________ */
+        final Text txtCategory = new Text("Select the Category");
+        final ChoiceBox chbCategory = new ChoiceBox();
+        final StackPane pnlCategoryTitle = new StackPane();
+        final StackPane pnlCategoryChb = new StackPane();
+        txtCategory.getStyleClass().add("add-title-info");
+        pnlCategoryTitle.getStyleClass().add("add-cont-title-info-first");
+        chbCategory.getStyleClass().add("");
+        pnlCategoryTitle.getChildren().add(txtCategory);
+        pnlCategoryChb.getChildren().add(chbCategory);
         /* ____________________ */
 
         /* Image_______________ */
-        Text txtImage = new Text("Drag and drop an image ");
-        contentPane = new StackPane();
-        contentPane.setPrefSize(200,200);
-        contentPane.getStyleClass().add("pnl-image");
-        contentPane.setOnDragOver(new EventHandler<DragEvent>() {
-
-            public void handle(DragEvent event) {
-                mouseDragOver(event);
-            }
-        });
-
-        contentPane.setOnDragDropped(new EventHandler<DragEvent>() {
-
-            public void handle(DragEvent event) {
-                mouseDragDropped(event);
-            }
-        });
-
-        contentPane.setOnDragExited(new EventHandler<DragEvent>() {
-
-            public void handle(DragEvent event) {
-                contentPane.setStyle("-fx-border-color: #C6C6C6;");
-            }
-        });
-
-        StackPane pnlImageTitle = new StackPane();
-        StackPane pnlImage = new StackPane();
+        final Text txtImage = new Text("Drag and drop an image ");
+        final Button btnRemoveImage = new Button("Remove image");
+        final StackPane pnlImageTitle = new StackPane();
+        final StackPane pnlImage = new StackPane();
+        final StackPane pnlButtonRemoveImage = new StackPane();
+        imvItem = new ImageView();
+        imageStackPnl = new StackPane();
+        imageStackPnl.setPrefSize(200, 200);
+        imageStackPnl.getStyleClass().add("pnl-image");
+        btnRemoveImage.getStyleClass().add("btn-normal");
+        btnRemoveImage.getStyleClass().add("btn-small");
         txtImage.getStyleClass().add("add-title-info");
         pnlImageTitle.getStyleClass().add("add-cont-title-info");
         pnlImage.getStyleClass().add("pnl-cont-image");
         pnlImageTitle.getChildren().add(txtImage);
-        pnlImage.getChildren().add(contentPane);
+        pnlImage.getChildren().add(imageStackPnl);
+        pnlButtonRemoveImage.getChildren().add(btnRemoveImage);
+
+        btnRemoveImage.setOnAction((event) -> {
+            this.removeImage(imvItem, imageStackPnl);
+        });
+
+        imageStackPnl.setOnDragOver(new EventHandler<DragEvent>() {
+
+            public void handle(final DragEvent event) {
+                mouseDragOver(event);
+            }
+        });
+
+        imageStackPnl.setOnDragDropped(new EventHandler<DragEvent>() {
+
+            public void handle(final DragEvent event) {
+                mouseDragDropped(event);
+            }
+        });
+
+        imageStackPnl.setOnDragExited(new EventHandler<DragEvent>() {
+
+            public void handle(final DragEvent event) {
+                imageStackPnl.setStyle("-fx-border-color: #C6C6C6;");
+            }
+        });
         /* ____________________ */
+
+        /* Brand_______________ */
+        final Text txtBrand = new Text("Category");
+        final TextField txfBrand = new TextField();
+        final StackPane pnlBrandTitle = new StackPane();
+        final StackPane pnlBrandTxf = new StackPane();
+        txtBrand.getStyleClass().add("add-title-info");
+        pnlBrandTitle.getStyleClass().add("add-cont-title-info");
+        txfBrand.getStyleClass().add("");
+        pnlBrandTitle.getChildren().add(txtBrand);
+        pnlBrandTxf.getChildren().add(txfBrand);
+        /* ____________________ */
+
+        /* Size_______________ */
+        final Text txtSize = new Text("Size");
+        final TextField txfSize = new TextField();
+        final StackPane pnlSizeTitle = new StackPane();
+        final StackPane pnlSizeTxf = new StackPane();
+        txtSize.getStyleClass().add("add-title-info");
+        pnlSizeTitle.getStyleClass().add("add-cont-title-info");
+        txfSize.getStyleClass().add("");
+        pnlSizeTitle.getChildren().add(txtSize);
+        pnlSizeTxf.getChildren().add(txfSize);
+        /* ____________________ */
+
+        /* Date_______________ */
+        final Text txtDate = new Text("Purchase date");
+        final TextField txfDate = new TextField();
+        final StackPane pnlDateTitle = new StackPane();
+        final StackPane pnlDateTxf = new StackPane();
+        txtDate.getStyleClass().add("add-title-info");
+        pnlDateTitle.getStyleClass().add("add-cont-title-info");
+        txfDate.getStyleClass().add("");
+        pnlDateTitle.getChildren().add(txtDate);
+        pnlDateTxf.getChildren().add(txfDate);
+        /* ____________________ */
+
+        /* Favorite_______________ */
+        final Text txtFavorite = new Text("Set like favorite");
+        final CheckBox ckbFavorite = new CheckBox();
+        final StackPane pnlFavoriteTitle = new StackPane();
+        final StackPane pnlFavoriteCkb = new StackPane();
+        txtFavorite.getStyleClass().add("add-title-info");
+        pnlFavoriteTitle.getStyleClass().add("add-cont-title-info");
+        ckbFavorite.getStyleClass().add("");
+        pnlFavoriteTitle.getChildren().add(txtFavorite);
+        pnlFavoriteCkb.getChildren().add(ckbFavorite);
+        /* ____________________ */
+
+        /* Some information_______________ */
+        final Text txtInfo = new Text("Information");
+        final TextArea txaInfo = new TextArea();
+        final StackPane pnlInfoTitle = new StackPane();
+        final StackPane pnlInfoTxa = new StackPane();
+        txtInfo.getStyleClass().add("add-title-info");
+        pnlInfoTitle.getStyleClass().add("add-cont-title-info");
+        txaInfo.getStyleClass().add("");
+        pnlInfoTitle.getChildren().add(txtInfo);
+        pnlInfoTxa.getChildren().add(txaInfo);
+        /* ____________________ */
+
+        /* Button_______________ */
+        final Button btnAdd = new Button("Add Item");
+        btnAdd.getStyleClass().add("btn-normal");
+        final StackPane pnlAdd = new StackPane();
+        pnlAdd.getChildren().add(btnAdd);
+        /* _____________________ */
 
         /* Adding of graphic elements to PANE_________ */
         vBox.getChildren().add(titleStackPnl);
         vBox.getChildren().add(descriptionLabel);
         vBox.getChildren().add(sepTitle);
-        vBox.getChildren().add(pnlBrandTitle);
-        vBox.getChildren().add(pnlBrandChb);
+        vBox.getChildren().add(pnlCategoryTitle);
+        vBox.getChildren().add(pnlCategoryChb);
         vBox.getChildren().add(pnlImageTitle);
         vBox.getChildren().add(pnlImage);
+        vBox.getChildren().add(pnlButtonRemoveImage);
+        vBox.getChildren().add(pnlBrandTitle);
+        vBox.getChildren().add(pnlBrandTxf);
+        vBox.getChildren().add(pnlSizeTitle);
+        vBox.getChildren().add(pnlSizeTxf);
+        vBox.getChildren().add(pnlDateTitle);
+        vBox.getChildren().add(pnlDateTxf);
+        vBox.getChildren().add(pnlFavoriteTitle);
+        vBox.getChildren().add(pnlFavoriteCkb);
+        vBox.getChildren().add(pnlInfoTitle);
+        vBox.getChildren().add(pnlInfoTxa);
+        vBox.getChildren().add(pnlAdd);
         /* ___________________________________________ */
 
         vBox.setVgrow(scrollPnl, javafx.scene.layout.Priority.ALWAYS);
@@ -151,13 +247,54 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         super.setupColorButtonsBH();
     }
 
-    void addImage(Image i, StackPane pane) {
+    /**
+     * Add an image in a ImageView and then in a StackPane.
+     * 
+     * @param img
+     *            is the image that the user dropped on
+     * @param imageView
+     *            is the container of the image
+     * @param pane
+     *            is the container of the imageView
+     */
+    public void addImage(final Image img, final ImageView imageView, final StackPane pane) {
+        System.out.println(img);
+        imageView.setImage(img);
+        imageView.setFitWidth(235);
+        imageView.setPreserveRatio(true);
 
-        imageView = new ImageView();
-        imageView.setImage(i);
-        pane.getChildren().add(imageView);
+        if (!pane.getChildren().contains(imvItem)) {
+            pane.getChildren().add(imvItem);
+        }
+        pane.setPrefHeight(imvItem.getFitHeight());
+        pane.setStyle("-fx-border-color: transparent; -fx-border-width: 0; -fx-background-color: transparent;");
     }
 
+    /**
+     * Permit to remove an image from an ImageView, if it doesn't contain an
+     * image the method don't do nothing.
+     * 
+     * @param imv
+     *            is the ImageView
+     * @param pane
+     *            is the StackPane
+     */
+    public void removeImage(final ImageView imv, final StackPane pane) {
+        if (imvItem.getImage() != null) {
+            imvItem.setImage(null);
+            pane.setStyle("-fx-background-color: #333333; -fx-border-color: #8A8A8A; -fx-border-radius: 4.0;"
+                    + " -fx-background-radius: 4px;");
+            pane.setPrefHeight(200);
+            pane.setPrefWidth(200);
+        }
+    }
+
+    /**
+     * The event of when you drop an image on the StackPane.
+     * 
+     * @param e
+     *            the event
+     */
     private void mouseDragDropped(final DragEvent e) {
         final Dragboard db = e.getDragboard();
         boolean success = false;
@@ -170,15 +307,14 @@ public class AddGraphic extends ProgramUIImpl implements UI {
                 public void run() {
                     System.out.println(file.getAbsolutePath());
                     try {
-                        if (!contentPane.getChildren().isEmpty()) {
-                            contentPane.getChildren().remove(0);
+                        if (!imageStackPnl.getChildren().isEmpty()) {
+                            imageStackPnl.getChildren().remove(0);
                         }
-                        Image img = new Image(new FileInputStream(file.getAbsolutePath()));
 
-                        addImage(img, contentPane);
+                        imgItem = new Image(new FileInputStream(file.getAbsolutePath()));
+                        addImage(imgItem, imvItem, imageStackPnl);
                     } catch (FileNotFoundException ex) {
-                        // Logger.getLogger(DragAndDropExample.class.getName()).log(Level.SEVERE,
-                        // null, ex);
+                        ex.printStackTrace();
                     }
                 }
             });
@@ -187,17 +323,23 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         e.consume();
     }
 
+    /**
+     * The event of when you drag an image on the StackPane.
+     * 
+     * @param e
+     *            the event
+     */
     private void mouseDragOver(final DragEvent e) {
         final Dragboard db = e.getDragboard();
 
-        final boolean isAccepted = db.getFiles().get(0).getName().toLowerCase().endsWith(".png")
-                || db.getFiles().get(0).getName().toLowerCase().endsWith(".jpeg")
-                || db.getFiles().get(0).getName().toLowerCase().endsWith(".jpg");
+        final boolean isAccepted = db.getFiles().get(0).getName().toLowerCase(Locale.US).endsWith(".png")
+                || db.getFiles().get(0).getName().toLowerCase(Locale.US).endsWith(".jpeg")
+                || db.getFiles().get(0).getName().toLowerCase(Locale.US).endsWith(".jpg");
 
         if (db.hasFiles()) {
             if (isAccepted) {
-                contentPane.setStyle("-fx-border-color: white;" + "-fx-border-width: 5;"
-                        + "-fx-background-color: grey;");
+                imageStackPnl
+                        .setStyle("-fx-border-color: white;" + "-fx-border-width: 5;" + "-fx-background-color: grey;");
                 e.acceptTransferModes(TransferMode.COPY);
             }
         } else {
