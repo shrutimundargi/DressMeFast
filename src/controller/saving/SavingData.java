@@ -2,8 +2,8 @@ package controller.saving;
 
 import java.util.Set;
 
-import model.enumerations.Status;
 import model.interfaces.User;
+import model.interfaces.UserManagement;
 
 /**
  * Interface used for saving Data.
@@ -16,11 +16,13 @@ public interface SavingData {
      *            : the Users that will be saved
      * @return Return the status of the operation
      */
-    Status save(Set<User> userSet);
+    Information save(Set<User> userSet);
 
     /**
+     * @param userM
+     *            : An instance of UserManagement
      * @return Return the status of the operation
      */
-    Status load();
+    Information load(UserManagement userM);
 
 }

@@ -7,12 +7,12 @@ import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
 import controller.outfits.OutfitsController;
 import controller.outfits.OutfitsControllerImpl;
+import controller.saving.Information;
 import controller.saving.SavingData;
 import controller.saving.SavingDataImpl;
 import controller.user.UserController;
 import controller.user.UserControllerImpl;
 import model.classes.UserManagementImpl;
-import model.enumerations.Status;
 import model.interfaces.UserManagement;
 import view.ScreensGraphic;
 import view.UI;
@@ -49,11 +49,11 @@ public final class ControllerImpl implements Controller {
     }
 
     private void loadData() {
-        save.load();
+        save.load(userM);
     }
 
     @Override
-    public Status saveData() {
+    public Information saveData() {
         return save.save(userM.getUsersSet());
     }
 

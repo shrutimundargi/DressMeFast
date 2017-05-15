@@ -2,8 +2,8 @@ package controller;
 
 import controller.dress.DressController;
 import controller.outfits.OutfitsController;
+import controller.saving.Information;
 import controller.user.UserController;
-import model.enumerations.Status;
 import view.ScreensGraphic;
 import view.UI;
 
@@ -55,5 +55,5 @@ public interface Controller {
     /**
      * @return Return the status of the saving data
      */
-    Status saveData();
+    Information saveData();
 }
