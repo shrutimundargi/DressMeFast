@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -35,7 +35,7 @@ public final class ModelTest {
 
     private static final int NUMBER_OF_DRESSES = 5;
     private final Wardrobe wardrobe = new WardobeImpl();
-    private final Date date = new Date();
+    private final LocalDate date = LocalDate.now();
     private final UserManagement userManagement = new UserManagementImpl();
     private final List<UUID> someDresses = new LinkedList<>();
     private Outfits firstOutfit;

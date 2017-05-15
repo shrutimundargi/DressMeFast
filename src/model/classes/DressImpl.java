@@ -3,7 +3,8 @@ package model.classes;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Objects;
 import java.util.UUID;
 
 import model.enumerations.Category;
@@ -27,7 +28,7 @@ public final class DressImpl implements Dress {
     private String brand;
     private Integer size;
     private Integer price;
-    private Date purchaseDate;
+    private LocalDate purchaseDate;
     private String description;
     private Boolean favourited;
     private Integer wornCount;
@@ -52,7 +53,7 @@ public final class DressImpl implements Dress {
      *            the description of a dress.
      */
     protected DressImpl(final File dressImage, final String dressName, final String dressBrand, final Integer dressSize,
-            final Integer dressPrice, final Date dressPurchaseDate, final String dressDescription) {
+            final Integer dressPrice, final LocalDate dressPurchaseDate, final String dressDescription) {
         super();
         this.image = dressImage;
         this.name = dressName;
@@ -98,7 +99,7 @@ public final class DressImpl implements Dress {
     }
 
     @Override
-    public Date getPurchaseDate() {
+    public LocalDate getPurchaseDate() {
         return this.purchaseDate;
     }
 
@@ -147,7 +148,7 @@ public final class DressImpl implements Dress {
     }
 
     @Override
-    public Status setPurchaseDate(final Date dressPurchaseDate) {
+    public Status setPurchaseDate(final LocalDate dressPurchaseDate) {
         this.purchaseDate = dressPurchaseDate;
         return Status.CHANGE_SUCCESFULL;
     }
@@ -303,7 +304,7 @@ public final class DressImpl implements Dress {
         private String builderBrand;
         private Integer builderSize;
         private Integer builderPrice;
-        private Date builderPurchaseDate;
+        private LocalDate builderPurchaseDate;
         private String builderDescription;
 
         /**
@@ -367,7 +368,7 @@ public final class DressImpl implements Dress {
          *
          * @return a dress
          */
-        public DressBuilder buildPurchaseDate(final Date dressPurchaseDate) {
+        public DressBuilder buildPurchaseDate(final LocalDate dressPurchaseDate) {
             this.builderPurchaseDate = dressPurchaseDate;
             return this;
         }
@@ -387,6 +388,10 @@ public final class DressImpl implements Dress {
          * @return a new dress object
          */
         public Dress build() {
+            Objects.requireNonNull(this.builderName);
+            Objects.requireNonNull(this.builderBrand);
+            Objects.requireNonNull(this.builderSize);
+            Objects.requireNonNull(this.builderPrice);
             return new DressImpl(this.builderImage, this.builderName, this.builderBrand, this.builderSize,
                     this.builderPrice, this.builderPurchaseDate, this.builderDescription);
         }
