@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
@@ -52,7 +51,7 @@
                   </AnchorPane>
                   <AnchorPane>
                      <children>
-                        <Button fx:id="btnAddDress" mnemonicParsing="false" onAction="#goAddDress" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Add ithem" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Button fx:id="btnAddDress" mnemonicParsing="false" onAction="#goAddDress" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Add Dress" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -197,7 +196,7 @@
                                     <Label styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
-                              <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#pressLogout" text="Logout">
+                              <Button mnemonicParsing="false" text="Logout">
                                  <styleClass>
                                     <String fx:value="btn-normal" />
                                     <String fx:value="btn-logout" />
@@ -219,8 +218,8 @@
          </styleClass>
       </AnchorPane>
    </center>
-      <stylesheets>
-      <URL value="@User.css" />
+   <stylesheets>
       <URL value="@../mainStyle.css" />
+      <URL value="@Outfits.css" />
    </stylesheets>
 </BorderPane>

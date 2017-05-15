@@ -1,33 +1,56 @@
 package view;
 
-
 public enum ScreensGraphic {
 
     /**
-     * Login scene at the startup of application
+     * Login scene at the startup of application.
      */
     LOGIN("/view/login/Login.fxml", "/view/login/Login.css"),
-    
+
     /**
      * Sing up scene.
      */
     SINGUP("/view/singup/Singup.fxml", "/view/singup/Singup.css"),
-    
+
     /**
      * Dialog scene after the sing in.
      */
     DIALOGSINGUP("/view/dialog/SingupDialog.fxml", "/view/dialog/SingupDialog.css"),
-    
+
     /**
      * Home scene.
      */
     HOME("/view/home/Home.fxml", "/view/home/Home.css"),
-    
+
     /**
-     * Statistics scene.
+     * User and statistics scene.
      */
-    USER("/view/user/User.fxml", "/view/user/User.css");
-    
+    USER("/view/user/User.fxml", "/view/user/User.css"),
+
+    /**
+     * Add item scene.
+     */
+    BRAND("/view/brand/Brand.fxml", "/view/brand/Brnad.css"),
+    /**
+     * Add item scene.
+     */
+    ADD("/view/add/Add.fxml", "/view/add/Add.css"),
+    /**
+     * Add item scene.
+     */
+    FAVORITE("/view/favorite/Favorite.fxml", "/view/favorite/Favorite.css"),
+    /**
+     * Add item scene.
+     */
+    OUTFITS("/view/outfits/Outfits.fxml", "/view/outfits/Outfits.css"),
+    /**
+     * Add item scene.
+     */
+    SIZE("/view/size/Size.fxml", "/view/size/Size.css"),
+    /**
+     * Category scene.
+     */
+    CATEGORY("/view/category/Category.fxml", "/view/category/Category.css");
 
     private final String resourcePath;
     private final String cssPath;

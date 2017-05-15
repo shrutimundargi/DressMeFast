@@ -18,7 +18,7 @@ public class UserManagementImpl implements UserManagement {
     private final Login login;
 
     /**
-     * Creates a container for the users.
+     * Instances the phases of both login and sign up.
      */
     public UserManagementImpl() {
         this.login = new LoginImpl();

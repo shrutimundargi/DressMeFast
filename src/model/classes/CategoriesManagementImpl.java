@@ -19,6 +19,10 @@ import model.interfaces.Dress;
  */
 public class CategoriesManagementImpl implements CategoriesManagement {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6804650438287633952L;
     private final Map<Category, Categories> categoryMap;
     private final Queue<Dress> dressQueue;
 
@@ -87,7 +91,7 @@ public class CategoriesManagementImpl implements CategoriesManagement {
 
     @Override
     public Map<Category, Categories> getAllCategories() {
-        return this.categoryMap;
+        return Collections.unmodifiableMap(this.categoryMap);
     }
 
     @Override
@@ -125,6 +129,41 @@ public class CategoriesManagementImpl implements CategoriesManagement {
     public Status removeDressFromQueue(final Dress dress) {
         this.dressQueue.remove(dress);
         return Status.DRESS_REMOVED;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoriesManagementImpl [categoryMap=" + categoryMap + ", dressQueue=" + dressQueue + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((categoryMap == null) ? 0 : categoryMap.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof CategoriesManagementImpl)) {
+            return false;
+        }
+        CategoriesManagementImpl other = (CategoriesManagementImpl) obj;
+        if (categoryMap == null) {
+            if (other.categoryMap != null) {
+                return false;
+            }
+        } else if (!categoryMap.equals(other.categoryMap)) {
+            return false;
+        }
+        return true;
     }
 
 }

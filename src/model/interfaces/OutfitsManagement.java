@@ -1,5 +1,6 @@
 package model.interfaces;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
@@ -12,7 +13,7 @@ import model.enumerations.Status;
  * This interface is used to manage different types of outfits.
  *
  */
-public interface OutfitsManagement {
+public interface OutfitsManagement extends Serializable {
 
     /**
      * This method starts the initialization of the user and AI outfits.

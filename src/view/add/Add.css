@@ -1,0 +1,75 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.main-pane-user{
+	-fx-background-color: #292929;
+	-fx-padding: 9 0 9 9;
+}
+
+.pnl-center{
+	-fx-background-color: #4B4D4F; 
+	-fx-background-radius: 7.0px;
+	-fx-padding: 15.0 15.0 0.0 15.0;
+	-fx-min-height: 500.0px; 
+	-fx-min-width: 600.0px; 
+	-fx-max-height: 500.0px; 
+	-fx-max-width: 600.0px;
+	-fx-effect: dropshadow(three-pass-box, #494949, 10.0, 0.0, 0.0, 0.0);
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.title-login{
+	
+}
+
+.info-underTitle{
+    -fx-fill: #C4C4C4;
+	-fx-font-size: 13.0px;
+}
+
+.text-description{
+	-fx-text-fill: white;
+	-fx-font-size: 16 px;
+	-fx-padding: 17 0 15 0;
+}
+
+.sep-title{
+	-fx-padding: 10 100 10 100;
+}
+
+.sep-title .line{
+	-fx-border-color: #878787;
+	-fx-border-width: 1 0 0 0;
+
+}
+
+.add-title-info{
+	-fx-fill: white;
+	-fx-font-size: 24.0px;
+	
+}
+
+.add-cont-title-info-first{
+	-fx-padding: 20 0 10 0;
+}
+
+.add-cont-title-info{
+	-fx-padding: 50 0 0 0;
+}
+
+.pnl-image{
+	-fx-background-color: #333333;
+	-fx-margin: 10 100 10 100;
+	-fx-border-color: #8A8A8A;
+   	-fx-border-radius: 4.0;
+   	-fx-background-radius: 4px;
+}
+
+.pnl-cont-image{
+	-fx-padding: 10 200 10 200;
+}
