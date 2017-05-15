@@ -1,5 +1,6 @@
 package model.classes;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -59,7 +60,7 @@ public class CategoriesImpl implements Categories {
 
     @Override
     public Map<UUID, Dress> getAllDresses() {
-        return this.map;
+        return Collections.unmodifiableMap(this.map);
     }
 
     @Override

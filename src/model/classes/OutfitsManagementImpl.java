@@ -79,7 +79,7 @@ public class OutfitsManagementImpl implements OutfitsManagement {
 
     @Override
     public Map<Outfit, List<Outfits>> getAllOutfits() {
-        return this.outfitsMap;
+        return Collections.unmodifiableMap(this.outfitsMap);
     }
 
     @Override

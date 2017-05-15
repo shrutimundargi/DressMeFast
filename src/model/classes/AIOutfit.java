@@ -1,5 +1,6 @@
 package model.classes;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +44,7 @@ public class AIOutfit implements Outfits {
 
     @Override
     public List<UUID> getOutfit() {
-        return this.outfit;
+        return Collections.unmodifiableList(this.outfit);
     }
 
     @Override

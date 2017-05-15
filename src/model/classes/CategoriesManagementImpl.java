@@ -91,7 +91,7 @@ public class CategoriesManagementImpl implements CategoriesManagement {
 
     @Override
     public Map<Category, Categories> getAllCategories() {
-        return this.categoryMap;
+        return Collections.unmodifiableMap(this.categoryMap);
     }
 
     @Override
