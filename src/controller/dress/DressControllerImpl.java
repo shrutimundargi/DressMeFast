@@ -63,6 +63,7 @@ public final class DressControllerImpl implements DressController {
             final RuntimeException e2 = new MyException(USER_ERROR);
             throw e2;
         }
+
         final Dress dress = new DressImpl.DressBuilder().buildImage(saveImage(image)).buildName(name).buildBrand(brand)
                 .buildSize(size).buildPrice(price).buildPurchaseDate(purchaseDate).buildDescription(description)
                 .build();
@@ -201,6 +202,12 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status deleteDress(final Dress dress) {
+        try {
+            dress.getImage().delete();
+        } catch (Exception e) {
+            final RuntimeException e2 = new MyException(IMAGE_ERROR);
+            throw e2;
+        }
         return user.getWardobe().getCategories().getCategory(dress.getCategoryName()).removeDress(dress);
 
     }
