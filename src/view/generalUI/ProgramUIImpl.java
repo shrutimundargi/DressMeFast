@@ -9,17 +9,32 @@ import view.ScreensGraphic;
 import view.SetupView;
 
 public class ProgramUIImpl implements ProgramUI {
-    protected final ScreensGraphic actualScreen;
-    protected SceneSetting environment;
-    protected final Controller controller;
-    protected final SetupView setup;
+
+    private final SceneSetting environment;
+    private final Controller controller;
+    private final SetupView setup;
+    private final ScreensGraphic actualScreen;
 
     @FXML
-    protected Button btnGoBack;
+    private Button btnGoBack;
     @FXML
-    protected Button btnGoAhead;
+    private Button btnGoAhead;
     @FXML
-    protected Button btnUser;
+    private Button btnHome;
+    @FXML
+    private Button btnBrand;
+    @FXML
+    private Button btnAddDress;
+    @FXML
+    private Button btnFavorite;
+    @FXML
+    private Button btnOutfits;
+    @FXML
+    private Button btnSize;
+    @FXML
+    private Button btnCategory;
+    @FXML
+    private Button btnUser;
 
     public ProgramUIImpl(final SceneSetting environment, Controller controller, final SetupView setup,
             final ScreensGraphic actualScreen) {
@@ -30,7 +45,7 @@ public class ProgramUIImpl implements ProgramUI {
     }
 
     @Override
-    public void setupButtonsBH() {
+    public void setupColorButtonsBH() {
         if (setup.haveBackQueue()) {
             btnGoBack.setStyle("-fx-text-fill: #0075F2;");
         } else {
@@ -52,65 +67,129 @@ public class ProgramUIImpl implements ProgramUI {
     }
 
     @Override
-    public void goHome(ActionEvent event) {
+    public void goHome(final ActionEvent event) {
         this.addScreenBack(ScreensGraphic.HOME);
         this.environment.displayScreen(ScreensGraphic.HOME);
     }
 
     @Override
-    public void goBrand(ActionEvent event) {
-        // TODO Auto-generated method stub
-
+    public void goBrand(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.BRAND);
+        this.environment.displayScreen(ScreensGraphic.BRAND);
     }
 
     @Override
-    public void goAddDress(ActionEvent event) {
-        // TODO Auto-generated method stub
-
+    public void goAddDress(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.ADD);
+        this.environment.displayScreen(ScreensGraphic.ADD);
     }
 
     @Override
-    public void goFavorite(ActionEvent event) {
-        // TODO Auto-generated method stub
-
+    public void goFavorite(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.FAVORITE);
+        this.environment.displayScreen(ScreensGraphic.FAVORITE);
     }
 
     @Override
-    public void goOutfits(ActionEvent event) {
-        // TODO Auto-generated method stub
-
+    public void goOutfits(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.OUTFITS);
+        this.environment.displayScreen(ScreensGraphic.OUTFITS);
     }
 
     @Override
-    public void goSize(ActionEvent event) {
-        // TODO Auto-generated method stub
-
+    public void goSize(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.SIZE);
+        this.environment.displayScreen(ScreensGraphic.SIZE);
     }
 
     @Override
-    public void goCategory(ActionEvent event) {
-        // TODO Auto-generated method stub
-
+    public void goCategory(final ActionEvent event) {
+        this.addScreenBack(ScreensGraphic.CATEGORY);
+        this.environment.displayScreen(ScreensGraphic.CATEGORY);
     }
 
     @Override
-    public void goUser(ActionEvent event) {
+    public void goUser(final ActionEvent event) {
         this.addScreenBack(ScreensGraphic.USER);
         this.environment.displayScreen(ScreensGraphic.USER);
     }
 
     @Override
-    public void goBack(ActionEvent event) {
-        ScreensGraphic sgBack = setup.getScreenBack();
-        this.setup.addScreenAhead(actualScreen, sgBack);
-        this.environment.displayScreen(sgBack);
+    public void goBack(final ActionEvent event) {
+        if (setup.haveBackQueue()) {
+            ScreensGraphic sgBack = setup.getScreenBack();
+            this.setup.addScreenAhead(actualScreen, sgBack);
+            this.environment.displayScreen(sgBack);
+        }
     }
 
     @Override
-    public void goAhead(ActionEvent event) {
-        ScreensGraphic sgAhead = setup.getScreenAhead();
-        this.addScreenBack(sgAhead);
-        this.environment.displayScreen(sgAhead);
+    public void goAhead(final ActionEvent event) {
+        if (setup.haveAheadQueue()) {
+            ScreensGraphic sgAhead = setup.getScreenAhead();
+            this.addScreenBack(sgAhead);
+            this.environment.displayScreen(sgAhead);
+        }
+    }
+
+    @Override
+    public SceneSetting getSceneSetting() {
+        return environment;
+    }
+
+    @Override
+    public Controller getController() {
+        return controller;
+    }
+
+    @Override
+    public SetupView getSetupView() {
+        return setup;
+    }
+
+    @Override
+    public ScreensGraphic getScreensGraphic() {
+        return actualScreen;
+    }
+
+    @Override
+    public Button getBtnHome() {
+        return btnHome;
+    }
+
+    @Override
+    public Button getBtnBrand() {
+        return btnBrand;
+    }
+    
+    @Override
+    public Button getBtnAdd() {
+        return btnAddDress;
+    }
+    
+    @Override
+    public Button getBtnFavorite() {
+        return btnFavorite;
+    }
+    
+    @Override
+    public Button getBtnOutfits() {
+        return btnOutfits;
+    }
+    
+    @Override
+    public Button getBtnSize() {
+        return btnSize;
+    }
+    
+    @Override
+    public Button getBtnCategory() {
+        return btnCategory;
+    }
+
+    @Override
+    public Button getBtnUser() {
+        return btnUser;
     }
 
 }

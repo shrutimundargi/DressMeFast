@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.Set;
 
 import controller.exception.MyException;
 import model.enumerations.Status;
@@ -49,10 +50,10 @@ public class SavingDataImpl implements SavingData {
     }
 
     @Override
-    public Status save(final User user) {
+    public Status save(final Set<User> userSet) {
         try (ObjectOutputStream outS = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(new File(MAIN_PATH + "test.dat"))))) {
-            outS.writeObject(user);
+            outS.writeObject(userSet);
         } catch (FileNotFoundException e) {
             final RuntimeException e2 = new MyException("problem with the creation of images folder");
             throw e2;

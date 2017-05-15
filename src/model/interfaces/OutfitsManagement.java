@@ -1,7 +1,9 @@
 package model.interfaces;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.UUID;
 
 import model.enumerations.Outfit;
@@ -11,7 +13,7 @@ import model.enumerations.Status;
  * This interface is used to manage different types of outfits.
  *
  */
-public interface OutfitsManagement {
+public interface OutfitsManagement extends Serializable {
 
     /**
      * This method starts the initialization of the user and AI outfits.
@@ -59,4 +61,25 @@ public interface OutfitsManagement {
      * @return a list with all the outfits (user created and AI created).
      */
     List<Outfits> getOutfitsList();
+
+    /**
+     * @param outfit
+     *            an outfit object.
+     * 
+     * @return the result of adding an outfit.
+     */
+    Status addOutfitToQueue(Outfits outfit);
+
+    /**
+     * @param outfit
+     *            an outfit object.
+     * 
+     * @return the result of removing an outfit.
+     */
+    Status removeOutfitFromQueue(Outfits outfit);
+
+    /**
+     * @return the last outfits added.
+     */
+    Queue<Outfits> getLastOutfitsAdded();
 }

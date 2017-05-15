@@ -1,5 +1,6 @@
 package controller.dress;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -33,13 +34,15 @@ public interface DressController {
      *            : description
      * @param categories
      *            : categories
+     * @param image
+     *            : the image
      * @return the status of adding a dress operation
      *         <P>
      *         Return DRESS_NOT_ADDED if there is a problem with the adding
      *         otherwise return DRESS_ADDED
      */
-    Status addDress(String name, String brand, int size, int price, Date purchaseDate, String description,
-            Category categories);
+    Status addDress(String name, String brand, Integer size, Integer price, Date purchaseDate, String description,
+            Category categories, File image);
 
     /**
      * @param brandName
@@ -86,6 +89,11 @@ public interface DressController {
      * @return Return all Dresses
      */
     List<Dress> getAllDresses();
+
+    /**
+     * @return Return the number of dresses added
+     */
+    int getNumberOfDresses();
 
     /**
      * @return User favorite dresses
@@ -207,7 +215,8 @@ public interface DressController {
      *            : new category
      * @return the status of the modify dress category operation
      *         <P>
-     *         If everything goes well return CHANGE_SUCCESFULL
+     *         If everything goes well return DRESS_MODIFIED otherwise
+     *         DRESS_NOT_MODIFIED
      */
     Status modifyDressCategory(Dress dress, Category category);
 
@@ -228,5 +237,23 @@ public interface DressController {
      * @return the status of the delete dress operation
      */
     Status deleteDress(Dress dress);
+
+    /**
+     * @param dress
+     *            : the dress that you wore
+     */
+    void dressWorn(Dress dress);
+
+    /**
+     * @param dress
+     *            : the dress that you wont the information
+     * @return Return the number of time that the dress was worn
+     */
+    int numberTimeDressWorn(Dress dress);
+
+    /**
+     * @return Return all popular brand
+     */
+    List<String> getPopularBrand();
 
 }

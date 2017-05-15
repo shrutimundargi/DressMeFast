@@ -1,10 +1,14 @@
 package model.classes;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import model.enumerations.Category;
 import model.enumerations.Status;
+import model.interfaces.Categories;
 import model.interfaces.Outfits;
 
 /**
@@ -39,7 +43,7 @@ public class UserOutfit implements Outfits {
 
     @Override
     public List<UUID> getOutfit() {
-        return this.outfit;
+        return Collections.unmodifiableList(this.outfit);
     }
 
     @Override
@@ -74,8 +78,67 @@ public class UserOutfit implements Outfits {
     }
 
     @Override
-    public Outfits createOutfit() {
+    public Outfits createOutfit(final Map<Category, Categories> categoryMap) {
         throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String toString() {
+        return "UserOutfit [id=" + id + ", name=" + name + ", wornCount=" + wornCount + ", outfit=" + outfit + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + ((outfit == null) ? 0 : outfit.hashCode());
+        result = prime * result + ((wornCount == null) ? 0 : wornCount.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof UserOutfit)) {
+            return false;
+        }
+        UserOutfit other = (UserOutfit) obj;
+        if (id == null) {
+            if (other.id != null) {
+                return false;
+            }
+        } else if (!id.equals(other.id)) {
+            return false;
+        }
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        if (outfit == null) {
+            if (other.outfit != null) {
+                return false;
+            }
+        } else if (!outfit.equals(other.outfit)) {
+            return false;
+        }
+        if (wornCount == null) {
+            if (other.wornCount != null) {
+                return false;
+            }
+        } else if (!wornCount.equals(other.wornCount)) {
+            return false;
+        }
+        return true;
     }
 
 }

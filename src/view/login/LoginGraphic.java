@@ -1,21 +1,16 @@
 package view.login;
 
+import controller.Controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.enumerations.Status;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.UI;
-
-import java.io.IOException;
-import controller.Controller;
-import javafx.event.ActionEvent;
 
 /**
  * 
@@ -41,10 +36,13 @@ public class LoginGraphic implements UI {
     private Text txtErrPassw;
 
     /**
+     * 
      * @param environment
+     *            a reference of the instance of the class SceneSetting
      * @param controller
+     *            a reference of the instance of the class Controller
      */
-    public LoginGraphic (SceneSetting environment, Controller controller) {
+    public LoginGraphic(final SceneSetting environment, final Controller controller) {
         this.controller = controller;
         this.environment = environment;
         this.environment.loadScreen(ACTUALSCREEN, this);
@@ -53,7 +51,7 @@ public class LoginGraphic implements UI {
     }
 
     /**
-     * 
+     * Call when the application is start to set.
      */
     public void show() {
         this.primaryStage = this.environment.getMainStage();
@@ -80,8 +78,8 @@ public class LoginGraphic implements UI {
             txtErrPassw.setText("Wrong password");
         }
     }
-    
-    private void clearErrorField(){
+
+    private void clearErrorField() {
         txtErrUser.setText("");
         txtErrPassw.setText("");
     }
@@ -98,7 +96,7 @@ public class LoginGraphic implements UI {
     @Override
     public void showNowContent() {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

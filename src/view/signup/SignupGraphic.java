@@ -1,4 +1,4 @@
-package view.singup;
+package view.signup;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +21,7 @@ import model.enumerations.Status;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.UI;
-import view.dialog.SingupDialogGraphic;
+import view.dialog.SignupDialogGraphic;
 
 import java.io.IOException;
 import controller.Controller;
@@ -32,7 +32,7 @@ import javafx.event.ActionEvent;
  *
  *
  */
-public class SingupGraphic implements UI {
+public class SignupGraphic implements UI {
 
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.SINGUP;
     private static final int MIN_LENGTH = 5;
@@ -63,7 +63,7 @@ public class SingupGraphic implements UI {
      * @param controller
      *            from the main to have the same instance
      */
-    public SingupGraphic(final SceneSetting environment, final Controller controller) {
+    public SignupGraphic(final SceneSetting environment, final Controller controller) {
         this.controller = controller;
         this.environment = environment;
         this.environment.loadScreen(ACTUALSCREEN, this);

@@ -1,10 +1,15 @@
 package controller.dress;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 import controller.exception.MyException;
 import model.classes.DressImpl;
@@ -20,6 +25,11 @@ import model.interfaces.User;
  */
 public final class DressControllerImpl implements DressController {
     private static final String USER_ERROR = "User not found, you can't add a dress without a user";
+    private static final String IMAGE_ERROR = "Impossible to save an immage";
+
+    private static final String MAIN_PATH = System.getProperty("user.home") + File.separator + "dmfData";
+    private static final String IMAGE_PATH = MAIN_PATH + File.separator + "images";
+
     private User user;
 
     /**
@@ -31,9 +41,22 @@ public final class DressControllerImpl implements DressController {
 
     }
 
+    private String saveImage(final File imagePath) {
+        try {
+            FileUtils.copyFile(imagePath,
+                    new File(IMAGE_PATH + File.separator + FilenameUtils.getName(imagePath.toString())));
+        } catch (IOException e) {
+            final RuntimeException e2 = new MyException(IMAGE_ERROR);
+            throw e2;
+        }
+
+        return IMAGE_PATH + File.separator + FilenameUtils.getName(imagePath.toString());
+
+    }
+
     @Override
-    public Status addDress(final String name, final String brand, final int size, final int price,
-            final Date purchaseDate, final String description, final Category categories) {
+    public Status addDress(final String name, final String brand, final Integer size, final Integer price,
+            final Date purchaseDate, final String description, final Category categories, final File image) {
         try {
             Objects.requireNonNull(user);
         } catch (Exception e) {
@@ -41,8 +64,9 @@ public final class DressControllerImpl implements DressController {
             throw e2;
         }
 
-        final Dress dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size)
-                .buildPrice(price).buildPurchaseDate(purchaseDate).buildDescription(description).build();
+        final Dress dress = new DressImpl.DressBuilder().buildImage(saveImage(image)).buildName(name).buildBrand(brand)
+                .buildSize(size).buildPrice(price).buildPurchaseDate(purchaseDate).buildDescription(description)
+                .build();
 
         return user.getWardobe().getCategories().addDressToCategory(dress, categories);
     }
@@ -88,6 +112,12 @@ public final class DressControllerImpl implements DressController {
     @Override
     public List<Dress> getAllDresses() {
         return user.getWardobe().getCategories().getAllDresses();
+    }
+
+    @Override
+
+    public int getNumberOfDresses() {
+        return getAllDresses().size();
     }
 
     @Override
@@ -162,8 +192,7 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status modifyDressCategory(final Dress dress, final Category category) {
-        // TODO Auto-generated method stub
-        return null;
+        return user.getWardobe().getCategories().modifyCategoryOfDress(dress, category);
     }
 
     @Override
@@ -173,8 +202,30 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status deleteDress(final Dress dress) {
+        try {
+            dress.getImage().delete();
+        } catch (Exception e) {
+            final RuntimeException e2 = new MyException(IMAGE_ERROR);
+            throw e2;
+        }
         return user.getWardobe().getCategories().getCategory(dress.getCategoryName()).removeDress(dress);
 
+    }
+
+    @Override
+    public void dressWorn(final Dress dress) {
+        dress.setWornCount();
+    }
+
+    @Override
+    public int numberTimeDressWorn(final Dress dress) {
+        return dress.getWornCount();
+    }
+
+    @Override
+    public List<String> getPopularBrand() {
+        user.getWardobe().getMostPopularBrand();
+        return null;
     }
 
 }

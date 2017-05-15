@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="750.0" prefWidth="1200.0" styleClass="pnlHome" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="leftMenu" BorderPane.alignment="CENTER">
+         <bottom>
+            <AnchorPane>
+               <children>
+                  <Button fx:id="btnUser" mnemonicParsing="false" onAction="#goUser" prefHeight="50.0" prefWidth="193.0" styleClass="btnUser" text="Button" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </AnchorPane>
+         </bottom>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="v-box-menu" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnHome" mnemonicParsing="false" onAction="#goHome" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Home" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnBrand" mnemonicParsing="false" onAction="#goBrand" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Brand" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnAddDress" mnemonicParsing="false" onAction="#goAddDress" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Add Dress" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnFavorite" mnemonicParsing="false" onAction="#goFavorite" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Favorite" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnOutfits" mnemonicParsing="false" onAction="#goOutfits" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Outfits" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnSize" mnemonicParsing="false" onAction="#goSize" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Size" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Button fx:id="btnCategory" mnemonicParsing="false" onAction="#goCategory" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Category" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </left>
+   <top>
+      <ToolBar styleClass="toolbar-header" BorderPane.alignment="CENTER">
+         <items>
+          <Button fx:id="btnGoBack" contentDisplay="TOP" mnemonicParsing="false" onAction="#goBack" text="&lt;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="btn-backahead" />
+                  <String fx:value="btn-back" />
+               </styleClass>
+            </Button>
+            <Button fx:id="btnGoAhead" mnemonicParsing="false" onAction="#goAhead" text="&gt;">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <styleClass>
+                  <String fx:value="btn-backahead" />
+                  <String fx:value="btn-ahead" />
+               </styleClass>
+            </Button>
+         </items>
+      </ToolBar>
+   </top>
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="15.0" layoutY="10.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
+               <children>
+                  <ScrollPane styleClass="scrollpane-user">
+                     <content>
+                        <VBox>
+                           <children>
+                              <Text fx:id="txtUser" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="main-title" text="User">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="info-underTitle" text="Registred the 27 April 2017">
+                                 <VBox.margin>
+                                    <Insets bottom="15.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Separator prefHeight="3.0" prefWidth="271.0" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-information-user" text="Information">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" top="30.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <HBox styleClass="vBox-info-user">
+                                 <children>
+                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
+                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="vBox-info-user">
+                                 <children>
+                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
+                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="vBox-info-user">
+                                 <children>
+                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
+                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="vBox-info-user">
+                                 <children>
+                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
+                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="vBox-info-user">
+                                 <children>
+                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
+                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="vBox-info-user">
+                                 <children>
+                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
+                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="vBox-info-user">
+                                 <children>
+                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
+                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="vBox-info-user">
+                                 <children>
+                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
+                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                 </children>
+                              </HBox>
+                              <Button mnemonicParsing="false" text="Logout">
+                                 <styleClass>
+                                    <String fx:value="btn-normal" />
+                                    <String fx:value="btn-logout" />
+                                 </styleClass>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="50.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children>
+         <styleClass>
+            <String fx:value="main-pane-user" />
+            <String fx:value="main-pane" />
+         </styleClass>
+      </AnchorPane>
+   </center>
+   <stylesheets>
+      <URL value="@../mainStyle.css" />
+      <URL value="@Category.css" />
+   </stylesheets>
+</BorderPane>

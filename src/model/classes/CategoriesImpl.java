@@ -1,5 +1,6 @@
 package model.classes;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -15,6 +16,10 @@ import model.interfaces.Dress;
  */
 public class CategoriesImpl implements Categories {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4635854653312351505L;
     private final Map<UUID, Dress> map;
 
     /**
@@ -32,7 +37,6 @@ public class CategoriesImpl implements Categories {
     @Override
     public Status removeDress(final Dress dress) {
         if (this.map.containsKey(dress.getId())) {
-            this.removeDressFromQueue(this.map.get(dress.getId()));
             this.map.remove(dress.getId());
             System.out.println(Status.DRESS_REMOVED.getText());
             return Status.DRESS_REMOVED;
@@ -46,7 +50,6 @@ public class CategoriesImpl implements Categories {
         if (!this.map.containsKey(id)) {
             dress.setCategoryName(categoryName);
             this.map.put(id, dress);
-            this.addDressToQueue(dress);
             System.out.println(Status.DRESS_ADDED.getText());
             return Status.DRESS_ADDED;
         }
@@ -57,7 +60,7 @@ public class CategoriesImpl implements Categories {
 
     @Override
     public Map<UUID, Dress> getAllDresses() {
-        return this.map;
+        return Collections.unmodifiableMap(this.map);
     }
 
     @Override
@@ -65,16 +68,34 @@ public class CategoriesImpl implements Categories {
         return "CategoryImpl [map=" + map + ", toString()=" + super.toString() + "]";
     }
 
-    private void addDressToQueue(final Dress dress) {
-        if (ModelSingleton.getInstance().getDressQueue().size() < 4) {
-            ModelSingleton.getInstance().getDressQueue().add(dress);
-        } else {
-            ModelSingleton.getInstance().getDressQueue().remove();
-            ModelSingleton.getInstance().getDressQueue().add(dress);
-        }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((map == null) ? 0 : map.hashCode());
+        return result;
     }
 
-    private void removeDressFromQueue(final Dress dress) {
-        ModelSingleton.getInstance().getDressQueue().remove(dress);
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof CategoriesImpl)) {
+            return false;
+        }
+        CategoriesImpl other = (CategoriesImpl) obj;
+        if (map == null) {
+            if (other.map != null) {
+                return false;
+            }
+        } else if (!map.equals(other.map)) {
+            return false;
+        }
+        return true;
     }
+
 }

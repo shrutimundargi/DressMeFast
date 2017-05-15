@@ -2,8 +2,10 @@ package model.interfaces;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
+import model.enumerations.Category;
 import model.enumerations.Status;
 
 /**
@@ -43,10 +45,12 @@ public interface Outfits extends Serializable {
     Outfits createOutfit(List<UUID> dressList);
 
     /**
+     * @param categoryMap
+     *            a container with all the dresses.
      *
      * @return a new outfit (generated).
      */
-    Outfits createOutfit();
+    Outfits createOutfit(Map<Category, Categories> categoryMap);
 
     /**
      * @param name

@@ -1,5 +1,7 @@
 package controller.saving;
 
+import java.util.Set;
+
 import model.enumerations.Status;
 import model.interfaces.User;
 
@@ -10,11 +12,11 @@ import model.interfaces.User;
 public interface SavingData {
 
     /**
-     * @param user
-     *            : the User who will be saved
+     * @param userSet
+     *            : the Users that will be saved
      * @return Return the status of the operation
      */
-    Status save(User user);
+    Status save(Set<User> userSet);
 
     /**
      * @return Return the status of the operation

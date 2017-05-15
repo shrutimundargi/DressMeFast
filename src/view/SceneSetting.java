@@ -11,26 +11,30 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.fxml.FXMLLoader;
 
+/**
+ * 
+ * Manage the the main important thing of the view.
+ *
+ */
 public class SceneSetting extends Application {
-	
-    private final Controller controller;
-	private final ScreenLoader loader;
+
+    private final SetupView setup;
+    private final ScreenLoader loader;
     private final Pane mainPane;
     private final Scene mainScene;
     private Stage primaryStage;
-    
-	
-	public SceneSetting(Controller controller) {
-        this.controller = controller;
+
+    /**
+     * 
+     * @param controller
+     */
+    public SceneSetting(final SetupView setup) {
+        this.setup = setup;
         this.mainPane = new StackPane();
         this.mainScene = new Scene(this.mainPane);
         loader = new ScreenLoader();
-	}
-	
-	/* (non-Javadoc)
-     * @see javafx.application.Application#start(javafx.stage.Stage)
-     */
-    
+    }
+
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -49,17 +53,19 @@ public class SceneSetting extends Application {
     }
 
     /**
-     * Display the main window
+     * Display the screen loaded in the @param primaryStage.
+     * @param screen that permit to call a 
      */
-    public void show(ScreensGraphic screen) {
+    public void show(final ScreensGraphic screen) {
         this.primaryStage.show();
-        controller.getUI(screen).showNowContent();
+        setup.getUI(screen).showNowContent();
     }
 
     /**
-     * @param screen the screen to display
+     * @param screen
+     *            the screen to display
      */
-    public void displayScreen(ScreensGraphic screen) {
+    public void displayScreen(final ScreensGraphic screen) {
         try {
             this.loader.loadScreen(screen, this.mainPane);
             show(screen);
@@ -70,11 +76,12 @@ public class SceneSetting extends Application {
     }
 
     /**
-     * Loads a screen ad sets its controller
-     * @param screen
-     * @param controller
+     * Loads a screen ad sets its controller.
+     * 
+     * @param screen that we wont to load
+     * @param controller of the specific screen
      */
-    public void loadScreen(ScreensGraphic screen, Object controller) {
+    public void loadScreen(final ScreensGraphic screen, final Object controller) {
         try {
             this.loader.loadFXMLInCache(screen, controller);
         } catch (IOException e) {

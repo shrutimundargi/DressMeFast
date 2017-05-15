@@ -1,9 +1,12 @@
 package model.classes;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
 
@@ -18,6 +21,10 @@ import model.interfaces.Wardrobe;
  */
 public class WardobeImpl implements Wardrobe {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4418864464274282296L;
     private final CategoriesManagement categoryManagement;
     private final OutfitsManagement outfitsManagement;
 
@@ -67,25 +74,34 @@ public class WardobeImpl implements Wardrobe {
 
     @Override
     public String getMostPopularBrand() {
-        // TODO Auto-generated method stub
-        return null;
+        List<Dress> dressList = new LinkedList<>();
+        Map<String, Integer> tmpMap = new HashMap<>();
+        Entry<String, Integer> maxEntry = null;
+
+        this.categoryManagement.getAllCategories().values().forEach(category -> {
+            category.getAllDresses().values().forEach(dress -> {
+                dressList.add(dress);
+            });
+        });
+
+        dressList.forEach(dress -> {
+            if (!tmpMap.containsKey(dress.getBrand())) {
+                tmpMap.put(dress.getBrand(), 0);
+            } else if (tmpMap.containsKey(dress.getBrand())) {
+                int tmp = tmpMap.get(dress.getBrand()).intValue();
+                tmp++;
+                tmpMap.put(dress.getBrand(), tmp);
+            }
+        });
+
+        for (Entry<String, Integer> entry : tmpMap.entrySet()) {
+            if (maxEntry == null || entry.getValue() > maxEntry.getValue()) {
+                maxEntry = entry;
+            }
+        }
+        return maxEntry.getKey();
     }
 
-    /*
-     * @Override public Set<String> getAllBrands() { final Set<String> allBrand
-     * = new HashSet<String>();
-     * ModelSingleton.getInstance().getDressList().forEach(dress ->
-     * allBrand.add(dress.getBrand())); return
-     * Collections.unmodifiableSet(allBrand); }
-     */
-
-    /*
-     * @Override public Set<Dress> getDressesOfBrand(final String brand) { final
-     * Set<Dress> dressesOfBrand = new HashSet<>();
-     * ModelSingleton.getInstance().getDressList().forEach(dress -> { if
-     * (dress.getBrand().equals(brand)) { dressesOfBrand.add(dress); } });
-     * return Collections.unmodifiableSet(dressesOfBrand); }
-     */
     @Override
     public Set<Dress> getDressesOfBrand(final String brand) {
         final Set<Dress> dressesOfBrand = new HashSet<>();
@@ -112,14 +128,6 @@ public class WardobeImpl implements Wardrobe {
         return Collections.unmodifiableSet(brands);
     }
 
-    /*
-     * @Override public Set<Integer> getAllSizes() { final Set<Integer> allSizes
-     * = new HashSet<Integer>();
-     * ModelSingleton.getInstance().getDressList().forEach(dress ->
-     * allSizes.add(dress.getSize())); return
-     * Collections.unmodifiableSet(allSizes); }
-     */
-
     @Override
     public Set<Integer> getAllSizes() {
         final Set<Integer> allSizes = new HashSet<>();
@@ -133,13 +141,6 @@ public class WardobeImpl implements Wardrobe {
 
     }
 
-    /*
-     * @Override public Set<Dress> getFavouritedDresses() { final Set<Dress>
-     * dressesFavourited = new HashSet<>();
-     * ModelSingleton.getInstance().getDressList().forEach(dress -> { if
-     * (dress.getFavourited().booleanValue()) { dressesFavourited.add(dress); }
-     * }); return Collections.unmodifiableSet(dressesFavourited); }
-     */
     @Override
     public Set<Dress> getFavouritedDresses() {
         final Set<Dress> dressesFavourited = new HashSet<>();
@@ -152,14 +153,6 @@ public class WardobeImpl implements Wardrobe {
         });
         return Collections.unmodifiableSet(dressesFavourited);
     }
-
-    /*
-     * @Override public Set<Dress> getDressesOfSize(final int size) { final
-     * Set<Dress> dressesOfSize = new HashSet<>();
-     * ModelSingleton.getInstance().getDressList().forEach(dress -> { if
-     * (dress.getSize().equals(size)) { dressesOfSize.add(dress); } }); return
-     * Collections.unmodifiableSet(dressesOfSize); }
-     */
 
     @Override
     public Set<Dress> getDressesOfSize(final int size) {
@@ -176,7 +169,51 @@ public class WardobeImpl implements Wardrobe {
 
     @Override
     public Queue<Dress> getLastAddedDresses() {
-        return ModelSingleton.getInstance().getDressQueue();
+        return this.categoryManagement.getLastDressesAdded();
+    }
+
+    @Override
+    public String toString() {
+        return "WardobeImpl [categoryManagement=" + categoryManagement + ", outfitsManagement=" + outfitsManagement
+                + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((categoryManagement == null) ? 0 : categoryManagement.hashCode());
+        result = prime * result + ((outfitsManagement == null) ? 0 : outfitsManagement.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof WardobeImpl)) {
+            return false;
+        }
+        WardobeImpl other = (WardobeImpl) obj;
+        if (categoryManagement == null) {
+            if (other.categoryManagement != null) {
+                return false;
+            }
+        } else if (!categoryManagement.equals(other.categoryManagement)) {
+            return false;
+        }
+        if (outfitsManagement == null) {
+            if (other.outfitsManagement != null) {
+                return false;
+            }
+        } else if (!outfitsManagement.equals(other.outfitsManagement)) {
+            return false;
+        }
+        return true;
     }
 
 }

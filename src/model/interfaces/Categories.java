@@ -1,5 +1,6 @@
 package model.interfaces;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.UUID;
 
@@ -10,7 +11,7 @@ import model.enumerations.Status;
  * The interface of a single Category.
  *
  */
-public interface Categories {
+public interface Categories extends Serializable {
 
     /**
      * @param dressId
