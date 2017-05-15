@@ -2,7 +2,7 @@ package model.interfaces;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import model.enumerations.Category;
@@ -48,7 +48,7 @@ public interface Dress extends Serializable {
     /**
      * @return the price of the dress.
      */
-    Date getPurchaseDate();
+    LocalDate getPurchaseDate();
 
     /**
      * @return the purchase date of the dress.
@@ -108,7 +108,7 @@ public interface Dress extends Serializable {
      *
      * @return the result of the operation
      */
-    Status setPurchaseDate(Date purchaseDate);
+    Status setPurchaseDate(LocalDate purchaseDate);
 
     /**
      * @param description

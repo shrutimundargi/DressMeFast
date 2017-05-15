@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 import model.enumerations.Category;
@@ -76,17 +77,89 @@ public class AIOutfit implements Outfits {
 
     @Override
     public Outfits createOutfit(final Map<Category, Categories> categoryMap) {
-        List<Dress> dressList = new LinkedList<Dress>();
-        categoryMap.values().forEach(category -> {
-            category.getAllDresses().values().forEach(dress -> {
-                dressList.add(dress);
-            });
+        List<Dress> dressHead = new LinkedList<>();
+        List<Dress> dressNeck = new LinkedList<>();
+        List<Dress> dressBody = new LinkedList<>();
+        List<Dress> dressHands = new LinkedList<>();
+        List<Dress> dressLegs = new LinkedList<>();
+        List<Dress> dressFoot = new LinkedList<>();
+        Random randomizer = new Random();
+
+        categoryMap.get(Category.HEAD).getAllDresses().values().forEach(dress -> {
+            dressHead.add(dress);
         });
-        dressList.forEach(dress -> {
-            if (dress.getFavourited().booleanValue()) {
-                this.outfit.add(dress.getId());
+
+        categoryMap.get(Category.NECK).getAllDresses().values().forEach(dress -> {
+            dressNeck.add(dress);
+        });
+
+        categoryMap.get(Category.BODY).getAllDresses().values().forEach(dress -> {
+            dressBody.add(dress);
+        });
+
+        categoryMap.get(Category.HANDS).getAllDresses().values().forEach(dress -> {
+            dressHands.add(dress);
+        });
+
+        categoryMap.get(Category.LEGS).getAllDresses().values().forEach(dress -> {
+            dressLegs.add(dress);
+        });
+
+        categoryMap.get(Category.FOOT).getAllDresses().values().forEach(dress -> {
+            dressFoot.add(dress);
+        });
+
+        Dress randomBodyDress = null;
+        if (dressBody.size() != 0) {
+            randomBodyDress = dressBody.get(randomizer.nextInt(dressBody.size()));
+            if (randomBodyDress.getFavourited().booleanValue() || randomBodyDress.getWornCount() == 0) {
+                this.outfit.add(randomBodyDress.getId());
             }
-        });
+        }
+        Dress randomLegsDress = null;
+        if (dressLegs.size() != 0 && randomBodyDress != null) {
+            randomLegsDress = dressLegs.get(randomizer.nextInt(dressLegs.size()));
+            if (randomLegsDress.getFavourited().booleanValue() || randomLegsDress.getWornCount() == 0
+                    || randomLegsDress.getBrand().equals(randomBodyDress.getBrand())
+                    || randomLegsDress.getSize().equals(randomBodyDress.getSize())) {
+                this.outfit.add(randomLegsDress.getId());
+            }
+        }
+
+        Dress randomHeadDress = null;
+        if (dressHead.size() != 0) {
+            randomHeadDress = dressHead.get(randomizer.nextInt(dressHead.size()));
+            if (randomHeadDress.getFavourited().booleanValue() || randomHeadDress.getWornCount() == 0) {
+                this.outfit.add(randomHeadDress.getId());
+            }
+        }
+
+        if (dressNeck.size() != 0 && randomHeadDress != null) {
+            Dress randomNeckDress = dressNeck.get(randomizer.nextInt(dressNeck.size()));
+            if (randomNeckDress.getFavourited().booleanValue() || randomHeadDress.getWornCount() == 0
+                    || randomNeckDress.getBrand().equals(randomHeadDress.getBrand())
+                    || randomNeckDress.getSize().equals(randomHeadDress.getSize())) {
+                this.outfit.add(randomNeckDress.getId());
+            }
+        }
+
+        if (dressHands.size() != 0) {
+            Dress randomHandsDress = dressHands.get(randomizer.nextInt(dressHands.size()));
+            if (randomHandsDress.getFavourited().booleanValue() || randomHeadDress.getWornCount() == 0
+                    || randomHandsDress.getBrand().equals(randomHeadDress.getBrand())
+                    || randomHandsDress.getSize().equals(randomHeadDress.getSize())) {
+                this.outfit.add(randomHandsDress.getId());
+            }
+        }
+
+        if (dressFoot.size() != 0) {
+            Dress randomFootDress = dressFoot.get(randomizer.nextInt(dressFoot.size()));
+            if (randomFootDress.getFavourited().booleanValue() || randomFootDress.getWornCount() == 0
+                    || randomFootDress.getBrand().equals(randomBodyDress.getBrand())
+                    || randomFootDress.getBrand().equals(randomLegsDress.getBrand())) {
+                this.outfit.add(randomFootDress.getId());
+            }
+        }
         return this;
     }
 
