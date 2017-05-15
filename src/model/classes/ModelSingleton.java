@@ -6,11 +6,11 @@ import java.util.Set;
 import model.interfaces.User;
 
 /**
- * A singleton class.
+ * A singleton class to store a multitude of users.
  *
  */
 
-public final class ModelSingleton {
+final class ModelSingleton {
 
     private Set<User> userSet;
 

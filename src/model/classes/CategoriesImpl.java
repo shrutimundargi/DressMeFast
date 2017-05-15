@@ -1,5 +1,6 @@
 package model.classes;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -15,6 +16,10 @@ import model.interfaces.Dress;
  */
 public class CategoriesImpl implements Categories {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4635854653312351505L;
     private final Map<UUID, Dress> map;
 
     /**
@@ -55,11 +60,42 @@ public class CategoriesImpl implements Categories {
 
     @Override
     public Map<UUID, Dress> getAllDresses() {
-        return this.map;
+        return Collections.unmodifiableMap(this.map);
     }
 
     @Override
     public String toString() {
         return "CategoryImpl [map=" + map + ", toString()=" + super.toString() + "]";
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((map == null) ? 0 : map.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof CategoriesImpl)) {
+            return false;
+        }
+        CategoriesImpl other = (CategoriesImpl) obj;
+        if (map == null) {
+            if (other.map != null) {
+                return false;
+            }
+        } else if (!map.equals(other.map)) {
+            return false;
+        }
+        return true;
+    }
+
 }

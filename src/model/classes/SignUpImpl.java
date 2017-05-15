@@ -13,7 +13,7 @@ public class SignUpImpl implements SignUp {
     private User user;
 
     /**
-     * Creates a container to store the users at the sign up step.
+     * Creates an empty user.
      */
     public SignUpImpl() {
         this.user = null;

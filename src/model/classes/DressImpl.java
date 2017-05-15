@@ -205,7 +205,7 @@ public final class DressImpl implements Dress {
         if (!(obj instanceof DressImpl)) {
             return false;
         }
-        final DressImpl other = (DressImpl) obj;
+        DressImpl other = (DressImpl) obj;
         if (brand == null) {
             if (other.brand != null) {
                 return false;
