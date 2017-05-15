@@ -59,12 +59,11 @@
 }
 
 .add-cont-title-info{
-	-fx-padding: 50 0 0 0;
+	-fx-padding: 50 0 10 0;
 }
 
 .pnl-image{
 	-fx-background-color: #333333;
-	-fx-margin: 10 100 10 100;
 	-fx-border-color: #8A8A8A;
    	-fx-border-radius: 4.0;
    	-fx-background-radius: 4px;
@@ -72,4 +71,94 @@
 
 .pnl-cont-image{
 	-fx-padding: 10 200 10 200;
+}
+
+.chb-category {
+  	-fx-background-color: #333333;
+	-fx-border-color: #8A8A8A;
+	-fx-border-radius: 4.0;
+   	-fx-background-radius: 4px;
+  	-fx-mark-color: white;
+  	-fx-pref-width: 150px;
+}
+
+.chb-category > .label { 
+	-fx-text-fill: white;
+}
+
+.chb-category .context-menu { 
+	-fx-background-color: #333333;
+	-fx-pref-width: 146px;
+}
+.chb-category .menu-item:focused { 
+	-fx-background-color: #424242;
+}
+.chb-category .menu-item > .label { 
+	-fx-text-fill: white;
+}
+.chb-category .menu-item:focused > .label { 
+	-fx-text-fill: white;
+}
+
+
+.text-field-add {
+	-fx-background-color: #333333;
+	-fx-border-color: #8A8A8A;
+	-fx-border-radius: 4.0;
+   	-fx-background-radius: 4px;
+  	-fx-max-width: 235px;
+  	-fx-text-fill: white;
+}
+
+.text-field-add:focused {
+    -fx-background-color: #424242;
+}
+
+.date-picker{
+	-fx-background-color: #333333;
+	-fx-border-color: #8A8A8A;
+	-fx-border-radius: 4.0;
+   	-fx-background-radius: 4px;
+  	-fx-pref-width: 235px;
+  	-fx-text-fill: white;
+}
+
+.date-picker .text-field {
+    -fx-control-inner-background: #333333;
+  	-fx-text-fill: white;
+}
+
+.check-box{
+
+}
+
+.check-box .box{
+	-fx-outer-border: #cadbec;
+	-fx-body-color: white;
+	-fx-background-insets: 0, 1;
+	-fx-background-radius: 2px, 0px;
+	-fx-control-inner-background: #333333;
+	-fx-border-color: #8A8A8A;
+	-fx-border-radius: 4.0;
+   	-fx-background-radius: 4px;
+}
+
+.check-box .mark {
+    -fx-shape:"M14.596,2.055L12.455,0C9.687,2.884,6.011,6.714,5.158,7.602L2.055,4.624L0,6.765l5.242,5.037l0.003-0.004
+    l0.003,0.004L14.596,2.055z";
+    -fx-scale-x: 2;
+    -fx-scale-y: 2;
+}
+
+.text-area{
+	-fx-control-inner-background: #333333;
+	-fx-border-color: #8A8A8A;
+	-fx-border-radius: 4.0;
+   	-fx-background-radius: 4px;
+  	-fx-max-width: 235px;
+  	-fx-text-fill: white;
+}
+
+.pnl-button-add{
+	-fx-padding: 30 0 15 0;
 }

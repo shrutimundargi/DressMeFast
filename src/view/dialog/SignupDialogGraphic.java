@@ -14,7 +14,7 @@ import view.UI;
  * Screen that appear when the User is register.
  *
  */
-public class SingupDialogGraphic implements UI {
+public class SignupDialogGraphic implements UI {
 
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.DIALOGSINGUP;
 
@@ -23,8 +23,6 @@ public class SingupDialogGraphic implements UI {
 
     @FXML
     private Label txtPopupName;
-    @FXML
-    private Text txtPopupPassw;
 
     /**
      * 
@@ -33,11 +31,11 @@ public class SingupDialogGraphic implements UI {
      * @param controller
      *            a reference of the instance of the class Controller
      */
-    public SingupDialogGraphic(final SceneSetting environment, final Controller controller) {
+    public SignupDialogGraphic(final SceneSetting environment, final Controller controller) {
         this.controller = controller;
         this.environment = environment;
         this.environment.loadScreen(ACTUALSCREEN, this);
-        txtPopupName.setWrapText(true);
+        txtPopupName.setWrapText(true); //Futile bug, because the txtPopupName is already initialized with the fxml code.
     }
 
     /**

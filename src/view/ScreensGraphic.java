@@ -1,5 +1,10 @@
 package view;
 
+/**
+ * 
+ * Enumeration to keep the information of every screen (.fxml, .css). 
+ *
+ */
 public enum ScreensGraphic {
 
     /**
@@ -10,12 +15,12 @@ public enum ScreensGraphic {
     /**
      * Sing up scene.
      */
-    SINGUP("/view/singup/Singup.fxml", "/view/singup/Singup.css"),
+    SINGUP("/view/singup/Signup.fxml", "/view/singup/Signup.css"),
 
     /**
      * Dialog scene after the sing in.
      */
-    DIALOGSINGUP("/view/dialog/SingupDialog.fxml", "/view/dialog/SingupDialog.css"),
+    DIALOGSINGUP("/view/dialog/SignupDialog.fxml", "/view/dialog/SignupDialog.css"),
 
     /**
      * Home scene.
