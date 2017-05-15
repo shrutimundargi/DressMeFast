@@ -1,7 +1,7 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .main-pane-user{
 	-fx-background-color: #292929;
-	-fx-padding: 9 0 10 30;
+	-fx-padding: 9 0 9 0;
 }
 
 .pnl-center{
@@ -27,61 +27,73 @@
 	
 }
 
+.pnl-main-title{
+	-fx-padding: 0 0 20 0;
+}
+
 .info-underTitle{
-    -fx-fill: #A9A9A9;
+    -fx-fill: #C4C4C4;
 	-fx-font-size: 13.0px;
 }
 
-.text-information-user{
-	-fx-fill: white;
-	-fx-font-size: 30px;
+.text-description{
+	-fx-text-fill: white;
+	-fx-font-size: 16 px;
 	-fx-padding: 17 0 15 0;
 }
 
-.vBox-info-user{
-	-fx-padding: 20 0 20 0;
+.sep-title{
+	-fx-padding: 10 250 10 250;
 }
 
-.lbl-user-info{
-    -fx-text-fill: #C4C4C4;
-	-fx-font-size: 19.0px;
-	-fx-padding: 0;
+.sep-title .line{
+	-fx-border-color: #878787;
+	-fx-border-width: 1 0 0 0;
+
 }
 
-.lbl-user-theInfo{
-	-fx-text-fill: #C4C4C4;
-	-fx-font-size: 20.0px;
-	-fx-padding: 0 0 0 15;
-}
 
-.btn-press{
-	-fx-background-color:none;
-    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-font-size: 14.0px;
-    -fx-padding: 10.0 20.0 10.0 20.0;
-    -fx-border-color: white;
-   	-fx-border-radius: 4.0;
-}
-
-.btn-press:hover {
-   	-fx-background-color: #464C51;
-}
-
-.btnBT{
-	-fx-background-color: none;
-    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
-    -fx-font-weight: bold;
-    -fx-font-size: 14.0px;
-    -fx-text-fill: grey;
-    -fx-padding: 0.0 20.0 0.0 13.0;
-}
-
-.btnBT:hover {
-    -fx-text-fill: white;
-}
-
-.btn-logout{
+.add-title-info{
+	-fx-fill: white;
+	-fx-font-size: 24.0px;
 	
+}
+
+.add-cont-title-info{
+	-fx-padding: 10 0 20 0;
+}
+
+.vbox-select-cat{
+	-fx-background-color: #424242;
+	-fx-padding: 17 0 23 0;
+}
+
+.pnl-category-chb{
+	
+}
+.chb-category {
+  	-fx-background-color: #333333;
+	-fx-border-color: #8A8A8A;
+	-fx-border-radius: 4.0;
+   	-fx-background-radius: 4px;
+  	-fx-mark-color: white;
+  	-fx-pref-width: 150px;
+}
+
+.chb-category > .label { 
+	-fx-text-fill: white;
+}
+
+.chb-category .context-menu { 
+	-fx-background-color: #333333;
+	-fx-pref-width: 146px;
+}
+.chb-category .menu-item:focused { 
+	-fx-background-color: #424242;
+}
+.chb-category .menu-item > .label { 
+	-fx-text-fill: white;
+}
+.chb-category .menu-item:focused > .label { 
+	-fx-text-fill: white;
 }

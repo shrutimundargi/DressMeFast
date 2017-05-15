@@ -3,6 +3,7 @@ package view.add;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Date;
 import java.util.Locale;
 
 import controller.Controller;
@@ -42,6 +43,10 @@ import view.generalUI.ProgramUIImpl;
  *
  */
 public class AddGraphic extends ProgramUIImpl implements UI {
+    private static final String ADD_TITLE_INFO_STYLE = "add-title-info";
+    private static final String ADD_CONT_TITLE_INFO_STYLE = "add-cont-title-info";
+    private static final String REMEMBER = "Remember, ";
+    private static final String OPSSS = "Opsss, ";
     private static final String ONLYNUMBER = "[0-9]*";
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.ADD;
     private static final String NAMEOFSCREEN = "Add Item";
@@ -55,14 +60,16 @@ public class AddGraphic extends ProgramUIImpl implements UI {
 
     @FXML
     private ScrollPane scrollPnl;
+
     private Image imgItem;
+    private File imgFile;
     private final ImageView imvItem;
     private final StackPane imageStackPnl;
     private final ChoiceBox<Category> chbCategory;
     private final TextField txfName;
     private final TextField txfBrand;
     private final TextField txfSize;
-    private final TextField txfPrize;
+    private final TextField txfPrice;
     private final DatePicker dtpDate;
     private final CheckBox ckbFavorite;
     private final TextArea txaInfo;
@@ -84,10 +91,10 @@ public class AddGraphic extends ProgramUIImpl implements UI {
 
         /* Container (PANE) */
         final VBox vBox = new VBox();
-        final StackPane titleStackPnl = new StackPane();
 
         /* Title_______________ */
         final Text titlePane = new Text(NAMEOFSCREEN);
+        final StackPane titleStackPnl = new StackPane();
         titlePane.getStyleClass().add("main-title");
         titleStackPnl.getChildren().add(titlePane);
         /* ____________________ */
@@ -110,7 +117,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         chbCategory = new ChoiceBox<Category>();
         final StackPane pnlCategoryTitle = new StackPane();
         final StackPane pnlCategoryChb = new StackPane();
-        txtCategory.getStyleClass().add("add-title-info");  //NOPMD - because I need to add the same style to more elements
+        txtCategory.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlCategoryTitle.getStyleClass().add("add-cont-title-info-first");
         chbCategory.getStyleClass().add("chb-category");
 
@@ -132,15 +139,15 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         imageStackPnl.getStyleClass().add("pnl-image");
         btnRemoveImage.getStyleClass().add("btn-normal");
         btnRemoveImage.getStyleClass().add("btn-small");
-        txtImage.getStyleClass().add("add-title-info");
-        pnlImageTitle.getStyleClass().add("add-cont-title-info");
+        txtImage.getStyleClass().add(ADD_TITLE_INFO_STYLE);
+        pnlImageTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
         pnlImage.getStyleClass().add("pnl-cont-image");
         pnlImageTitle.getChildren().add(txtImage);
         pnlImage.getChildren().add(imageStackPnl);
         pnlButtonRemoveImage.getChildren().add(btnRemoveImage);
 
         btnRemoveImage.setOnAction((event) -> {
-            this.removeImage(imvItem, imageStackPnl);
+            removeTheImage(imvItem, imageStackPnl);
         });
 
         imageStackPnl.setOnDragOver(new EventHandler<DragEvent>() {
@@ -170,9 +177,9 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         txfName = new TextField();
         final StackPane pnlNameTitle = new StackPane();
         final StackPane pnlNameTxf = new StackPane();
-        txtName.getStyleClass().add("add-title-info");
-        pnlNameTitle.getStyleClass().add("add-cont-title-info");
-        txfName.getStyleClass().add("text-field-add"); //NOPMD - because I need to add the same style to more elements
+        txtName.getStyleClass().add(ADD_TITLE_INFO_STYLE);
+        pnlNameTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
+        txfName.getStyleClass().add("text-field-add");
         txfName.setMaxWidth(PREFSIZE_TEXT);
         pnlNameTitle.getChildren().add(txtName);
         pnlNameTxf.getChildren().add(txfName);
@@ -183,8 +190,8 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         txfBrand = new TextField();
         final StackPane pnlBrandTitle = new StackPane();
         final StackPane pnlBrandTxf = new StackPane();
-        txtBrand.getStyleClass().add("add-title-info");
-        pnlBrandTitle.getStyleClass().add("add-cont-title-info");
+        txtBrand.getStyleClass().add(ADD_TITLE_INFO_STYLE);
+        pnlBrandTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
         txfBrand.getStyleClass().add("text-field-add");
         txfBrand.setMaxWidth(PREFSIZE_TEXT);
         pnlBrandTitle.getChildren().add(txtBrand);
@@ -196,25 +203,25 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         txfSize = new TextField();
         final StackPane pnlSizeTitle = new StackPane();
         final StackPane pnlSizeTxf = new StackPane();
-        txtSize.getStyleClass().add("add-title-info");
-        pnlSizeTitle.getStyleClass().add("add-cont-title-info");
+        txtSize.getStyleClass().add(ADD_TITLE_INFO_STYLE);
+        pnlSizeTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
         txfSize.getStyleClass().add("text-field-add");
         txfSize.setMaxWidth(PREFSIZE_TEXT);
         pnlSizeTitle.getChildren().add(txtSize);
         pnlSizeTxf.getChildren().add(txfSize);
         /* ____________________ */
 
-        /* Prize_______________ */
-        final Text txtPrize = new Text("prize");
-        txfPrize = new TextField();
-        final StackPane pnlPrizeTitle = new StackPane();
-        final StackPane pnlPrizeTxf = new StackPane();
-        txtPrize.getStyleClass().add("add-title-info");
-        pnlPrizeTitle.getStyleClass().add("add-cont-title-info");
-        txfPrize.getStyleClass().add("text-field-add");
-        txfPrize.setMaxWidth(PREFSIZE_TEXT);
-        pnlPrizeTitle.getChildren().add(txtPrize);
-        pnlPrizeTxf.getChildren().add(txfPrize);
+        /* Price_______________ */
+        final Text txtPrice = new Text("Price");
+        txfPrice = new TextField();
+        final StackPane pnlPriceTitle = new StackPane();
+        final StackPane pnlPriceTxf = new StackPane();
+        txtPrice.getStyleClass().add(ADD_TITLE_INFO_STYLE);
+        pnlPriceTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
+        txfPrice.getStyleClass().add("text-field-add");
+        txfPrice.setMaxWidth(PREFSIZE_TEXT);
+        pnlPriceTitle.getChildren().add(txtPrice);
+        pnlPriceTxf.getChildren().add(txfPrice);
         /* ____________________ */
 
         /* Date_______________ */
@@ -222,8 +229,8 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         dtpDate = new DatePicker();
         final StackPane pnlDateTitle = new StackPane();
         final StackPane pnlDateTxf = new StackPane();
-        txtDate.getStyleClass().add("add-title-info");
-        pnlDateTitle.getStyleClass().add("add-cont-title-info");
+        txtDate.getStyleClass().add(ADD_TITLE_INFO_STYLE);
+        pnlDateTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
         dtpDate.getStyleClass().add("date-picker");
         pnlDateTitle.getChildren().add(txtDate);
         pnlDateTxf.getChildren().add(dtpDate);
@@ -234,8 +241,8 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         ckbFavorite = new CheckBox();
         final StackPane pnlFavoriteTitle = new StackPane();
         final StackPane pnlFavoriteCkb = new StackPane();
-        txtFavorite.getStyleClass().add("add-title-info");
-        pnlFavoriteTitle.getStyleClass().add("add-cont-title-info");
+        txtFavorite.getStyleClass().add(ADD_TITLE_INFO_STYLE);
+        pnlFavoriteTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
         ckbFavorite.getStyleClass().add("check-box");
         pnlFavoriteTitle.getChildren().add(txtFavorite);
         pnlFavoriteCkb.getChildren().add(ckbFavorite);
@@ -246,9 +253,9 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         txaInfo = new TextArea();
         final StackPane pnlInfoTitle = new StackPane();
         final StackPane pnlInfoTxa = new StackPane();
-        txtInfo.getStyleClass().add("add-title-info");
-        pnlInfoTitle.getStyleClass().add("add-cont-title-info");
-        txaInfo.getStyleClass().add("text-area");
+        txtInfo.getStyleClass().add(ADD_TITLE_INFO_STYLE);
+        pnlInfoTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
+        txaInfo.getStyleClass().add("text-field-add-info");
         pnlInfoTitle.getChildren().add(txtInfo);
         pnlInfoTxa.getChildren().add(txaInfo);
         /* ____________________ */
@@ -264,44 +271,52 @@ public class AddGraphic extends ProgramUIImpl implements UI {
             final Alert alertOk = new Alert(AlertType.INFORMATION);
             alertEr.setTitle("Error Dialog");
             alertEr.setHeaderText("There's somthing wrong!");
-            String messageContentError = "Opsss, ";
+            String messageNecessaryField = OPSSS;
+            String messageNumericField = REMEMBER;
+            String messageFinal = "";
+            // Check if all the necessary field are filled
             if (chbCategory.getValue() == null && imvItem.getImage() == null) {
-                messageContentError += "you need to select a category and a photo of the item.";
+                messageNecessaryField += "you need to select a category and a photo of the item.";
             } else if (chbCategory.getValue() == null) {
-                messageContentError += "you need to select a category.";
+                messageNecessaryField += "you need to select a category.";
             } else if (imvItem.getImage() == null) {
-                messageContentError += "you need insert a photo.";
+                messageNecessaryField += "you need insert a photo.";
             }
 
-            if (!messageContentError.equals("Opsss, ")) {
-                alertEr.setContentText(messageContentError);
+            // Check if all the numeric filed are correct
+            if (!txfPrice.getText().equals("") || !txfSize.getText().equals("")) {
+                if (!txfPrice.getText().matches(ONLYNUMBER) && !txfSize.getText().matches(ONLYNUMBER)) {
+                    messageNumericField += "are allow only numeric character in the fields Price and Size";
+                } else if (!txfPrice.getText().matches(ONLYNUMBER)) {
+                    messageNumericField += "are allow only numeric character in the fild Price";
+                } else if (!txfSize.getText().matches(ONLYNUMBER)) {
+                    messageNumericField += "are allow only numeric character in the fild Size";
+                }
+            }
+
+            if (!messageNecessaryField.equals(OPSSS) && !messageNumericField.equals(REMEMBER)) {
+                messageFinal = messageNecessaryField + " " + messageNumericField;
+            } else if (!messageNecessaryField.equals(OPSSS) && messageNumericField.equals(REMEMBER)) {
+                messageFinal = messageNecessaryField;
+            } else if (messageNecessaryField.equals(OPSSS) && !messageNumericField.equals(REMEMBER)) {
+                messageFinal = messageNumericField;
+            }
+
+            if (!messageFinal.equals("")) {
+                alertEr.setContentText(messageFinal);
                 alertEr.showAndWait();
             } else {
-                if (!txfPrize.getText().equals("") || !txfSize.getText().equals("")) {
-                    if (!txfPrize.getText().matches(ONLYNUMBER) && !txfSize.getText().matches(ONLYNUMBER)) {
-                        messageContentError += "you need to insert only number in the fild Prize and Size";
-                    } else if (!txfPrize.getText().matches(ONLYNUMBER)) {
-                        messageContentError += "you need to insert only number in the fild Prize";
-                    } else if (!txfSize.getText().matches(ONLYNUMBER)) {
-                        messageContentError += "you need to insert only number in the fild Size";
-                    }
-
-                    if (!messageContentError.equals("Opsss, ")) {
-                        alertEr.setContentText(messageContentError);
-                        alertEr.showAndWait();
-                        return;
-                    }
-                }
                 alertOk.setTitle("Information Dialog");
                 alertOk.setHeaderText("Yea, you added your item");
                 alertOk.setContentText("The item is add in the category " + chbCategory.getValue() + "!");
+                System.out.println(dtpDate.getValue());
 
-                /*
-                 * super.getController().dress().addDress(txfName.getText(),
-                 * txfBrand.getText(), Integer.valueOf(txfSize.getText()),
-                 * Integer.valueOf(txtPrize.getText()), dtpDate.getValue(),
-                 * txaInfo.getText(), chbCategory.getValue());
-                 */
+                // super.getController().dress().addDress(txfName.getText(),
+                // txfBrand.getText(),
+                // Integer.valueOf(txfSize.getText()),
+                // Integer.valueOf(txtPrice.getText()), dtpDate.getValue(),
+                // txaInfo.getText(), chbCategory.getValue(), imgFile);
+                this.restField();
                 alertOk.showAndWait();
             }
 
@@ -323,8 +338,8 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         vBox.getChildren().add(pnlBrandTxf);
         vBox.getChildren().add(pnlSizeTitle);
         vBox.getChildren().add(pnlSizeTxf);
-        vBox.getChildren().add(pnlPrizeTitle);
-        vBox.getChildren().add(pnlPrizeTxf);
+        vBox.getChildren().add(pnlPriceTitle);
+        vBox.getChildren().add(pnlPriceTxf);
         vBox.getChildren().add(pnlDateTitle);
         vBox.getChildren().add(pnlDateTxf);
         vBox.getChildren().add(pnlFavoriteTitle);
@@ -344,10 +359,15 @@ public class AddGraphic extends ProgramUIImpl implements UI {
     @Override
     public void showNowContent() {
         super.setupColorButtonsBH();
+        this.restField();
+    }
 
-        /* Reset the value */
+    /**
+     * Reset all value in the field.
+     */
+    public final void restField() {
         chbCategory.setValue(null);
-        this.removeImage(imvItem, imageStackPnl);
+        this.removeTheImage(imvItem, imageStackPnl);
         txfBrand.clear();
         txfSize.clear();
         dtpDate.setValue(null);
@@ -387,7 +407,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
      * @param pane
      *            is the StackPane
      */
-    public void removeImage(final ImageView imageView, final StackPane pane) {
+    public final void removeTheImage(final ImageView imageView, final StackPane pane) {
         if (imageView.getImage() != null) {
             imageView.setImage(null);
             pane.setStyle("-fx-background-color: #333333; -fx-border-color: #8A8A8A; -fx-border-radius: 4.0;"
@@ -419,17 +439,17 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         if (db.hasFiles()) {
             success = true;
             // Only get the first file from the list
-            final File file = db.getFiles().get(0);
+            imgFile = db.getFiles().get(0);
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println(file.getAbsolutePath());
+                    System.out.println(imgFile.getAbsolutePath());
                     try {
                         if (!pane.getChildren().isEmpty()) {
                             pane.getChildren().remove(0);
                         }
 
-                        imgItem = new Image(new FileInputStream(file.getAbsolutePath()));
+                        imgItem = new Image(new FileInputStream(imgFile.getAbsolutePath()));
                         addImage(imgItem, imageView, pane);
                     } catch (FileNotFoundException ex) {
                         ex.printStackTrace();

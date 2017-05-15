@@ -71,7 +71,7 @@ public class SavingDataImpl implements SavingData {
     @SuppressWarnings("unchecked")
     @Override
     public Information load(final UserManagement userM) {
-        try (ObjectInputStream inS = new ObjectInputStream(
+        /*try (ObjectInputStream inS = new ObjectInputStream(
                 new BufferedInputStream(new FileInputStream(new File(MAIN_PATH + "test.dat"))))) {
             try {
                 userM.setUsers((Set<User>) inS.readObject());
@@ -85,7 +85,7 @@ public class SavingDataImpl implements SavingData {
         } catch (IOException e) {
             final RuntimeException e2 = new MyException("loading problem");
             throw e2;
-        }
+        }*/
         return Information.LOADING_OK;
     }
 

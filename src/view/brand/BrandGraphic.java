@@ -1,6 +1,30 @@
 package view.brand;
 
+import java.util.Set;
+import java.util.stream.DoubleStream;
+import java.util.stream.Stream;
+
 import controller.Controller;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import model.enumerations.Category;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
@@ -14,8 +38,13 @@ import view.generalUI.ProgramUIImpl;
  */
 public class BrandGraphic extends ProgramUIImpl implements UI {
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.BRAND;
+    private static final String NAMEOFSCREEN = "Brand";
+    private static final String DESCRIPTIONOFPANE = "In this page you can select the category and see all the item of its!";
 
-
+    @FXML
+    private ScrollPane scrollPnl;
+    private VBox vBox;
+    private final ChoiceBox<Category> chbCategory;
 
     /**
      * 
@@ -32,10 +61,84 @@ public class BrandGraphic extends ProgramUIImpl implements UI {
         this.getSceneSetting().loadScreen(ACTUALSCREEN, this);
         super.getBtnBrand().setStyle("-fx-background-image: url('/images/clothes.png');");
 
+        /* Container (PANE) */
+        vBox = new VBox();
+
+        /* Title_______________ */
+        final Text titlePane = new Text(NAMEOFSCREEN);
+        final StackPane titleStackPnl = new StackPane();
+        titlePane.getStyleClass().add("main-title");
+        titleStackPnl.getStyleClass().add("pnl-main-title");
+        titleStackPnl.getChildren().add(titlePane);
+        /* ____________________ */
+
+        /* Select Category___________ */
+        final Text txtCategory = new Text("Select the Category");
+        chbCategory = new ChoiceBox<Category>();
+        final StackPane pnlCategoryTitle = new StackPane();
+        final StackPane pnlCategoryChb = new StackPane();
+        final VBox vboxSelectCat = new VBox();
+        txtCategory.getStyleClass().add("add-title-info");
+        pnlCategoryTitle.getStyleClass().add("add-cont-title-info");
+        pnlCategoryChb.getStyleClass().add("pnl-category-chb");
+        chbCategory.getStyleClass().add("chb-category");
+        vboxSelectCat.getStyleClass().add("vbox-select-cat");
+        chbCategory.getItems().setAll(Category.values());
+        pnlCategoryTitle.getChildren().add(txtCategory);
+        pnlCategoryChb.getChildren().add(chbCategory);
+
+        vboxSelectCat.getChildren().add(pnlCategoryTitle);
+        vboxSelectCat.getChildren().add(pnlCategoryChb);
+
+        /* ____________________ */
+
+        vBox.getChildren().add(titleStackPnl);
+        vBox.getChildren().add(vboxSelectCat);
+
+        vBox.setVgrow(scrollPnl, javafx.scene.layout.Priority.ALWAYS);
+        /* ___________________________________________ */
+        scrollPnl.setFitToWidth(true);
+        // scrollPnl.setFitToHeight(true);
+        scrollPnl.setContent(vBox);
+
+        chbCategory.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                showItemOfCategory(chbCategory.getItems().get((Integer) number2));
+            }
+        });
     }
 
     @Override
     public void showNowContent() {
         super.setupColorButtonsBH();
+    }
+
+    public void showItemOfCategory(Category cat) {
+        Set<String> nameBrands = super.getController().dress().getAllBrand();
+        int nBrands = nameBrands.size();
+        for (int i = 0; i < nBrands; i++) {
+            GridPane root = new GridPane();
+
+            root.getColumnConstraints().addAll(DoubleStream.of(33, 33, 33).mapToObj(width -> {
+                ColumnConstraints constraints = new ColumnConstraints();
+                constraints.setPercentWidth(width);
+                constraints.setFillWidth(true);
+                return constraints;
+            }).toArray(ColumnConstraints[]::new));
+
+            RowConstraints rowConstraints = new RowConstraints();
+            rowConstraints.setVgrow(Priority.ALWAYS);
+
+            root.getRowConstraints().add(rowConstraints);
+
+            root.add(new Button("1"), 0, 0);
+            root.add(new Button("2"), 1, 0);
+            root.add(new Button("3"), 2, 0);
+        }
+    }
+
+    public void prvItem() {
+
     }
 }
