@@ -16,7 +16,7 @@ import view.UI;
  */
 public class SignupDialogGraphic implements UI {
 
-    private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.DIALOGSINGUP;
+    private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.DIALOGSIGNUP;
 
     private final SceneSetting environment;
     private final Controller controller;

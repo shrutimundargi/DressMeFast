@@ -15,12 +15,12 @@ public enum ScreensGraphic {
     /**
      * Sing up scene.
      */
-    SINGUP("/view/singup/Signup.fxml", "/view/singup/Signup.css"),
+    SIGNUP("/view/signup/Signup.fxml", "/view/signup/Signup.css"),
 
     /**
      * Dialog scene after the sing in.
      */
-    DIALOGSINGUP("/view/dialog/SignupDialog.fxml", "/view/dialog/SignupDialog.css"),
+    DIALOGSIGNUP("/view/dialog/SignupDialog.fxml", "/view/dialog/SignupDialog.css"),
 
     /**
      * Home scene.
