@@ -1,10 +1,15 @@
 package controller.dress;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
 import controller.exception.MyException;
 import model.classes.DressImpl;
@@ -20,6 +25,11 @@ import model.interfaces.User;
  */
 public final class DressControllerImpl implements DressController {
     private static final String USER_ERROR = "User not found, you can't add a dress without a user";
+    private static final String IMAGE_ERROR = "Impossible to save an immage";
+
+    private static final String MAIN_PATH = System.getProperty("user.home") + File.separator + "dmfData";
+    private static final String IMAGE_PATH = MAIN_PATH + File.separator + "images";
+
     private User user;
 
     /**
@@ -31,18 +41,31 @@ public final class DressControllerImpl implements DressController {
 
     }
 
+    private String saveImage(final File imagePath) {
+        try {
+            FileUtils.copyFile(imagePath,
+                    new File(IMAGE_PATH + File.separator + FilenameUtils.getName(imagePath.toString())));
+        } catch (IOException e) {
+            final RuntimeException e2 = new MyException(IMAGE_ERROR);
+            throw e2;
+        }
+
+        return IMAGE_PATH + File.separator + FilenameUtils.getName(imagePath.toString());
+
+    }
+
     @Override
-    public Status addDress(final String name, final String brand, final int size, final int price,
-            final Date purchaseDate, final String description, final Category categories) {
+    public Status addDress(final String name, final String brand, final Integer size, final Integer price,
+            final Date purchaseDate, final String description, final Category categories, final File image) {
         try {
             Objects.requireNonNull(user);
         } catch (Exception e) {
             final RuntimeException e2 = new MyException(USER_ERROR);
             throw e2;
         }
-
-        final Dress dress = new DressImpl.DressBuilder().buildName(name).buildBrand(brand).buildSize(size)
-                .buildPrice(price).buildPurchaseDate(purchaseDate).buildDescription(description).build();
+        final Dress dress = new DressImpl.DressBuilder().buildImage(saveImage(image)).buildName(name).buildBrand(brand)
+                .buildSize(size).buildPrice(price).buildPurchaseDate(purchaseDate).buildDescription(description)
+                .build();
 
         return user.getWardobe().getCategories().addDressToCategory(dress, categories);
     }
