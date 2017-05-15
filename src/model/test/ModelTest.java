@@ -33,23 +33,32 @@ import model.interfaces.Wardrobe;
  */
 public final class ModelTest {
 
+    private static final int NUMBER_OF_DRESSES = 5;
+    private final Wardrobe wardrobe = new WardobeImpl();
+    private final Date date = new Date();
+    private final UserManagement userManagement = new UserManagementImpl();
+    private final List<UUID> someDresses = new LinkedList<>();
+    private Outfits firstOutfit;
+    private Outfits secondOutfit;
     private static final int SIZE = 44;
     private static final int PRICE = 80;
 
     /**
-     * Test the creation of a dress and its insertion in a category.
+     * Tests the creation of a user.
      */
     @Test
-    public void testCategory() {
-
-        final Wardrobe wardrobe = new WardobeImpl();
-        final Date date = new Date();
-        final UserManagement userManagement = new UserManagementImpl();
-        final List<UUID> someDresses = new LinkedList<>();
-        Outfits firstOutfit;
-        Outfits secondOutfit;
+    public void testUser() {
         assertEquals(Status.USER_REGISTERED, (userManagement.addUser("pop", "palla")));
         assertEquals(Status.DUPLICATED_USER, (userManagement.addUser("pop", "palla")));
+        assertEquals(Status.USERNAME_ALREADY_TAKEN, (userManagement.addUser("pop", "prova")));
+    }
+
+    /**
+     * Tests the creation of a dress, its insertion in a category, the creation
+     * of an outfit and the essentials methods.
+     */
+    @Test
+    public void testCategoryAndOutfit() {
 
         wardrobe.getCategories().initializeAllCategories();
         wardrobe.getOutfits().initializeAllOutfits();
@@ -60,6 +69,8 @@ public final class ModelTest {
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.HANDS));
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.LEGS));
         assertTrue(wardrobe.getCategories().getAllCategories().keySet().contains(Category.NECK));
+        assertTrue(wardrobe.getOutfits().getAllOutfits().keySet().contains(Outfit.AI));
+        assertTrue(wardrobe.getOutfits().getAllOutfits().keySet().contains(Outfit.USER));
 
         final Dress dress = new DressImpl.DressBuilder().buildBrand("Lee").buildDescription("Ruined Jeans")
                 .buildName("Fav Jeans").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
@@ -98,63 +109,62 @@ public final class ModelTest {
         final Dress dress4 = new DressImpl.DressBuilder().buildBrand("Denny Rose").buildDescription("nice jeans")
                 .buildName("White Jeans").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
 
-        wardrobe.getCategories().addDressToCategory(dress, Category.HEAD);
+        wardrobe.getCategories().addDressToCategory(dress, Category.LEGS);
         System.out.println(dress.getCategoryName().getCategoryName());
-        wardrobe.getCategories().addDressToCategory(dress2, Category.HEAD);
+        wardrobe.getCategories().addDressToCategory(dress2, Category.LEGS);
         System.out.println(dress2.getCategoryName().getCategoryName());
         wardrobe.getCategories().addDressToCategory(dress1, Category.BODY);
         System.out.println(dress1.getCategoryName().getCategoryName());
         wardrobe.getCategories().addDressToCategory(dress3, Category.HEAD);
         System.out.println(dress3.getCategoryName().getCategoryName());
         wardrobe.getCategories().addDressToCategory(dress4, Category.LEGS);
-        assertNotNull((wardrobe.getCategories().getAllCategories().get(Category.HEAD).getDress(dress.getId())));
+
+        assertNotNull((wardrobe.getCategories().getAllCategories().get(Category.LEGS).getDress(dress.getId())));
         assertTrue(
-                wardrobe.getCategories().getAllCategories().get(Category.HEAD).getDress(dress.getId()).equals(dress));
-        assertNotNull((wardrobe.getCategories().getAllCategories().get(Category.HEAD).getDress(dress2.getId())));
+                wardrobe.getCategories().getAllCategories().get(Category.LEGS).getDress(dress.getId()).equals(dress));
+        assertNotNull((wardrobe.getCategories().getAllCategories().get(Category.LEGS).getDress(dress2.getId())));
         assertTrue(
-                wardrobe.getCategories().getAllCategories().get(Category.HEAD).getDress(dress2.getId()).equals(dress2));
+                wardrobe.getCategories().getAllCategories().get(Category.LEGS).getDress(dress2.getId()).equals(dress2));
         assertNotNull((wardrobe.getCategories().getAllCategories().get(Category.BODY).getDress(dress1.getId())));
         assertTrue(
                 wardrobe.getCategories().getAllCategories().get(Category.BODY).getDress(dress1.getId()).equals(dress1));
-        System.out.println("Prova getAllDresses\n\n");
-        System.out.println(wardrobe.getCategories().getAllDresses());
-        System.out.println(wardrobe.getCategories().getAllDresses().size());
-        System.out.println((wardrobe.countDresses()));
-        System.out.println(wardrobe.getCategories().getAllCategories().toString());
-        wardrobe.getCategories().getCategory(Category.HEAD).getDress(dress.getId()).setName("new name");
-        System.out.println(wardrobe.getCategories().getCategory(Category.HEAD).getDress(dress.getId()));
-        System.out.println("Prova modifyCategoryOfDress\n\n");
-        wardrobe.getCategories().modifyCategoryOfDress(dress, Category.LEGS);
-        assertTrue(wardrobe.getCategories().getAllCategories().get(Category.LEGS).getAllDresses()
+
+        assertEquals(NUMBER_OF_DRESSES, wardrobe.getCategories().getAllDresses().size());
+        assertEquals(NUMBER_OF_DRESSES, wardrobe.countDresses());
+
+        wardrobe.getCategories().getCategory(Category.LEGS).getDress(dress.getId()).setName("new name");
+        assertTrue(wardrobe.getCategories().getCategory(Category.LEGS).getDress(dress.getId()).getName()
+                .equals("new name"));
+
+        wardrobe.getCategories().modifyCategoryOfDress(dress, Category.HEAD);
+        assertTrue(wardrobe.getCategories().getAllCategories().get(Category.HEAD).getAllDresses()
                 .containsKey(dress.getId()));
-        assertFalse(wardrobe.getCategories().getAllCategories().get(Category.HEAD).getAllDresses()
+        assertFalse(wardrobe.getCategories().getAllCategories().get(Category.LEGS).getAllDresses()
                 .containsKey(dress.getId()));
+
         wardrobe.getCategories().removeDressFromCategory(dress, dress.getCategoryName());
         assertNull((wardrobe.getCategories().getAllCategories().get(Category.HEAD).getDress(dress.getId())));
-        System.out.println((wardrobe.countDresses()));
-        System.out.println("\n\n" + wardrobe.getCategories().getAllCategories().toString());
+        assertEquals(4, wardrobe.countDresses());
+
         final Set<String> brands = wardrobe.getAllBrands();
         System.out.println(brands.toString());
-        System.out.println("prova dresses of brand");
         final Set<Dress> dressesOfBrand = wardrobe.getDressesOfBrand("Levis");
         System.out.println(dressesOfBrand.toString());
-        // System.out.println(ModelSingleton.getInstance().getDressQueue().toString());
         assertTrue(wardrobe.getMostPopularBrand().equals("Denny Rose"));
-        System.out.println("\n\n\n\n\n");
 
         someDresses.add(dress1.getId());
         someDresses.add(dress2.getId());
         dress3.setFavourited(true);
         firstOutfit = new UserOutfit().createOutfit(someDresses);
         wardrobe.getOutfits().addOutfit(firstOutfit, Outfit.USER);
-        System.out.println(wardrobe.countOutfits());
+        assertEquals(1, wardrobe.countOutfits());
         secondOutfit = new AIOutfit().createOutfit(wardrobe.getCategories().getAllCategories());
         wardrobe.getOutfits().addOutfit(secondOutfit, Outfit.AI);
-        System.out.println(wardrobe.countOutfits());
+        assertEquals(2, wardrobe.countOutfits());
         System.out.println(secondOutfit.getOutfit().toString());
         assertTrue(secondOutfit.getOutfit().contains(dress3.getId()));
         wardrobe.getOutfits().removeOutfit(firstOutfit, Outfit.USER);
-        System.out.println(wardrobe.countOutfits());
+        assertEquals(1, wardrobe.countOutfits());
 
     }
 }
