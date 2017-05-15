@@ -3,7 +3,7 @@ package controller.tester;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,7 +35,7 @@ public class Tester {
     private static final String ARMANI = "armani";
     private static final int NUMBER_OF_DRESSES_ADDED = 5;
     private final Controller cont = ControllerImpl.getInstance();
-    private final Date data = new Date();
+    private final LocalDate data = LocalDate.now();
     private UUID id;
 
     /**

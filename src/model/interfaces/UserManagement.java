@@ -23,10 +23,10 @@ public interface UserManagement {
 
     /**
      * @param name
-     *        the name of the user to get.
+     *            the name of the user to get.
      *
      * @param password
-     *        the password of the user to get.
+     *            the password of the user to get.
      *
      * @return the user specified by the parameters.
      */
@@ -46,4 +46,10 @@ public interface UserManagement {
      * @return all the users stored.
      */
     Set<User> getUsersSet();
+
+    /**
+     * @param usersSet
+     *            the container of users to set.
+     */
+    void setUsers(Set<User> usersSet);
 }

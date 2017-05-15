@@ -2,7 +2,7 @@ package controller.dress;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -56,13 +56,14 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status addDress(final String name, final String brand, final Integer size, final Integer price,
-            final Date purchaseDate, final String description, final Category categories, final File image) {
+            final LocalDate purchaseDate, final String description, final Category categories, final File image) {
         try {
             Objects.requireNonNull(user);
         } catch (Exception e) {
             final RuntimeException e2 = new MyException(USER_ERROR);
             throw e2;
         }
+
         final Dress dress = new DressImpl.DressBuilder().buildImage(saveImage(image)).buildName(name).buildBrand(brand)
                 .buildSize(size).buildPrice(price).buildPurchaseDate(purchaseDate).buildDescription(description)
                 .build();
@@ -150,7 +151,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Date getDressPurchaseDate(final Dress dress) {
+    public LocalDate getDressPurchaseDate(final Dress dress) {
         return dress.getPurchaseDate();
     }
 
@@ -180,7 +181,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Status modifyDressPurchaseDate(final Dress dress, final Date data) {
+    public Status modifyDressPurchaseDate(final Dress dress, final LocalDate data) {
         return dress.setPurchaseDate(data);
     }
 
@@ -201,6 +202,12 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status deleteDress(final Dress dress) {
+        try {
+            dress.getImage().delete();
+        } catch (Exception e) {
+            final RuntimeException e2 = new MyException(IMAGE_ERROR);
+            throw e2;
+        }
         return user.getWardobe().getCategories().getCategory(dress.getCategoryName()).removeDress(dress);
 
     }

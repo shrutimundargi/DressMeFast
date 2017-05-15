@@ -1,7 +1,7 @@
 package controller.dress;
 
 import java.io.File;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -41,7 +41,7 @@ public interface DressController {
      *         Return DRESS_NOT_ADDED if there is a problem with the adding
      *         otherwise return DRESS_ADDED
      */
-    Status addDress(String name, String brand, Integer size, Integer price, Date purchaseDate, String description,
+    Status addDress(String name, String brand, Integer size, Integer price, LocalDate purchaseDate, String description,
             Category categories, File image);
 
     /**
@@ -137,7 +137,7 @@ public interface DressController {
      *            : dress
      * @return Return the purchase date of the dress
      */
-    Date getDressPurchaseDate(Dress dress);
+    LocalDate getDressPurchaseDate(Dress dress);
 
     /**
      * @param dress
@@ -195,7 +195,7 @@ public interface DressController {
      *         <P>
      *         If everything goes well return CHANGE_SUCCESFULL
      */
-    Status modifyDressPurchaseDate(Dress dress, Date data);
+    Status modifyDressPurchaseDate(Dress dress, LocalDate data);
 
     /**
      * @param dress
