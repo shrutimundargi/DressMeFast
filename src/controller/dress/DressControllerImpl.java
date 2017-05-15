@@ -2,7 +2,7 @@ package controller.dress;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -56,7 +56,7 @@ public final class DressControllerImpl implements DressController {
 
     @Override
     public Status addDress(final String name, final String brand, final Integer size, final Integer price,
-            final Date purchaseDate, final String description, final Category categories, final File image) {
+            final LocalDate purchaseDate, final String description, final Category categories, final File image) {
         try {
             Objects.requireNonNull(user);
         } catch (Exception e) {
@@ -151,7 +151,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Date getDressPurchaseDate(final Dress dress) {
+    public LocalDate getDressPurchaseDate(final Dress dress) {
         return dress.getPurchaseDate();
     }
 
@@ -181,7 +181,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Status modifyDressPurchaseDate(final Dress dress, final Date data) {
+    public Status modifyDressPurchaseDate(final Dress dress, final LocalDate data) {
         return dress.setPurchaseDate(data);
     }
 

@@ -68,12 +68,13 @@ public class SavingDataImpl implements SavingData {
         return Information.SAVING_OK;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public Information load(final UserManagement userM) {
         try (ObjectInputStream inS = new ObjectInputStream(
                 new BufferedInputStream(new FileInputStream(new File(MAIN_PATH + "test.dat"))))) {
             try {
-                inS.readObject();
+                userM.setUsers((Set<User>) inS.readObject());
             } catch (ClassNotFoundException e) {
                 final RuntimeException e2 = new MyException("impossible to read file");
                 throw e2;
