@@ -82,4 +82,5 @@ public interface OutfitsManagement extends Serializable {
      * @return the last outfits added.
      */
     Queue<Outfits> getLastOutfitsAdded();
+
 }

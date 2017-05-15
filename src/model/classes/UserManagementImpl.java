@@ -49,4 +49,12 @@ public class UserManagementImpl implements UserManagement {
     public User getLoginUser() {
         return login.getUser();
     }
+
+    @Override
+    public void setUsers(final Set<User> usersSet) {
+        if (usersSet.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+        ModelSingleton.getInstance().setUsers(usersSet);
+    }
 }
