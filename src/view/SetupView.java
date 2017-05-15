@@ -13,12 +13,12 @@ import javafx.stage.Stage;
 import view.add.AddGraphic;
 import view.brand.BrandGraphic;
 import view.category.CategoryGraphic;
-import view.dialog.SingupDialogGraphic;
+import view.dialog.SignupDialogGraphic;
 import view.favorite.FavoriteGraphic;
 import view.home.HomeGraphic;
 import view.login.LoginGraphic;
 import view.outfits.OutfitsGraphic;
-import view.singup.SingupGraphic;
+import view.signup.SignupGraphic;
 import view.size.SizeGraphic;
 import view.user.UserGraphic;
 
@@ -31,8 +31,8 @@ public class SetupView {
     private Controller controller;
     private SceneSetting sceneSetting;
     private LoginGraphic loginGraphic;
-    private SingupGraphic singupGraphic;
-    private SingupDialogGraphic singupPopUpGraphic;
+    private SignupGraphic singupGraphic;
+    private SignupDialogGraphic singupPopUpGraphic;
     private HomeGraphic homeGraphic;
     private UserGraphic userGraphic;
     private BrandGraphic brandGraphic;
@@ -64,10 +64,10 @@ public class SetupView {
         this.loginGraphic = new LoginGraphic(sceneSetting, controller);
         screenUI.put(ScreensGraphic.LOGIN, loginGraphic);
 
-        this.singupGraphic = new SingupGraphic(sceneSetting, controller);
+        this.singupGraphic = new SignupGraphic(sceneSetting, controller);
         screenUI.put(ScreensGraphic.SINGUP, singupGraphic);
 
-        this.singupPopUpGraphic = new SingupDialogGraphic(sceneSetting, controller);
+        this.singupPopUpGraphic = new SignupDialogGraphic(sceneSetting, controller);
         screenUI.put(ScreensGraphic.DIALOGSINGUP, singupPopUpGraphic);
 
         this.homeGraphic = new HomeGraphic(sceneSetting, controller, this);

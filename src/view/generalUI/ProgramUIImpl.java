@@ -116,16 +116,20 @@ public class ProgramUIImpl implements ProgramUI {
 
     @Override
     public void goBack(final ActionEvent event) {
-        ScreensGraphic sgBack = setup.getScreenBack();
-        this.setup.addScreenAhead(actualScreen, sgBack);
-        this.environment.displayScreen(sgBack);
+        if (setup.haveBackQueue()) {
+            ScreensGraphic sgBack = setup.getScreenBack();
+            this.setup.addScreenAhead(actualScreen, sgBack);
+            this.environment.displayScreen(sgBack);
+        }
     }
 
     @Override
     public void goAhead(final ActionEvent event) {
-        ScreensGraphic sgAhead = setup.getScreenAhead();
-        this.addScreenBack(sgAhead);
-        this.environment.displayScreen(sgAhead);
+        if (setup.haveAheadQueue()) {
+            ScreensGraphic sgAhead = setup.getScreenAhead();
+            this.addScreenBack(sgAhead);
+            this.environment.displayScreen(sgAhead);
+        }
     }
 
     @Override

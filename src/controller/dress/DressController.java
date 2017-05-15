@@ -1,5 +1,6 @@
 package controller.dress;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -33,13 +34,15 @@ public interface DressController {
      *            : description
      * @param categories
      *            : categories
+     * @param image
+     *            : the image
      * @return the status of adding a dress operation
      *         <P>
      *         Return DRESS_NOT_ADDED if there is a problem with the adding
      *         otherwise return DRESS_ADDED
      */
-    Status addDress(String name, String brand, int size, int price, Date purchaseDate, String description,
-            Category categories);
+    Status addDress(String name, String brand, Integer size, Integer price, Date purchaseDate, String description,
+            Category categories, File image);
 
     /**
      * @param brandName
@@ -212,7 +215,8 @@ public interface DressController {
      *            : new category
      * @return the status of the modify dress category operation
      *         <P>
-     *         If everything goes well return DRESS_MODIFIED otherwise DRESS_NOT_MODIFIED
+     *         If everything goes well return DRESS_MODIFIED otherwise
+     *         DRESS_NOT_MODIFIED
      */
     Status modifyDressCategory(Dress dress, Category category);
 
