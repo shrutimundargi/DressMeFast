@@ -60,6 +60,8 @@ public class Tester {
 
         checkOutfits();
 
+        cont.saveData();
+
     }
 
     private UUID addtIdDess(final Category categories) {
