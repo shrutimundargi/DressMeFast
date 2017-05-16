@@ -31,8 +31,8 @@ public class SetupView {
     private Controller controller;
     private SceneSetting sceneSetting;
     private LoginGraphic loginGraphic;
-    private SignupGraphic singupGraphic;
-    private SignupDialogGraphic singupPopUpGraphic;
+    private SignupGraphic signupGraphic;
+    private SignupDialogGraphic signupPopUpGraphic;
     private HomeGraphic homeGraphic;
     private UserGraphic userGraphic;
     private BrandGraphic brandGraphic;
@@ -61,14 +61,15 @@ public class SetupView {
 
         this.controller = controller;
         this.sceneSetting = new SceneSetting(this);
+
         this.loginGraphic = new LoginGraphic(sceneSetting, controller);
         screenUI.put(ScreensGraphic.LOGIN, loginGraphic);
 
-        this.singupGraphic = new SignupGraphic(sceneSetting, controller);
-        screenUI.put(ScreensGraphic.SINGUP, singupGraphic);
+        this.signupGraphic = new SignupGraphic(sceneSetting, controller);
+        screenUI.put(ScreensGraphic.SIGNUP, signupGraphic);
 
-        this.singupPopUpGraphic = new SignupDialogGraphic(sceneSetting, controller);
-        screenUI.put(ScreensGraphic.DIALOGSINGUP, singupPopUpGraphic);
+        this.signupPopUpGraphic = new SignupDialogGraphic(sceneSetting, controller);
+        screenUI.put(ScreensGraphic.DIALOGSIGNUP, signupPopUpGraphic);
 
         this.homeGraphic = new HomeGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.HOME, homeGraphic);

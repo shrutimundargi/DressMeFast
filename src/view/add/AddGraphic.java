@@ -3,7 +3,6 @@ package view.add;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Date;
 import java.util.Locale;
 
 import controller.Controller;
@@ -177,6 +176,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         txfName = new TextField();
         final StackPane pnlNameTitle = new StackPane();
         final StackPane pnlNameTxf = new StackPane();
+
         txtName.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlNameTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
         txfName.getStyleClass().add("text-field-add");

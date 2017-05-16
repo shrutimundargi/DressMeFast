@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashSet;
 import java.util.Set;
 
 import controller.exception.MyException;
@@ -55,7 +56,7 @@ public class SavingDataImpl implements SavingData {
     @Override
     public Information save(final Set<User> userSet) {
         try (ObjectOutputStream outS = new ObjectOutputStream(
-                new BufferedOutputStream(new FileOutputStream(new File(MAIN_PATH + "test.dat"))))) {
+                new BufferedOutputStream(new FileOutputStream(new File(MAIN_PATH + File.separator + "test.dat"))))) {
             outS.writeObject(userSet);
         } catch (FileNotFoundException e) {
             final RuntimeException e2 = new MyException("file not found");
@@ -71,12 +72,16 @@ public class SavingDataImpl implements SavingData {
     @SuppressWarnings("unchecked")
     @Override
     public Information load(final UserManagement userM) {
-        /*try (ObjectInputStream inS = new ObjectInputStream(
-                new BufferedInputStream(new FileInputStream(new File(MAIN_PATH + "test.dat"))))) {
+
+        if (!new File(MAIN_PATH + File.separator +  "test.dat").exists()) {
+            return save(new HashSet<User>());
+        }
+        try (ObjectInputStream inS = new ObjectInputStream(
+                new BufferedInputStream(new FileInputStream(new File(MAIN_PATH + File.separator  + "test.dat"))))) {
             try {
                 userM.setUsers((Set<User>) inS.readObject());
             } catch (ClassNotFoundException e) {
-                final RuntimeException e2 = new MyException("impossible to read file");
+                final RuntimeException e2 = new MyException("impossible read file");
                 throw e2;
             }
         } catch (FileNotFoundException e) {
@@ -85,7 +90,7 @@ public class SavingDataImpl implements SavingData {
         } catch (IOException e) {
             final RuntimeException e2 = new MyException("loading problem");
             throw e2;
-        }*/
+        }
         return Information.LOADING_OK;
     }
 
