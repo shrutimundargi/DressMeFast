@@ -90,7 +90,7 @@ public class LoginGraphic implements UI {
      */
     @FXML
     public void goToSingup(ActionEvent event) {
-        this.environment.displayScreen(ScreensGraphic.SINGUP);
+        this.environment.displayScreen(ScreensGraphic.SIGNUP);
     }
 
     @Override

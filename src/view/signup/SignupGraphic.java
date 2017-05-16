@@ -34,7 +34,7 @@ import javafx.event.ActionEvent;
  */
 public class SignupGraphic implements UI {
 
-    private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.SINGUP;
+    private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.SIGNUP;
     private static final int MIN_LENGTH = 5;
 
     private static SceneSetting viewM;
@@ -112,8 +112,8 @@ public class SignupGraphic implements UI {
             if (controller.userController().signUp(user, passw) == Status.DUPLICATED_USER) {
                 txtErrUser.setText(Status.DUPLICATED_USER.getText());
             } else {
-                this.environment.displayScreen(ScreensGraphic.DIALOGSINGUP);
-                this.controller.getUI(ScreensGraphic.DIALOGSINGUP).showNowContent();
+                this.environment.displayScreen(ScreensGraphic.DIALOGSIGNUP);
+                this.controller.getUI(ScreensGraphic.DIALOGSIGNUP).showNowContent();
             }
         }
     }
@@ -132,6 +132,6 @@ public class SignupGraphic implements UI {
     @Override
     public void showNowContent() {
         // TODO Auto-generated method stub
-        
+
     }
 }
