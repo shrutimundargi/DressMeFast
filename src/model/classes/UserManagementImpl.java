@@ -52,9 +52,6 @@ public class UserManagementImpl implements UserManagement {
 
     @Override
     public void setUsers(final Set<User> usersSet) {
-        if (usersSet.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
         ModelSingleton.getInstance().setUsers(usersSet);
     }
 }
