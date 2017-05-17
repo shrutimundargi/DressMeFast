@@ -54,6 +54,7 @@ public class UserImpl implements User {
         return "UserImpl [userName=" + userName + ", userPassword=" + userPassword + ", wardrobe=" + wardrobe + "]";
     }
 
+    @Override
     public LocalDate getSignUpDate() {
         return this.signUpDate;
     }
