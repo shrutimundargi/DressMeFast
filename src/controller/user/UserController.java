@@ -1,5 +1,7 @@
 package controller.user;
 
+import java.time.LocalDate;
+
 import model.enumerations.Status;
 import model.interfaces.User;
 
@@ -53,5 +55,10 @@ public interface UserController {
      * @return Return the user
      */
     User getUser();
+
+    /**
+     * @return Return the date of registration
+     */
+    LocalDate getSingUpDate();
 
 }
