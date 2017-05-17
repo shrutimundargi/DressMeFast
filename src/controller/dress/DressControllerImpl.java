@@ -251,4 +251,24 @@ public final class DressControllerImpl implements DressController {
         return null;
     }
 
+    @Override
+    public Set<String> getAllBrandName(final Category categoryName) {
+        return user.getWardobe().getBrandsOfCategory(categoryName);
+    }
+
+    @Override
+    public Set<Dress> getAllBrandDress(final Category categoryName, final String brand) {
+        return user.getWardobe().getDressesOfBrandAndCategory(categoryName, brand);
+    }
+
+    @Override
+    public Set<Integer> getAllSizeName(final Category categoryName) {
+        return user.getWardobe().getSizesOfCategory(categoryName);
+    }
+
+    @Override
+    public Set<Dress> getAllSizeDress(final Category categoryName, final int size) {
+        return user.getWardobe().getDressesOfSizeAndCategory(categoryName, size);
+    }
+
 }
