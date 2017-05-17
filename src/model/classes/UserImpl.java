@@ -1,5 +1,7 @@
 package model.classes;
 
+import java.time.LocalDate;
+
 import model.interfaces.User;
 import model.interfaces.Wardrobe;
 
@@ -13,6 +15,7 @@ public class UserImpl implements User {
      * 
      */
     private static final long serialVersionUID = 1075178897632172278L;
+    private LocalDate signUpDate;
     private final String userName;
     private final String userPassword;
     private final Wardrobe wardrobe;
@@ -25,6 +28,7 @@ public class UserImpl implements User {
      *            the user's password.
      */
     public UserImpl(final String userName, final String userPassword) {
+        this.signUpDate = LocalDate.now();
         this.userName = userName;
         this.userPassword = userPassword;
         this.wardrobe = new WardobeImpl();
@@ -48,6 +52,10 @@ public class UserImpl implements User {
     @Override
     public String toString() {
         return "UserImpl [userName=" + userName + ", userPassword=" + userPassword + ", wardrobe=" + wardrobe + "]";
+    }
+
+    public LocalDate getSignUpDate() {
+        return this.signUpDate;
     }
 
     @Override
