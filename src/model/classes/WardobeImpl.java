@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
 
+import model.enumerations.Category;
 import model.interfaces.CategoriesManagement;
 import model.interfaces.Dress;
 import model.interfaces.OutfitsManagement;
@@ -165,6 +166,48 @@ public class WardobeImpl implements Wardrobe {
             });
         });
         return Collections.unmodifiableSet(dressesOfSize);
+    }
+
+    @Override
+    public Set<String> getBrandsOfCategory(final Category category) {
+        final Set<String> brandsOfCategory = new HashSet<>();
+        this.categoryManagement.getCategory(category).getAllDresses().values().forEach(dress -> {
+            if (!dress.getBrand().isEmpty()) {
+                brandsOfCategory.add(dress.getBrand());
+            }
+        });
+        return Collections.unmodifiableSet(brandsOfCategory);
+    }
+
+    @Override
+    public Set<Dress> getDressesOfBrandAndCategory(final Category category, final String brand) {
+        final Set<Dress> dressesOfBrandAndCategory = new HashSet<>();
+        this.categoryManagement.getCategory(category).getAllDresses().values().forEach(dress -> {
+            if (dress.getBrand().equals(brand)) {
+                dressesOfBrandAndCategory.add(dress);
+            }
+        });
+        return Collections.unmodifiableSet(dressesOfBrandAndCategory);
+    }
+
+    @Override
+    public Set<Integer> getSizesOfCategory(final Category category) {
+        final Set<Integer> sizesOfCategory = new HashSet<>();
+        this.categoryManagement.getCategory(category).getAllDresses().values().forEach(dress -> {
+            sizesOfCategory.add(dress.getSize());
+        });
+        return Collections.unmodifiableSet(sizesOfCategory);
+    }
+
+    @Override
+    public Set<Dress> getDressesOfSizeAndCategory(final Category category, final int size) {
+        final Set<Dress> dressesOfSizesAndCategory = new HashSet<>();
+        this.categoryManagement.getCategory(category).getAllDresses().values().forEach(dress -> {
+            if (dress.getSize().equals(size)) {
+                dressesOfSizesAndCategory.add(dress);
+            }
+        });
+        return Collections.unmodifiableSet(dressesOfSizesAndCategory);
     }
 
     @Override
