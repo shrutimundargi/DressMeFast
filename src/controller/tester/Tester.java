@@ -61,7 +61,6 @@ public class Tester {
         checkOutfits();
 
         cont.saveData();
-
     }
 
     private UUID addtIdDess(final Category categories) {
@@ -153,12 +152,12 @@ public class Tester {
     }
 
     private void checkGetAll() {
-        final Set<String> brandSet = new HashSet<>();
+        Set<String> brandSet = new HashSet<>();
         brandSet.add(ARMANI);
         brandSet.add("Lee");
         brandSet.add("rayban");
         brandSet.add("nike");
-
+        brandSet = cont.dress().getAllBrand();
         assertEquals(brandSet, cont.dress().getAllBrand());
     }
 
