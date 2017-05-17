@@ -117,12 +117,6 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Set<Dress> getDressesResearch() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public Set<Categories> getAllCategory() {
         return new HashSet<>(user.getWardobe().getCategories().getAllCategories().values());
 

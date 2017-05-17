@@ -66,11 +66,6 @@ public interface DressController {
     Set<Dress> getDressesOfSize(int size);
 
     /**
-     * @return A set of all dresses research
-     */
-    Set<Dress> getDressesResearch();
-
-    /**
      * @return All categories
      */
     Set<Categories> getAllCategory();
