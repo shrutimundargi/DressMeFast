@@ -8,7 +8,6 @@ import controller.dress.DressControllerImpl;
 import controller.outfits.OutfitsController;
 import controller.outfits.OutfitsControllerImpl;
 import controller.saving.Information;
-import controller.saving.SavingData;
 import controller.saving.SavingDataImpl;
 import controller.user.UserController;
 import controller.user.UserControllerImpl;
@@ -30,14 +29,12 @@ public final class ControllerImpl implements Controller {
 
     private final UserController userCtr;
     private final UserManagement userM;
-    private final SavingData save;
     private final Map<ScreensGraphic, UI> map;
 
     private ControllerImpl() {
-        save = new SavingDataImpl();
-        userCtr = new UserControllerImpl();
-        map = new HashMap<>();
         userM = new UserManagementImpl();
+        userCtr = new UserControllerImpl(userM);
+        map = new HashMap<>();
         loadData();
     }
 
@@ -49,12 +46,12 @@ public final class ControllerImpl implements Controller {
     }
 
     private void loadData() {
-        save.load(userM);
+        new SavingDataImpl().load(userM);
     }
 
     @Override
     public Information saveData() {
-        return save.save(userM.getUsersSet());
+        return new SavingDataImpl().save(userM.getUsersSet());
     }
 
     @Override
