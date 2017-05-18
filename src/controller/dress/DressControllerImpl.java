@@ -42,15 +42,44 @@ public final class DressControllerImpl implements DressController {
     }
 
     private String saveImage(final File imagePath) {
-        try {
-            FileUtils.copyFile(imagePath,
-                    new File(IMAGE_PATH + File.separator + FilenameUtils.getName(imagePath.toString())));
-        } catch (IOException e) {
-            final RuntimeException e2 = new MyException(IMAGE_ERROR);
-            throw e2;
-        }
+        File oldImagePath = imagePath;
+        final File[] imageFolder = new File(MAIN_PATH + File.separator + "images" + File.separator).listFiles();
+        int cont = 0;
+        if (new File(IMAGE_PATH + File.separator + FilenameUtils.getName(imagePath.toString())).exists()) {
+            for (final File files : imageFolder) {
 
-        return IMAGE_PATH + File.separator + FilenameUtils.getName(imagePath.toString());
+                final String firstImageName = FilenameUtils.getName(files.toString());
+                final String[] onlyName = firstImageName.split("_copy");
+                final String secondImageName = FilenameUtils.getName(imagePath.toString());
+                final String[] onlyName2 = secondImageName.split(".jpg");
+                if (onlyName[0].equals(onlyName2[0])) {
+                    cont++;
+                }
+
+            }
+            String[] newName = new File(IMAGE_PATH + File.separator + FilenameUtils.getName(oldImagePath.toString()))
+                    .getAbsolutePath().split(".jpg");
+            newName[0] += "_copy_" + cont + ".jpg";
+            oldImagePath = new File(newName[0]);
+            try {
+
+                FileUtils.copyFile(imagePath, oldImagePath);
+                return oldImagePath.getPath().toString();
+            } catch (IOException e) {
+                final RuntimeException e2 = new MyException(IMAGE_ERROR);
+                throw e2;
+            }
+
+        } else {
+            try {
+                FileUtils.copyFile(oldImagePath,
+                        new File(IMAGE_PATH + File.separator + FilenameUtils.getName(oldImagePath.toString())));
+                return IMAGE_PATH + File.separator + FilenameUtils.getName(oldImagePath.toString());
+            } catch (IOException e) {
+                final RuntimeException e2 = new MyException(IMAGE_ERROR);
+                throw e2;
+            }
+        }
 
     }
 
@@ -85,12 +114,6 @@ public final class DressControllerImpl implements DressController {
     @Override
     public Set<Dress> getDressesOfSize(final int size) {
         return user.getWardobe().getDressesOfSize(size);
-    }
-
-    @Override
-    public Set<Dress> getDressesResearch() {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override
@@ -226,6 +249,26 @@ public final class DressControllerImpl implements DressController {
     public List<String> getPopularBrand() {
         user.getWardobe().getMostPopularBrand();
         return null;
+    }
+
+    @Override
+    public Set<String> getAllBrandName(final Category categoryName) {
+        return user.getWardobe().getBrandsOfCategory(categoryName);
+    }
+
+    @Override
+    public Set<Dress> getAllBrandDress(final Category categoryName, final String brand) {
+        return user.getWardobe().getDressesOfBrandAndCategory(categoryName, brand);
+    }
+
+    @Override
+    public Set<Integer> getAllSizeName(final Category categoryName) {
+        return user.getWardobe().getSizesOfCategory(categoryName);
+    }
+
+    @Override
+    public Set<Dress> getAllSizeDress(final Category categoryName, final int size) {
+        return user.getWardobe().getDressesOfSizeAndCategory(categoryName, size);
     }
 
 }

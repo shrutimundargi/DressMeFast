@@ -1,6 +1,7 @@
 package controller.user;
 
-import model.classes.UserManagementImpl;
+import java.time.LocalDate;
+
 import model.enumerations.Status;
 import model.interfaces.User;
 import model.interfaces.UserManagement;
@@ -18,11 +19,12 @@ public final class UserControllerImpl implements UserController {
     private final UserManagement userM;
 
     /**
-     * 
+     * @param userManag
+     *            : an instance of User management
      */
-    public UserControllerImpl() {
+    public UserControllerImpl(final UserManagement userManag) {
         statusInizializedCategoryAndOutfits = STATUS_INIT;
-        userM = new UserManagementImpl();
+        userM = userManag;
     }
 
     @Override
@@ -71,6 +73,11 @@ public final class UserControllerImpl implements UserController {
     @Override
     public User getUser() {
         return user;
+    }
+
+    @Override
+    public LocalDate getSingUpDate() {
+        return user.getSignUpDate();
     }
 
 }

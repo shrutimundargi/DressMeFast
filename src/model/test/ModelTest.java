@@ -151,6 +151,18 @@ public final class ModelTest {
         final Set<Dress> dressesOfBrand = wardrobe.getDressesOfBrand("Levis");
         System.out.println(dressesOfBrand.toString());
         assertTrue(wardrobe.getMostPopularBrand().equals("Denny Rose"));
+        final Set<String> brandsOfCategory = wardrobe.getBrandsOfCategory(Category.LEGS);
+        System.out.println("\n\n\n\n\n");
+        System.out.println(brandsOfCategory.toString());
+        final Set<Dress> dressesOfBrandAndCategory = wardrobe.getDressesOfBrandAndCategory(Category.LEGS, "Denny Rose");
+        assertTrue(dressesOfBrandAndCategory.contains(dress2));
+        assertTrue(dressesOfBrandAndCategory.contains(dress4));
+        final Set<Integer> sizesOfCategory = wardrobe.getSizesOfCategory(Category.HEAD);
+        System.out.println(sizesOfCategory.toString());
+        final Set<Dress> dressesOfSizeAndCategory = wardrobe.getDressesOfSizeAndCategory(Category.LEGS, SIZE);
+        assertTrue(dressesOfSizeAndCategory.contains(dress2));
+        assertTrue(dressesOfSizeAndCategory.contains(dress4));
+        assertEquals(2, dressesOfSizeAndCategory.size());
 
         someDresses.add(dress1.getId());
         someDresses.add(dress2.getId());

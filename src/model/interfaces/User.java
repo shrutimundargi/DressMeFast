@@ -1,12 +1,18 @@
 package model.interfaces;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * This interface of an User.
  *
  */
 public interface User extends Serializable {
+
+    /**
+     * @return the date of the user's registration.
+     */
+    LocalDate getSignUpDate();
 
     /**
      * @return the name of the user.

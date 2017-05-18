@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.Queue;
 import java.util.Set;
 
+import model.enumerations.Category;
+
 /**
  * This interface is used to manage a user's wardrobe.
  *
@@ -43,7 +45,7 @@ public interface Wardrobe extends Serializable {
 
     /**
      * @param brand
-     *        the brand of a dress.
+     *            the brand of a dress.
      *
      * @return all the dresses with the specified brand (if present).
      */
@@ -55,12 +57,13 @@ public interface Wardrobe extends Serializable {
     Set<Integer> getAllSizes();
 
     /**
-     * @return all the preferred dresses. 
+     * @return all the preferred dresses.
      */
     Set<Dress> getFavouritedDresses();
 
-    /**@param size
-     *        the size of the dresses to find. 
+    /**
+     * @param size
+     *            the size of the dresses to find.
      * 
      * @return all the dresses with the specified size.
      */
@@ -70,4 +73,46 @@ public interface Wardrobe extends Serializable {
      * @return the last added dresses.
      */
     Queue<Dress> getLastAddedDresses();
+
+    /**
+     * @param category
+     *            a particular category.
+     * 
+     * @return a container with all the brands of the dresses inside the
+     *         specified category.
+     */
+    Set<String> getBrandsOfCategory(Category category);
+
+    /**
+     * @param category
+     *            a particular category.
+     * 
+     * @param brand
+     *            a particular brand.
+     * 
+     * @return a container with all the dresses of the specified category and
+     *         brand.
+     */
+    Set<Dress> getDressesOfBrandAndCategory(Category category, String brand);
+
+    /**
+     * @param category
+     *            a particular category.
+     * 
+     * @return a container with all the sizes of the dresses inside the
+     *         specified category.
+     */
+    Set<Integer> getSizesOfCategory(Category category);
+
+    /**
+     * @param category
+     *            a particular category.
+     * 
+     * @param size
+     *            a particular size.
+     * 
+     * @return a container with all the dresses of the specified category and
+     *         size.
+     */
+    Set<Dress> getDressesOfSizeAndCategory(Category category, int size);
 }

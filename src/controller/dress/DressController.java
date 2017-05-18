@@ -66,11 +66,6 @@ public interface DressController {
     Set<Dress> getDressesOfSize(int size);
 
     /**
-     * @return A set of all dresses research
-     */
-    Set<Dress> getDressesResearch();
-
-    /**
      * @return All categories
      */
     Set<Categories> getAllCategory();
@@ -89,6 +84,38 @@ public interface DressController {
      * @return Return all Dresses
      */
     List<Dress> getAllDresses();
+
+    /**
+     * @param categoryName
+     *            : the name of the category
+     * @return Return all Brand into a Category
+     */
+    Set<String> getAllBrandName(Category categoryName);
+
+    /**
+     * @param categoryName
+     *            : the name of teh category
+     * @param brand
+     *            : the name of dress
+     * @return Return all Dress with the category and brand specified
+     */
+    Set<Dress> getAllBrandDress(Category categoryName, String brand);
+
+    /**
+     * @param categoryName
+     *            : the name of category
+     * @return Return all size of the specified category
+     */
+    Set<Integer> getAllSizeName(Category categoryName);
+
+    /**
+     * @param categoryName
+     *            : the name of the category
+     * @param size
+     *            : the name of brand
+     * @return Return all dress with the category and size specified
+     */
+    Set<Dress> getAllSizeDress(Category categoryName, int size);
 
     /**
      * @return Return the number of dresses added
