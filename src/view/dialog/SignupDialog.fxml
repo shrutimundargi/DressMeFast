@@ -49,7 +49,7 @@
       </BorderPane>
    </center>
    <stylesheets>
-      <URL value="@SingupDialog.css" />
+      <URL value="@SignupDialog.css" />
       <URL value="@../mainStyle.css" />
    </stylesheets>
 </BorderPane>

@@ -4,11 +4,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Locale;
+import java.util.Set;
+
+import org.controlsfx.control.textfield.TextFields;
 
 import controller.Controller;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -192,8 +196,10 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         final StackPane pnlBrandTxf = new StackPane();
         txtBrand.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlBrandTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
+
         txfBrand.getStyleClass().add("text-field-add");
         txfBrand.setMaxWidth(PREFSIZE_TEXT);
+
         pnlBrandTitle.getChildren().add(txtBrand);
         pnlBrandTxf.getChildren().add(txfBrand);
         /* ____________________ */
@@ -286,11 +292,18 @@ public class AddGraphic extends ProgramUIImpl implements UI {
             // Check if all the numeric filed are correct
             if (!txfPrice.getText().equals("") || !txfSize.getText().equals("")) {
                 if (!txfPrice.getText().matches(ONLYNUMBER) && !txfSize.getText().matches(ONLYNUMBER)) {
-                    messageNumericField += "are allow only numeric character in the fields Price and Size";
-                } else if (!txfPrice.getText().matches(ONLYNUMBER)) {
-                    messageNumericField += "are allow only numeric character in the fild Price";
+                    messageNumericField += "are allow only positive numeric character in the fields Price and Size";
+                } else if (txfSize.getText().matches(ONLYNUMBER) && txfPrice.getText().matches(ONLYNUMBER)
+                        && Integer.valueOf(txfSize.getText()) < 0 && Integer.valueOf(txfPrice.getText()) < 0) {
+                    messageNumericField += "are allow only positive value in the fields Price and Size";
                 } else if (!txfSize.getText().matches(ONLYNUMBER)) {
-                    messageNumericField += "are allow only numeric character in the fild Size";
+                    messageNumericField += "are allow only positive numeric character in the fild Size";
+                } else if (txfSize.getText().matches(ONLYNUMBER) && Integer.valueOf(txfSize.getText()) < 0) {
+                    messageNumericField += "are allow only positive value in the fild Size";
+                } else if (!txfPrice.getText().matches(ONLYNUMBER)) {
+                    messageNumericField += "are allow only positive numeric character in the fild Price";
+                } else if (txfPrice.getText().matches(ONLYNUMBER) && Integer.valueOf(txfPrice.getText()) < 0) {
+                    messageNumericField += "are allow only positive value in the fild Price";
                 }
             }
 
@@ -309,14 +322,17 @@ public class AddGraphic extends ProgramUIImpl implements UI {
                 alertOk.setTitle("Information Dialog");
                 alertOk.setHeaderText("Yea, you added your item");
                 alertOk.setContentText("The item is add in the category " + chbCategory.getValue() + "!");
-                System.out.println(dtpDate.getValue());
 
-                // super.getController().dress().addDress(txfName.getText(),
-                // txfBrand.getText(),
-                // Integer.valueOf(txfSize.getText()),
-                // Integer.valueOf(txtPrice.getText()), dtpDate.getValue(),
-                // txaInfo.getText(), chbCategory.getValue(), imgFile);
+                final Integer size = txfSize.getText().equals("") ? -1 : Integer.valueOf(txfSize.getText());
+                final Integer price = txfPrice.getText().equals("") ? -1 : Integer.valueOf(txfPrice.getText());
+
+                super.getController().dress().addDress(txfName.getText(), txfBrand.getText(), size, price,
+                        dtpDate.getValue(), txaInfo.getText(), chbCategory.getValue(), imgFile);
+
                 this.restField();
+                this.autoComplete();
+                returnTopPane();
+
                 alertOk.showAndWait();
             }
 
@@ -348,7 +364,6 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         vBox.getChildren().add(pnlInfoTxa);
         vBox.getChildren().add(pnlAdd);
         /* ___________________________________________ */
-
         vBox.setVgrow(scrollPnl, javafx.scene.layout.Priority.ALWAYS);
         /* ___________________________________________ */
         scrollPnl.setFitToWidth(true);
@@ -360,19 +375,43 @@ public class AddGraphic extends ProgramUIImpl implements UI {
     public void showNowContent() {
         super.setupColorButtonsBH();
         this.restField();
+        this.autoComplete();
+        returnTopPane();
     }
 
     /**
      * Reset all value in the field.
      */
-    public final void restField() {
+    private final void restField() {
         chbCategory.setValue(null);
         this.removeTheImage(imvItem, imageStackPnl);
         txfBrand.clear();
         txfSize.clear();
+        txfPrice.clear();
         dtpDate.setValue(null);
         ckbFavorite.setSelected(false);
         txaInfo.clear();
+    }
+
+    private void returnTopPane() {
+        Bounds bounds = scrollPnl.getViewportBounds();
+        int highestXPixelShown = -1 * (int) bounds.getMinX() + (int) bounds.getMaxX();
+        if (highestXPixelShown != 0) {
+            scrollPnl.setVvalue(scrollPnl.getMaxHeight());
+        }
+    }
+
+    /**
+     * 
+     */
+    public final void autoComplete() {
+        final Set<String> allBrand = super.getController().dress().getAllBrand();
+        final String[] autoCoBrand = allBrand.stream().toArray(String[]::new);
+        TextFields.bindAutoCompletion(txfBrand, autoCoBrand);
+
+        final Set<Integer> allSize = super.getController().dress().getAllSize();
+        final Integer[] autoCoSize = allSize.stream().toArray(Integer[]::new);
+        TextFields.bindAutoCompletion(txfSize, autoCoSize);
     }
 
     /**

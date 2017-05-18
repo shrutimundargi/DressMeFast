@@ -8,6 +8,8 @@ import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -15,6 +17,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -25,6 +29,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import model.enumerations.Category;
+import model.interfaces.Dress;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
@@ -112,30 +117,77 @@ public class BrandGraphic extends ProgramUIImpl implements UI {
     @Override
     public void showNowContent() {
         super.setupColorButtonsBH();
+        returnTopPane();
+    }
+
+    private void returnTopPane() {
+        final Bounds bounds = scrollPnl.getViewportBounds();
+        final int highestXPixelShown = -1 * (int) bounds.getMinX() + (int) bounds.getMaxX();
+        if (highestXPixelShown != 0) {
+            scrollPnl.setVvalue(scrollPnl.getMaxHeight());
+        }
     }
 
     public void showItemOfCategory(Category cat) {
-        Set<String> nameBrands = super.getController().dress().getAllBrand();
-        int nBrands = nameBrands.size();
-        for (int i = 0; i < nBrands; i++) {
-            GridPane root = new GridPane();
+        Set<Dress> dressOfBrands = super.getController().dress().getDressesOfCategory(cat);
 
-            root.getColumnConstraints().addAll(DoubleStream.of(33, 33, 33).mapToObj(width -> {
-                ColumnConstraints constraints = new ColumnConstraints();
-                constraints.setPercentWidth(width);
-                constraints.setFillWidth(true);
-                return constraints;
-            }).toArray(ColumnConstraints[]::new));
+        BorderPane brpBrand = new BorderPane();
+        StackPane skpNameBrand = new StackPane();
+        Label nameBrand = new Label("Levis");
+        GridPane gridItem = new GridPane();
 
-            RowConstraints rowConstraints = new RowConstraints();
-            rowConstraints.setVgrow(Priority.ALWAYS);
+        brpBrand.getStyleClass().add("pnl-show-item");
+        skpNameBrand.getStyleClass().add("pnl-show-item-title");
+        nameBrand.getStyleClass().add("text-title-show-item");
+        gridItem.getStyleClass().add("pnl-show-item-dress");
+        
+        VBox.setMargin(brpBrand, new Insets(15,10,15,10));
 
-            root.getRowConstraints().add(rowConstraints);
+        gridItem.getColumnConstraints().addAll(DoubleStream.of(33, 33, 33).mapToObj(width -> {
+            ColumnConstraints constraints = new ColumnConstraints();
+            constraints.setPercentWidth(width);
+            constraints.setFillWidth(true);
+            return constraints;
+        }).toArray(ColumnConstraints[]::new));
 
-            root.add(new Button("1"), 0, 0);
-            root.add(new Button("2"), 1, 0);
-            root.add(new Button("3"), 2, 0);
-        }
+        RowConstraints rowConstraints = new RowConstraints();
+        rowConstraints.setVgrow(Priority.ALWAYS);
+
+        gridItem.getRowConstraints().add(rowConstraints);
+
+        gridItem.add(new Button("1"), 0, 0);
+        gridItem.add(new Button("2"), 1, 0);
+        gridItem.add(new Button("3"), 2, 0);
+
+        skpNameBrand.getChildren().add(nameBrand);
+        brpBrand.setTop(skpNameBrand);
+        brpBrand.setCenter(gridItem);
+
+        vBox.getChildren().add(brpBrand);
+
+        /*
+         * int nBrands = dressOfBrands.size(); for (int i = 0; i < nBrands; i++)
+         * {
+         * 
+         * GridPane root = new GridPane();
+         * 
+         * root.getColumnConstraints().addAll(DoubleStream.of(33, 33,
+         * 33).mapToObj(width -> { ColumnConstraints constraints = new
+         * ColumnConstraints(); constraints.setPercentWidth(width);
+         * constraints.setFillWidth(true); return constraints;
+         * }).toArray(ColumnConstraints[]::new));
+         * 
+         * RowConstraints rowConstraints = new RowConstraints();
+         * rowConstraints.setVgrow(Priority.ALWAYS);
+         * 
+         * root.getRowConstraints().add(rowConstraints);
+         * 
+         * root.add(new Button("1"), 0, 0); root.add(new Button("2"), 1, 0);
+         * root.add(new Button("3"), 2, 0);
+         * 
+         * vBox.getChildren().add(root); }
+         */
+
     }
 
     public void prvItem() {
