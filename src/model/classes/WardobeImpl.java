@@ -169,45 +169,45 @@ public class WardobeImpl implements Wardrobe {
     }
 
     @Override
-    public Set<String> getBrandsOfCategory(final Category category) {
-        final Set<String> brandsOfCategory = new HashSet<>();
+    public List<String> getBrandsOfCategory(final Category category) {
+        final List<String> brandsOfCategory = new LinkedList<>();
         this.categoryManagement.getCategory(category).getAllDresses().values().forEach(dress -> {
             if (!dress.getBrand().isEmpty()) {
                 brandsOfCategory.add(dress.getBrand());
             }
         });
-        return Collections.unmodifiableSet(brandsOfCategory);
+        return Collections.unmodifiableList(brandsOfCategory);
     }
 
     @Override
-    public Set<Dress> getDressesOfBrandAndCategory(final Category category, final String brand) {
-        final Set<Dress> dressesOfBrandAndCategory = new HashSet<>();
+    public List<Dress> getDressesOfBrandAndCategory(final Category category, final String brand) {
+        final List<Dress> dressesOfBrandAndCategory = new LinkedList<>();
         this.categoryManagement.getCategory(category).getAllDresses().values().forEach(dress -> {
             if (dress.getBrand().equals(brand)) {
                 dressesOfBrandAndCategory.add(dress);
             }
         });
-        return Collections.unmodifiableSet(dressesOfBrandAndCategory);
+        return Collections.unmodifiableList(dressesOfBrandAndCategory);
     }
 
     @Override
-    public Set<Integer> getSizesOfCategory(final Category category) {
-        final Set<Integer> sizesOfCategory = new HashSet<>();
+    public List<Integer> getSizesOfCategory(final Category category) {
+        final List<Integer> sizesOfCategory = new LinkedList<>();
         this.categoryManagement.getCategory(category).getAllDresses().values().forEach(dress -> {
             sizesOfCategory.add(dress.getSize());
         });
-        return Collections.unmodifiableSet(sizesOfCategory);
+        return Collections.unmodifiableList(sizesOfCategory);
     }
 
     @Override
-    public Set<Dress> getDressesOfSizeAndCategory(final Category category, final int size) {
-        final Set<Dress> dressesOfSizesAndCategory = new HashSet<>();
+    public List<Dress> getDressesOfSizeAndCategory(final Category category, final int size) {
+        final List<Dress> dressesOfSizesAndCategory = new LinkedList<>();
         this.categoryManagement.getCategory(category).getAllDresses().values().forEach(dress -> {
             if (dress.getSize().equals(size)) {
                 dressesOfSizesAndCategory.add(dress);
             }
         });
-        return Collections.unmodifiableSet(dressesOfSizesAndCategory);
+        return Collections.unmodifiableList(dressesOfSizesAndCategory);
     }
 
     @Override

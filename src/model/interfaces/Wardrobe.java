@@ -1,6 +1,7 @@
 package model.interfaces;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 
@@ -81,7 +82,7 @@ public interface Wardrobe extends Serializable {
      * @return a container with all the brands of the dresses inside the
      *         specified category.
      */
-    Set<String> getBrandsOfCategory(Category category);
+    List<String> getBrandsOfCategory(Category category);
 
     /**
      * @param category
@@ -93,7 +94,7 @@ public interface Wardrobe extends Serializable {
      * @return a container with all the dresses of the specified category and
      *         brand.
      */
-    Set<Dress> getDressesOfBrandAndCategory(Category category, String brand);
+    List<Dress> getDressesOfBrandAndCategory(Category category, String brand);
 
     /**
      * @param category
@@ -102,7 +103,7 @@ public interface Wardrobe extends Serializable {
      * @return a container with all the sizes of the dresses inside the
      *         specified category.
      */
-    Set<Integer> getSizesOfCategory(Category category);
+    List<Integer> getSizesOfCategory(Category category);
 
     /**
      * @param category
@@ -114,5 +115,5 @@ public interface Wardrobe extends Serializable {
      * @return a container with all the dresses of the specified category and
      *         size.
      */
-    Set<Dress> getDressesOfSizeAndCategory(Category category, int size);
+    List<Dress> getDressesOfSizeAndCategory(Category category, int size);
 }
