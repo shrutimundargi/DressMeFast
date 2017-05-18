@@ -4,6 +4,7 @@ import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
 import view.SceneSetting;
 import view.ScreensGraphic;
@@ -19,6 +20,8 @@ import view.generalUI.ProgramUIImpl;
 public class UserGraphic extends ProgramUIImpl implements UI {
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.USER;
 
+    @FXML
+    private ScrollPane scrollPnl;
     @FXML
     private Button btnGoBack;
     @FXML
@@ -49,8 +52,9 @@ public class UserGraphic extends ProgramUIImpl implements UI {
     public void showNowContent() {
         super.setupColorButtonsBH();
         txtUser.setText(super.getController().userController().getUsername());
+        scrollPnl.setVvalue(scrollPnl.getMaxHeight());
     }
-    
+
     @FXML
     public void pressLogout(ActionEvent event) {
         super.getController().userController().logout();

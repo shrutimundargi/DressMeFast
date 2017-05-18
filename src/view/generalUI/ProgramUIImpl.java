@@ -161,27 +161,27 @@ public class ProgramUIImpl implements ProgramUI {
     public Button getBtnBrand() {
         return btnBrand;
     }
-    
+
     @Override
     public Button getBtnAdd() {
         return btnAddDress;
     }
-    
+
     @Override
     public Button getBtnFavorite() {
         return btnFavorite;
     }
-    
+
     @Override
     public Button getBtnOutfits() {
         return btnOutfits;
     }
-    
+
     @Override
     public Button getBtnSize() {
         return btnSize;
     }
-    
+
     @Override
     public Button getBtnCategory() {
         return btnCategory;

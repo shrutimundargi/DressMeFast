@@ -97,3 +97,29 @@
 .chb-category .menu-item:focused > .label { 
 	-fx-text-fill: white;
 }
+
+.pnl-show-item {
+	-fx-border-radius: 12;
+	-fx-border-color: #515252;
+	-fx-background-color: #313131;
+	-fx-background-radius: 12px;
+}
+
+.pnl-show-item-title {
+	-fx-background-radius: 12px;
+	-fx-background-color:  #3D3D3D;
+	-fx-padding: 6 0 6 0;
+}
+
+.text-title-show-item {
+	-fx-text-fill: white;
+	-fx-font-size: 18.0px;
+}
+
+.pnl-show-item-dress {
+
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}

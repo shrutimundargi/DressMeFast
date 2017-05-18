@@ -65,7 +65,7 @@
       </BorderPane>
    </center>
    <stylesheets>
-      <URL value="@Singup.css" />
+      <URL value="@Signup.css" />
       <URL value="@../mainStyle.css" />
    </stylesheets>
 </BorderPane>

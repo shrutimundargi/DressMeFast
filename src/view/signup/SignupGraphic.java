@@ -101,9 +101,15 @@ public class SignupGraphic implements UI {
         if (user.length() < MIN_LENGTH) {
             txtErrUser.setText("Username to short, min. 5 charats");
             allRight = false;
+        } else if (user.matches("^\\s*$")) {
+            txtErrUser.setText("Username can't contain white spaces");
+            allRight = false;
         }
         if (passw.length() < MIN_LENGTH) {
             txtErrPassw.setText("Password to short, min. 5 charats");
+            allRight = false;
+        } else if (passw.matches("^\\s*$")) {
+            txtErrPassw.setText("Password can't contain white spaces"); 
             allRight = false;
         } else if (!repPassw.equals(passw)) {
             txtErrRepPassw.setText("Passwords not equal");
@@ -113,7 +119,6 @@ public class SignupGraphic implements UI {
                 txtErrUser.setText(Status.DUPLICATED_USER.getText());
             } else {
                 this.environment.displayScreen(ScreensGraphic.DIALOGSIGNUP);
-                this.controller.getUI(ScreensGraphic.DIALOGSIGNUP).showNowContent();
             }
         }
     }
