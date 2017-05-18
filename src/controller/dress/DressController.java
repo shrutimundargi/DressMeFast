@@ -90,7 +90,7 @@ public interface DressController {
      *            : the name of the category
      * @return Return all Brand into a Category
      */
-    Set<String> getAllBrandName(Category categoryName);
+    List<String> getAllBrandName(Category categoryName);
 
     /**
      * @param categoryName
@@ -99,14 +99,14 @@ public interface DressController {
      *            : the name of dress
      * @return Return all Dress with the category and brand specified
      */
-    Set<Dress> getAllBrandDress(Category categoryName, String brand);
+    List<Dress> getAllBrandDress(Category categoryName, String brand);
 
     /**
      * @param categoryName
      *            : the name of category
      * @return Return all size of the specified category
      */
-    Set<Integer> getAllSizeName(Category categoryName);
+    List<Integer> getAllSizeName(Category categoryName);
 
     /**
      * @param categoryName
@@ -115,7 +115,7 @@ public interface DressController {
      *            : the name of brand
      * @return Return all dress with the category and size specified
      */
-    Set<Dress> getAllSizeDress(Category categoryName, int size);
+    List<Dress> getAllSizeDress(Category categoryName, int size);
 
     /**
      * @return Return the number of dresses added
