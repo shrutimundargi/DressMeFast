@@ -182,4 +182,9 @@ public interface ProgramUI {
      * @return the button btnUser of the standard menu.
      */
     Button getBtnUser();
+
+    /**
+     * reset all component of the screen.
+     */
+    void resetAllComponent();
 }

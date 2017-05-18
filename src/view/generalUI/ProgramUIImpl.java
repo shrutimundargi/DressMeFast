@@ -8,7 +8,7 @@ import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
 
-public class ProgramUIImpl implements ProgramUI {
+public abstract class ProgramUIImpl implements ProgramUI {
 
     private final SceneSetting environment;
     private final Controller controller;
@@ -191,5 +191,8 @@ public class ProgramUIImpl implements ProgramUI {
     public Button getBtnUser() {
         return btnUser;
     }
+
+    @Override
+    public abstract void resetAllComponent();
 
 }

@@ -157,5 +157,11 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
         super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
     }
 
+    @Override
+    public void resetAllComponent() {
+        // TODO Auto-generated method stub
+        
+    }
+
 
 }

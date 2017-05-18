@@ -82,4 +82,10 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
     public void showNowContent() {
         super.setupColorButtonsBH();
     }
+
+    @Override
+    public void resetAllComponent() {
+        // TODO Auto-generated method stub
+        
+    }
 }

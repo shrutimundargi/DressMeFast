@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.DoubleStream;
@@ -116,6 +117,7 @@ public class BrandGraphic extends ProgramUIImpl implements UI {
         chbCategory.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                resetAllComponent();
                 showItemOfCategory(chbCategory.getItems().get((Integer) number2));
             }
         });
@@ -125,6 +127,7 @@ public class BrandGraphic extends ProgramUIImpl implements UI {
     public void showNowContent() {
         super.setupColorButtonsBH();
         returnTopPane();
+        resetAllComponent();
     }
 
     private void returnTopPane() {
@@ -136,21 +139,19 @@ public class BrandGraphic extends ProgramUIImpl implements UI {
     }
 
     public void showItemOfCategory(Category cat) {
-        Set<String> brandsName = super.getController().dress().getAllBrandName(cat);
-        List<String> brandName = new ArrayList();
-        brandName.add("Levis");
-        brandName.add("Supreme");
-        brandName.add("Moscot");
-        brandName.add("Vans");
-        int nBrand = brandName.size();
+        List<String> brandsNameList = super.getController().dress().getAllBrandName(cat);
+        Set<String> brandsNameSet = new LinkedHashSet<>(brandsNameList);
+        List<String> brandsName = new ArrayList<String>(brandsNameSet);
+        int nBrand = brandsName.size();
+        
 
-        java.util.Collections.sort(brandName);
+        // java.util.Collections.sort(brandsName);
 
         for (int i = 0; i < nBrand; i++) {
 
             BorderPane brpBrand = new BorderPane();
             StackPane skpNameBrand = new StackPane();
-            Label nameBrand = new Label(brandName.get(i));
+            Label nameBrand = new Label(brandsName.get(i));
             GridPane gridItem = new GridPane();
 
             brpBrand.getStyleClass().add("pnl-show-item");
@@ -173,47 +174,52 @@ public class BrandGraphic extends ProgramUIImpl implements UI {
             gridItem.getRowConstraints().add(rowConstraints);
 
             /* Specific_Item__________________ */
-            BorderPane brpSpecificIthem = new BorderPane();
+            List<Dress> dressItem = super.getController().dress().getAllBrandDress(cat, brandsName.get(i));
+            for (int j = 0; j < dressItem.size(); j++) {
+                Dress dress = dressItem.get(j);
+                BorderPane brpSpecificIthem = new BorderPane();
+                int rowIndex = j % 3;
+                int columnIndex = j == 0 ? 0 : j / 3;
 
-            /* Name TOP__________________ */
-            StackPane stpNameItem = new StackPane();
-            Label nameSpecItem = new Label("Name");
-            nameSpecItem.getStyleClass().add("text-title-show-item");
-            stpNameItem.getChildren().add(nameSpecItem);
+                /* Name TOP__________________ */
+                StackPane stpNameItem = new StackPane();
+                Label nameSpecItem = new Label(dress.getName());
+                nameSpecItem.getStyleClass().add("text-title-show-item");
+                stpNameItem.getChildren().add(nameSpecItem);
 
-            brpSpecificIthem.setTop(stpNameItem);
+                brpSpecificIthem.setTop(stpNameItem);
 
-            /* Image CENTER__________________ */
-            brpSpecificIthem.getStyleClass().add("pnl-specific-item");
-            File imgFile = new File("/Users/aleric/Desktop/images.jpg");
-            Image img;
-            ImageView imageView = new ImageView();
-            try {
-                img = new Image(new FileInputStream(imgFile.getAbsolutePath()));
-                imageView.setImage(img);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                /* Image CENTER__________________ */
+                brpSpecificIthem.getStyleClass().add("pnl-specific-item");
+                File imgFile = dress.getImage();
+                Image img;
+                ImageView imageView = new ImageView();
+                try {
+                    img = new Image(new FileInputStream(imgFile.getAbsolutePath()));
+                    imageView.setImage(img);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                imageView.setFitWidth(brpSpecificIthem.getWidth());
+                imageView.setPreserveRatio(true);
+
+                brpSpecificIthem.setCenter(imageView);
+
+                /* Button see BUTTOM________________ */
+                StackPane stpButtonSee = new StackPane();
+                Button btnSee = new Button("See more");
+                btnSee.getStyleClass().add("btn-normal");
+                btnSee.getStyleClass().add("btn-small");
+                stpButtonSee.getChildren().add(btnSee);
+                brpSpecificIthem.setBottom(stpButtonSee);
+
+                // GridPane.setMargin(brpSpecificIthem, new Insets(15, 10, 15,
+                // 10));
+
+                gridItem.add(brpSpecificIthem, rowIndex, columnIndex);
             }
 
-            imageView.setFitWidth(brpSpecificIthem.getWidth());
-            imageView.setPreserveRatio(true);
-
-            brpSpecificIthem.setCenter(imageView);
-
-            /* Button see BUTTOM________________ */
-            StackPane stpButtonSee = new StackPane();
-            Button btnSee = new Button("See more");
-            btnSee.getStyleClass().add("btn-normal");
-            btnSee.getStyleClass().add("btn-small");
-            stpButtonSee.getChildren().add(btnSee);
-            brpSpecificIthem.setBottom(stpButtonSee);
-
-            //GridPane.setMargin(brpSpecificIthem, new Insets(15, 10, 15, 10));
-
-            gridItem.add(brpSpecificIthem, 0, 0);
-            gridItem.add(new Button("2"), 1, 0);
-            gridItem.add(new Button("3"), 2, 0);
-            /* ____________________ */
             skpNameBrand.getChildren().add(nameBrand);
             brpBrand.setTop(skpNameBrand);
             brpBrand.setCenter(gridItem);
@@ -224,6 +230,14 @@ public class BrandGraphic extends ProgramUIImpl implements UI {
     }
 
     public void prvItem() {
+        
+    }
 
+    @Override
+    public void resetAllComponent() {
+        int nComponent = vBox.getChildren().size();
+        for (int i = 2; i < nComponent; i++){
+            vBox.getChildren().remove(2);
+        }
     }
 }

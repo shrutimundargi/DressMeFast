@@ -52,12 +52,17 @@ public class UserGraphic extends ProgramUIImpl implements UI {
     public void showNowContent() {
         super.setupColorButtonsBH();
         txtUser.setText(super.getController().userController().getUsername());
-        scrollPnl.setVvalue(scrollPnl.getMaxHeight());
+        resetAllComponent();
     }
 
     @FXML
     public void pressLogout(ActionEvent event) {
         super.getController().userController().logout();
         super.getSceneSetting().displayScreen(ScreensGraphic.LOGIN);
+    }
+
+    @Override
+    public void resetAllComponent() {
+        scrollPnl.setVvalue(scrollPnl.getMaxHeight());
     }
 }

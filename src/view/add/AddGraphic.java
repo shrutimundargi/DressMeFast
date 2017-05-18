@@ -329,7 +329,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
                 super.getController().dress().addDress(txfName.getText(), txfBrand.getText(), size, price,
                         dtpDate.getValue(), txaInfo.getText(), chbCategory.getValue(), imgFile);
 
-                this.restField();
+                this.resetAllComponent();
                 this.autoComplete();
                 returnTopPane();
 
@@ -374,15 +374,13 @@ public class AddGraphic extends ProgramUIImpl implements UI {
     @Override
     public void showNowContent() {
         super.setupColorButtonsBH();
-        this.restField();
+        this.resetAllComponent();
         this.autoComplete();
         returnTopPane();
     }
 
-    /**
-     * Reset all value in the field.
-     */
-    private final void restField() {
+    @Override
+    public final void resetAllComponent() {
         chbCategory.setValue(null);
         this.removeTheImage(imvItem, imageStackPnl);
         txfBrand.clear();
