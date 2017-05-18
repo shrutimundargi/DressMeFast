@@ -55,7 +55,6 @@ public class LoginGraphic implements UI {
      */
     public void show() {
         this.primaryStage = this.environment.getMainStage();
-        this.primaryStage.setOnCloseRequest(e -> System.exit(0));
         this.environment.displayScreen(ACTUALSCREEN);
 
     }

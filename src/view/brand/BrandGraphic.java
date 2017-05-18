@@ -1,5 +1,10 @@
 package view.brand;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
@@ -17,6 +22,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -129,64 +136,90 @@ public class BrandGraphic extends ProgramUIImpl implements UI {
     }
 
     public void showItemOfCategory(Category cat) {
-        Set<Dress> dressOfBrands = super.getController().dress().getDressesOfCategory(cat);
+        Set<String> brandsName = super.getController().dress().getAllBrandName(cat);
+        List<String> brandName = new ArrayList();
+        brandName.add("Levis");
+        brandName.add("Supreme");
+        brandName.add("Moscot");
+        brandName.add("Vans");
+        int nBrand = brandName.size();
 
-        BorderPane brpBrand = new BorderPane();
-        StackPane skpNameBrand = new StackPane();
-        Label nameBrand = new Label("Levis");
-        GridPane gridItem = new GridPane();
+        java.util.Collections.sort(brandName);
 
-        brpBrand.getStyleClass().add("pnl-show-item");
-        skpNameBrand.getStyleClass().add("pnl-show-item-title");
-        nameBrand.getStyleClass().add("text-title-show-item");
-        gridItem.getStyleClass().add("pnl-show-item-dress");
-        
-        VBox.setMargin(brpBrand, new Insets(15,10,15,10));
+        for (int i = 0; i < nBrand; i++) {
 
-        gridItem.getColumnConstraints().addAll(DoubleStream.of(33, 33, 33).mapToObj(width -> {
-            ColumnConstraints constraints = new ColumnConstraints();
-            constraints.setPercentWidth(width);
-            constraints.setFillWidth(true);
-            return constraints;
-        }).toArray(ColumnConstraints[]::new));
+            BorderPane brpBrand = new BorderPane();
+            StackPane skpNameBrand = new StackPane();
+            Label nameBrand = new Label(brandName.get(i));
+            GridPane gridItem = new GridPane();
 
-        RowConstraints rowConstraints = new RowConstraints();
-        rowConstraints.setVgrow(Priority.ALWAYS);
+            brpBrand.getStyleClass().add("pnl-show-item");
+            skpNameBrand.getStyleClass().add("pnl-show-item-title");
+            nameBrand.getStyleClass().add("text-title-show-item");
+            gridItem.getStyleClass().add("pnl-show-item-dress");
 
-        gridItem.getRowConstraints().add(rowConstraints);
+            VBox.setMargin(brpBrand, new Insets(15, 10, 15, 10));
 
-        gridItem.add(new Button("1"), 0, 0);
-        gridItem.add(new Button("2"), 1, 0);
-        gridItem.add(new Button("3"), 2, 0);
+            /* Grid________________ */
+            gridItem.getColumnConstraints().addAll(DoubleStream.of(33, 33, 33).mapToObj(width -> {
+                ColumnConstraints constraints = new ColumnConstraints();
+                constraints.setPercentWidth(width);
+                constraints.setFillWidth(true);
+                return constraints;
+            }).toArray(ColumnConstraints[]::new));
 
-        skpNameBrand.getChildren().add(nameBrand);
-        brpBrand.setTop(skpNameBrand);
-        brpBrand.setCenter(gridItem);
+            RowConstraints rowConstraints = new RowConstraints();
+            rowConstraints.setVgrow(Priority.ALWAYS);
+            gridItem.getRowConstraints().add(rowConstraints);
 
-        vBox.getChildren().add(brpBrand);
+            /* Specific_Item__________________ */
+            BorderPane brpSpecificIthem = new BorderPane();
 
-        /*
-         * int nBrands = dressOfBrands.size(); for (int i = 0; i < nBrands; i++)
-         * {
-         * 
-         * GridPane root = new GridPane();
-         * 
-         * root.getColumnConstraints().addAll(DoubleStream.of(33, 33,
-         * 33).mapToObj(width -> { ColumnConstraints constraints = new
-         * ColumnConstraints(); constraints.setPercentWidth(width);
-         * constraints.setFillWidth(true); return constraints;
-         * }).toArray(ColumnConstraints[]::new));
-         * 
-         * RowConstraints rowConstraints = new RowConstraints();
-         * rowConstraints.setVgrow(Priority.ALWAYS);
-         * 
-         * root.getRowConstraints().add(rowConstraints);
-         * 
-         * root.add(new Button("1"), 0, 0); root.add(new Button("2"), 1, 0);
-         * root.add(new Button("3"), 2, 0);
-         * 
-         * vBox.getChildren().add(root); }
-         */
+            /* Name TOP__________________ */
+            StackPane stpNameItem = new StackPane();
+            Label nameSpecItem = new Label("Name");
+            nameSpecItem.getStyleClass().add("text-title-show-item");
+            stpNameItem.getChildren().add(nameSpecItem);
+
+            brpSpecificIthem.setTop(stpNameItem);
+
+            /* Image CENTER__________________ */
+            brpSpecificIthem.getStyleClass().add("pnl-specific-item");
+            File imgFile = new File("/Users/aleric/Desktop/images.jpg");
+            Image img;
+            ImageView imageView = new ImageView();
+            try {
+                img = new Image(new FileInputStream(imgFile.getAbsolutePath()));
+                imageView.setImage(img);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            imageView.setFitWidth(brpSpecificIthem.getWidth());
+            imageView.setPreserveRatio(true);
+
+            brpSpecificIthem.setCenter(imageView);
+
+            /* Button see BUTTOM________________ */
+            StackPane stpButtonSee = new StackPane();
+            Button btnSee = new Button("See more");
+            btnSee.getStyleClass().add("btn-normal");
+            btnSee.getStyleClass().add("btn-small");
+            stpButtonSee.getChildren().add(btnSee);
+            brpSpecificIthem.setBottom(stpButtonSee);
+
+            //GridPane.setMargin(brpSpecificIthem, new Insets(15, 10, 15, 10));
+
+            gridItem.add(brpSpecificIthem, 0, 0);
+            gridItem.add(new Button("2"), 1, 0);
+            gridItem.add(new Button("3"), 2, 0);
+            /* ____________________ */
+            skpNameBrand.getChildren().add(nameBrand);
+            brpBrand.setTop(skpNameBrand);
+            brpBrand.setCenter(gridItem);
+
+            vBox.getChildren().add(brpBrand);
+        }
 
     }
 
