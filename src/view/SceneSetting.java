@@ -4,7 +4,9 @@ import java.io.IOException;
 
 import controller.Controller;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import view.login.LoginGraphic;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -41,7 +43,10 @@ public class SceneSetting extends Application {
         this.primaryStage.setMinWidth(900);
         this.primaryStage.setMinHeight(700);
         this.primaryStage.setScene(mainScene);
-        this.primaryStage.setOnCloseRequest(e -> System.exit(0));
+        this.primaryStage.setOnCloseRequest(e -> {
+            setup.getController().saveData();
+            System.exit(0);
+        });
 
     }
 
