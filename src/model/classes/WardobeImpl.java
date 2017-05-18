@@ -172,7 +172,7 @@ public class WardobeImpl implements Wardrobe {
     public List<String> getBrandsOfCategory(final Category category) {
         final List<String> brandsOfCategory = new LinkedList<>();
         this.categoryManagement.getCategory(category).getAllDresses().values().forEach(dress -> {
-            if (!dress.getBrand().isEmpty()) {
+            if (!dress.getBrand().isEmpty() && !brandsOfCategory.contains(dress.getBrand())) {
                 brandsOfCategory.add(dress.getBrand());
             }
         });
@@ -194,7 +194,9 @@ public class WardobeImpl implements Wardrobe {
     public List<Integer> getSizesOfCategory(final Category category) {
         final List<Integer> sizesOfCategory = new LinkedList<>();
         this.categoryManagement.getCategory(category).getAllDresses().values().forEach(dress -> {
-            sizesOfCategory.add(dress.getSize());
+            if (!sizesOfCategory.contains(dress.getSize())) {
+                sizesOfCategory.add(dress.getSize());
+            }
         });
         return Collections.unmodifiableList(sizesOfCategory);
     }
