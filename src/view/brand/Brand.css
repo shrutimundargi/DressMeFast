@@ -130,3 +130,12 @@
 	-fx-background-color: #313131;
 	-fx-background-radius: 12px;
 }
+
+image-item{
+	-fx-border-radius: 10;
+	-fx-background-radius: 10;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+	-fx-padding: 10;
+	-fx-background-color: grey;
+	-fx-background-radius: 5;
+}

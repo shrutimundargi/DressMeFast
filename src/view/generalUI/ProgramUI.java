@@ -184,7 +184,13 @@ public interface ProgramUI {
     Button getBtnUser();
 
     /**
-     * reset all component of the screen.
+     * Reset all component of the screen.
      */
     void resetAllComponent();
+
+    /**
+     * Return to the top of the ScrollPane.
+     */
+    void returnTopPane();
+
 }
