@@ -27,7 +27,7 @@ public final class DressImpl implements Dress {
     private String name;
     private String brand;
     private Integer size;
-    private Integer price;
+    private Double price;
     private LocalDate purchaseDate;
     private String description;
     private Boolean favourited;
@@ -53,7 +53,7 @@ public final class DressImpl implements Dress {
      *            the description of a dress.
      */
     protected DressImpl(final File dressImage, final String dressName, final String dressBrand, final Integer dressSize,
-            final Integer dressPrice, final LocalDate dressPurchaseDate, final String dressDescription) {
+            final Double dressPrice, final LocalDate dressPurchaseDate, final String dressDescription) {
         super();
         this.image = dressImage;
         this.name = dressName;
@@ -94,7 +94,7 @@ public final class DressImpl implements Dress {
     }
 
     @Override
-    public Integer getPrice() {
+    public double getPrice() {
         return this.price;
     }
 
@@ -142,7 +142,7 @@ public final class DressImpl implements Dress {
     }
 
     @Override
-    public Status setPrice(final int dressPrice) {
+    public Status setPrice(final double dressPrice) {
         this.price = dressPrice;
         return Status.CHANGE_SUCCESFULL;
     }
@@ -303,7 +303,7 @@ public final class DressImpl implements Dress {
         private String builderName;
         private String builderBrand;
         private Integer builderSize;
-        private Integer builderPrice;
+        private double builderPrice;
         private LocalDate builderPurchaseDate;
         private String builderDescription;
 
@@ -357,7 +357,7 @@ public final class DressImpl implements Dress {
          *
          * @return a dress
          */
-        public DressBuilder buildPrice(final int dressPrice) {
+        public DressBuilder buildPrice(final double dressPrice) {
             this.builderPrice = dressPrice;
             return this;
         }
