@@ -182,4 +182,15 @@ public interface ProgramUI {
      * @return the button btnUser of the standard menu.
      */
     Button getBtnUser();
+
+    /**
+     * Reset all component of the screen.
+     */
+    void resetAllComponent();
+
+    /**
+     * Return to the top of the ScrollPane.
+     */
+    void returnTopPane();
+
 }

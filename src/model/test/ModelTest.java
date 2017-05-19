@@ -41,7 +41,7 @@ public final class ModelTest {
     private Outfits firstOutfit;
     private Outfits secondOutfit;
     private static final int SIZE = 44;
-    private static final int PRICE = 80;
+    private static final double PRICE = 80;
 
     /**
      * Tests the creation of a user.
@@ -78,7 +78,7 @@ public final class ModelTest {
         assertTrue(dress.getBrand().equals("Lee"));
         assertTrue(dress.getDescription().equals("Ruined Jeans"));
         assertTrue(dress.getName().equals("Fav Jeans"));
-        assertTrue(dress.getPrice().equals(PRICE));
+        assertTrue(dress.getPrice() == PRICE);
         assertTrue(dress.getPurchaseDate().equals(date));
         assertTrue(dress.getSize().equals(SIZE));
 
@@ -88,7 +88,7 @@ public final class ModelTest {
         assertTrue(dress2.getBrand().equals("Denny Rose"));
         assertTrue(dress2.getDescription().equals("Cool Jeans"));
         assertTrue(dress2.getName().equals("Jeans"));
-        assertTrue(dress2.getPrice().equals(PRICE));
+        assertTrue(dress2.getPrice() == PRICE);
         assertTrue(dress2.getPurchaseDate().equals(date));
         assertTrue(dress2.getSize().equals(SIZE));
 
@@ -99,7 +99,7 @@ public final class ModelTest {
         assertTrue(dress1.getBrand().equals("On Spirit"));
         assertTrue(dress1.getDescription().equals("Violet Cool T-Shirt"));
         assertTrue(dress1.getName().equals("Fav T-Shirt"));
-        assertTrue(dress1.getPrice().equals(PRICE));
+        assertTrue(dress1.getPrice() == PRICE);
         assertTrue(dress1.getPurchaseDate().equals(date));
         assertTrue(dress1.getSize().equals(SIZE));
 

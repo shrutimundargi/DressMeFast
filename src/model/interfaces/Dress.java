@@ -43,7 +43,7 @@ public interface Dress extends Serializable {
     /**
      * @return the price of the dress.
      */
-    Integer getPrice();
+    double getPrice();
 
     /**
      * @return the price of the dress.
@@ -100,7 +100,7 @@ public interface Dress extends Serializable {
      *
      * @return the result of the operation
      */
-    Status setPrice(int price);
+    Status setPrice(double price);
 
     /**
      * @param purchaseDate

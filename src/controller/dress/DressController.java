@@ -41,7 +41,7 @@ public interface DressController {
      *         Return DRESS_NOT_ADDED if there is a problem with the adding
      *         otherwise return DRESS_ADDED
      */
-    Status addDress(String name, String brand, Integer size, Integer price, LocalDate purchaseDate, String description,
+    Status addDress(String name, String brand, Integer size, double price, LocalDate purchaseDate, String description,
             Category categories, File image);
 
     /**
@@ -281,6 +281,13 @@ public interface DressController {
     /**
      * @return Return all popular brand
      */
-    List<String> getPopularBrand();
+    String getPopularBrand();
+
+    /**
+     * @param category
+     *            : the category name
+     * @return Return all dress into a specific category
+     */
+    List<Dress> getDressIntoCategory(Category category);
 
 }

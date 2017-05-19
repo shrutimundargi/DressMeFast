@@ -3,12 +3,19 @@ package view.generalUI;
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
 
-public class ProgramUIImpl implements ProgramUI {
+/**
+ * ProgramUIImpl contain the standard methods that all the Screens must
+ * have.
+ *
+ */
+public abstract class ProgramUIImpl implements ProgramUI {
 
     private final SceneSetting environment;
     private final Controller controller;
@@ -35,8 +42,23 @@ public class ProgramUIImpl implements ProgramUI {
     private Button btnCategory;
     @FXML
     private Button btnUser;
+    @FXML
+    protected ScrollPane scrollPnl;
 
-    public ProgramUIImpl(final SceneSetting environment, Controller controller, final SetupView setup,
+    /**
+     * 
+     * 
+     * @param environment
+     *            a reference of the instance of the class SceneSetting
+     * @param controller
+     *            a reference of the instance of the class Controller
+     * @param setup
+     *            a reference of the instance of the class SetupView that permit
+     *            to manage the important thing of the view, like
+     * @param actualScreen
+     *            a reference to the specific screen of the fxml.
+     */
+    public ProgramUIImpl(final SceneSetting environment, final Controller controller, final SetupView setup,
             final ScreensGraphic actualScreen) {
         this.environment = environment;
         this.controller = controller;
@@ -190,6 +212,18 @@ public class ProgramUIImpl implements ProgramUI {
     @Override
     public Button getBtnUser() {
         return btnUser;
+    }
+
+    @Override
+    public abstract void resetAllComponent();
+
+    @Override
+    public void returnTopPane() {
+        final Bounds bounds = scrollPnl.getViewportBounds();
+        final int highestXPixelShown = -1 * (int) bounds.getMinX() + (int) bounds.getMaxX();
+        if (highestXPixelShown != 0) {
+            scrollPnl.setVvalue(scrollPnl.getMaxHeight());
+        }
     }
 
 }

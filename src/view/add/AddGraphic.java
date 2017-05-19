@@ -12,7 +12,6 @@ import controller.Controller;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Bounds;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -329,7 +328,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
                 super.getController().dress().addDress(txfName.getText(), txfBrand.getText(), size, price,
                         dtpDate.getValue(), txaInfo.getText(), chbCategory.getValue(), imgFile);
 
-                this.restField();
+                this.resetAllComponent();
                 this.autoComplete();
                 returnTopPane();
 
@@ -364,7 +363,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         vBox.getChildren().add(pnlInfoTxa);
         vBox.getChildren().add(pnlAdd);
         /* ___________________________________________ */
-        vBox.setVgrow(scrollPnl, javafx.scene.layout.Priority.ALWAYS);
+        VBox.setVgrow(scrollPnl, javafx.scene.layout.Priority.ALWAYS);
         /* ___________________________________________ */
         scrollPnl.setFitToWidth(true);
         // scrollPnl.setFitToHeight(true);
@@ -374,31 +373,22 @@ public class AddGraphic extends ProgramUIImpl implements UI {
     @Override
     public void showNowContent() {
         super.setupColorButtonsBH();
-        this.restField();
+        this.resetAllComponent();
         this.autoComplete();
-        returnTopPane();
+        super.returnTopPane();
     }
 
-    /**
-     * Reset all value in the field.
-     */
-    private final void restField() {
+    @Override
+    public final void resetAllComponent() {
         chbCategory.setValue(null);
         this.removeTheImage(imvItem, imageStackPnl);
+        txfName.clear();
         txfBrand.clear();
         txfSize.clear();
         txfPrice.clear();
         dtpDate.setValue(null);
         ckbFavorite.setSelected(false);
         txaInfo.clear();
-    }
-
-    private void returnTopPane() {
-        Bounds bounds = scrollPnl.getViewportBounds();
-        int highestXPixelShown = -1 * (int) bounds.getMinX() + (int) bounds.getMaxX();
-        if (highestXPixelShown != 0) {
-            scrollPnl.setVvalue(scrollPnl.getMaxHeight());
-        }
     }
 
     /**
@@ -408,10 +398,6 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         final Set<String> allBrand = super.getController().dress().getAllBrand();
         final String[] autoCoBrand = allBrand.stream().toArray(String[]::new);
         TextFields.bindAutoCompletion(txfBrand, autoCoBrand);
-
-        final Set<Integer> allSize = super.getController().dress().getAllSize();
-        final Integer[] autoCoSize = allSize.stream().toArray(Integer[]::new);
-        TextFields.bindAutoCompletion(txfSize, autoCoSize);
     }
 
     /**

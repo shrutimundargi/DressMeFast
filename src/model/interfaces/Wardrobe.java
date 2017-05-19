@@ -116,4 +116,12 @@ public interface Wardrobe extends Serializable {
      *         size.
      */
     List<Dress> getDressesOfSizeAndCategory(Category category, int size);
+
+    /**
+     * @param category
+     *            a particular category.
+     * 
+     * @return a container with all the dresses of a particular category.
+     */
+    List<Dress> getDressesOfCategory(Category category);
 }

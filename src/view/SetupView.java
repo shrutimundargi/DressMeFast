@@ -107,6 +107,10 @@ public class SetupView {
             loginGraphic.show();
         });
     }
+    
+    public Controller getController(){
+        return this.controller;
+    }
 
     /**
      * 
