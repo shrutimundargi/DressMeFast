@@ -26,11 +26,11 @@ public class Tester {
     private static final String MAIN_PATH = System.getProperty("user.home") + File.separator
             + "beyond_the_story_i-wallpaper-5120x2880.jpg";
 
-    private static final int PRICE_OCCHIALE = 500;
-    private static final int PRICE_COSTUME = 150;
+    private static final double PRICE_OCCHIALE = 500;
+    private static final double PRICE_COSTUME = 150;
     private static final int SIZE_COSTUME = 44;
-    private static final int PRICE_FELPA = 1000000;
-    private static final int PRICE_MAGLIETTA = 10000;
+    private static final double PRICE_FELPA = 1000000;
+    private static final double PRICE_MAGLIETTA = 10000;
     private static final int SIZE = 38;
     private static final String ARMANI = "armani";
     private static final int NUMBER_OF_DRESSES_ADDED = 5;

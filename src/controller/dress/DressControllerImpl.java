@@ -84,7 +84,7 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public Status addDress(final String name, final String brand, final Integer size, final Integer price,
+    public Status addDress(final String name, final String brand, final Integer size, final double price,
             final LocalDate purchaseDate, final String description, final Category categories, final File image) {
         try {
             Objects.requireNonNull(user);
@@ -246,9 +246,9 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
-    public List<String> getPopularBrand() {
-        user.getWardobe().getMostPopularBrand();
-        return null;
+    public String getPopularBrand() {
+
+        return user.getWardobe().getMostPopularBrand();
     }
 
     @Override
@@ -269,6 +269,11 @@ public final class DressControllerImpl implements DressController {
     @Override
     public List<Dress> getAllSizeDress(final Category categoryName, final int size) {
         return user.getWardobe().getDressesOfSizeAndCategory(categoryName, size);
+    }
+
+    @Override
+    public List<Dress> getDressIntoCategory(final Category category) {
+        return user.getWardobe().getDressesOfCategory(category);
     }
 
 }
