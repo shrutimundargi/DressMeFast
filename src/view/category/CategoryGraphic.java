@@ -145,7 +145,7 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
     
     private void showItemOfCategory(final Category cat) {
     
-        final Insets standarInset = new Insets(UPDOWN, LEFTRIGHT, UPDOWN, LEFTRIGHT);
+        /*final Insets standarInset = new Insets(UPDOWN, LEFTRIGHT, UPDOWN, LEFTRIGHT);
         final Insets noUpInset = new Insets(0, LEFTRIGHT, UPDOWN, LEFTRIGHT);
         final Insets noDownInset = new Insets(UPDOWN, LEFTRIGHT, 0, LEFTRIGHT);
     
@@ -164,7 +164,7 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
 
         VBox.setMargin(brpcat, standarInset);
 
-        /* Grid________________ */
+         Grid________________ 
         gridItem.getColumnConstraints().addAll(
                 DoubleStream.of(PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID).mapToObj(width -> {
                     final ColumnConstraints constraints = new ColumnConstraints();
@@ -177,7 +177,7 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
         rowConstraints.setVgrow(Priority.ALWAYS);
         gridItem.getRowConstraints().add(rowConstraints);
 
-        /* Specific_Item__________________ */
+         Specific_Item__________________ 
         final List<Dress> dressItem = super.getController().dress().getAllBrandDress(cat);
         for (int j = 0; j < dressItem.size(); j++) {
             final Dress dress = dressItem.get(j);
@@ -185,7 +185,7 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
             final int rowIndex = j % 3;
             final int columnIndex = j == 0 ? 0 : j / 3;
 
-            /* Name TOP__________________ */
+             Name TOP__________________ 
             final StackPane stpNameItem = new StackPane();
             final Label nameSpecItem = new Label(dress.getName());
             nameSpecItem.getStyleClass().add("text-title-show-item");
@@ -193,7 +193,7 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
             StackPane.setMargin(nameSpecItem, noDownInset);
             brpSpecificIthem.setTop(stpNameItem);
 
-            /* Image CENTER__________________ */
+             Image CENTER__________________ 
             brpSpecificIthem.getStyleClass().add("pnl-specific-item");
             final File imgFile = dress.getImage();
             Image img;
@@ -231,7 +231,7 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
             stpImageView.getChildren().add(imageView);
             brpSpecificIthem.setCenter(stpImageView);
 
-            /* Button see BUTTOM________________ */
+             Button see BUTTOM________________ 
             final StackPane stpButtonSee = new StackPane();
             final Button btnSee = new Button("See more");
             btnSee.getStyleClass().add("btn-normal");
@@ -250,7 +250,7 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
         brpcat.setTop(skpNamecat);
         brpcat.setCenter(gridItem);
 
-        vBox.getChildren().add(brpcat);
+        vBox.getChildren().add(brpcat);*/
     
     }
 
