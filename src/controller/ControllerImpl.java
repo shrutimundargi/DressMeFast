@@ -3,12 +3,12 @@ package controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import controller.data_management.DataManagementImpl;
+import controller.data_management.Information;
 import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
 import controller.outfits.OutfitsController;
 import controller.outfits.OutfitsControllerImpl;
-import controller.saving.Information;
-import controller.saving.SavingDataImpl;
 import controller.user.UserController;
 import controller.user.UserControllerImpl;
 import model.classes.UserManagementImpl;
@@ -51,12 +51,12 @@ public final class ControllerImpl implements Controller {
     }
 
     private void loadData() {
-        new SavingDataImpl().load(userM);
+        new DataManagementImpl().load(userM);
     }
 
     @Override
     public Information saveData() {
-        return new SavingDataImpl().save(userM.getUsersSet());
+        return new DataManagementImpl().save(userM.getUsersSet());
     }
 
     @Override

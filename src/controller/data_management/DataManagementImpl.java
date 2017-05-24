@@ -1,4 +1,4 @@
-package controller.saving;
+package controller.data_management;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -20,7 +20,7 @@ import model.interfaces.UserManagement;
  * An implementation of the SavingData.
  *
  */
-public class SavingDataImpl implements SavingData {
+public class DataManagementImpl implements DataManagement {
 
     private static final String MAIN_PATH = System.getProperty("user.home") + File.separator + "dmfData";
     private static final String IMAGE_PATH = MAIN_PATH + File.separator + "images";
@@ -28,7 +28,7 @@ public class SavingDataImpl implements SavingData {
     /**
      * 
      */
-    public SavingDataImpl() {
+    public DataManagementImpl() {
         final File mainFolder;
         final File imagesFolder;
         mainFolder = new File(MAIN_PATH);
@@ -56,7 +56,7 @@ public class SavingDataImpl implements SavingData {
     @Override
     public Information save(final Set<User> userSet) {
         try (ObjectOutputStream outS = new ObjectOutputStream(
-                new BufferedOutputStream(new FileOutputStream(new File(MAIN_PATH + File.separator + "test.dat"))))) {
+                new BufferedOutputStream(new FileOutputStream(new File(MAIN_PATH + File.separator + "userDat.dat"))))) {
             outS.writeObject(userSet);
         } catch (FileNotFoundException e) {
             final RuntimeException e2 = new MyException("file not found");
