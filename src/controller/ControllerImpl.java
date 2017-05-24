@@ -25,13 +25,18 @@ public final class ControllerImpl implements Controller {
     /**
      * Singleton.
      */
-    public static final ControllerImpl SINGLETON = new ControllerImpl();
-
     private final UserController userCtr;
     private final UserManagement userM;
     private final Map<ScreensGraphic, UI> map;
 
-    private ControllerImpl() {
+    private static class SafeSingleton {
+        private static final ControllerImpl SINGLETON = new ControllerImpl();
+    }
+
+    /**
+     * 
+     */
+    protected ControllerImpl() {
         userM = new UserManagementImpl();
         userCtr = new UserControllerImpl(userM);
         map = new HashMap<>();
@@ -42,7 +47,7 @@ public final class ControllerImpl implements Controller {
      * @return SINGLETON
      */
     public static ControllerImpl getInstance() {
-        return SINGLETON;
+        return SafeSingleton.SINGLETON;
     }
 
     private void loadData() {
