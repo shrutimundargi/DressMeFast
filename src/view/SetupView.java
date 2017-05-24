@@ -17,6 +17,7 @@ import view.dialog.SignupDialogGraphic;
 import view.favorite.FavoriteGraphic;
 import view.home.HomeGraphic;
 import view.login.LoginGraphic;
+import view.outfits.NewOutfitGraphic;
 import view.outfits.OutfitsGraphic;
 import view.signup.SignupGraphic;
 import view.size.SizeGraphic;
@@ -39,6 +40,7 @@ public class SetupView {
     private AddGraphic addGraphic;
     private FavoriteGraphic favoriteGraphic;
     private OutfitsGraphic outfitsGraphic;
+    private NewOutfitGraphic newOutfitsGraphic;
     private SizeGraphic sizeGraphic;
     private CategoryGraphic categoryGraphic;
 
@@ -89,6 +91,9 @@ public class SetupView {
         this.outfitsGraphic = new OutfitsGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.OUTFITS, outfitsGraphic);
 
+        this.newOutfitsGraphic = new NewOutfitGraphic(sceneSetting, controller, this);
+        screenUI.put(ScreensGraphic.NEW_OUTFITS, newOutfitsGraphic);
+
         this.sizeGraphic = new SizeGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.SIZE, sizeGraphic);
 
@@ -107,8 +112,8 @@ public class SetupView {
             loginGraphic.show();
         });
     }
-    
-    public Controller getController(){
+
+    public Controller getController() {
         return this.controller;
     }
 

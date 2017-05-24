@@ -47,7 +47,6 @@ public class SceneSetting extends Application {
             setup.getController().saveData();
             System.exit(0);
         });
-
     }
 
     /**

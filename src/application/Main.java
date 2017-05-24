@@ -15,5 +15,6 @@ public class Main{
 
          final Controller controller =  ControllerImpl.getInstance();
          SetupView setUp = new SetupView(controller);
+
    }
 }

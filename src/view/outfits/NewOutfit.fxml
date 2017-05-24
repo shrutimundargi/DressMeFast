@@ -120,7 +120,7 @@
    </top>
    <stylesheets>
       <URL value="@../mainStyle.css" />
-      <URL value="@Favorite.css" />
+      <URL value="@NewOutfit.css" />
    </stylesheets>
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">

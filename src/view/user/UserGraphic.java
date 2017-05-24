@@ -1,11 +1,16 @@
 package view.user;
 
+import java.util.OptionalDouble;
+import java.util.Set;
+
 import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
+import model.interfaces.Dress;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
@@ -30,6 +35,20 @@ public class UserGraphic extends ProgramUIImpl implements UI {
     private Button btnLogout;
     @FXML
     private Text txtUser;
+    @FXML
+    private Label lblDateRegistration;
+    @FXML
+    private Label lblNumItem;
+    @FXML
+    private Label lblFavItem;
+    @FXML
+    private Label lblNumBrand;
+    @FXML
+    private Label lblMediumSize;
+    @FXML
+    private Label lblNumOutfits;
+    @FXML
+    private Label lblBrandMostUsed;
 
     /**
      * 
@@ -53,10 +72,11 @@ public class UserGraphic extends ProgramUIImpl implements UI {
         super.setupColorButtonsBH();
         txtUser.setText(super.getController().userController().getUsername());
         resetAllComponent();
+        fillTheInfo();
     }
 
     @FXML
-    public void pressLogout(ActionEvent event) {
+    private void pressLogout(ActionEvent event) {
         super.getController().userController().logout();
         super.getSceneSetting().displayScreen(ScreensGraphic.LOGIN);
     }
@@ -64,5 +84,14 @@ public class UserGraphic extends ProgramUIImpl implements UI {
     @Override
     public void resetAllComponent() {
         scrollPnl.setVvalue(scrollPnl.getMaxHeight());
+    }
+
+    private void fillTheInfo() {
+        lblDateRegistration
+                .setText("Registreted the " + super.getController().userController().getSingUpDate().toString());
+        lblNumItem.setText(String.valueOf((super.getController().dress().getAllDresses().size())));
+        lblFavItem.setText(String.valueOf(super.getController().dress().getFavoriteDresses().size()));
+        lblNumBrand.setText(String.valueOf(super.getController().dress().getAllBrand().size()));
+        lblNumOutfits.setText(String.valueOf(super.getController().outfits().getAllOutfits().size()));
     }
 }

@@ -51,7 +51,7 @@
                   </AnchorPane>
                   <AnchorPane>
                      <children>
-                        <Button fx:id="btnAddDress" mnemonicParsing="false" onAction="#goAddDress" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Add ithem" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Button fx:id="btnAddDress" mnemonicParsing="false" onAction="#goAddDress" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Add Item" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -137,11 +137,11 @@
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
                               </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="info-underTitle" text="Registred the 27 April 2017">
+                              <Label fx:id="lblDateRegistration" styleClass="info-underTitle" text="Registred the 27 April 2017">
                                  <VBox.margin>
                                     <Insets bottom="15.0" />
                                  </VBox.margin>
-                              </Text>
+                              </Label>
                               <Separator prefHeight="3.0" prefWidth="271.0" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-information-user" text="Information">
                                  <VBox.margin>
@@ -150,50 +150,32 @@
                               </Text>
                               <HBox styleClass="vBox-info-user">
                                  <children>
-                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
-                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                    <Label styleClass="lbl-user-info" text="Number of item:" />
+                                    <Label fx:id="lblNumItem" styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
                               <HBox styleClass="vBox-info-user">
                                  <children>
-                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
-                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                    <Label styleClass="lbl-user-info" text="Favorited item:" />
+                                    <Label fx:id="lblFavItem" styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
                               <HBox styleClass="vBox-info-user">
                                  <children>
-                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
-                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                    <Label styleClass="lbl-user-info" text="Number of outfits:" />
+                                    <Label fx:id="lblNumOutfits" styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
                               <HBox styleClass="vBox-info-user">
                                  <children>
-                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
-                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                    <Label styleClass="lbl-user-info" text="Number of brand:" />
+                                    <Label fx:id="lblNumBrand" styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
                               <HBox styleClass="vBox-info-user">
                                  <children>
-                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
-                                    <Label styleClass="lbl-user-theInfo" text="20" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="vBox-info-user">
-                                 <children>
-                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
-                                    <Label styleClass="lbl-user-theInfo" text="20" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="vBox-info-user">
-                                 <children>
-                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
-                                    <Label styleClass="lbl-user-theInfo" text="20" />
-                                 </children>
-                              </HBox>
-                              <HBox styleClass="vBox-info-user">
-                                 <children>
-                                    <Label styleClass="lbl-user-info" text=" Number of ithem:" />
-                                    <Label styleClass="lbl-user-theInfo" text="20" />
+                                    <Label styleClass="lbl-user-info" text="Brand most used:" />
+                                    <Label fx:id="lblBrandMostUsed" styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
                               <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#pressLogout" text="Logout">

@@ -16,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,7 +29,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import model.enumerations.Category;
 import model.interfaces.Dress;
 import view.SceneSetting;
@@ -98,7 +96,11 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
         pnlCategoryChb.getStyleClass().add("pnl-category-chb");
         chbCategory.getStyleClass().add("chb-category");
         vboxSelectCat.getStyleClass().add("vbox-select-cat");
-        chbCategory.getItems().setAll(Category.values());
+        for (Category Cat : Category.values()) {
+            if (Cat != Category.EMPTY) {
+                chbCategory.getItems().add(Cat);
+            }
+        }
         pnlCategoryTitle.getChildren().add(txtCategory);
         pnlCategoryChb.getChildren().add(chbCategory);
 
@@ -139,34 +141,39 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
 
     @Override
     public void resetAllComponent() {
-        // TODO Auto-generated method stub
-        
+        final int nComponent = vBox.getChildren().size();
+        for (int i = 2; i < nComponent; i++) {
+            vBox.getChildren().remove(2);
+        }
     }
-    
+
+    /**
+     * @param cat
+     *            the category that i wont to show.
+     */
     private void showItemOfCategory(final Category cat) {
-    
-        /*final Insets standarInset = new Insets(UPDOWN, LEFTRIGHT, UPDOWN, LEFTRIGHT);
+
+        final Insets standarInset = new Insets(UPDOWN, LEFTRIGHT, UPDOWN, LEFTRIGHT);
         final Insets noUpInset = new Insets(0, LEFTRIGHT, UPDOWN, LEFTRIGHT);
         final Insets noDownInset = new Insets(UPDOWN, LEFTRIGHT, 0, LEFTRIGHT);
-    
-        // java.util.Collections.sort(catsName);
-       
-        
-        final BorderPane brpcat = new BorderPane();
-        final StackPane skpNamecat = new StackPane();
-        final Label namecat = new Label(cat.toString());
+
+        // java.util.Collections.sort(CatsName);
+
+        final BorderPane brpCat = new BorderPane();
+        final StackPane skpNameCat = new StackPane();
+        final Label nameCat = new Label(cat.toString());
         final GridPane gridItem = new GridPane();
 
-        brpcat.getStyleClass().add("pnl-show-item");
-        skpNamecat.getStyleClass().add("pnl-show-item-title");
-        namecat.getStyleClass().add("text-title-show-item");
+        brpCat.getStyleClass().add("pnl-show-item");
+        skpNameCat.getStyleClass().add("pnl-show-item-title");
+        nameCat.getStyleClass().add("text-title-show-item");
         gridItem.getStyleClass().add("pnl-show-item-dress");
 
-        VBox.setMargin(brpcat, standarInset);
+        VBox.setMargin(brpCat, standarInset);
 
-         Grid________________ 
-        gridItem.getColumnConstraints().addAll(
-                DoubleStream.of(PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID).mapToObj(width -> {
+        /* Grid________________ */
+        gridItem.getColumnConstraints()
+                .addAll(DoubleStream.of(PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID).mapToObj(width -> {
                     final ColumnConstraints constraints = new ColumnConstraints();
                     constraints.setPercentWidth(width);
                     constraints.setFillWidth(true);
@@ -177,15 +184,15 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
         rowConstraints.setVgrow(Priority.ALWAYS);
         gridItem.getRowConstraints().add(rowConstraints);
 
-         Specific_Item__________________ 
-        final List<Dress> dressItem = super.getController().dress().getAllBrandDress(cat);
+        /* Specific_Item__________________ */
+        final List<Dress> dressItem = super.getController().dress().getDressIntoCategory(cat);
         for (int j = 0; j < dressItem.size(); j++) {
             final Dress dress = dressItem.get(j);
             final BorderPane brpSpecificIthem = new BorderPane();
             final int rowIndex = j % 3;
             final int columnIndex = j == 0 ? 0 : j / 3;
 
-             Name TOP__________________ 
+            /* Name TOP__________________ */
             final StackPane stpNameItem = new StackPane();
             final Label nameSpecItem = new Label(dress.getName());
             nameSpecItem.getStyleClass().add("text-title-show-item");
@@ -193,7 +200,7 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
             StackPane.setMargin(nameSpecItem, noDownInset);
             brpSpecificIthem.setTop(stpNameItem);
 
-             Image CENTER__________________ 
+            /* Image CENTER__________________ */
             brpSpecificIthem.getStyleClass().add("pnl-specific-item");
             final File imgFile = dress.getImage();
             Image img;
@@ -231,7 +238,7 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
             stpImageView.getChildren().add(imageView);
             brpSpecificIthem.setCenter(stpImageView);
 
-             Button see BUTTOM________________ 
+            /* Button see BUTTOM________________ */
             final StackPane stpButtonSee = new StackPane();
             final Button btnSee = new Button("See more");
             btnSee.getStyleClass().add("btn-normal");
@@ -246,12 +253,12 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
             gridItem.add(brpSpecificIthem, rowIndex, columnIndex);
         }
 
-        skpNamecat.getChildren().add(namecat);
-        brpcat.setTop(skpNamecat);
-        brpcat.setCenter(gridItem);
+        skpNameCat.getChildren().add(nameCat);
+        brpCat.setTop(skpNameCat);
+        brpCat.setCenter(gridItem);
 
-        vBox.getChildren().add(brpcat);*/
-    
+        vBox.getChildren().add(brpCat);
+
     }
 
 }

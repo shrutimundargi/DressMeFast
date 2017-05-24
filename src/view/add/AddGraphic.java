@@ -327,7 +327,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
 
                 super.getController().dress().addDress(txfName.getText(), txfBrand.getText(), size, price,
                         dtpDate.getValue(), txaInfo.getText(), chbCategory.getValue(), imgFile);
-
+                
                 this.resetAllComponent();
                 this.autoComplete();
                 returnTopPane();

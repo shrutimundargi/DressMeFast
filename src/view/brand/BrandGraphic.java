@@ -94,7 +94,11 @@ public class BrandGraphic extends ProgramUIImpl implements UI {
         pnlCategoryChb.getStyleClass().add("pnl-category-chb");
         chbCategory.getStyleClass().add("chb-category");
         vboxSelectCat.getStyleClass().add("vbox-select-cat");
-        chbCategory.getItems().setAll(Category.values());
+        for (Category cat : Category.values()) {
+            if (cat != Category.EMPTY) {
+                chbCategory.getItems().add(cat);
+            }
+        }
         pnlCategoryTitle.getChildren().add(txtCategory);
         pnlCategoryChb.getChildren().add(chbCategory);
 

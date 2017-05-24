@@ -29,7 +29,7 @@
 }
 
 .info-underTitle{
-    -fx-fill: #A9A9A9;
+    -fx-text-fill: #A9A9A9;
 	-fx-font-size: 13.0px;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .lbl-user-theInfo{
-	-fx-text-fill: #C4C4C4;
+	-fx-text-fill: white;
 	-fx-font-size: 20.0px;
 	-fx-padding: 0 0 0 15;
 }

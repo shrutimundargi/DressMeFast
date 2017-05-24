@@ -139,3 +139,17 @@ image-item{
 	-fx-background-color: grey;
 	-fx-background-radius: 5;
 }
+
+.text-info-item {
+	-fx-text-fill: white;
+	-fx-font-size: 15.0px;
+}
+
+.btn-remove{
+	-fx-border-color: #0075F2;
+}
+
+.text-name-item{
+	-fx-text-fill: white;
+	-fx-font-size: 23px;
+}

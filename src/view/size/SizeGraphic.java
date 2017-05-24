@@ -16,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,7 +29,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import model.enumerations.Category;
 import model.interfaces.Dress;
 import view.SceneSetting;
@@ -98,7 +96,11 @@ public class SizeGraphic extends ProgramUIImpl implements UI {
         pnlCategoryChb.getStyleClass().add("pnl-category-chb");
         chbCategory.getStyleClass().add("chb-category");
         vboxSelectCat.getStyleClass().add("vbox-select-cat");
-        chbCategory.getItems().setAll(Category.values());
+        for (final Category cat : Category.values()) {
+            if (cat != Category.EMPTY) {
+                chbCategory.getItems().add(cat);
+            }
+        }
         pnlCategoryTitle.getChildren().add(txtCategory);
         pnlCategoryChb.getChildren().add(chbCategory);
 

@@ -48,3 +48,8 @@
 
 }
 
+.btn-outfits{
+    -fx-padding: 10 19;
+   	-fx-border-radius: 18.0;
+   	-fx-background-radius: 18.0px;
+}

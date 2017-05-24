@@ -52,6 +52,10 @@ public enum ScreensGraphic {
     /**
      * Add item scene.
      */
+    NEW_OUTFITS("/view/outfits/NewOutfit.fxml", "/view/outfits/NewOutfit.css"),
+    /**
+     * Add item scene.
+     */
     SIZE("/view/size/Size.fxml", "/view/size/Size.css"),
     /**
      * Category scene.

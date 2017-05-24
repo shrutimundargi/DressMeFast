@@ -5,7 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -14,7 +13,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="750.0" prefWidth="1000.0" styleClass="pnlHome" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
@@ -41,177 +39,7 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <VBox prefHeight="260.0" prefWidth="602.0" style="back: black;" BorderPane.alignment="CENTER">
-                     <children>
-                        <BorderPane prefHeight="400.0" prefWidth="940.0" styleClass="pnl-preview-home">
-                           <VBox.margin>
-                              <Insets bottom="10.0" />
-                           </VBox.margin>
-                           <center>
-                              <GridPane prefHeight="400.0" prefWidth="938.0" styleClass="pnl-preview-home-no-title">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="170.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
-                                       <center>
-                                          <VBox BorderPane.alignment="CENTER">
-                                             <children>
-                                                <StackPane>
-                                                   <children>
-                                                      <Circle fx:id="imagePreviewDress1" fill="DODGERBLUE" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
-                                                   </children>
-                                                </StackPane>
-                                                <StackPane>
-                                                   <children>
-                                                      <Text fx:id="txtPreviewDress1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </padding>
-                                                </StackPane>
-                                                <StackPane prefHeight="150.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Button fx:id="btnPreviewDress1" mnemonicParsing="false" text="See more">
-                                                         <styleClass>
-                                                            <String fx:value="btn-small" />
-                                                            <String fx:value="btn-normal" />
-                                                         </styleClass>
-                                                      </Button>
-                                                   </children>
-                                                </StackPane>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                          </VBox>
-                                       </center>
-                                    </BorderPane>
-                                    <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                       <center>
-                                          <VBox BorderPane.alignment="CENTER">
-                                             <children>
-                                                <StackPane>
-                                                   <children>
-                                                      <Circle fx:id="imagePreviewDress2" fill="DODGERBLUE" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
-                                                   </children>
-                                                </StackPane>
-                                                <StackPane>
-                                                   <children>
-                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </padding>
-                                                </StackPane>
-                                                <StackPane prefHeight="150.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Button fx:id="btnPreviewDress2" mnemonicParsing="false" text="See more">
-                                                         <styleClass>
-                                                            <String fx:value="btn-small" />
-                                                            <String fx:value="btn-normal" />
-                                                         </styleClass>
-                                                      </Button>
-                                                   </children>
-                                                </StackPane>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                          </VBox>
-                                       </center>
-                                    </BorderPane>
-                                    <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
-                                       <center>
-                                          <VBox BorderPane.alignment="CENTER">
-                                             <children>
-                                                <StackPane>
-                                                   <children>
-                                                      <Circle fx:id="imagePreviewDress3" fill="DODGERBLUE" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
-                                                   </children>
-                                                </StackPane>
-                                                <StackPane>
-                                                   <children>
-                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </padding>
-                                                </StackPane>
-                                                <StackPane prefHeight="150.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Button fx:id="btnPreviewDress3" mnemonicParsing="false" text="See more">
-                                                         <styleClass>
-                                                            <String fx:value="btn-small" />
-                                                            <String fx:value="btn-normal" />
-                                                         </styleClass>
-                                                      </Button>
-                                                   </children>
-                                                </StackPane>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                          </VBox>
-                                       </center>
-                                    </BorderPane>
-                                    <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3">
-                                       <center>
-                                          <VBox BorderPane.alignment="CENTER">
-                                             <children>
-                                                <StackPane>
-                                                   <children>
-                                                      <Circle fx:id="imagePreviewDress4" fill="DODGERBLUE" radius="68.0" stroke="BLACK" strokeType="INSIDE" />
-                                                   </children>
-                                                </StackPane>
-                                                <StackPane>
-                                                   <children>
-                                                      <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Maglia" textAlignment="CENTER" />
-                                                   </children>
-                                                   <padding>
-                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                                   </padding>
-                                                </StackPane>
-                                                <StackPane prefHeight="150.0" prefWidth="200.0">
-                                                   <children>
-                                                      <Button fx:id="btnPreviewDress4" mnemonicParsing="false" text="See more">
-                                                         <styleClass>
-                                                            <String fx:value="btn-small" />
-                                                            <String fx:value="btn-normal" />
-                                                         </styleClass>
-                                                      </Button>
-                                                   </children>
-                                                </StackPane>
-                                             </children>
-                                             <padding>
-                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                             </padding>
-                                          </VBox>
-                                       </center>
-                                    </BorderPane>
-                                 </children>
-                              </GridPane>
-                           </center>
-                           <top>
-                              <AnchorPane style="-fx-background-color: #3D3D3D;" styleClass="pnl-preview-home-title">
-                                 <children>
-                                    <Label text="List of last adding" textFill="#cdcaca">
-                                       <padding>
-                                          <Insets bottom="5.0" left="11.0" top="5.0" />
-                                       </padding>
-                                    </Label>
-                                 </children>
-                              </AnchorPane>
-                           </top>
-                        </BorderPane>
-                     </children>
-                  </VBox>
+                  <VBox fx:id="vBoxLastAdded" prefHeight="260.0" prefWidth="602.0" style="back: black;" BorderPane.alignment="CENTER" />
                </top>
                <center>
                   <AnchorPane BorderPane.alignment="CENTER">
@@ -268,7 +96,7 @@
                               </AnchorPane>
                               <AnchorPane GridPane.columnIndex="1">
                                  <children>
-                                    <Button fx:id="btnCenterAdd" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" onAction="#goCenterAdd" text="Add Dress" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                    <Button fx:id="btnCenterAdd" layoutX="10.0" layoutY="5.0" mnemonicParsing="false" onAction="#goCenterAdd" text="Add Item" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
                                        <styleClass>
                                           <String fx:value="btn-selection-center-home" />
                                           <String fx:value="add" />
@@ -349,7 +177,7 @@
                   </AnchorPane>
                   <AnchorPane>
                      <children>
-                        <Button fx:id="btnAddDress" mnemonicParsing="false" onAction="#goAddDress" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Add Dress" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Button fx:id="btnAddDress" mnemonicParsing="false" onAction="#goAddDress" prefHeight="50.0" prefWidth="193.0" styleClass="btn-menu" text="Add Item" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
