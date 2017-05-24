@@ -25,8 +25,9 @@ public final class OutfitsControllerImpl implements OutfitsController {
     }
 
     @Override
-    public Status addOutfits(final List<UUID> dressesId) {
+    public Status addOutfits(final List<UUID> dressesId, final String name) {
         final Outfits userOutfits = new UserOutfit().createOutfit(dressesId);
+        userOutfits.setName(name);
         return user.getWardobe().getOutfits().addOutfit(userOutfits, Outfit.USER);
     }
 
