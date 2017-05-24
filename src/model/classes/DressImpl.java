@@ -27,7 +27,7 @@ public final class DressImpl implements Dress {
     private String name;
     private String brand;
     private Integer size;
-    private Double price;
+    private double price;
     private LocalDate purchaseDate;
     private String description;
     private Boolean favourited;
@@ -53,7 +53,7 @@ public final class DressImpl implements Dress {
      *            the description of a dress.
      */
     protected DressImpl(final File dressImage, final String dressName, final String dressBrand, final Integer dressSize,
-            final Double dressPrice, final LocalDate dressPurchaseDate, final String dressDescription) {
+            final double dressPrice, final LocalDate dressPurchaseDate, final String dressDescription) {
         super();
         this.image = dressImage;
         this.name = dressName;
@@ -188,7 +188,9 @@ public final class DressImpl implements Dress {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((image == null) ? 0 : image.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((price == null) ? 0 : price.hashCode());
+        long temp;
+        temp = Double.doubleToLongBits(price);
+        result = prime * result + (int) (temp ^ (temp >>> 32));
         result = prime * result + ((purchaseDate == null) ? 0 : purchaseDate.hashCode());
         result = prime * result + ((size == null) ? 0 : size.hashCode());
         result = prime * result + ((wornCount == null) ? 0 : wornCount.hashCode());
@@ -206,7 +208,7 @@ public final class DressImpl implements Dress {
         if (!(obj instanceof DressImpl)) {
             return false;
         }
-        DressImpl other = (DressImpl) obj;
+        final DressImpl other = (DressImpl) obj;
         if (brand == null) {
             if (other.brand != null) {
                 return false;
@@ -252,11 +254,7 @@ public final class DressImpl implements Dress {
         } else if (!name.equals(other.name)) {
             return false;
         }
-        if (price == null) {
-            if (other.price != null) {
-                return false;
-            }
-        } else if (!price.equals(other.price)) {
+        if (Double.doubleToLongBits(price) != Double.doubleToLongBits(other.price)) {
             return false;
         }
         if (purchaseDate == null) {

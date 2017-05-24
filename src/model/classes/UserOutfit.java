@@ -109,7 +109,7 @@ public class UserOutfit implements Outfits {
         if (!(obj instanceof UserOutfit)) {
             return false;
         }
-        UserOutfit other = (UserOutfit) obj;
+        final UserOutfit other = (UserOutfit) obj;
         if (id == null) {
             if (other.id != null) {
                 return false;

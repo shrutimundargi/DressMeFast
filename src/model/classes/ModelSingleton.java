@@ -18,7 +18,10 @@ final class ModelSingleton {
         private static final ModelSingleton SINGLETON = new ModelSingleton();
     }
 
-    private ModelSingleton() {
+    /**
+     * A container to store all the users.
+     */
+    protected ModelSingleton() {
         this.userSet = new HashSet<>();
     }
 

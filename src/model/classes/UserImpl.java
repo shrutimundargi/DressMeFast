@@ -15,7 +15,7 @@ public class UserImpl implements User {
      * 
      */
     private static final long serialVersionUID = 1075178897632172278L;
-    private LocalDate signUpDate;
+    private final LocalDate signUpDate;
     private final String userName;
     private final String userPassword;
     private final Wardrobe wardrobe;
@@ -80,7 +80,7 @@ public class UserImpl implements User {
         if (!(obj instanceof UserImpl)) {
             return false;
         }
-        UserImpl other = (UserImpl) obj;
+        final UserImpl other = (UserImpl) obj;
         if (userName == null) {
             if (other.userName != null) {
                 return false;

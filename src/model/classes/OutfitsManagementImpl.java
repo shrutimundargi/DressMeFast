@@ -140,7 +140,7 @@ public class OutfitsManagementImpl implements OutfitsManagement {
         if (!(obj instanceof OutfitsManagementImpl)) {
             return false;
         }
-        OutfitsManagementImpl other = (OutfitsManagementImpl) obj;
+        final OutfitsManagementImpl other = (OutfitsManagementImpl) obj;
         if (outfitsMap == null) {
             if (other.outfitsMap != null) {
                 return false;

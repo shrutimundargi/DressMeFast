@@ -33,15 +33,14 @@ import model.interfaces.Wardrobe;
  */
 public final class ModelTest {
 
-    private static final int NUMBER_OF_DRESSES = 5;
     private final Wardrobe wardrobe = new WardobeImpl();
     private final LocalDate date = LocalDate.now();
     private final UserManagement userManagement = new UserManagementImpl();
     private final List<UUID> someDresses = new LinkedList<>();
-    private Outfits firstOutfit;
-    private Outfits secondOutfit;
     private static final int SIZE = 44;
     private static final double PRICE = 80;
+    private static final String DENNY_ROSE = "Denny Rose";
+    private static final int NUMBER_OF_DRESSES = 5;
 
     /**
      * Tests the creation of a user.
@@ -60,6 +59,8 @@ public final class ModelTest {
     @Test
     public void testCategoryAndOutfit() {
 
+        Outfits firstOutfit;
+        Outfits secondOutfit;
         wardrobe.getCategories().initializeAllCategories();
         wardrobe.getOutfits().initializeAllOutfits();
 
@@ -78,17 +79,15 @@ public final class ModelTest {
         assertTrue(dress.getBrand().equals("Lee"));
         assertTrue(dress.getDescription().equals("Ruined Jeans"));
         assertTrue(dress.getName().equals("Fav Jeans"));
-        assertTrue(dress.getPrice() == PRICE);
         assertTrue(dress.getPurchaseDate().equals(date));
         assertTrue(dress.getSize().equals(SIZE));
 
-        final Dress dress2 = new DressImpl.DressBuilder().buildBrand("Denny Rose").buildDescription("Cool Jeans")
+        final Dress dress2 = new DressImpl.DressBuilder().buildBrand(DENNY_ROSE).buildDescription("Cool Jeans")
                 .buildName("Jeans").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
 
-        assertTrue(dress2.getBrand().equals("Denny Rose"));
+        assertTrue(dress2.getBrand().equals(DENNY_ROSE));
         assertTrue(dress2.getDescription().equals("Cool Jeans"));
         assertTrue(dress2.getName().equals("Jeans"));
-        assertTrue(dress2.getPrice() == PRICE);
         assertTrue(dress2.getPurchaseDate().equals(date));
         assertTrue(dress2.getSize().equals(SIZE));
 
@@ -99,14 +98,13 @@ public final class ModelTest {
         assertTrue(dress1.getBrand().equals("On Spirit"));
         assertTrue(dress1.getDescription().equals("Violet Cool T-Shirt"));
         assertTrue(dress1.getName().equals("Fav T-Shirt"));
-        assertTrue(dress1.getPrice() == PRICE);
         assertTrue(dress1.getPurchaseDate().equals(date));
         assertTrue(dress1.getSize().equals(SIZE));
 
         final Dress dress3 = new DressImpl.DressBuilder().buildBrand("Levis").buildDescription("prova")
                 .buildName("prova").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
 
-        final Dress dress4 = new DressImpl.DressBuilder().buildBrand("Denny Rose").buildDescription("nice jeans")
+        final Dress dress4 = new DressImpl.DressBuilder().buildBrand(DENNY_ROSE).buildDescription("nice jeans")
                 .buildName("White Jeans").buildPrice(PRICE).buildPurchaseDate(date).buildSize(SIZE).build();
 
         wardrobe.getCategories().addDressToCategory(dress, Category.LEGS);
@@ -150,11 +148,11 @@ public final class ModelTest {
         System.out.println(brands.toString());
         final Set<Dress> dressesOfBrand = wardrobe.getDressesOfBrand("Levis");
         System.out.println(dressesOfBrand.toString());
-        assertTrue(wardrobe.getMostPopularBrand().equals("Denny Rose"));
+        assertTrue(wardrobe.getMostPopularBrand().equals(DENNY_ROSE));
         final List<String> brandsOfCategory = wardrobe.getBrandsOfCategory(Category.LEGS);
         System.out.println("\n\n\n\n\n");
         System.out.println(brandsOfCategory.toString());
-        final List<Dress> dressesOfBrandAndCategory = wardrobe.getDressesOfBrandAndCategory(Category.LEGS, "Denny Rose");
+        final List<Dress> dressesOfBrandAndCategory = wardrobe.getDressesOfBrandAndCategory(Category.LEGS, DENNY_ROSE);
         assertTrue(dressesOfBrandAndCategory.contains(dress2));
         assertTrue(dressesOfBrandAndCategory.contains(dress4));
         final List<Integer> sizesOfCategory = wardrobe.getSizesOfCategory(Category.HEAD);

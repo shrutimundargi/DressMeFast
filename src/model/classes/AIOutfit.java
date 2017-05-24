@@ -26,7 +26,7 @@ public class AIOutfit implements Outfits {
     private final UUID id;
     private String name;
     private Integer wornCount;
-    private List<UUID> outfit;
+    private final List<UUID> outfit;
 
     /**
      * Creates a container of a single AI outfit.
@@ -77,13 +77,13 @@ public class AIOutfit implements Outfits {
 
     @Override
     public Outfits createOutfit(final Map<Category, Categories> categoryMap) {
-        List<Dress> dressHead = new LinkedList<>();
-        List<Dress> dressNeck = new LinkedList<>();
-        List<Dress> dressBody = new LinkedList<>();
-        List<Dress> dressHands = new LinkedList<>();
-        List<Dress> dressLegs = new LinkedList<>();
-        List<Dress> dressFoot = new LinkedList<>();
-        Random randomizer = new Random();
+        final List<Dress> dressHead = new LinkedList<>();
+        final List<Dress> dressNeck = new LinkedList<>();
+        final List<Dress> dressBody = new LinkedList<>();
+        final List<Dress> dressHands = new LinkedList<>();
+        final List<Dress> dressLegs = new LinkedList<>();
+        final List<Dress> dressFoot = new LinkedList<>();
+        final Random randomizer = new Random();
 
         categoryMap.get(Category.HEAD).getAllDresses().values().forEach(dress -> {
             dressHead.add(dress);
@@ -110,14 +110,14 @@ public class AIOutfit implements Outfits {
         });
 
         Dress randomBodyDress = null;
-        if (dressBody.size() != 0) {
+        if (!dressBody.isEmpty()) {
             randomBodyDress = dressBody.get(randomizer.nextInt(dressBody.size()));
             if (randomBodyDress.getFavourited().booleanValue() || randomBodyDress.getWornCount() == 0) {
                 this.outfit.add(randomBodyDress.getId());
             }
         }
         Dress randomLegsDress = null;
-        if (dressLegs.size() != 0 && randomBodyDress != null) {
+        if (!dressLegs.isEmpty() && randomBodyDress != null) {
             randomLegsDress = dressLegs.get(randomizer.nextInt(dressLegs.size()));
             if (randomLegsDress.getFavourited().booleanValue() || randomLegsDress.getWornCount() == 0
                     || randomLegsDress.getBrand().equals(randomBodyDress.getBrand())
@@ -127,15 +127,15 @@ public class AIOutfit implements Outfits {
         }
 
         Dress randomHeadDress = null;
-        if (dressHead.size() != 0) {
+        if (!dressHead.isEmpty()) {
             randomHeadDress = dressHead.get(randomizer.nextInt(dressHead.size()));
             if (randomHeadDress.getFavourited().booleanValue() || randomHeadDress.getWornCount() == 0) {
                 this.outfit.add(randomHeadDress.getId());
             }
         }
 
-        if (dressNeck.size() != 0 && randomHeadDress != null) {
-            Dress randomNeckDress = dressNeck.get(randomizer.nextInt(dressNeck.size()));
+        if (!dressNeck.isEmpty() && randomHeadDress != null) {
+            final Dress randomNeckDress = dressNeck.get(randomizer.nextInt(dressNeck.size()));
             if (randomNeckDress.getFavourited().booleanValue() || randomHeadDress.getWornCount() == 0
                     || randomNeckDress.getBrand().equals(randomHeadDress.getBrand())
                     || randomNeckDress.getSize().equals(randomHeadDress.getSize())) {
@@ -143,8 +143,8 @@ public class AIOutfit implements Outfits {
             }
         }
 
-        if (dressHands.size() != 0) {
-            Dress randomHandsDress = dressHands.get(randomizer.nextInt(dressHands.size()));
+        if (!dressHands.isEmpty()) {
+            final Dress randomHandsDress = dressHands.get(randomizer.nextInt(dressHands.size()));
             if (randomHandsDress.getFavourited().booleanValue() || randomHeadDress.getWornCount() == 0
                     || randomHandsDress.getBrand().equals(randomHeadDress.getBrand())
                     || randomHandsDress.getSize().equals(randomHeadDress.getSize())) {
@@ -152,8 +152,8 @@ public class AIOutfit implements Outfits {
             }
         }
 
-        if (dressFoot.size() != 0) {
-            Dress randomFootDress = dressFoot.get(randomizer.nextInt(dressFoot.size()));
+        if (!dressFoot.isEmpty()) {
+            final Dress randomFootDress = dressFoot.get(randomizer.nextInt(dressFoot.size()));
             if (randomFootDress.getFavourited().booleanValue() || randomFootDress.getWornCount() == 0
                     || randomFootDress.getBrand().equals(randomBodyDress.getBrand())
                     || randomFootDress.getBrand().equals(randomLegsDress.getBrand())) {
@@ -190,7 +190,7 @@ public class AIOutfit implements Outfits {
         if (!(obj instanceof AIOutfit)) {
             return false;
         }
-        AIOutfit other = (AIOutfit) obj;
+        final AIOutfit other = (AIOutfit) obj;
         if (id == null) {
             if (other.id != null) {
                 return false;

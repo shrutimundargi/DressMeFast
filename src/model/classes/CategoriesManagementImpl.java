@@ -155,7 +155,7 @@ public class CategoriesManagementImpl implements CategoriesManagement {
         if (!(obj instanceof CategoriesManagementImpl)) {
             return false;
         }
-        CategoriesManagementImpl other = (CategoriesManagementImpl) obj;
+        final CategoriesManagementImpl other = (CategoriesManagementImpl) obj;
         if (categoryMap == null) {
             if (other.categoryMap != null) {
                 return false;
