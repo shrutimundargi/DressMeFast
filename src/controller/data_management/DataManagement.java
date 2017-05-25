@@ -1,4 +1,4 @@
-package controller.saving;
+package controller.data_management;
 
 import java.util.Set;
 
@@ -9,7 +9,7 @@ import model.interfaces.UserManagement;
  * Interface used for saving Data.
  *
  */
-public interface SavingData {
+public interface DataManagement {
 
     /**
      * @param userSet

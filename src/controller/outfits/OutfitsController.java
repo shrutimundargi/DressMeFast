@@ -15,9 +15,11 @@ public interface OutfitsController {
     /**
      * @param dressesId
      *            : A list containing all the id of the dresses
+     * @param name
+     *            : the name of the outfits
      * @return Return OUTFIT_ADDED if Everything went well
      */
-    Status addOutfits(List<UUID> dressesId);
+    Status addOutfits(List<UUID> dressesId, String name);
 
     /**
      * @return ReturnA list containing all the Outfits

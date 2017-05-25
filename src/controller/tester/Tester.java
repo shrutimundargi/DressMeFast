@@ -167,7 +167,7 @@ public class Tester {
         for (final Dress dress : cont.dress().getAllDresses()) {
             idDress.add(dress.getId());
         }
-        assertEquals(Status.OUTFIT_ADDED, cont.outfits().addOutfits(idDress));
+        assertEquals(Status.OUTFIT_ADDED, cont.outfits().addOutfits(idDress, ""));
         assertEquals(1, cont.outfits().getAllOutfits().size());
         assertEquals(0, cont.outfits().getAIOutfits().size());
         assertEquals(1, cont.outfits().getUserOutfits().size());

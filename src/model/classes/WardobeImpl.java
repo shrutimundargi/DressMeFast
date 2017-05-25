@@ -75,8 +75,8 @@ public class WardobeImpl implements Wardrobe {
 
     @Override
     public String getMostPopularBrand() {
-        List<Dress> dressList = new LinkedList<>();
-        Map<String, Integer> tmpMap = new HashMap<>();
+        final List<Dress> dressList = new LinkedList<>();
+        final Map<String, Integer> tmpMap = new HashMap<>();
         Entry<String, Integer> maxEntry = null;
 
         this.categoryManagement.getAllCategories().values().forEach(category -> {
@@ -95,7 +95,7 @@ public class WardobeImpl implements Wardrobe {
             }
         });
 
-        for (Entry<String, Integer> entry : tmpMap.entrySet()) {
+        for (final Entry<String, Integer> entry : tmpMap.entrySet()) {
             if (maxEntry == null || entry.getValue() > maxEntry.getValue()) {
                 maxEntry = entry;
             }
@@ -253,7 +253,7 @@ public class WardobeImpl implements Wardrobe {
         if (!(obj instanceof WardobeImpl)) {
             return false;
         }
-        WardobeImpl other = (WardobeImpl) obj;
+        final WardobeImpl other = (WardobeImpl) obj;
         if (categoryManagement == null) {
             if (other.categoryManagement != null) {
                 return false;

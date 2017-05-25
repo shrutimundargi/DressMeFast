@@ -1,8 +1,8 @@
 package controller;
 
+import controller.data_management.Information;
 import controller.dress.DressController;
 import controller.outfits.OutfitsController;
-import controller.saving.Information;
 import controller.user.UserController;
 import view.ScreensGraphic;
 import view.UI;

@@ -87,7 +87,7 @@ public class CategoriesImpl implements Categories {
         if (!(obj instanceof CategoriesImpl)) {
             return false;
         }
-        CategoriesImpl other = (CategoriesImpl) obj;
+        final CategoriesImpl other = (CategoriesImpl) obj;
         if (map == null) {
             if (other.map != null) {
                 return false;
