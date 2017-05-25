@@ -35,7 +35,7 @@ import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
 import view.UI;
-import view.generalUI.ProgramUIImpl;
+import view.general.ProgramUIImpl;
 
 /**
  * 
@@ -52,11 +52,10 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.CATEGORY;
 
     private static final String NAMEOFSCREEN = "Category";
-    private static final String DESCRIPTIONOFPANE = "";
 
     @FXML
     private ScrollPane scrollPnl;
-    private VBox vBox;
+    private final VBox vBox;
     private final ChoiceBox<Category> chbCategory;
 
     /**
@@ -96,9 +95,9 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
         pnlCategoryChb.getStyleClass().add("pnl-category-chb");
         chbCategory.getStyleClass().add("chb-category");
         vboxSelectCat.getStyleClass().add("vbox-select-cat");
-        for (Category Cat : Category.values()) {
-            if (Cat != Category.EMPTY) {
-                chbCategory.getItems().add(Cat);
+        for (final Category cat : Category.values()) {
+            if (cat != Category.EMPTY) {
+                chbCategory.getItems().add(cat);
             }
         }
         pnlCategoryTitle.getChildren().add(txtCategory);
@@ -112,7 +111,7 @@ public class CategoryGraphic extends ProgramUIImpl implements UI {
         vBox.getChildren().add(titleStackPnl);
         vBox.getChildren().add(vboxSelectCat);
 
-        VBox.setVgrow(scrollPnl, javafx.scene.layout.Priority.ALWAYS);
+        VBox.setVgrow(scrollPnl, Priority.ALWAYS);
         /* ___________________________________________ */
         scrollPnl.setFitToWidth(true);
         // scrollPnl.setFitToHeight(true);

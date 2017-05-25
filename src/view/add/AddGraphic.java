@@ -37,7 +37,7 @@ import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
 import view.UI;
-import view.generalUI.ProgramUIImpl;
+import view.general.ProgramUIImpl;
 
 /**
  * 

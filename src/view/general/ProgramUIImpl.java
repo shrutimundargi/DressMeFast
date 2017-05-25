@@ -1,4 +1,4 @@
-package view.generalUI;
+package view.general;
 
 import controller.Controller;
 import javafx.event.ActionEvent;

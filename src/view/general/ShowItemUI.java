@@ -1,4 +1,4 @@
-package view.generalUI;
+package view.general;
 
 public interface ShowItemUI {
 

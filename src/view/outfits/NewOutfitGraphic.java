@@ -1,46 +1,35 @@
 package view.outfits;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.DoubleStream;
+import java.util.UUID;
 
 import controller.Controller;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ToolBar;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import model.enumerations.Category;
 import model.interfaces.Dress;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
 import view.UI;
-import view.generalUI.ProgramUIImpl;
+import view.general.GeneralObjectFx;
+import view.general.ProgramUIImpl;
 
 /**
  * 
@@ -48,18 +37,9 @@ import view.generalUI.ProgramUIImpl;
  *
  */
 public class NewOutfitGraphic extends ProgramUIImpl implements UI {
-    private static final String BTN_SMALL = "btn-small";
-    private static final String BTN_NORMAL = "btn-normal";
-    private static final int LEFTRIGHT = 10;
-    private static final int UPDOWN = 15;
-    private static final int UPDOWN_BIG = 25;
-    private static final int PERCENT_WIDTH_GRID = 33;
-    private static final int WIDTH_HEIGHT = 150;
-    private static final int HEIGHT_IMAGE = 200;
-    private static final int SHADOW_HEIGHT = 20;
-    private static final Insets STANDARD_INSET = new Insets(UPDOWN, LEFTRIGHT, UPDOWN, LEFTRIGHT);
-    private static final Insets NOUP_INSET = new Insets(0, LEFTRIGHT, UPDOWN, LEFTRIGHT);
-    private static final Insets NODOWN_INSET = new Insets(UPDOWN, LEFTRIGHT, 0, LEFTRIGHT);
+    private static final int HEIGHT_DIALOG = 400;
+    private static final int WIDTH_DIALOG = 650;
+
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.NEW_OUTFITS;
 
     private static final String NAMEOFSCREEN = "New outfit";
@@ -67,9 +47,11 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
 
     @FXML
     private ScrollPane scrollPnl;
-    private VBox vBox;
+    private final VBox vBox;
+    private final TextField txfName;
 
-    private Dress[] outfitsBrand;
+    private Dress[] outfitItem;
+    private final GeneralObjectFx genObjFx;
 
     /**
      * 
@@ -81,26 +63,30 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
      *            a reference of the instance of the class SetupView that permit
      *            to manage the important thing of the view, like
      */
-    /**
-     * @param environment
-     * @param controller
-     * @param setup
-     */
     public NewOutfitGraphic(final SceneSetting environment, final Controller controller, final SetupView setup) {
         super(environment, controller, setup, ACTUALSCREEN);
         this.getSceneSetting().loadScreen(ACTUALSCREEN, this);
         super.getBtnOutfits().setStyle("-fx-background-image: url('/images/dress.png');");
+        final Text titlePane;
+        final StackPane titleStackPnl;
+        final Button btnAddOutfit;
+        final StackPane skpBtnAddOutfit;
+
+        final Category[] allCat;
 
         /* Container (PANE) */
         vBox = new VBox();
-
-        outfitsBrand = new Dress[6];
+        outfitItem = new Dress[Category.values().length];
+        genObjFx = new GeneralObjectFx();
 
         /* Title_______________ */
-        final Text titlePane = new Text(NAMEOFSCREEN);
-        final StackPane titleStackPnl = new StackPane();
+        titlePane = new Text(NAMEOFSCREEN);
+        titleStackPnl = new StackPane();
         titlePane.getStyleClass().add("main-title");
         titleStackPnl.getChildren().add(titlePane);
+
+        vBox.getChildren().add(titleStackPnl);
+        VBox.setVgrow(scrollPnl, Priority.ALWAYS);
         /* ____________________ */
 
         /*
@@ -114,380 +100,272 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
          * ____________________
          */
 
-        vBox.getChildren().add(titleStackPnl);
-        // vBox.getChildren().add(descriptionLabel);
+        /* Name_______________ */
+        txfName = new TextField();
+        genObjFx.addTextFieldToVBox("Name", txfName, vBox);
+        /* ____________________ */
 
-        VBox.setVgrow(scrollPnl, javafx.scene.layout.Priority.ALWAYS);
-        /* ___________________________________________ */
-        scrollPnl.setFitToWidth(true);
-        // scrollPnl.setFitToHeight(true);
-        scrollPnl.setContent(vBox);
-
-        Category[] allCat = Category.values();
+        allCat = Category.values();
         for (int i = 0; i < allCat.length - 1; i++) {
+            final String nameCat = allCat[i].name();
+            final BorderPane brpCat;
+            final StackPane skpNameCat;
+            final Label lblCat;
+            final GridPane gridCat;
+            final Button btnAddItem;
+            final StackPane skpBtnAddItem;
+            final Label lblItemInfo;
+            final StackPane skpLblInfoItem;
+            final int indexCat;
 
-            BorderPane brpCat = new BorderPane();
-            StackPane skpNameCat = new StackPane();
-            Label nameCat = new Label(allCat[i].name());
-            GridPane gridItem = new GridPane();
-
-            brpCat.getStyleClass().add("pnl-show-item");
-            skpNameCat.getStyleClass().add("pnl-show-item-title");
-            nameCat.getStyleClass().add("text-title-show-item");
-            gridItem.getStyleClass().add("pnl-show-item-dress");
-
-            VBox.setMargin(brpCat, STANDARD_INSET);
-
-            /* Grid________________ */
-            gridItem.getColumnConstraints().addAll(
-                    DoubleStream.of(PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID).mapToObj(width -> {
-                        ColumnConstraints constraints = new ColumnConstraints();
-                        constraints.setPercentWidth(width);
-                        constraints.setFillWidth(true);
-                        return constraints;
-                    }).toArray(ColumnConstraints[]::new));
-
-            final RowConstraints rowConstraints = new RowConstraints();
-            rowConstraints.setVgrow(Priority.ALWAYS);
-            gridItem.getRowConstraints().add(rowConstraints);
+            /* GRID creation */
+            brpCat = new BorderPane();
+            skpNameCat = new StackPane();
+            lblCat = new Label(allCat[i].name());
+            gridCat = new GridPane();
+            genObjFx.setBorderPaneExposition(nameCat, brpCat, skpNameCat, lblCat, gridCat);
 
             /* BUTTON add ithem */
-            final Button btnAddItem = new Button("Add item");
-            final StackPane skpBtnAdd = new StackPane();
-            btnAddItem.getStyleClass().add(BTN_NORMAL);
-            btnAddItem.getStyleClass().add(BTN_SMALL);
-            skpBtnAdd.getChildren().add(btnAddItem);
-            GridPane.setMargin(skpBtnAdd, STANDARD_INSET);
+            btnAddItem = new Button("Add item");
+            skpBtnAddItem = new StackPane();
+            genObjFx.setSmallBtnStkP(btnAddItem, skpBtnAddItem);
 
             /* LABEL No item selected */
-            final Label lblItemInfo = new Label("No item selected");
-            final StackPane skpLblInfoItem = new StackPane();
+            lblItemInfo = new Label("No item selected");
+            skpLblInfoItem = new StackPane();
             lblItemInfo.getStyleClass().add("text-info-item");
             skpLblInfoItem.getChildren().add(lblItemInfo);
 
-            gridItem.add(skpBtnAdd, 0, 0);
-            gridItem.add(skpLblInfoItem, 1, 0);
-            // gridItem.add(new Button("3"), 2, 0);
-            skpNameCat.getChildren().add(nameCat);
-            brpCat.setTop(skpNameCat);
-            brpCat.setCenter(gridItem);
+            gridCat.add(skpBtnAddItem, 0, 0);
+            gridCat.add(skpLblInfoItem, 1, 0);
 
-            final int indexCat = i;
+            /******* ACTION *******/
+            indexCat = i;
             btnAddItem.setOnAction((event) -> {
-                createPopUpSelectItem(Category.valueOf(allCat[indexCat].name()));
+                createDialogSelectItem(Category.valueOf(allCat[indexCat].name()));
             });
 
             vBox.getChildren().add(brpCat);
         }
 
-        final Button btnAddOutfit = new Button("Add outfit");
-        final StackPane skpBtnAdd = new StackPane();
-        btnAddOutfit.getStyleClass().add(BTN_NORMAL);
-        skpBtnAdd.getChildren().add(btnAddOutfit);
-        GridPane.setMargin(skpBtnAdd, STANDARD_INSET);
+        btnAddOutfit = new Button("Add outfit");
+        skpBtnAddOutfit = new StackPane();
 
+        genObjFx.setStandarBtnStkP(btnAddOutfit, skpBtnAddOutfit);
+
+        /******* ACTION *******/
         btnAddOutfit.setOnAction(event -> {
+            if (outfitItem.length != 0) {
+                final List<UUID> dressesId = new LinkedList<>();
+                final Alert alertOk = new Alert(AlertType.INFORMATION);
+                alertOk.setTitle("Information Dialog");
+                alertOk.setHeaderText("Yea, you added a new outfit");
 
+                for (int i = 0; i < outfitItem.length; i++) {
+                    if (outfitItem[i] != null) {
+                        dressesId.add(outfitItem[i].getId());
+                    }
+                }
+                super.getController().outfits().addOutfits(dressesId);
+                this.resetAllComponent();
+                super.returnTopPane();
+                alertOk.show();
+            } else {
+                final Alert alertEr = new Alert(AlertType.ERROR);
+                alertEr.setTitle("Error Dialog");
+                alertEr.setHeaderText("There's somthing wrong!");
+                alertEr.setContentText("Select at least one item");
+                alertEr.show();
+            }
         });
+
+        vBox.getChildren().add(skpBtnAddOutfit);
+
+        VBox.setVgrow(scrollPnl, Priority.ALWAYS);
+        scrollPnl.setFitToWidth(true);
+        scrollPnl.setContent(vBox);
 
     }
 
     @Override
     public void showNowContent() {
         super.setupColorButtonsBH();
+        super.returnTopPane();
         resetAllComponent();
     }
 
     @Override
     public void resetAllComponent() {
-        Category[] allCat = Category.values();
+        final Category[] allCat = Category.values();
+        int indexOfFirstCategory = 0;
+        for (int i = 0; i < vBox.getChildren().size(); i++) {
+            if (vBox.getChildren().get(i) instanceof BorderPane) {
+                indexOfFirstCategory = i;
+            }
+        }
         for (int i = 0; i < allCat.length - 1; i++) {
-            final BorderPane brpCat = (BorderPane) vBox.getChildren().get(i + 1);
-            final GridPane gdpCat = (GridPane) brpCat.getCenter();
+            final BorderPane brpCat = (BorderPane) vBox.getChildren().get(i + indexOfFirstCategory);
+            final GridPane gridCat = (GridPane) brpCat.getCenter();
 
-            if (gdpCat.getChildren().size() > 2) {
+            if (gridCat.getChildren().size() > 2) {
+                final Button btnAddItem;
+                final StackPane skpBtnAdd;
+                final Label lblItemInfo;
+                final StackPane skpLblInfoItem;
                 /* Remove the Button, Label and the Image */
-                while (!gdpCat.getChildren().isEmpty()) {
-                    gdpCat.getChildren().remove(0);
+                while (!gridCat.getChildren().isEmpty()) {
+                    gridCat.getChildren().remove(0);
                 }
 
                 /* BUTTON add ithem */
-                final Button btnAddItem = new Button("Add item");
-                final StackPane skpBtnAdd = new StackPane();
-                btnAddItem.getStyleClass().add(BTN_NORMAL);
-                btnAddItem.getStyleClass().add(BTN_SMALL);
-                skpBtnAdd.getChildren().add(btnAddItem);
-                GridPane.setMargin(skpBtnAdd, STANDARD_INSET);
+                btnAddItem = new Button("Add item");
+                skpBtnAdd = new StackPane();
+                genObjFx.setSmallBtnStkP(btnAddItem, skpBtnAdd);
 
                 /* LABEL No item selected */
-                final Label lblItemInfo = new Label("No item selected");
-                final StackPane skpLblInfoItem = new StackPane();
-                lblItemInfo.getStyleClass().add("text-info-item");
-                skpLblInfoItem.getChildren().add(lblItemInfo);
+                lblItemInfo = new Label("No item selected");
+                skpLblInfoItem = new StackPane();
+                genObjFx.setStandardLblStkP(lblItemInfo, skpLblInfoItem);
 
-                gdpCat.add(skpBtnAdd, 0, 0);
-                gdpCat.add(skpLblInfoItem, 1, 0);
+                gridCat.add(skpBtnAdd, 0, 0);
+                gridCat.add(skpLblInfoItem, 1, 0);
+
+                /******* ACTION *******/
                 final int indexCat = i;
                 btnAddItem.setOnAction(e -> {
-                    createPopUpSelectItem(Category.valueOf(allCat[indexCat].name()));
+                    createDialogSelectItem(Category.valueOf(allCat[indexCat].name()));
                 });
             }
         }
     }
 
-    private void createPopUpSelectItem(Category cat) {
+    private void createDialogSelectItem(final Category cat) {
+        final URL url1 = this.getClass().getResource("NewOutfit.css");
+        final URL url2 = this.getClass().getResource("../mainStyle.css");
+        final String css1 = url1.toExternalForm();
+        final String css2 = url2.toExternalForm();
         final Stage dialog = new Stage();
-        dialog.setMinWidth(650);
-        dialog.setMinHeight(400);
+        final ScrollPane scrollPnlDialog;
+        final StackPane stkVbox;
+        final VBox dialogVbox;
+        final List<String> brandsName;
+        final int nBrand;
+        final Scene dialogScene;
+
+        dialog.setMinWidth(WIDTH_DIALOG);
+        dialog.setMinHeight(HEIGHT_DIALOG);
         dialog.initModality(Modality.APPLICATION_MODAL);
         dialog.initOwner(super.getSceneSetting().getMainStage());
         dialog.setTitle(cat.name());
 
-        VBox dialogVbox = new VBox();
+        scrollPnlDialog = new ScrollPane();
+        stkVbox = new StackPane();
+        VBox.setVgrow(scrollPnlDialog, Priority.ALWAYS);
+        scrollPnlDialog.setFitToWidth(true);
 
-        final List<String> brandsName = super.getController().dress().getAllBrandName(cat);
-        final int nBrand = brandsName.size();
+        dialogVbox = new VBox();
+        stkVbox.getStyleClass().add("main-pane-user");
+        stkVbox.getStyleClass().add("pane-user");
 
-        final Insets standarInset = new Insets(UPDOWN, LEFTRIGHT, UPDOWN, LEFTRIGHT);
-        final Insets noUpInset = new Insets(0, LEFTRIGHT, UPDOWN, LEFTRIGHT);
-        final Insets noDownInset = new Insets(UPDOWN, LEFTRIGHT, 0, LEFTRIGHT);
+        brandsName = super.getController().dress().getAllBrandName(cat);
+        nBrand = brandsName.size();
 
         // java.util.Collections.sort(brandsName);
 
         for (int i = 0; i < nBrand; i++) {
 
+            final String nameBrand = brandsName.get(i);
             final BorderPane brpBrand = new BorderPane();
             final StackPane skpNameBrand = new StackPane();
-            final Label nameBrand = new Label(brandsName.get(i));
-            final GridPane gridItem = new GridPane();
-
-            brpBrand.getStyleClass().add("pnl-show-item");
-            skpNameBrand.getStyleClass().add("pnl-show-item-title");
-            nameBrand.getStyleClass().add("text-title-show-item");
-            gridItem.getStyleClass().add("pnl-show-item-dress");
-
-            VBox.setMargin(brpBrand, standarInset);
-
-            /* Grid________________ */
-            gridItem.getColumnConstraints().addAll(
-                    DoubleStream.of(PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID).mapToObj(width -> {
-                        final ColumnConstraints constraints = new ColumnConstraints();
-                        constraints.setPercentWidth(width);
-                        constraints.setFillWidth(true);
-                        return constraints;
-                    }).toArray(ColumnConstraints[]::new));
-
-            final RowConstraints rowConstraints = new RowConstraints();
-            rowConstraints.setVgrow(Priority.ALWAYS);
-            gridItem.getRowConstraints().add(rowConstraints);
+            final Label lblBrand = new Label();
+            final GridPane gridBrand = new GridPane();
+            genObjFx.setBorderPaneExposition(nameBrand, brpBrand, skpNameBrand, lblBrand, gridBrand);
 
             /* Specific_Item__________________ */
             final List<Dress> dressItem = super.getController().dress().getAllBrandDress(cat, brandsName.get(i));
             for (int j = 0; j < dressItem.size(); j++) {
                 final Dress dress = dressItem.get(j);
-                final BorderPane brpSpecificIthem = new BorderPane();
-                final int rowIndex = j % 3;
-                final int columnIndex = j == 0 ? 0 : j / 3;
-
-                /* Name TOP__________________ */
-                final StackPane stpNameItem = new StackPane();
-                final Label nameSpecItem = new Label(dress.getName());
-                nameSpecItem.getStyleClass().add("text-title-show-item");
-                stpNameItem.getChildren().add(nameSpecItem);
-                StackPane.setMargin(nameSpecItem, noDownInset);
-                brpSpecificIthem.setTop(stpNameItem);
-
-                /* Image CENTER__________________ */
-                brpSpecificIthem.getStyleClass().add("pnl-specific-item");
-                final File imgFile = dress.getImage();
-                Image img;
-                final ImageView imageView = new ImageView();
-                final StackPane stpImageView = new StackPane();
-
-                BorderPane.setMargin(stpImageView, standarInset);
-                imageView.getStyleClass().add("image-item");
-
-                try {
-                    img = new Image(new FileInputStream(imgFile.getAbsolutePath()));
-                    imageView.setImage(img);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-                imageView.setFitHeight(HEIGHT_IMAGE);
-                imageView.setFitWidth(WIDTH_HEIGHT);
-                imageView.setPreserveRatio(true);
-
-                // snapshot the rounded image.
-                final SnapshotParameters parameters = new SnapshotParameters();
-                parameters.setFill(Color.TRANSPARENT);
-                final WritableImage image = imageView.snapshot(parameters, null);
-
-                // remove the rounding clip so that our effect can show through.
-                imageView.setClip(null);
-
-                // apply a shadow effect.
-                imageView.setEffect(new DropShadow(SHADOW_HEIGHT, Color.BLACK));
-
-                // store the rounded image in the imageView.
-                imageView.setImage(image);
-
-                stpImageView.getChildren().add(imageView);
-                brpSpecificIthem.setCenter(stpImageView);
-
-                /* Button see BUTTOM________________ */
-                final StackPane stpButtonSee = new StackPane();
                 final Button btnSelect = new Button("Select");
-                btnSelect.getStyleClass().add(BTN_NORMAL);
-                btnSelect.getStyleClass().add(BTN_SMALL);
-                stpButtonSee.getChildren().add(btnSelect);
-                brpSpecificIthem.setBottom(stpButtonSee);
 
                 btnSelect.setOnAction(event -> {
                     addSpecItem(cat, dress);
                     dialog.close();
                 });
 
-                StackPane.setMargin(btnSelect, noUpInset);
-
-                GridPane.setMargin(brpSpecificIthem, standarInset);
-
-                gridItem.add(brpSpecificIthem, rowIndex, columnIndex);
+                genObjFx.setItemInsideGrid(j, dress, btnSelect, gridBrand);
             }
-
-            skpNameBrand.getChildren().add(nameBrand);
-            brpBrand.setTop(skpNameBrand);
-            brpBrand.setCenter(gridItem);
-
             dialogVbox.getChildren().add(brpBrand);
         }
 
-        ScrollPane scrollPnlDialog = new ScrollPane();
-        VBox vbxScrollPnl = new VBox();
-        StackPane stkVbox = new StackPane();
-        VBox.setVgrow(scrollPnlDialog, javafx.scene.layout.Priority.ALWAYS);
-        scrollPnlDialog.setFitToWidth(true);
         scrollPnlDialog.setContent(dialogVbox);
-
         stkVbox.getChildren().add(scrollPnlDialog);
-        stkVbox.getStyleClass().add("main-pane-user");
-        stkVbox.getStyleClass().add("pane-user");
 
-        Scene dialogScene = new Scene(stkVbox, 650, 400);
-
-        dialog.setScene(dialogScene);
-
-        URL url1 = this.getClass().getResource("NewOutfit.css");
-        URL url2 = this.getClass().getResource("../mainStyle.css");
-
-        String css1 = url1.toExternalForm();
-        String css2 = url2.toExternalForm();
+        dialogScene = new Scene(stkVbox, 650, 400);
         dialogScene.getStylesheets().add(css1);
         dialogScene.getStylesheets().add(css2);
+        dialog.setScene(dialogScene);
 
         dialog.show();
 
     }
 
     private void addSpecItem(final Category cat, final Dress dress) {
-        Category[] allCat = Category.values();
+        final Category[] allCat = Category.values();
+        int indexOfFirstCategory = 0;
+        for (int i = 0; i < vBox.getChildren().size(); i++) {
+            if (vBox.getChildren().get(i) instanceof BorderPane) {
+                indexOfFirstCategory = i;
+            }
+        }
         for (int i = 0; i < allCat.length - 1; i++) {
             if (allCat[i].name().equals(cat.name())) {
-                final BorderPane brpCat = (BorderPane) vBox.getChildren().get(i + 1);
+                final BorderPane brpCat = (BorderPane) vBox.getChildren().get(i + indexOfFirstCategory);
                 final GridPane gdpCat = (GridPane) brpCat.getCenter();
-                
-                outfitsBrand[i] = dress;
+                final Button btnRemoveItem;
+                final int indexCat;
+                outfitItem[i] = dress;
 
-                /* Remove the Button */
-                gdpCat.getChildren().remove(0);
-                /* Remove the Label */
-                gdpCat.getChildren().remove(0);
-
-                /* BUTTON Remove item */
-                final Button btnRemoveItem = new Button("Remove it");
-                final StackPane skpRemoveItem = new StackPane();
-                btnRemoveItem.getStyleClass().add(BTN_NORMAL);
-                btnRemoveItem.getStyleClass().add(BTN_SMALL);
-                btnRemoveItem.getStyleClass().add("btn-remove");
-                skpRemoveItem.getChildren().add(btnRemoveItem);
-                GridPane.setMargin(skpRemoveItem, STANDARD_INSET);
-
-                /* LABEL Name of item */
-                final Label lblNameItem = new Label(dress.getName());
-                final StackPane skpInfoItem = new StackPane();
-                lblNameItem.getStyleClass().add("text-name-item");
-                skpInfoItem.getChildren().add(lblNameItem);
-
-                /* IMAGE of item */
-                final File imgFile = dress.getImage();
-                final Image img;
-                final ImageView imageView = new ImageView();
-                final StackPane stpImageView = new StackPane();
-
-                GridPane.setMargin(stpImageView, STANDARD_INSET);
-                imageView.getStyleClass().add("image-item");
-
-                try {
-                    img = new Image(new FileInputStream(imgFile.getAbsolutePath()));
-                    imageView.setImage(img);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                /* Remove the Button and the Label */
+                while (!gdpCat.getChildren().isEmpty()) {
+                    gdpCat.getChildren().remove(0);
                 }
 
-                imageView.setFitHeight(HEIGHT_IMAGE);
-                imageView.setFitWidth(WIDTH_HEIGHT);
-                imageView.setPreserveRatio(true);
+                /* BUTTON Remove item */
+                btnRemoveItem = new Button("Remove it");
 
-                // snapshot the rounded image.
-                SnapshotParameters parameters = new SnapshotParameters();
-                parameters.setFill(Color.TRANSPARENT);
-                WritableImage image = imageView.snapshot(parameters, null);
+                genObjFx.setItemOfOutfit(dress, btnRemoveItem, gdpCat);
 
-                // remove the rounding clip so that our effect can show through.
-                imageView.setClip(null);
-
-                // apply a shadow effect.
-                imageView.setEffect(new DropShadow(SHADOW_HEIGHT, Color.BLACK));
-
-                // store the rounded image in the imageView.
-                imageView.setImage(image);
-
-                stpImageView.getChildren().add(imageView);
-
-                final int indexCat = i;
+                /******* ACTION *******/
+                indexCat = i;
                 btnRemoveItem.setOnAction(event -> {
-                    /* Remove the Button */
-                    gdpCat.getChildren().remove(0);
-                    /* Remove the Label */
-                    gdpCat.getChildren().remove(0);
-                    /* Remove the Image */
-                    gdpCat.getChildren().remove(0);
+                    final Button btnAddItem;
+                    final StackPane skpBtnAdd;
+                    final Label lblItemInfo;
+                    final StackPane skpLblInfoItem;
+                    outfitItem[indexCat] = null;
 
-                    /* BUTTON add ithem */
-                    final Button btnAddItem = new Button("Add item");
-                    final StackPane skpBtnAdd = new StackPane();
-                    btnAddItem.getStyleClass().add(BTN_NORMAL);
-                    btnAddItem.getStyleClass().add(BTN_SMALL);
-                    skpBtnAdd.getChildren().add(btnAddItem);
-                    GridPane.setMargin(skpBtnAdd, STANDARD_INSET);
+                    /* Remove the Button and the Label */
+                    while (!gdpCat.getChildren().isEmpty()) {
+                        gdpCat.getChildren().remove(0);
+                    }
+
+                    /* BUTTON add item */
+                    btnAddItem = new Button("Add item");
+                    skpBtnAdd = new StackPane();
+                    genObjFx.setSmallBtnStkP(btnAddItem, skpBtnAdd);
 
                     /* LABEL No item selected */
-                    final Label lblItemInfo = new Label("No item selected");
-                    final StackPane skpLblInfoItem = new StackPane();
-                    lblItemInfo.getStyleClass().add("text-info-item");
-                    skpLblInfoItem.getChildren().add(lblItemInfo);
+                    lblItemInfo = new Label("No item selected");
+                    skpLblInfoItem = new StackPane();
+                    genObjFx.setStandardLblStkP(lblItemInfo, skpLblInfoItem);
 
                     gdpCat.add(skpBtnAdd, 0, 0);
                     gdpCat.add(skpLblInfoItem, 1, 0);
 
                     btnAddItem.setOnAction(e -> {
-                        createPopUpSelectItem(Category.valueOf(allCat[indexCat].name()));
+                        createDialogSelectItem(Category.valueOf(allCat[indexCat].name()));
                     });
                 });
-
-                gdpCat.add(skpRemoveItem, 0, 0);
-                gdpCat.add(skpInfoItem, 1, 0);
-                gdpCat.add(stpImageView, 2, 0);
             }
 
         }

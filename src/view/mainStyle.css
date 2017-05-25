@@ -24,7 +24,7 @@
 
 
 /*	==========================
- 	 TITLE STYLE
+ 	 TEXT STYLE
  	========================== */
 
 .main-title{
@@ -33,6 +33,10 @@
    	-fx-padding: 0 0 10 0;
 }
 
+.text-info-item {
+	-fx-text-fill: white;
+	-fx-font-size: 15.0px;
+}
 
 
 /*	==========================
