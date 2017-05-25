@@ -198,10 +198,8 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
     public void resetAllComponent() {
         final Category[] allCat = Category.values();
         int indexOfFirstCategory = 0;
-        for (int i = 0; i < vBox.getChildren().size(); i++) {
-            if (vBox.getChildren().get(i) instanceof BorderPane) {
-                indexOfFirstCategory = i;
-            }
+        for (int i = 0; i < vBox.getChildren().size() && !(vBox.getChildren().get(i) instanceof BorderPane); i++) {
+            indexOfFirstCategory = i + 1;
         }
         for (int i = 0; i < allCat.length - 1; i++) {
             final BorderPane brpCat = (BorderPane) vBox.getChildren().get(i + indexOfFirstCategory);
@@ -300,7 +298,7 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
         scrollPnlDialog.setContent(dialogVbox);
         stkVbox.getChildren().add(scrollPnlDialog);
 
-        dialogScene = new Scene(stkVbox, 650, 400);
+        dialogScene = new Scene(stkVbox, WIDTH_DIALOG, HEIGHT_DIALOG);
         dialogScene.getStylesheets().add(css1);
         dialogScene.getStylesheets().add(css2);
         dialog.setScene(dialogScene);
@@ -312,10 +310,8 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
     private void addSpecItem(final Category cat, final Dress dress) {
         final Category[] allCat = Category.values();
         int indexOfFirstCategory = 0;
-        for (int i = 0; i < vBox.getChildren().size(); i++) {
-            if (vBox.getChildren().get(i) instanceof BorderPane) {
-                indexOfFirstCategory = i;
-            }
+        for (int i = 0; i < vBox.getChildren().size() && !(vBox.getChildren().get(i) instanceof BorderPane); i++) {
+            indexOfFirstCategory = i + 1;
         }
         for (int i = 0; i < allCat.length - 1; i++) {
             if (allCat[i].name().equals(cat.name())) {

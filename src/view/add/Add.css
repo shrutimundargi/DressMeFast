@@ -101,19 +101,6 @@
 }
 
 
-.text-field-add {
-	-fx-background-color: #333333;
-	-fx-border-color: #8A8A8A;
-	-fx-border-radius: 4.0;
-   	-fx-background-radius: 4px;
-  	-fx-max-width: 235px;
-  	-fx-text-fill: white;
-}
-
-.text-field-add:focused {
-    -fx-background-color: #424242;
-}
-
 
 .date-picker{
 	-fx-background-color: #333333;
