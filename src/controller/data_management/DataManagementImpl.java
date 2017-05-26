@@ -22,11 +22,13 @@ import model.interfaces.UserManagement;
  */
 public class DataManagementImpl implements DataManagement {
 
+    private static final String PROBLEM_IMAGES_FOLDER = "problem with the creation of images folder";
+    private static final String PROBLEM_MAIN_FOLDER = "problem with the creation of main folder";
     private static final String MAIN_PATH = System.getProperty("user.home") + File.separator + "dmfData";
     private static final String IMAGE_PATH = MAIN_PATH + File.separator + "images";
 
     /**
-     * 
+     * manage the dmfData folder and the images folder.
      */
     public DataManagementImpl() {
         final File mainFolder;
@@ -37,7 +39,7 @@ public class DataManagementImpl implements DataManagement {
             try {
                 mainFolder.mkdir();
             } catch (Exception e) {
-                final RuntimeException e2 = new MyException("problem with the creation of main folder");
+                final RuntimeException e2 = new MyException(PROBLEM_MAIN_FOLDER);
                 throw e2;
             }
         }
@@ -46,7 +48,7 @@ public class DataManagementImpl implements DataManagement {
             try {
                 imagesFolder.mkdir();
             } catch (Exception e) {
-                final RuntimeException e2 = new MyException("problem with the creation of images folder");
+                final RuntimeException e2 = new MyException(PROBLEM_IMAGES_FOLDER);
                 throw e2;
             }
         }
@@ -73,11 +75,11 @@ public class DataManagementImpl implements DataManagement {
     @Override
     public Information load(final UserManagement userM) {
 
-        if (!new File(MAIN_PATH + File.separator +  "test.dat").exists()) {
+        if (!new File(MAIN_PATH + File.separator + "userDat.dat").exists()) {
             return save(new HashSet<User>());
         }
         try (ObjectInputStream inS = new ObjectInputStream(
-                new BufferedInputStream(new FileInputStream(new File(MAIN_PATH + File.separator  + "test.dat"))))) {
+                new BufferedInputStream(new FileInputStream(new File(MAIN_PATH + File.separator + "userDat.dat"))))) {
             try {
                 userM.setUsers((Set<User>) inS.readObject());
             } catch (ClassNotFoundException e) {

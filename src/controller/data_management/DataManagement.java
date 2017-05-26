@@ -6,7 +6,7 @@ import model.interfaces.User;
 import model.interfaces.UserManagement;
 
 /**
- * Interface used for saving Data.
+ * Interface used for saving and loading Data.
  *
  */
 public interface DataManagement {

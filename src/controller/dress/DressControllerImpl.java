@@ -47,7 +47,6 @@ public final class DressControllerImpl implements DressController {
         int cont = 0;
         if (new File(IMAGE_PATH + File.separator + FilenameUtils.getName(imagePath.toString())).exists()) {
             for (final File files : imageFolder) {
-
                 final String firstImageName = FilenameUtils.getName(files.toString());
                 final String[] onlyName = firstImageName.split("_copy");
                 final String secondImageName = FilenameUtils.getName(imagePath.toString());
