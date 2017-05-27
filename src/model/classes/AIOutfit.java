@@ -26,7 +26,7 @@ public class AIOutfit implements Outfits {
     private final UUID id;
     private String name;
     private Integer wornCount;
-    private final List<UUID> outfit;
+    private List<UUID> outfit;
 
     /**
      * Creates a container of a single AI outfit.
@@ -164,6 +164,12 @@ public class AIOutfit implements Outfits {
     }
 
     @Override
+    public Status setOutfit(final List<UUID> dressList) {
+        this.outfit = dressList;
+        return Status.CHANGE_SUCCESFULL;
+    }
+
+    @Override
     public String toString() {
         return "AIOutfit [id=" + id + ", name=" + name + ", wornCount=" + wornCount + ", outfit=" + outfit + "]";
     }
@@ -221,5 +227,4 @@ public class AIOutfit implements Outfits {
         }
         return true;
     }
-
 }
