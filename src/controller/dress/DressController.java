@@ -4,6 +4,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import model.enumerations.Category;
 import model.enumerations.Status;
@@ -71,6 +72,13 @@ public interface DressController {
     Set<Categories> getAllCategory();
 
     /**
+     * @param id
+     *            : id of the dress
+     * @return the dress associated at the id specified
+     */
+    Dress getDressFromUUID(UUID id);
+
+    /**
      * @return All brands
      */
     Set<String> getAllBrand();
@@ -94,7 +102,7 @@ public interface DressController {
 
     /**
      * @param categoryName
-     *            : the name of teh category
+     *            : the name of the category
      * @param brand
      *            : the name of dress
      * @return Return all Dress with the category and brand specified

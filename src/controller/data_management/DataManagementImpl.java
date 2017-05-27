@@ -56,7 +56,7 @@ public class DataManagementImpl implements DataManagement {
     }
 
     @Override
-    public Information save(final Set<User> userSet) {
+    public void save(final Set<User> userSet) {
         try (ObjectOutputStream outS = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(new File(MAIN_PATH + File.separator + "userDat.dat"))))) {
             outS.writeObject(userSet);
@@ -67,16 +67,13 @@ public class DataManagementImpl implements DataManagement {
             final RuntimeException e2 = new MyException("saving problem");
             throw e2;
         }
-
-        return Information.SAVING_OK;
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public Information load(final UserManagement userM) {
-
+    public void load(final UserManagement userM) {
         if (!new File(MAIN_PATH + File.separator + "userDat.dat").exists()) {
-            return save(new HashSet<User>());
+            save(new HashSet<User>());
         }
         try (ObjectInputStream inS = new ObjectInputStream(
                 new BufferedInputStream(new FileInputStream(new File(MAIN_PATH + File.separator + "userDat.dat"))))) {
@@ -93,7 +90,6 @@ public class DataManagementImpl implements DataManagement {
             final RuntimeException e2 = new MyException("loading problem");
             throw e2;
         }
-        return Information.LOADING_OK;
     }
 
 }
