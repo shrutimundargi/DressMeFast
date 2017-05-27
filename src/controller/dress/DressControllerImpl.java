@@ -264,7 +264,7 @@ public final class DressControllerImpl implements DressController {
             throw e2;
         }
 
-        return user.getWardobe().getCategories().getCategory(dress.getCategoryName()).removeDress(dress);
+        return user.getWardobe().getCategories().removeDressFromCategory(dress, dress.getCategoryName());
 
     }
 
