@@ -1,6 +1,5 @@
 package controller;
 
-import controller.data_management.Information;
 import controller.dress.DressController;
 import controller.outfits.OutfitsController;
 import controller.user.UserController;
@@ -53,7 +52,7 @@ public interface Controller {
     OutfitsController outfits();
 
     /**
-     * @return Return the status of the saving data
+     * 
      */
-    Information saveData();
+    void saveData();
 }

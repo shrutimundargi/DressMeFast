@@ -309,4 +309,9 @@ public final class DressControllerImpl implements DressController {
         return user.getWardobe().getDressesOfCategory(category);
     }
 
+    @Override
+    public Dress getDressFromUUID(final UUID id) {
+        return user.getWardobe().getDressOfId(id);
+    }
+
 }

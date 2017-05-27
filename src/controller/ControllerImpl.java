@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import controller.data_management.DataManagementImpl;
-import controller.data_management.Information;
 import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
 import controller.outfits.OutfitsController;
@@ -55,8 +54,8 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
-    public Information saveData() {
-        return new DataManagementImpl().save(userM.getUsersSet());
+    public void saveData() {
+        new DataManagementImpl().save(userM.getUsersSet());
     }
 
     @Override

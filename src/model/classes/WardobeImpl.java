@@ -9,8 +9,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
+import java.util.UUID;
 
 import model.enumerations.Category;
+import model.interfaces.Categories;
 import model.interfaces.CategoriesManagement;
 import model.interfaces.Dress;
 import model.interfaces.OutfitsManagement;
@@ -220,6 +222,19 @@ public class WardobeImpl implements Wardrobe {
 
         });
         return Collections.unmodifiableList(dressesOfCategory);
+    }
+
+    @Override
+    public Dress getDressOfId(final UUID dressId) {
+        final Map<Category, Categories> tmpMap = this.categoryManagement.getAllCategories();
+        for (final Categories category : tmpMap.values()) {
+            for (final Dress dress : category.getAllDresses().values()) {
+                if (dress.getId().equals(dressId)) {
+                    return dress;
+                }
+            }
+        }
+        return null;
     }
 
     @Override
