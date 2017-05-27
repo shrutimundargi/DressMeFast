@@ -83,6 +83,12 @@ public class UserOutfit implements Outfits {
     }
 
     @Override
+    public Status setOutfit(final List<UUID> dressList) {
+        this.outfit = dressList;
+        return Status.CHANGE_SUCCESFULL;
+    }
+
+    @Override
     public String toString() {
         return "UserOutfit [id=" + id + ", name=" + name + ", wornCount=" + wornCount + ", outfit=" + outfit + "]";
     }
@@ -140,5 +146,4 @@ public class UserOutfit implements Outfits {
         }
         return true;
     }
-
 }

@@ -290,4 +290,15 @@ public interface DressController {
      */
     List<Dress> getDressIntoCategory(Category category);
 
+    /**
+     * @param dress
+     *            : the dress that you wont change price
+     * @param price
+     *            : the price that you wont change
+     * @return the status of the modify price operation
+     *         <P>
+     *         If everything goes well return CHANGE_SUCCESFULL
+     */
+    Status modifyDressPrice(Dress dress, double price);
+
 }

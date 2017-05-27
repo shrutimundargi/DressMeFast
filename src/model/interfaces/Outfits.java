@@ -65,4 +65,12 @@ public interface Outfits extends Serializable {
      * @return the result of the operation.
      */
     Status setWornCount();
+
+    /**
+     * @param dressList
+     *            a list with some dresses ids.
+     * 
+     * @return the result of the operation.
+     */
+    Status setOutfit(List<UUID> dressList);
 }

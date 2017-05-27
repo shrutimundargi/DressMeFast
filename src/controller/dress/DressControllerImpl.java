@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -14,9 +16,11 @@ import org.apache.commons.io.FilenameUtils;
 import controller.exception.MyException;
 import model.classes.DressImpl;
 import model.enumerations.Category;
+import model.enumerations.Outfit;
 import model.enumerations.Status;
 import model.interfaces.Categories;
 import model.interfaces.Dress;
+import model.interfaces.Outfits;
 import model.interfaces.User;
 
 /**
@@ -193,6 +197,11 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
+    public Status modifyDressPrice(final Dress dress, final double price) {
+        return dress.setPrice(price);
+    }
+
+    @Override
     public Status modifyDressBrand(final Dress dress, final String brand) {
         return dress.setBrand(brand);
     }
@@ -222,15 +231,40 @@ public final class DressControllerImpl implements DressController {
         return dress.setFavourited(favorite);
     }
 
+    private void changeOutfit(final Map<Outfit, List<Outfits>> map, final Outfit outfit, final Dress dress) {
+        map.get(outfit).forEach(e -> {
+            final List<UUID> dressList = user.getWardobe().getOutfits().getOutfit(e.getId()).getOutfit();
+            dressList.forEach(t -> {
+                if (t.equals(dress.getId())) {
+                    if (dressList.size() == 1) {
+                        user.getWardobe().getOutfits().removeOutfit(e, outfit);
+                    } else if (dressList.size() > 1) {
+                        final List<UUID> dressListTmp = dressList;
+                        dressListTmp.remove(t);
+                        user.getWardobe().getOutfits().getOutfit(e.getId()).setOutfit(dressListTmp);
+                    }
+                }
+            });
+        });
+    }
+
     @Override
     public Status deleteDress(final Dress dress) {
+
+        final Map<Outfit, List<Outfits>> map = user.getWardobe().getOutfits().getAllOutfits();
+
+        changeOutfit(map, Outfit.USER, dress);
+
+        changeOutfit(map, Outfit.AI, dress);
+
         try {
             dress.getImage().delete();
         } catch (Exception e) {
             final RuntimeException e2 = new MyException(IMAGE_ERROR);
             throw e2;
         }
-        return user.getWardobe().getCategories().getCategory(dress.getCategoryName()).removeDress(dress);
+
+        return user.getWardobe().getCategories().removeDressFromCategory(dress, dress.getCategoryName());
 
     }
 
