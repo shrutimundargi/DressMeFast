@@ -43,7 +43,7 @@ public class UserOutfit implements Outfits {
 
     @Override
     public List<UUID> getOutfit() {
-        return Collections.unmodifiableList(this.outfit);
+        return this.outfit;
     }
 
     @Override
