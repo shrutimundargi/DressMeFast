@@ -1,8 +1,11 @@
 package view.outfits;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import controller.Controller;
@@ -20,6 +23,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.enumerations.Category;
@@ -50,8 +54,9 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
     private final VBox vBox;
     private final TextField txfName;
 
-    private Dress[] outfitItem;
+    private Map<Category, Dress> outfitItem;
     private final GeneralObjectFx genObjFx;
+    final Category[] allCat;
 
     /**
      * 
@@ -71,13 +76,11 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
         final StackPane titleStackPnl;
         final Button btnAddOutfit;
         final StackPane skpBtnAddOutfit;
-
-        final Category[] allCat;
-
         /* Container (PANE) */
         vBox = new VBox();
-        outfitItem = new Dress[Category.values().length];
+        outfitItem = new HashMap<>();
         genObjFx = new GeneralObjectFx();
+        allCat = Category.values();
 
         /* Title_______________ */
         titlePane = new Text(NAMEOFSCREEN);
@@ -89,23 +92,20 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
         VBox.setVgrow(scrollPnl, Priority.ALWAYS);
         /* ____________________ */
 
-        /*
-         * Description_________ final Label descriptionLabel = new
-         * Label(DESCRIPTIONOFPANE); final StackPane descriptionPnl = new
-         * StackPane();
-         * descriptionLabel.getStyleClass().add("text-description");
-         * descriptionLabel.setWrapText(true);
-         * descriptionLabel.setTextAlignment(TextAlignment.JUSTIFY);
-         * descriptionPnl.getChildren().add(descriptionLabel); /*
-         * ____________________
-         */
+        /* Description_________ 
+        final Label lblDescr = new Label("You've dressed that item " + "3" + "times");
+        final StackPane stkDescription = new StackPane();
+        lblDescr.getStyleClass().add("text-description");
+        lblDescr.setWrapText(true);
+        lblDescr.setTextAlignment(TextAlignment.JUSTIFY);
+        stkDescription.getChildren().add(lblDescr);
+         ____________________ */
 
         /* Name_______________ */
         txfName = new TextField();
         genObjFx.addTextFieldToVBox("Name", txfName, vBox);
         /* ____________________ */
 
-        allCat = Category.values();
         for (int i = 0; i < allCat.length - 1; i++) {
             final String nameCat = allCat[i].name();
             final BorderPane brpCat;
@@ -123,7 +123,7 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
             skpNameCat = new StackPane();
             lblCat = new Label(allCat[i].name());
             gridCat = new GridPane();
-            genObjFx.setBorderPaneExposition(nameCat, brpCat, skpNameCat, lblCat, gridCat);
+            genObjFx.setBorderPaneExposition(false, brpCat, skpNameCat, lblCat, gridCat);
 
             /* BUTTON add ithem */
             btnAddItem = new Button("Add item");
@@ -155,26 +155,36 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
 
         /******* ACTION *******/
         btnAddOutfit.setOnAction(event -> {
-            if (outfitItem.length != 0) {
+            final String nameOutfit = txfName.getText();
+            final Category[] allCat = Category.values();
+            if (!outfitItem.isEmpty() && !nameOutfit.equals("")) {
                 final List<UUID> dressesId = new LinkedList<>();
                 final Alert alertOk = new Alert(AlertType.INFORMATION);
                 alertOk.setTitle("Information Dialog");
                 alertOk.setHeaderText("Yea, you added a new outfit");
 
-                for (int i = 0; i < outfitItem.length; i++) {
-                    if (outfitItem[i] != null) {
-                        dressesId.add(outfitItem[i].getId());
+                for (int i = 0; i < allCat.length; i++) {
+                    final Dress dressToAdd = outfitItem.get(allCat[i]);
+                    if (dressToAdd != null) {
+                        dressesId.add(dressToAdd.getId());
                     }
                 }
-                super.getController().outfits().addOutfits(dressesId);
+                super.getController().outfits().addOutfits(dressesId, nameOutfit);
                 this.resetAllComponent();
                 super.returnTopPane();
                 alertOk.show();
-            } else {
+
+            } else if (outfitItem.isEmpty()) {
                 final Alert alertEr = new Alert(AlertType.ERROR);
                 alertEr.setTitle("Error Dialog");
                 alertEr.setHeaderText("There's somthing wrong!");
                 alertEr.setContentText("Select at least one item");
+                alertEr.show();
+            } else if (nameOutfit.equals("")) {
+                final Alert alertEr = new Alert(AlertType.ERROR);
+                alertEr.setTitle("Error Dialog");
+                alertEr.setHeaderText("There's somthing wrong!");
+                alertEr.setContentText("Write the outfit name");
                 alertEr.show();
             }
         });
@@ -195,7 +205,7 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
     }
 
     @Override
-    public void resetAllComponent() {
+    public final void resetAllComponent() {
         final Category[] allCat = Category.values();
         int indexOfFirstCategory = 0;
         for (int i = 0; i < vBox.getChildren().size() && !(vBox.getChildren().get(i) instanceof BorderPane); i++) {
@@ -272,12 +282,11 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
 
         for (int i = 0; i < nBrand; i++) {
 
-            final String nameBrand = brandsName.get(i);
             final BorderPane brpBrand = new BorderPane();
             final StackPane skpNameBrand = new StackPane();
-            final Label lblBrand = new Label();
+            final Label lblBrand = new Label(brandsName.get(i));
             final GridPane gridBrand = new GridPane();
-            genObjFx.setBorderPaneExposition(nameBrand, brpBrand, skpNameBrand, lblBrand, gridBrand);
+            genObjFx.setBorderPaneExposition(false, brpBrand, skpNameBrand, lblBrand, gridBrand);
 
             /* Specific_Item__________________ */
             final List<Dress> dressItem = super.getController().dress().getAllBrandDress(cat, brandsName.get(i));
@@ -290,7 +299,7 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
                     dialog.close();
                 });
 
-                genObjFx.setItemInsideGrid(j, dress, btnSelect, gridBrand);
+                genObjFx.setItemInsideGrid(false, j, dress, btnSelect, gridBrand);
             }
             dialogVbox.getChildren().add(brpBrand);
         }
@@ -318,8 +327,7 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
                 final BorderPane brpCat = (BorderPane) vBox.getChildren().get(i + indexOfFirstCategory);
                 final GridPane gdpCat = (GridPane) brpCat.getCenter();
                 final Button btnRemoveItem;
-                final int indexCat;
-                outfitItem[i] = dress;
+                outfitItem.put(cat, dress);
 
                 /* Remove the Button and the Label */
                 while (!gdpCat.getChildren().isEmpty()) {
@@ -332,13 +340,14 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
                 genObjFx.setItemOfOutfit(dress, btnRemoveItem, gdpCat);
 
                 /******* ACTION *******/
-                indexCat = i;
+                final Category categoryToRemove = allCat[i];
                 btnRemoveItem.setOnAction(event -> {
                     final Button btnAddItem;
                     final StackPane skpBtnAdd;
                     final Label lblItemInfo;
                     final StackPane skpLblInfoItem;
-                    outfitItem[indexCat] = null;
+
+                    outfitItem.remove(categoryToRemove);
 
                     /* Remove the Button and the Label */
                     while (!gdpCat.getChildren().isEmpty()) {
@@ -359,7 +368,7 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
                     gdpCat.add(skpLblInfoItem, 1, 0);
 
                     btnAddItem.setOnAction(e -> {
-                        createDialogSelectItem(Category.valueOf(allCat[indexCat].name()));
+                        createDialogSelectItem(Category.valueOf(categoryToRemove.name()));
                     });
                 });
             }

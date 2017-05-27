@@ -94,7 +94,9 @@ public class LoginGraphic implements UI {
 
     @Override
     public void showNowContent() {
-        // TODO Auto-generated method stub
+        clearErrorField();
+        txfUser.setText("");
+        txfPassword.setText("");
 
     }
 

@@ -1,7 +1,7 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 .main-pane-user{
 	-fx-background-color: #292929;
-	-fx-padding: 9 0 9 9;
+	-fx-padding: 9 0 9 0;
 }
 
 .pnl-center{
