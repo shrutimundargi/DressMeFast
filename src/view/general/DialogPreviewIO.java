@@ -353,7 +353,7 @@ public class DialogPreviewIO {
                 controller.dress().modifyDressName(dress, txfName.getText());
                 controller.dress().modifyDressPurchaseDate(dress, dtpDate.getValue());
                 controller.dress().modifyDressSize(dress, size);
-                // controller.dress().modifyDressPrice(dress, price);
+                controller.dress().modifyDressPrice(dress, price);
                 controller.dress().modifyFavoriteTag(dress, ckbFavorite.isSelected());
                 alertOk.showAndWait();
                 dialog.close();
