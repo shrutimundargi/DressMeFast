@@ -63,4 +63,10 @@ public final class OutfitsControllerImpl implements OutfitsController {
         return user.getWardobe().getOutfits().getOutfit(outfitsid).setName(newName);
     }
 
+    @Override
+    public void removeOutfit(final Outfits outfits) {
+        user.getWardobe().getOutfits().removeOutfit(outfits, Outfit.USER);
+
+    }
+
 }

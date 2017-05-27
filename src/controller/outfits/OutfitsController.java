@@ -61,4 +61,10 @@ public interface OutfitsController {
      */
     Status modifyOutfitsName(UUID outfitsid, String newName);
 
+    /**
+     * @param outfits
+     *            : the outfits that you wont delete
+     */
+    void removeOutfit(Outfits outfits);
+
 }
