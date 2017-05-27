@@ -66,7 +66,11 @@ public final class OutfitsControllerImpl implements OutfitsController {
     @Override
     public void removeOutfit(final Outfits outfits) {
         user.getWardobe().getOutfits().removeOutfit(outfits, Outfit.USER);
+    }
 
+    @Override
+    public void removeAIOutfit(final Outfits outfits) {
+        user.getWardobe().getOutfits().removeOutfit(outfits, Outfit.AI);
     }
 
 }

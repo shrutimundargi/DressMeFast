@@ -67,4 +67,10 @@ public interface OutfitsController {
      */
     void removeOutfit(Outfits outfits);
 
+    /**
+     * @param outfits
+     *            : the outfits that you wont delete
+     */
+    void removeAIOutfit(Outfits outfits);
+
 }
