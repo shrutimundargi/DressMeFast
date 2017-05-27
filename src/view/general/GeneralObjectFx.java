@@ -40,6 +40,7 @@ public class GeneralObjectFx {
     private static final String BTN_NORMAL = "btn-normal";
     private static final int LEFTRIGHT = 10;
     private static final int UPDOWN = 15;
+    private static final int UPDOWN_LITTLE = 5;
     private static final int UPDOWN_BIG = 25;
     private static final int PERCENT_WIDTH_GRID = 33;
     private static final int WIDTH_IMAGE = 150;
@@ -49,6 +50,7 @@ public class GeneralObjectFx {
     private static final int SHADOW_HEIGHT = 20;
     private static final int PREFSIZE_TEXT = 235;
     private static final Insets STANDARD_INSET = new Insets(UPDOWN, LEFTRIGHT, UPDOWN, LEFTRIGHT);
+    private static final Insets LITTLE_INSET = new Insets(UPDOWN_LITTLE, LEFTRIGHT, UPDOWN_LITTLE, LEFTRIGHT);
     private static final Insets NOUP_INSET = new Insets(0, LEFTRIGHT, UPDOWN, LEFTRIGHT);
     private static final Insets NODOWN_INSET = new Insets(UPDOWN, LEFTRIGHT, 0, LEFTRIGHT);
     private static final Insets HOME_INSET = new Insets(0, 0, 0, 0);
@@ -58,6 +60,12 @@ public class GeneralObjectFx {
         btn.getStyleClass().add(BTN_NORMAL);
         stkP.getChildren().add(btn);
         GridPane.setMargin(stkP, STANDARD_INSET);
+    }
+    
+    public void setLittleMarginBtnStkP(Button btn, StackPane stkP) {
+        btn.getStyleClass().add(BTN_NORMAL);
+        stkP.getChildren().add(btn);
+        GridPane.setMargin(stkP, LITTLE_INSET);
     }
 
     public void setSmallBtnStkP(Button btn, StackPane stkP) {

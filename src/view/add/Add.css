@@ -154,3 +154,7 @@
 .pnl-button-add{
 	-fx-padding: 30 0 15 0;
 }
+
+.pnl-other-add{
+	-fx-padding: 15 0 15 0;
+}

@@ -206,6 +206,7 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
 
     @Override
     public final void resetAllComponent() {
+        txfName.setText("");
         final Category[] allCat = Category.values();
         int indexOfFirstCategory = 0;
         for (int i = 0; i < vBox.getChildren().size() && !(vBox.getChildren().get(i) instanceof BorderPane); i++) {

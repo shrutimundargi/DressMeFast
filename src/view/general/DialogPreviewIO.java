@@ -119,7 +119,7 @@ public class DialogPreviewIO {
         /* ____________________ */
 
         /* Description_________ */
-        final Label lblDescr = new Label("You've dressed that item " + "3" + "times");
+        final Label lblDescr = new Label("You've dressed that item " + dress.getWornCount() + " times");
         final StackPane stkDescription = new StackPane();
         lblDescr.getStyleClass().add("text-description");
         lblDescr.setWrapText(true);
@@ -291,7 +291,7 @@ public class DialogPreviewIO {
         /* Update _____________ */
         final Button btnUpdate = new Button("Update");
         final StackPane stkUpdate = new StackPane();
-        stkUpdate.getStyleClass().add("pnl-button-add");
+        stkUpdate.getStyleClass().add("pnl-other-add");
         genObjFx.setStandarBtnStkP(btnUpdate, stkUpdate);
         btnUpdate.setOnAction((event) -> {
             final Alert alertEr = new Alert(AlertType.ERROR);
@@ -364,8 +364,8 @@ public class DialogPreviewIO {
         /* Button Delate_________ */
         final Button btnDelate = new Button("Delate");
         final StackPane stkDelate = new StackPane();
-        stkDelate.getStyleClass().add("pnl-button-add");
-        genObjFx.setStandarBtnStkP(btnDelate, stkDelate);
+        stkDelate.getStyleClass().add("pnl-other-add");
+        genObjFx.setLittleMarginBtnStkP(btnDelate, stkDelate);
         btnDelate.setOnAction(event -> {
             controller.dress().deleteDress(dress);
             dialog.close();
@@ -375,8 +375,8 @@ public class DialogPreviewIO {
         /* Button Cancel_______________ */
         final Button btnCancel = new Button("Cancel");
         final StackPane stkCancel = new StackPane();
-        stkCancel.getStyleClass().add("pnl-button-add");
-        genObjFx.setStandarBtnStkP(btnCancel, stkCancel);
+        stkCancel.getStyleClass().add("pnl-other-add");
+        genObjFx.setLittleMarginBtnStkP(btnCancel, stkCancel);
         btnCancel.setOnAction(event -> {
             dialog.close();
         });
