@@ -1,5 +1,9 @@
 package view.outfits;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.UUID;
+
 import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -7,14 +11,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import model.enumerations.Category;
+import model.interfaces.Dress;
+import model.interfaces.Outfits;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
 import view.UI;
+import view.general.GeneralObjectFx;
 import view.general.ProgramUIImpl;
 
 /**
@@ -23,13 +34,6 @@ import view.general.ProgramUIImpl;
  *
  */
 public class OutfitsGraphic extends ProgramUIImpl implements UI {
-    private static final int LEFTRIGHT = 10;
-    private static final int UPDOWN = 15;
-    private static final int UPDOWN_BIG = 25;
-    private static final int PERCENT_WIDTH_GRID = 33;
-    private static final int WIDTH_HEIGHT = 150;
-    private static final int HEIGHT_IMAGE = 200;
-    private static final int SHADOW_HEIGHT = 20;
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.OUTFITS;
 
     private static final String NAMEOFSCREEN = "Outfits";
@@ -37,6 +41,8 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
 
     @FXML
     private ScrollPane scrollPnl;
+    final VBox vBox;
+    private final GeneralObjectFx genObjFx;
 
     /**
      * 
@@ -54,57 +60,93 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
         super.getBtnOutfits().setStyle("-fx-background-image: url('/images/dress.png');");
 
         /* Container (PANE) */
-        final VBox vBox = new VBox();
+        genObjFx = new GeneralObjectFx();
+        vBox = new VBox();
+        final Button btnCreateOutfits;
+        final StackPane skpBtnCrateOtf;
+        final Button btnUIOutfits;
+        final StackPane skpBtnUIOutfits;
 
         /* Title_______________ */
         final Text titlePane = new Text(NAMEOFSCREEN);
         final StackPane titleStackPnl = new StackPane();
         titlePane.getStyleClass().add("main-title");
         titleStackPnl.getChildren().add(titlePane);
+        vBox.getChildren().add(titleStackPnl);
         /* ____________________ */
 
-        /*
-         * Description_________ final Label descriptionLabel = new
-         * Label(DESCRIPTIONOFPANE); final StackPane descriptionPnl = new
-         * StackPane();
-         * descriptionLabel.getStyleClass().add("text-description");
-         * descriptionLabel.setWrapText(true);
-         * descriptionLabel.setTextAlignment(TextAlignment.JUSTIFY);
-         * descriptionPnl.getChildren().add(descriptionLabel); /*
-         * ____________________
-         */
-
-        final Button btnCreateOutfits = new Button("Create now an Outfits");
-        final StackPane skpBtnCrateOtf = new StackPane();
-        skpBtnCrateOtf.getChildren().add(btnCreateOutfits);
-        btnCreateOutfits.getStyleClass().add("btn-normal");
+        /* Button_______________ */
+        btnCreateOutfits = new Button("Create now an Outfits");
         btnCreateOutfits.getStyleClass().add("btn-outfits");
+        skpBtnCrateOtf = new StackPane();
+        VBox.setMargin(skpBtnCrateOtf, genObjFx.getStandardInset());
+        genObjFx.setStandarBtnStkP(btnCreateOutfits, skpBtnCrateOtf);
+        vBox.getChildren().add(skpBtnCrateOtf);
+        /* ____________________ */
 
+        /******* ACTION *******/
         btnCreateOutfits.setOnAction((event) -> {
             super.getSceneSetting().displayScreen(ScreensGraphic.NEW_OUTFITS);
         });
 
-        VBox.setMargin(skpBtnCrateOtf, new Insets(UPDOWN_BIG, LEFTRIGHT, 0, LEFTRIGHT));
+        
+        /* Button_______________ */
+        btnUIOutfits = new Button("Generate a intelligent Outfit");
+        btnUIOutfits.getStyleClass().add("btn-outfits");
+        skpBtnUIOutfits = new StackPane();
+        VBox.setMargin(skpBtnUIOutfits, genObjFx.getStandardInset());
+        genObjFx.setStandarBtnStkP(btnUIOutfits, skpBtnUIOutfits);
+        vBox.getChildren().add(skpBtnUIOutfits);
+        /* ____________________ */
 
-        vBox.getChildren().add(titleStackPnl);
-        // vBox.getChildren().add(descriptionLabel);
-        vBox.getChildren().add(skpBtnCrateOtf);
+        /******* ACTION *******/
+        btnCreateOutfits.setOnAction((event) -> {
+            super.getSceneSetting().displayScreen(ScreensGraphic.NEW_OUTFITS);
+        });
 
-        VBox.setVgrow(scrollPnl, javafx.scene.layout.Priority.ALWAYS);
-        /* ___________________________________________ */
+        VBox.setVgrow(scrollPnl, Priority.ALWAYS);
         scrollPnl.setFitToWidth(true);
-        // scrollPnl.setFitToHeight(true);
         scrollPnl.setContent(vBox);
     }
 
     @Override
     public void showNowContent() {
         super.setupColorButtonsBH();
+        resetAllComponent();
+        showAllOutfits();
     }
 
     @Override
     public void resetAllComponent() {
-        // TODO Auto-generated method stub
+        final int nComponent = vBox.getChildren().size();
+        for (int i = 0; i < nComponent; i++) {
+            if (vBox.getChildren().get(i) instanceof GridPane) {
+                vBox.getChildren().remove(i);
+            }
+        }
+    }
 
+    private void showAllOutfits() {
+        /* Outfits list ________ */
+        final GridPane gridOutfits = new GridPane();
+
+        final List<Dress> allDress = super.getController().dress().getAllDresses();
+        final List<Outfits> allOutfits = super.getController().outfits().getAllOutfits();
+        for (int i = 0; i < allOutfits.size(); i++) {
+            final Button btnSelect = new Button("See More");
+            final Outfits outfit = allOutfits.get(i);
+            final List<UUID> idsOfDress = outfit.getOutfit();
+            final List<Dress> dressesOfOutfit = new LinkedList<>();
+
+            for (final UUID id : idsOfDress) {
+                dressesOfOutfit.add(allDress.stream().filter(e -> e.getId() == id).findFirst().orElse(null));
+            }
+
+            genObjFx.setOutfitInsideGrid(i, outfit, dressesOfOutfit, btnSelect, gridOutfits);
+
+            btnSelect.setOnAction(event -> {
+            });
+        }
+        vBox.getChildren().add(gridOutfits);
     }
 }
