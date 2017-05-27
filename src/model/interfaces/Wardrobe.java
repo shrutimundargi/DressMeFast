@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import java.util.UUID;
 
 import model.enumerations.Category;
 
@@ -124,4 +125,12 @@ public interface Wardrobe extends Serializable {
      * @return a container with all the dresses of a particular category.
      */
     List<Dress> getDressesOfCategory(Category category);
+
+    /**
+     * @param dressId
+     *            the id of a dress.
+     * 
+     * @return the dress associated with the specified id.
+     */
+    Dress getDressOfId(UUID dressId);
 }
