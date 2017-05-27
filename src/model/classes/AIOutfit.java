@@ -45,7 +45,7 @@ public class AIOutfit implements Outfits {
 
     @Override
     public List<UUID> getOutfit() {
-        return Collections.unmodifiableList(this.outfit);
+        return this.outfit;
     }
 
     @Override
