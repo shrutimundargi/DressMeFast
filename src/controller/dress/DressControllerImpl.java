@@ -197,6 +197,11 @@ public final class DressControllerImpl implements DressController {
     }
 
     @Override
+    public Status modifyDressPrice(final Dress dress, final double price) {
+        return dress.setPrice(price);
+    }
+
+    @Override
     public Status modifyDressBrand(final Dress dress, final String brand) {
         return dress.setBrand(brand);
     }
