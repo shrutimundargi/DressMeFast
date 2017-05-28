@@ -44,6 +44,11 @@ public interface OutfitsController {
     Outfits getOutfits(UUID outfitsid);
 
     /**
+     * 
+     */
+    void createAIOutfit();
+
+    /**
      * @param outfitsid
      *            : the id of the specific outfits
      * @param changeDresses
