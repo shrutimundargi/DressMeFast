@@ -566,7 +566,7 @@ public class DialogPreviewIO {
         btnUpdate.setOnAction((event) -> {
 
         });
-
+ 
         /* Button Delate_________ */
         final Button btnDelate = new Button("Delate");
         final StackPane stkDelate = new StackPane();
