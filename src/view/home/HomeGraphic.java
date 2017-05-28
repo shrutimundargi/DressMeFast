@@ -29,7 +29,7 @@ import view.general.ProgramUIImpl;
  * standard menu and screen queue).
  *
  */
-public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
+public class HomeGraphic extends ProgramUIImpl implements UI {
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.HOME;
 
     @FXML
@@ -47,7 +47,7 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
     @FXML
     private Button btnCenterCategory;
 
-    DialogPreviewIO dialogItem;
+    private final DialogPreviewIO dialogItem;
     private final GeneralObjectFx genObjFx;
 
     /**
@@ -177,8 +177,7 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
             final Button btnSee = new Button("See more");
 
             btnSee.setOnAction(event -> {
-                dialogItem.createDialogDress(super.getSceneSetting().getMainStage(), dress, super.getController());
-                this.showNowContent();
+                dialogItem.createDialogDress(super.getSceneSetting().getMainStage(), dress, super.getController(), this);
             });
 
             genObjFx.setItemInsideGrid(true, j, dress, btnSee, gridHome);

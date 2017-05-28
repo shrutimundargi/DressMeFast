@@ -121,18 +121,10 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         /* ____________________ */
 
         /* Category_______________ */
-        final Text txtCategory = new Text("Select the Category");
-        chbCategory = new ChoiceBox<Category>();
+        final Text txtChoiseBox = new Text("Select the ctegory");
         final StackPane pnlCategoryTitle = new StackPane();
         final StackPane pnlCategoryChb = new StackPane();
-        txtCategory.getStyleClass().add(ADD_TITLE_INFO_STYLE);
-        pnlCategoryTitle.getStyleClass().add("add-cont-title-info-first");
-        chbCategory.getStyleClass().add("chb-category");
-
-        chbCategory.getItems().setAll(Category.values());
-
-        pnlCategoryTitle.getChildren().add(txtCategory);
-        pnlCategoryChb.getChildren().add(chbCategory);
+        chbCategory = genObjFx.setChoiseBoxCategory(txtChoiseBox, pnlCategoryTitle, pnlCategoryChb);
         /* ____________________ */
 
         /* Image_______________ */
