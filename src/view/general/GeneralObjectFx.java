@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.stream.DoubleStream;
 
 import javafx.application.Platform;
@@ -208,12 +209,13 @@ public class GeneralObjectFx {
         final int rowIndex = count % 3;
         final int columnIndex = count == 0 ? 0 : count / 3;
         final BorderPane brpIthem = new BorderPane();
+        String dressName = dress.getName().equals("") ? "No name" : dress.getName();
 
         brpIthem.getStyleClass().add("pnl-specific-item");
 
         /* Name TOP__________________ */
         final StackPane stpName = new StackPane();
-        final Label lblName = new Label(dress.getName());
+        final Label lblName = new Label(dressName);
         lblName.getStyleClass().add("text-title-show-item");
         stpName.getChildren().add(lblName);
         StackPane.setMargin(lblName, NODOWN_INSET);
@@ -310,7 +312,9 @@ public class GeneralObjectFx {
 
         /* Image CENTER__________________ */
 
-        final File imgFile = outfitDress.get((outfitDress.size() * RANDOM_NUM) % Category.values().length).getImage();
+        final Random rand = new Random();
+
+        final File imgFile = outfitDress.get(rand.nextInt(outfitDress.size())).getImage();
         Image img;
         final ImageView imageView = new ImageView();
         final StackPane stpImageView = new StackPane();
@@ -428,7 +432,30 @@ public class GeneralObjectFx {
         }
     }
 
-    public boolean isDouble(String str) {
+    /**
+     * Check if the string is an Integer.
+     * 
+     * @param str
+     *            the value
+     * @return TRUE if is a Integer and False if not
+     */
+    public boolean isInteger(final String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the string is a Double.
+     * 
+     * @param str
+     *            the value
+     * @return TRUE if is a Double and False if not
+     */
+    public boolean isDouble(final String str) {
         try {
             Double.parseDouble(str);
             return true;

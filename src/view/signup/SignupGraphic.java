@@ -136,7 +136,12 @@ public class SignupGraphic implements UI {
 
     @Override
     public void showNowContent() {
-        // TODO Auto-generated method stub
+        txfUser.setText("");
+        txfPassword.setText("");
+        txfRepPassword.setText("");
+        txtErrUser.setText("");
+        txtErrPassw.setText("");
+        txtErrRepPassw.setText("");
 
     }
 }

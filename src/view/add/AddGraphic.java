@@ -288,22 +288,12 @@ public class AddGraphic extends ProgramUIImpl implements UI {
                 messageNecessaryField += "you need insert a photo.";
             }
 
-            // Check if all the numeric filed are correct
-            if (!txfPrice.getText().equals("") || !txfSize.getText().equals("")) {
-                if (!txfPrice.getText().matches(ONLYNUMBER) && !txfSize.getText().matches(ONLYNUMBER)) {
-                    messageNumericField += "are allow only positive numeric character in the fields Price and Size";
-                } else if (txfSize.getText().matches(ONLYNUMBER) && txfPrice.getText().matches(ONLYNUMBER)
-                        && Integer.valueOf(txfSize.getText()) < 0 && Integer.valueOf(txfPrice.getText()) < 0) {
-                    messageNumericField += "are allow only positive value in the fields Price and Size";
-                } else if (!txfSize.getText().matches(ONLYNUMBER)) {
-                    messageNumericField += "are allow only positive numeric character in the fild Size";
-                } else if (txfSize.getText().matches(ONLYNUMBER) && Integer.valueOf(txfSize.getText()) < 0) {
-                    messageNumericField += "are allow only positive value in the fild Size";
-                } else if (!txfPrice.getText().matches(ONLYNUMBER)) {
-                    messageNumericField += "are allow only positive numeric character in the fild Price";
-                } else if (txfPrice.getText().matches(ONLYNUMBER) && Integer.valueOf(txfPrice.getText()) < 0) {
-                    messageNumericField += "are allow only positive value in the fild Price";
-                }
+            if (!messageNecessaryField.equals(OPSSS) && !messageNumericField.equals(REMEMBER)) {
+                messageFinal = messageNecessaryField + " " + messageNumericField;
+            } else if (!messageNecessaryField.equals(OPSSS) && messageNumericField.equals(REMEMBER)) {
+                messageFinal = messageNecessaryField;
+            } else if (messageNecessaryField.equals(OPSSS) && !messageNumericField.equals(REMEMBER)) {
+                messageFinal = messageNumericField;
             }
 
             if (!messageNecessaryField.equals(OPSSS) && !messageNumericField.equals(REMEMBER)) {
@@ -323,7 +313,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
                 alertOk.setContentText("The item is add in the category " + chbCategory.getValue() + "!");
 
                 final Integer size = txfSize.getText().equals("") ? -1 : Integer.valueOf(txfSize.getText());
-                final Integer price = txfPrice.getText().equals("") ? -1 : Integer.valueOf(txfPrice.getText());
+                final Double price = txfPrice.getText().equals("") ? -1 : Double.parseDouble(txfPrice.getText());
 
                 super.getController().dress().addDress(txfName.getText(), txfBrand.getText(), size, price,
                         dtpDate.getValue(), txaInfo.getText(), chbCategory.getValue(), imgFile[0]);

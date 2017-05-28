@@ -25,6 +25,7 @@ import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
 import view.UI;
+import view.general.DialogPreviewIO;
 import view.general.GeneralObjectFx;
 import view.general.ProgramUIImpl;
 
@@ -43,6 +44,7 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
     private ScrollPane scrollPnl;
     final VBox vBox;
     private final GeneralObjectFx genObjFx;
+    private final DialogPreviewIO dialogItem;
 
     /**
      * 
@@ -61,6 +63,8 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
 
         /* Container (PANE) */
         genObjFx = new GeneralObjectFx();
+        dialogItem = new DialogPreviewIO();
+
         vBox = new VBox();
         final Button btnCreateOutfits;
         final StackPane skpBtnCrateOtf;
@@ -89,7 +93,6 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
             super.getSceneSetting().displayScreen(ScreensGraphic.NEW_OUTFITS);
         });
 
-        
         /* Button_______________ */
         btnUIOutfits = new Button("Generate a intelligent Outfit");
         btnUIOutfits.getStyleClass().add("btn-outfits");
@@ -102,6 +105,10 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
         /******* ACTION *******/
         btnCreateOutfits.setOnAction((event) -> {
             super.getSceneSetting().displayScreen(ScreensGraphic.NEW_OUTFITS);
+        });
+
+        btnUIOutfits.setOnAction((event) -> {
+
         });
 
         VBox.setVgrow(scrollPnl, Priority.ALWAYS);
@@ -145,6 +152,8 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
             genObjFx.setOutfitInsideGrid(i, outfit, dressesOfOutfit, btnSelect, gridOutfits);
 
             btnSelect.setOnAction(event -> {
+                dialogItem.createDialogOutfit(super.getSceneSetting().getMainStage(), outfit, super.getController(),
+                        this);
             });
         }
         vBox.getChildren().add(gridOutfits);

@@ -141,7 +141,7 @@ public class FavoriteGraphic extends ProgramUIImpl implements UI {
             genObjFx.setItemInsideGrid(false, j, dress, btnSelect, gridBrand);
         }
 
-        vBox.getChildren().add(brpBrand);
+        vBox.getChildren().add(gridBrand);
 
     }
 }
