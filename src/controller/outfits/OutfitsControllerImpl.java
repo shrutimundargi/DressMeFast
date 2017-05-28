@@ -75,8 +75,13 @@ public final class OutfitsControllerImpl implements OutfitsController {
     }
 
     @Override
-    public void createAIOutfit() {
-        final Outfits aIOutfits = new AIOutfit().createOutfit(user.getWardobe().getCategories().getAllCategories());
-        user.getWardobe().getOutfits().addOutfit(aIOutfits, Outfit.AI);
+    public int createAIOutfit() {
+        if (user.getWardobe().getCategories().getAllDresses().size() == 0) {
+            return 1;
+        } else {
+            final Outfits aIOutfits = new AIOutfit().createOutfit(user.getWardobe().getCategories().getAllCategories());
+            user.getWardobe().getOutfits().addOutfit(aIOutfits, Outfit.AI);
+            return 0;
+        }
     }
 }
