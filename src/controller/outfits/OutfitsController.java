@@ -44,6 +44,11 @@ public interface OutfitsController {
     Outfits getOutfits(UUID outfitsid);
 
     /**
+     * @return return 1 if there aren't dresses, otherwise return 0.
+     */
+    int createAIOutfit();
+
+    /**
      * @param outfitsid
      *            : the id of the specific outfits
      * @param changeDresses

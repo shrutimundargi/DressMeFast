@@ -3,6 +3,7 @@ package controller.outfits;
 import java.util.List;
 import java.util.UUID;
 
+import model.classes.AIOutfit;
 import model.classes.UserOutfit;
 import model.enumerations.Outfit;
 import model.enumerations.Status;
@@ -73,4 +74,14 @@ public final class OutfitsControllerImpl implements OutfitsController {
         user.getWardobe().getOutfits().removeOutfit(outfits, Outfit.AI);
     }
 
+    @Override
+    public int createAIOutfit() {
+        if (user.getWardobe().getCategories().getAllDresses().size() == 0) {
+            return 1;
+        } else {
+            final Outfits aIOutfits = new AIOutfit().createOutfit(user.getWardobe().getCategories().getAllCategories());
+            user.getWardobe().getOutfits().addOutfit(aIOutfits, Outfit.AI);
+            return 0;
+        }
+    }
 }
