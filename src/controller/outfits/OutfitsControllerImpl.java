@@ -16,6 +16,8 @@ import model.interfaces.User;
  *
  */
 public final class OutfitsControllerImpl implements OutfitsController {
+    private static final int AI_OUTFIT_OK = 0;
+    private static final int CREATE_AI_ERROR = 1;
     private final User user;
 
     /**
@@ -72,12 +74,12 @@ public final class OutfitsControllerImpl implements OutfitsController {
 
     @Override
     public int createAIOutfit() {
-        if (user.getWardobe().getCategories().getAllDresses().size() == 0) {
-            return 1;
+        if (user.getWardobe().getCategories().getAllDresses().isEmpty()) {
+            return CREATE_AI_ERROR;
         } else {
             final Outfits aIOutfits = new AIOutfit().createOutfit(user.getWardobe().getCategories().getAllCategories());
             user.getWardobe().getOutfits().addOutfit(aIOutfits, Outfit.AI);
-            return 0;
+            return AI_OUTFIT_OK;
         }
     }
 
