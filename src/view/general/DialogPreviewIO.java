@@ -525,7 +525,7 @@ public class DialogPreviewIO {
         /* ____________________ */
 
         /* Name_______________ */
-        final TextField txfName = new TextField();
+        final TextField txfName = new TextField(dressName);
         genObjFx.addTextFieldToVBox("Name", txfName, dialogVbox);
         /* ____________________ */
 
@@ -579,7 +579,39 @@ public class DialogPreviewIO {
         genObjFx.setStandarBtnStkP(btnUpdate, stkUpdate);
         dialogVbox.getChildren().add(stkUpdate);
         btnUpdate.setOnAction((event) -> {
+            final String nameOutfit = txfName.getText();
 
+            if (!outfitItems.isEmpty() && !nameOutfit.equals("")) {
+                final List<UUID> dressesId = new LinkedList<>();
+                final Alert alertOk = new Alert(AlertType.INFORMATION);
+                alertOk.setTitle("Information Dialog");
+                alertOk.setHeaderText("Yea, you added a new outfit");
+
+                for (int i = 0; i < allCat.length; i++) {
+                    final Dress dressToAdd = outfitItems.get(allCat[i]);
+                    if (dressToAdd != null) {
+                        dressesId.add(dressToAdd.getId());
+                    }
+                }
+                controller.outfits().modifyOutfitsName(outfit.getId(), nameOutfit);
+                controller.outfits().modifyOutfits(outfit.getId(), dressesId);
+                dialog.close();
+                ui.showNowContent();
+                alertOk.show();
+
+            } else if (outfitItems.isEmpty()) {
+                final Alert alertEr = new Alert(AlertType.ERROR);
+                alertEr.setTitle("Error Dialog");
+                alertEr.setHeaderText("There's somthing wrong!");
+                alertEr.setContentText("Select at least one item");
+                alertEr.show();
+            } else if (nameOutfit.equals("")) {
+                final Alert alertEr = new Alert(AlertType.ERROR);
+                alertEr.setTitle("Error Dialog");
+                alertEr.setHeaderText("There's somthing wrong!");
+                alertEr.setContentText("Write the outfit name");
+                alertEr.show();
+            }
         });
 
         /* Button Delate_________ */
@@ -613,8 +645,7 @@ public class DialogPreviewIO {
         for (final UUID id : idsOfDress) {
             final Dress dress = allDress.stream().filter(e -> e.getId() == id).findFirst().orElse(null);
             addSpecItem(dress.getCategoryName(), dress, outfitItems, dialogVbox, owner, controller);
-            // dressesOfOutfit.add(allDress.stream().filter(e -> e.getId() ==
-            // id).findFirst().orElse(null));
+            outfitItems.put(dress.getCategoryName(), dress);
         }
 
         dialog.show();
