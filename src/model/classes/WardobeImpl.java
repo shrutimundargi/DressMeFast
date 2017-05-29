@@ -238,6 +238,19 @@ public class WardobeImpl implements Wardrobe {
     }
 
     @Override
+    public List<Dress> getDressesOfIds(final List<UUID> dressesList) {
+        final List<Dress> list = new LinkedList<>();
+        dressesList.forEach(id -> {
+            this.getCategories().getAllDresses().forEach(dress -> {
+                if (dress.getId().equals(id)) {
+                    list.add(dress);
+                }
+            });
+        });
+        return Collections.unmodifiableList(list);
+    }
+
+    @Override
     public Queue<Dress> getLastAddedDresses() {
         return this.categoryManagement.getLastDressesAdded();
     }

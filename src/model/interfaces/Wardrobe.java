@@ -133,4 +133,12 @@ public interface Wardrobe extends Serializable {
      * @return the dress associated with the specified id.
      */
     Dress getDressOfId(UUID dressId);
+
+    /**
+     * @param dressesList
+     *            a container with the ids of some dresses.
+     * 
+     * @return a container with all the dresses pointed by their ids.
+     */
+    List<Dress> getDressesOfIds(List<UUID> dressesList);
 }
