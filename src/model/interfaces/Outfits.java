@@ -1,11 +1,13 @@
 package model.interfaces;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import model.enumerations.Category;
+import model.enumerations.Outfit;
 import model.enumerations.Status;
 
 /**
@@ -37,6 +39,16 @@ public interface Outfits extends Serializable {
     Integer getWornCount();
 
     /**
+     * @return the outfit's type.
+     */
+    Outfit getOutfitType();
+
+    /**
+     * @return the creation date of an outfit.
+     */
+    LocalDate getDate();
+
+    /**
      * @param dressList
      *            a container with some dresses.
      *
@@ -65,6 +77,14 @@ public interface Outfits extends Serializable {
      * @return the result of the operation.
      */
     Status setWornCount();
+
+    /**
+     * @param date
+     *            the updated date of an outfit when it's modified.
+     * 
+     * @return the result of the operation.
+     */
+    Status setDate(LocalDate date);
 
     /**
      * @param dressList

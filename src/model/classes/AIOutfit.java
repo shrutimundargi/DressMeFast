@@ -1,5 +1,6 @@
 package model.classes;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import model.enumerations.Category;
+import model.enumerations.Outfit;
 import model.enumerations.Status;
 import model.interfaces.Categories;
 import model.interfaces.Dress;
@@ -26,6 +28,8 @@ public class AIOutfit implements Outfits {
     private String name;
     private Integer wornCount;
     private List<UUID> outfit;
+    private final Outfit type;
+    private LocalDate date;
 
     /**
      * Creates a container of a single AI outfit.
@@ -35,6 +39,8 @@ public class AIOutfit implements Outfits {
         this.name = null;
         this.wornCount = 0;
         this.outfit = new LinkedList<>();
+        this.type = Outfit.AI;
+        this.date = LocalDate.now();
     }
 
     @Override
@@ -58,6 +64,16 @@ public class AIOutfit implements Outfits {
     }
 
     @Override
+    public Outfit getOutfitType() {
+        return this.type;
+    }
+
+    @Override
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    @Override
     public Outfits createOutfit(final List<UUID> dressList) {
         throw new UnsupportedOperationException();
     }
@@ -71,6 +87,12 @@ public class AIOutfit implements Outfits {
     @Override
     public Status setWornCount() {
         this.wornCount++;
+        return Status.CHANGE_SUCCESFULL;
+    }
+
+    @Override
+    public Status setDate(final LocalDate date) {
+        this.date = date;
         return Status.CHANGE_SUCCESFULL;
     }
 
@@ -177,9 +199,11 @@ public class AIOutfit implements Outfits {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((date == null) ? 0 : date.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((outfit == null) ? 0 : outfit.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
         result = prime * result + ((wornCount == null) ? 0 : wornCount.hashCode());
         return result;
     }
@@ -196,6 +220,13 @@ public class AIOutfit implements Outfits {
             return false;
         }
         final AIOutfit other = (AIOutfit) obj;
+        if (date == null) {
+            if (other.date != null) {
+                return false;
+            }
+        } else if (!date.equals(other.date)) {
+            return false;
+        }
         if (id == null) {
             if (other.id != null) {
                 return false;
@@ -217,6 +248,9 @@ public class AIOutfit implements Outfits {
         } else if (!outfit.equals(other.outfit)) {
             return false;
         }
+        if (type != other.type) {
+            return false;
+        }
         if (wornCount == null) {
             if (other.wornCount != null) {
                 return false;
@@ -226,4 +260,5 @@ public class AIOutfit implements Outfits {
         }
         return true;
     }
+
 }
