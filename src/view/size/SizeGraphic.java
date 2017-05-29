@@ -1,33 +1,19 @@
 package view.size;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.stream.DoubleStream;
 
 import controller.Controller;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import model.enumerations.Category;
 import model.interfaces.Dress;
@@ -45,20 +31,13 @@ import view.general.ProgramUIImpl;
  *
  */
 public class SizeGraphic extends ProgramUIImpl implements UI {
-    private static final int LEFTRIGHT = 10;
-    private static final int UPDOWN = 15;
-    private static final int PERCENT_WIDTH_GRID = 33;
-    private static final int WIDTH_HEIGHT = 150;
-    private static final int HEIGHT_IMAGE = 200;
-    private static final int SHADOW_HEIGHT = 20;
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.SIZE;
 
     private static final String NAMEOFSCREEN = "Size";
-    private static final String DESCRIPTIONOFPANE = "";
 
     @FXML
     private ScrollPane scrollPnl;
-    private VBox vBox;
+    private final VBox vBox;
     private final ChoiceBox<Category> chbCategory;
     private final DialogPreviewIO dialogItem;
     private final GeneralObjectFx genObjFx;
@@ -154,7 +133,6 @@ public class SizeGraphic extends ProgramUIImpl implements UI {
             for (int j = 0; j < dressItem.size(); j++) {
                 final Dress dress = dressItem.get(j);
                 final Button btnSelect = new Button("See more");
-                final ImageView imageView = new ImageView();
 
                 genObjFx.setItemInsideGrid(false, j, dress, btnSelect, gridBrand);
 

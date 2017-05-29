@@ -185,7 +185,6 @@ public class DialogPreviewIO {
         try {
             imgItem[0] = new Image(new FileInputStream(imgFile[0].getAbsolutePath()));
         } catch (FileNotFoundException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         }
 
@@ -448,7 +447,7 @@ public class DialogPreviewIO {
      *            of the specific graphic that permit to refresh the screen when
      *            you do a update or delete
      */
-    public void createDialogOutfit(final Window owner, final Outfits outfit, final Controller controller, final UI ui) {
+    public void createDialogOutfit(final Window owner, final Outfits outfit, final Controller controller, final UI ui) { //NOPMD
         final Category[] allCat = Category.values();
         final Map<Category, Dress> outfitItems = new HashMap<>();
 
@@ -644,7 +643,6 @@ public class DialogPreviewIO {
 
         final List<Dress> allDress = controller.dress().getAllDresses();
         final List<UUID> idsOfDress = outfit.getOutfit();
-        final List<Dress> dressesOfOutfit = new LinkedList<>();
 
         for (final UUID id : idsOfDress) {
             final Dress dress = allDress.stream().filter(e -> e.getId() == id).findFirst().orElse(null);
@@ -730,8 +728,7 @@ public class DialogPreviewIO {
             final VBox vBoxOfCategory, final Window owner, final Controller controller) {
         final Category[] allCat = Category.values();
         int indexOfFirstCategory = 0;
-        int val = vBoxOfCategory.getChildren().size();
-        boolean bol = !(vBoxOfCategory.getChildren().get(0) instanceof BorderPane);
+
         for (int i = 0; i < vBoxOfCategory.getChildren().size()
                 && !(vBoxOfCategory.getChildren().get(i) instanceof BorderPane); i++) {
             indexOfFirstCategory = i + 1;

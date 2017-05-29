@@ -1,31 +1,16 @@
 package view.signup;
 
+import controller.Controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import model.enumerations.Status;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.UI;
-import view.dialog.SignupDialogGraphic;
-
-import java.io.IOException;
-import controller.Controller;
-import javafx.event.ActionEvent;
 
 /**
  * 
@@ -37,11 +22,9 @@ public class SignupGraphic implements UI {
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.SIGNUP;
     private static final int MIN_LENGTH = 5;
 
-    private static SceneSetting viewM;
     private final SceneSetting environment;
     private final Controller controller;
     private Stage primaryStage;
-    private boolean lockedPositionSlider;
 
     @FXML
     private TextField txfUser;
@@ -67,7 +50,6 @@ public class SignupGraphic implements UI {
         this.controller = controller;
         this.environment = environment;
         this.environment.loadScreen(ACTUALSCREEN, this);
-        this.lockedPositionSlider = false;
         this.primaryStage = this.environment.getMainStage();
     }
 

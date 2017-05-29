@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import model.enumerations.Status;
 import view.SceneSetting;
 import view.ScreensGraphic;
@@ -20,12 +19,8 @@ public class LoginGraphic implements UI {
 
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.LOGIN;
 
-    private static SceneSetting viewM;
     private final SceneSetting environment;
     private final Controller controller;
-    private Stage primaryStage;
-    private boolean lockedPositionSlider;
-
     @FXML
     private TextField txfUser;
     @FXML
@@ -46,15 +41,12 @@ public class LoginGraphic implements UI {
         this.controller = controller;
         this.environment = environment;
         this.environment.loadScreen(ACTUALSCREEN, this);
-        this.lockedPositionSlider = false;
-        this.primaryStage = this.environment.getMainStage();
     }
 
     /**
      * Call when the application is start to set.
      */
     public void show() {
-        this.primaryStage = this.environment.getMainStage();
         this.environment.displayScreen(ACTUALSCREEN);
 
     }
@@ -62,9 +54,10 @@ public class LoginGraphic implements UI {
     // Event Listener on Button.onAction
     /**
      * @param event
+     *            of action
      */
     @FXML
-    public void loginAction(ActionEvent event) {
+    public void loginAction(final ActionEvent event) {
         final String user = txfUser.getText();
         final String passw = txfPassword.getText();
         final Status status = controller.userController().checkLogin(user, passw);
@@ -86,9 +79,10 @@ public class LoginGraphic implements UI {
     // Event Listener on Button.onAction
     /**
      * @param event
+     *            of action
      */
     @FXML
-    public void goToSignup(ActionEvent event) {
+    public void goToSignup(final ActionEvent event) {
         this.environment.displayScreen(ScreensGraphic.SIGNUP);
     }
 

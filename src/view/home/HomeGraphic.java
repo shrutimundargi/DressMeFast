@@ -9,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -21,7 +20,6 @@ import view.SetupView;
 import view.UI;
 import view.general.DialogPreviewIO;
 import view.general.GeneralObjectFx;
-import view.general.ProgramUI;
 import view.general.ProgramUIImpl;
 
 /**
@@ -35,18 +33,6 @@ public class HomeGraphic extends ProgramUIImpl implements UI {
 
     @FXML
     private VBox vBoxLastAdded;
-    @FXML
-    private Button btnCenterBrand;
-    @FXML
-    private Button btnCenterOutfits;
-    @FXML
-    private Button btnCenterHome;
-    @FXML
-    private Button btnCenterAdd;
-    @FXML
-    private Button btnCenterFavorite;
-    @FXML
-    private Button btnCenterCategory;
 
     private final DialogPreviewIO dialogItem;
     private final GeneralObjectFx genObjFx;
@@ -67,13 +53,6 @@ public class HomeGraphic extends ProgramUIImpl implements UI {
         super.getBtnHome().setStyle("-fx-background-image: url('/images/hoodie.png');");
         dialogItem = new DialogPreviewIO();
         genObjFx = new GeneralObjectFx();
-        /*
-         * btnHome.setStyle("-fx-background-image: url('/images/hoodie.png');");
-         * 
-         * Image im = new
-         * Image(getClass().getResourceAsStream("/images/vans-t-shirt.jpg"));
-         * imagePreviewDress1.setFill(new ImagePattern(im));
-         */
     }
 
     @Override
@@ -176,7 +155,6 @@ public class HomeGraphic extends ProgramUIImpl implements UI {
         for (int j = 0; j < lastDress.size() && j < 3; j++) {
             final Dress dress = lastDress.get(j);
             final Button btnSee = new Button("See more");
-            final ImageView imageView = new ImageView();
 
             genObjFx.setItemInsideGrid(true, j, dress, btnSee, gridHome);
 

@@ -178,7 +178,7 @@
                                     <Label fx:id="lblBrandMostUsed" styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
-                              <Button fx:id="btnLogout" mnemonicParsing="false" onAction="#pressLogout" text="Logout">
+                              <Button fx:id="btnLogout" mnemonicParsing="false" text="Logout">
                                  <styleClass>
                                     <String fx:value="btn-normal" />
                                     <String fx:value="btn-logout" />

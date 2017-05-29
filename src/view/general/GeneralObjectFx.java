@@ -3,20 +3,16 @@ package view.general;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 import java.util.stream.DoubleStream;
 
-import javafx.application.Platform;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -34,23 +30,22 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import model.enumerations.Category;
 import model.interfaces.Dress;
 import model.interfaces.Outfits;
-import view.ScreensGraphic;
 
+/**
+ * 
+ * GeneralObjectFx give the possibility to call some most used rows of code. 
+ *
+ */
 public class GeneralObjectFx {
-    private static final int RANDOM_NUM = 444;
     private static final String BTN_SMALL = "btn-small";
     private static final String BTN_NORMAL = "btn-normal";
     private static final String ADD_TITLE_INFO_STYLE = "add-title-info";
-    private static final String ADD_CONT_TITLE_INFO_STYLE = "add-cont-title-info";
     private static final int LEFTRIGHT = 10;
     private static final int UPDOWN = 15;
     private static final int UPDOWN_LITTLE = 5;
-    private static final int UPDOWN_BIG = 25;
     private static final int PERCENT_WIDTH_GRID = 33;
     private static final int WIDTH_IMAGE = 150;
     private static final int HEIGHT_IMAGE = 200;
@@ -63,15 +58,24 @@ public class GeneralObjectFx {
     private static final Insets NOUP_INSET = new Insets(0, LEFTRIGHT, UPDOWN, LEFTRIGHT);
     private static final Insets NODOWN_INSET = new Insets(UPDOWN, LEFTRIGHT, 0, LEFTRIGHT);
     private static final Insets HOME_INSET = new Insets(0, 0, 0, 0);
-    private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.NEW_OUTFITS;
 
-    public void setStandarBtnStkP(Button btn, StackPane stkP) {
+    /**
+     * Method that set the standard CSS for the button and margin for the StackPane.
+     * @param btn the button that we wont to put in the StackPane
+     * @param stkP the StackPane where it will be receive the button
+     */
+    public void setStandarBtnStkP(final Button btn, final StackPane stkP) {
         btn.getStyleClass().add(BTN_NORMAL);
         stkP.getChildren().add(btn);
         GridPane.setMargin(stkP, STANDARD_INSET);
     }
 
-    public void setLittleMarginBtnStkP(Button btn, StackPane stkP) {
+    /**
+     * Method that set the standard CSS for the button and a little margin for the StackPane.
+     * @param btn the button that we wont to put in the StackPane
+     * @param stkP the StackPane where it will be receive the button
+     */
+    public void setLittleMarginBtnStkP(final Button btn, final StackPane stkP) {
         btn.getStyleClass().add(BTN_NORMAL);
         stkP.getChildren().add(btn);
         GridPane.setMargin(stkP, LITTLE_INSET);

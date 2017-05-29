@@ -2,7 +2,6 @@ package view.user;
 
 import controller.Controller;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
@@ -23,12 +22,6 @@ public class UserGraphic extends ProgramUIImpl implements UI {
     @FXML
     private ScrollPane scrollPnl;
     @FXML
-    private Button btnGoBack;
-    @FXML
-    private Button btnGoAhead;
-    @FXML
-    private Button btnLogout;
-    @FXML
     private Text txtUser;
     @FXML
     private Label lblDateRegistration;
@@ -38,8 +31,6 @@ public class UserGraphic extends ProgramUIImpl implements UI {
     private Label lblFavItem;
     @FXML
     private Label lblNumBrand;
-    @FXML
-    private Label lblMediumSize;
     @FXML
     private Label lblNumOutfits;
     @FXML

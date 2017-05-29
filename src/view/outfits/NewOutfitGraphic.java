@@ -1,7 +1,6 @@
 package view.outfits;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -24,7 +22,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.enumerations.Category;
@@ -48,16 +45,15 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.NEW_OUTFITS;
 
     private static final String NAMEOFSCREEN = "New outfit";
-    private static final String DESCRIPTIONOFPANE = "";
 
     @FXML
     private ScrollPane scrollPnl;
     private final VBox vBox;
     private final TextField txfName;
 
-    private Map<Category, Dress> outfitItem;
+    private final Map<Category, Dress> outfitItem;
     private final GeneralObjectFx genObjFx;
-    final Category[] allCat;
+    private final Category[] allCat;
 
     /**
      * 
@@ -93,14 +89,15 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
         VBox.setVgrow(scrollPnl, Priority.ALWAYS);
         /* ____________________ */
 
-        /* Description_________ 
-        final Label lblDescr = new Label("You've dressed that item " + "3" + "times");
-        final StackPane stkDescription = new StackPane();
-        lblDescr.getStyleClass().add("text-description");
-        lblDescr.setWrapText(true);
-        lblDescr.setTextAlignment(TextAlignment.JUSTIFY);
-        stkDescription.getChildren().add(lblDescr);
-         ____________________ */
+        /*
+         * Description_________ final Label lblDescr = new
+         * Label("You've dressed that item " + "3" + "times"); final StackPane
+         * stkDescription = new StackPane();
+         * lblDescr.getStyleClass().add("text-description");
+         * lblDescr.setWrapText(true);
+         * lblDescr.setTextAlignment(TextAlignment.JUSTIFY);
+         * stkDescription.getChildren().add(lblDescr); ____________________
+         */
 
         /* Name_______________ */
         txfName = new TextField();
@@ -295,7 +292,6 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
             for (int j = 0; j < dressItem.size(); j++) {
                 final Dress dress = dressItem.get(j);
                 final Button btnSelect = new Button("Select");
-                final ImageView imageView = new ImageView();
 
                 genObjFx.setItemInsideGrid(false, j, dress, btnSelect, gridBrand);
 

@@ -6,19 +6,13 @@ import java.util.UUID;
 
 import controller.Controller;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import model.enumerations.Category;
 import model.interfaces.Dress;
 import model.interfaces.Outfits;
 import view.SceneSetting;
@@ -38,11 +32,10 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.OUTFITS;
 
     private static final String NAMEOFSCREEN = "Outfits";
-    private static final String DESCRIPTIONOFPANE = "";
 
     @FXML
     private ScrollPane scrollPnl;
-    private VBox vBox;
+    private final VBox vBox;
     private final GeneralObjectFx genObjFx;
     private final DialogPreviewIO dialogItem;
 
@@ -158,6 +151,4 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
         }
         vBox.getChildren().add(gridOutfits);
     }
-    
-    
 }
