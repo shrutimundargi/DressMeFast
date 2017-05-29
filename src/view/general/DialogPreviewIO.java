@@ -21,6 +21,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -31,7 +33,9 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import model.enumerations.Category;
 import model.interfaces.Dress;
+import model.interfaces.Outfits;
 import view.ScreensGraphic;
+import view.UI;
 
 /**
  * 
@@ -56,6 +60,15 @@ public class DialogPreviewIO {
     private static final int HEIGHT_DIALOG = 400;
     private static final int WIDTH_DIALOG = 660;
 
+    private final GeneralObjectFx genObjFx;
+
+    /**
+     * Initialize the class.
+     */
+    public DialogPreviewIO() {
+        genObjFx = new GeneralObjectFx();
+    }
+
     /**
      * Launch a dialog preview of item.
      * 
@@ -65,8 +78,11 @@ public class DialogPreviewIO {
      *            that we wont to see
      * @param controller
      *            that permit to modify and delete the item
+     * @param ui
+     *            of the specific graphic that permit to refresh the screen when
+     *            you do a update or delete
      */
-    public void createDialogDress(final Window owner, final Dress dress, final Controller controller) {
+    public void createDialogDress(final Window owner, final Dress dress, final Controller controller, final UI ui) {
         final File[] imgFile = { dress.getImage() };
         final Image[] imgItem = new Image[1];
         final ImageView imvItem;
@@ -80,8 +96,6 @@ public class DialogPreviewIO {
         final CheckBox ckbFavorite;
         final TextArea txaInfo;
 
-        final GeneralObjectFx genObjFx = new GeneralObjectFx();
-
         final URL url1 = this.getClass().getResource("../mainStyle.css");
         final URL url2 = this.getClass().getResource("../add/Add.css");
         final String css1 = url1.toExternalForm();
@@ -93,7 +107,7 @@ public class DialogPreviewIO {
         final List<String> brandsName;
         final int nBrand;
         final Scene dialogScene;
-        final String dressName = dress.getName();
+        final String dressName = dress.getName().equals("") ? "No name" : dress.getName();
 
         dialog.setMinWidth(WIDTH_DIALOG);
         dialog.setMinHeight(HEIGHT_DIALOG);
@@ -102,6 +116,7 @@ public class DialogPreviewIO {
         dialog.setTitle(dressName);
 
         scrollPnlDialog = new ScrollPane();
+        scrollPnlDialog.getStyleClass().add("srp-padding-left");
         stkVbox = new StackPane();
         VBox.setVgrow(scrollPnlDialog, Priority.ALWAYS);
         scrollPnlDialog.setFitToWidth(true);
@@ -226,8 +241,10 @@ public class DialogPreviewIO {
         /* ____________________ */
 
         /* Size_______________ */
+        int size = dress.getSize();
+        String sizeString = size == -1 ? "" : "" + size;
         final Text txtSize = new Text("Size");
-        txfSize = new TextField(dress.getSize().toString());
+        txfSize = new TextField(sizeString);
         final StackPane pnlSizeTitle = new StackPane();
         final StackPane pnlSizeTxf = new StackPane();
         txtSize.getStyleClass().add(ADD_TITLE_INFO_STYLE);
@@ -239,8 +256,10 @@ public class DialogPreviewIO {
         /* ____________________ */
 
         /* Price_______________ */
+        final double price = dress.getPrice();
+        final String priceString = price == -1.0 ? "" : "" + price;
         final Text txtPrice = new Text("Price");
-        txfPrice = new TextField(Double.toString(dress.getPrice()));
+        txfPrice = new TextField(priceString);
         final StackPane pnlPriceTitle = new StackPane();
         final StackPane pnlPriceTxf = new StackPane();
         txtPrice.getStyleClass().add(ADD_TITLE_INFO_STYLE);
@@ -312,19 +331,14 @@ public class DialogPreviewIO {
 
             // Check if all the numeric filed are correct
             if (!txfPrice.getText().equals("") || !txfSize.getText().equals("")) {
-                if (!txfPrice.getText().matches(ONLYNUMBER) && !txfSize.getText().matches(ONLYNUMBER)) {
-                    messageNumericField += "are allow only positive numeric character in the fields Price and Size";
-                } else if (txfSize.getText().matches(ONLYNUMBER) && txfPrice.getText().matches(ONLYNUMBER)
-                        && Integer.valueOf(txfSize.getText()) < 0 && Integer.valueOf(txfPrice.getText()) < 0) {
-                    messageNumericField += "are allow only positive value in the fields Price and Size";
-                } else if (!txfSize.getText().matches(ONLYNUMBER)) {
-                    messageNumericField += "are allow only positive numeric character in the fild Size";
-                } else if (txfSize.getText().matches(ONLYNUMBER) && Integer.valueOf(txfSize.getText()) < 0) {
-                    messageNumericField += "are allow only positive value in the fild Size";
-                } else if (!txfPrice.getText().matches(ONLYNUMBER)) {
-                    messageNumericField += "are allow only positive numeric character in the fild Price";
-                } else if (txfPrice.getText().matches(ONLYNUMBER) && Integer.valueOf(txfPrice.getText()) < 0) {
-                    messageNumericField += "are allow only positive value in the fild Price";
+                if (!txfSize.getText().equals("") && !genObjFx.isInteger(txfSize.getText())) {
+                    messageNumericField += "are allow only numeric character in the field size";
+                } else if (!txfPrice.getText().equals("") && !genObjFx.isDouble(txfPrice.getText())) {
+                    messageNumericField += "are allow only numeric character in the field price";
+                } else if (!txfSize.getText().equals("") && Integer.parseInt(txfSize.getText()) < 0) {
+                    messageNumericField += "are allow only positive character in the fild Size";
+                } else if (!txfPrice.getText().equals("") && Double.parseDouble(txfPrice.getText()) < 0) {
+                    messageNumericField += "are allow only positive character in the fild Price";
                 }
             }
 
@@ -344,19 +358,20 @@ public class DialogPreviewIO {
                 alertOk.setHeaderText("Yea, you added your item");
                 alertOk.setContentText("The item is add in the category " + chbCategory.getValue() + "!");
 
-                final Integer size = txfSize.getText().equals("") ? -1 : Integer.valueOf(txfSize.getText());
-                final Integer price = txfPrice.getText().equals("") ? -1 : Integer.valueOf(txfPrice.getText());
+                final Integer newSize = txfSize.getText().equals("") ? -1 : Integer.valueOf(txfSize.getText());
+                Double newPrice = txfPrice.getText().equals("") ? -1 : Double.parseDouble(txfPrice.getText());
 
                 controller.dress().modifyDressCategory(dress, chbCategory.getValue());
                 controller.dress().modifyDressBrand(dress, txfBrand.getText());
                 controller.dress().modifyDressDescription(dress, txaInfo.getText());
                 controller.dress().modifyDressName(dress, txfName.getText());
                 controller.dress().modifyDressPurchaseDate(dress, dtpDate.getValue());
-                controller.dress().modifyDressSize(dress, size);
-                controller.dress().modifyDressPrice(dress, price);
+                controller.dress().modifyDressSize(dress, newSize);
+                controller.dress().modifyDressPrice(dress, newPrice);
                 controller.dress().modifyFavoriteTag(dress, ckbFavorite.isSelected());
                 alertOk.showAndWait();
                 dialog.close();
+                ui.showNowContent();
             }
         });
         /* _____________________ */
@@ -369,6 +384,7 @@ public class DialogPreviewIO {
         btnDelate.setOnAction(event -> {
             controller.dress().deleteDress(dress);
             dialog.close();
+            ui.showNowContent();
         });
         /* _____________________ */
 
@@ -422,17 +438,160 @@ public class DialogPreviewIO {
     }
 
     /**
-     * Launch a dialog preview of outfit.
+     * Launch a dialog preview of item.
      * 
      * @param owner
      *            the parent DialogPane
-     * @param dress
+     * @param outfit
      *            that we wont to see
      * @param controller
      *            that permit to modify and delete the item
+     * @param ui
+     *            of the specific graphic that permit to refresh the screen when
+     *            you do a update or delete
      */
-    public void createDialogOutfit(final Window owner, final Dress dress, final Controller controller) {
+    public void createDialogOutfit(final Window owner, final Outfits outfit, final Controller controller, final UI ui) {
+        Category[] allCat = Category.values();
 
+        final URL url1 = this.getClass().getResource("../mainStyle.css");
+        final URL url2 = this.getClass().getResource("../add/Add.css");
+        final String css1 = url1.toExternalForm();
+        final String css2 = url2.toExternalForm();
+        final Stage dialog = new Stage();
+        final ScrollPane scrollPnlDialog;
+        final StackPane stkVbox;
+        final VBox dialogVbox;
+        final List<String> brandsName;
+        final int nBrand;
+        final Scene dialogScene;
+        final String dressName = outfit.getName().equals("") ? "No name" : outfit.getName();
+
+        dialog.setMinWidth(WIDTH_DIALOG);
+        dialog.setMinHeight(HEIGHT_DIALOG);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(owner);
+        dialog.setTitle(dressName);
+
+        scrollPnlDialog = new ScrollPane();
+        scrollPnlDialog.getStyleClass().add("srp-padding-left");
+        stkVbox = new StackPane();
+        VBox.setVgrow(scrollPnlDialog, Priority.ALWAYS);
+        scrollPnlDialog.setFitToWidth(true);
+
+        dialogVbox = new VBox();
+        stkVbox.getStyleClass().add("main-pane-user");
+        stkVbox.getStyleClass().add("pane-user");
+
+        VBox.setVgrow(scrollPnlDialog, Priority.ALWAYS);
+        /* ___________________________________________ */
+        scrollPnlDialog.setFitToWidth(true);
+        // scrollPnl.setFitToHeight(true);
+        scrollPnlDialog.setContent(dialogVbox);
+
+        scrollPnlDialog.setContent(dialogVbox);
+        stkVbox.getChildren().add(scrollPnlDialog);
+
+        dialogScene = new Scene(stkVbox, WIDTH_DIALOG, HEIGHT_DIALOG);
+        dialogScene.getStylesheets().add(css1);
+        dialogScene.getStylesheets().add(css2);
+        dialog.setScene(dialogScene);
+
+        /* Title_______________ */
+        final Text titlePane = new Text(dressName);
+        final StackPane titleStackPnl = new StackPane();
+        titlePane.getStyleClass().add("main-title");
+        titleStackPnl.getChildren().add(titlePane);
+        dialogVbox.getChildren().add(titleStackPnl);
+        /* ____________________ */
+
+        /* Separator___________ */
+        final Separator sepTitle = new Separator();
+        sepTitle.getStyleClass().add("sep-title");
+        dialogVbox.getChildren().add(sepTitle);
+        /* ____________________ */
+
+        /* Name_______________ */
+        final TextField txfName = new TextField();
+        genObjFx.addTextFieldToVBox("Name", txfName, dialogVbox);
+        /* ____________________ */
+
+        for (int i = 0; i < allCat.length - 1; i++) {
+            final String nameCat = allCat[i].name();
+            final BorderPane brpCat;
+            final StackPane skpNameCat;
+            final Label lblCat;
+            final GridPane gridCat;
+            final Button btnAddItem;
+            final StackPane skpBtnAddItem;
+            final Label lblItemInfo;
+            final StackPane skpLblInfoItem;
+            final int indexCat;
+
+            /* GRID creation */
+            brpCat = new BorderPane();
+            skpNameCat = new StackPane();
+            lblCat = new Label(nameCat);
+            gridCat = new GridPane();
+            genObjFx.setBorderPaneExposition(false, brpCat, skpNameCat, lblCat, gridCat);
+
+            /* BUTTON add ithem */
+            btnAddItem = new Button("Add item");
+            skpBtnAddItem = new StackPane();
+            genObjFx.setSmallBtnStkP(btnAddItem, skpBtnAddItem);
+
+            /* LABEL No item selected */
+            lblItemInfo = new Label("No item selected");
+            skpLblInfoItem = new StackPane();
+            lblItemInfo.getStyleClass().add("text-info-item");
+            skpLblInfoItem.getChildren().add(lblItemInfo);
+
+            gridCat.add(skpBtnAddItem, 0, 0);
+            gridCat.add(skpLblInfoItem, 1, 0);
+
+            /******* ACTION *******/
+            indexCat = i;
+            btnAddItem.setOnAction((event) -> {
+                // createDialogSelectItem(Category.valueOf(allCat[indexCat].name()));
+            });
+
+            dialogVbox.getChildren().add(brpCat);
+        }
+
+        /* Update _____________ */
+        final Button btnUpdate = new Button("Update");
+        final StackPane stkUpdate = new StackPane();
+        stkUpdate.getStyleClass().add("pnl-other-add");
+        genObjFx.setStandarBtnStkP(btnUpdate, stkUpdate);
+        dialogVbox.getChildren().add(stkUpdate);
+        btnUpdate.setOnAction((event) -> {
+
+        });
+ 
+        /* Button Delate_________ */
+        final Button btnDelate = new Button("Delate");
+        final StackPane stkDelate = new StackPane();
+        stkDelate.getStyleClass().add("pnl-other-add");
+        genObjFx.setLittleMarginBtnStkP(btnDelate, stkDelate);
+        dialogVbox.getChildren().add(stkDelate);
+        btnDelate.setOnAction(event -> {
+
+            dialog.close();
+            ui.showNowContent();
+        });
+        /* _____________________ */
+
+        /* Button Cancel_______________ */
+        final Button btnCancel = new Button("Cancel");
+        final StackPane stkCancel = new StackPane();
+        stkCancel.getStyleClass().add("pnl-other-add");
+        genObjFx.setLittleMarginBtnStkP(btnCancel, stkCancel);
+        dialogVbox.getChildren().add(stkCancel);
+        btnCancel.setOnAction(event -> {
+            dialog.close();
+        });
+        /* _____________________ */
+
+        dialog.show();
     }
 
     /**

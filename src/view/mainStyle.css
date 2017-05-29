@@ -389,4 +389,8 @@ image-item{
 	-fx-background-color: grey;
 	-fx-background-radius: 5;
 }
+
+.srp-padding-left{
+	-fx-padding: 0 0 0 15;
+}
  

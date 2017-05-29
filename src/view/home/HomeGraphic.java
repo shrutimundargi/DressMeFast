@@ -29,7 +29,7 @@ import view.general.ProgramUIImpl;
  * standard menu and screen queue).
  *
  */
-public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
+public class HomeGraphic extends ProgramUIImpl implements UI {
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.HOME;
 
     @FXML
@@ -47,7 +47,7 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
     @FXML
     private Button btnCenterCategory;
 
-    DialogPreviewIO dialogItem;
+    private final DialogPreviewIO dialogItem;
     private final GeneralObjectFx genObjFx;
 
     /**
@@ -91,7 +91,7 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
     @FXML
     public void goCenterBrand(final ActionEvent event) {
         this.addScreenBack(ScreensGraphic.ADD);
-        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.BRAND);
     }
 
     /**
@@ -115,7 +115,7 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
     @FXML
     public void goCenterFavorite(final ActionEvent event) {
         this.addScreenBack(ScreensGraphic.ADD);
-        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.FAVORITE);
     }
 
     /**
@@ -127,7 +127,7 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
     @FXML
     public void goCenterOutfits(final ActionEvent event) {
         this.addScreenBack(ScreensGraphic.ADD);
-        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.OUTFITS);
     }
 
     /**
@@ -139,7 +139,7 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
     @FXML
     public void goCenterSize(final ActionEvent event) {
         this.addScreenBack(ScreensGraphic.ADD);
-        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.SIZE);
     }
 
     /**
@@ -151,7 +151,7 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
     @FXML
     public void goCenterCategory(final ActionEvent event) {
         this.addScreenBack(ScreensGraphic.ADD);
-        super.getSceneSetting().displayScreen(ScreensGraphic.ADD);
+        super.getSceneSetting().displayScreen(ScreensGraphic.CATEGORY);
     }
 
     @Override
@@ -162,8 +162,8 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
     }
 
     private void showItemOfCategory() {
-        Set<Dress> lastDressSet = super.getController().dress().getLastAddedDresses();
-        List<Dress> lastDress = new LinkedList<>(lastDressSet);
+        final Set<Dress> lastDressSet = super.getController().dress().getLastAddedDresses();
+        final List<Dress> lastDress = new LinkedList<>(lastDressSet);
 
         final BorderPane brpHome = new BorderPane();
         final StackPane skpNameHome = new StackPane();
@@ -177,8 +177,7 @@ public class HomeGraphic extends ProgramUIImpl implements UI, ProgramUI {
             final Button btnSee = new Button("See more");
 
             btnSee.setOnAction(event -> {
-                dialogItem.createDialogDress(super.getSceneSetting().getMainStage(), dress, super.getController());
-                this.showNowContent();
+                dialogItem.createDialogDress(super.getSceneSetting().getMainStage(), dress, super.getController(), this);
             });
 
             genObjFx.setItemInsideGrid(true, j, dress, btnSee, gridHome);

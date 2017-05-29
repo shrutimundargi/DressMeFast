@@ -60,6 +60,7 @@ public class DataManagementImpl implements DataManagement {
         try (ObjectOutputStream outS = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(new File(MAIN_PATH + File.separator + "userDat.dat"))))) {
             outS.writeObject(userSet);
+            outS.close();
         } catch (FileNotFoundException e) {
             final RuntimeException e2 = new MyException("file not found");
             throw e2;
@@ -79,6 +80,7 @@ public class DataManagementImpl implements DataManagement {
                 new BufferedInputStream(new FileInputStream(new File(MAIN_PATH + File.separator + "userDat.dat"))))) {
             try {
                 userM.setUsers((Set<User>) inS.readObject());
+                inS.close();
             } catch (ClassNotFoundException e) {
                 final RuntimeException e2 = new MyException("impossible read file");
                 throw e2;

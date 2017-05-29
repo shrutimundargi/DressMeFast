@@ -121,7 +121,7 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
             /* GRID creation */
             brpCat = new BorderPane();
             skpNameCat = new StackPane();
-            lblCat = new Label(allCat[i].name());
+            lblCat = new Label(nameCat);
             gridCat = new GridPane();
             genObjFx.setBorderPaneExposition(false, brpCat, skpNameCat, lblCat, gridCat);
 

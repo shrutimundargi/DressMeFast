@@ -5,13 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Locale;
-import java.util.Locale.Category;
+import java.util.Random;
 import java.util.stream.DoubleStream;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
@@ -30,6 +31,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import model.enumerations.Category;
 import model.interfaces.Dress;
 import model.interfaces.Outfits;
 import view.ScreensGraphic;
@@ -38,6 +40,8 @@ public class GeneralObjectFx {
     private static final int RANDOM_NUM = 444;
     private static final String BTN_SMALL = "btn-small";
     private static final String BTN_NORMAL = "btn-normal";
+    private static final String ADD_TITLE_INFO_STYLE = "add-title-info";
+    private static final String ADD_CONT_TITLE_INFO_STYLE = "add-cont-title-info";
     private static final int LEFTRIGHT = 10;
     private static final int UPDOWN = 15;
     private static final int UPDOWN_LITTLE = 5;
@@ -45,8 +49,8 @@ public class GeneralObjectFx {
     private static final int PERCENT_WIDTH_GRID = 33;
     private static final int WIDTH_IMAGE = 150;
     private static final int HEIGHT_IMAGE = 200;
-    private static final int WIDTH_IMAGE_S = 120;
-    private static final int HEIGHT_IMAGE_S = 180;
+    private static final int WIDTH_IMAGE_S = 100;
+    private static final int HEIGHT_IMAGE_S = 150;
     private static final int SHADOW_HEIGHT = 20;
     private static final int PREFSIZE_TEXT = 235;
     private static final Insets STANDARD_INSET = new Insets(UPDOWN, LEFTRIGHT, UPDOWN, LEFTRIGHT);
@@ -61,7 +65,7 @@ public class GeneralObjectFx {
         stkP.getChildren().add(btn);
         GridPane.setMargin(stkP, STANDARD_INSET);
     }
-    
+
     public void setLittleMarginBtnStkP(Button btn, StackPane stkP) {
         btn.getStyleClass().add(BTN_NORMAL);
         stkP.getChildren().add(btn);
@@ -78,6 +82,44 @@ public class GeneralObjectFx {
     public void setStandardLblStkP(final Label lbl, final StackPane stkP) {
         lbl.getStyleClass().add("text-info-item");
         stkP.getChildren().add(lbl);
+    }
+
+    public ChoiceBox<Category> setChoiseBoxCategory(final Text txtName, final StackPane stpTitle,
+            final StackPane stpChoiseBox) {
+        final Category[] allCategory = Category.values();
+        ChoiceBox<Category> chBox = new ChoiceBox<>();
+        txtName.getStyleClass().add(ADD_TITLE_INFO_STYLE);
+        stpTitle.getStyleClass().add("add-cont-title-info-first");
+        chBox.getStyleClass().add("chb-category");
+
+        chBox.getItems().setAll(allCategory);
+        chBox.getItems().remove(allCategory.length - 1);
+        stpTitle.getChildren().add(txtName);
+        stpChoiseBox.getChildren().add(chBox);
+        return chBox;
+    }
+
+    public ChoiceBox<Category> setChoiseBoxCategoryBanner(final Text txtName, VBox vBox) {
+        final Category[] allCategory = Category.values();
+        final StackPane stpTitle = new StackPane();
+        final StackPane stpChoiseBox = new StackPane();
+        ChoiceBox<Category> chBox = new ChoiceBox<>();
+
+        txtName.getStyleClass().add("add-title-info");
+        stpTitle.getStyleClass().add("add-cont-title-info");
+        stpChoiseBox.getStyleClass().add("pnl-category-chb");
+        chBox.getStyleClass().add("chb-category");
+        vBox.getStyleClass().add("vbox-select-cat");
+
+        chBox.getItems().setAll(allCategory);
+        chBox.getItems().remove(allCategory.length - 1);
+
+        stpTitle.getChildren().add(txtName);
+        stpChoiseBox.getChildren().add(chBox);
+        vBox.getChildren().add(stpTitle);
+        vBox.getChildren().add(stpChoiseBox);
+
+        return chBox;
     }
 
     public void setItemOfOutfit(Dress dress, Button btn, GridPane gdpCat) {
@@ -130,8 +172,8 @@ public class GeneralObjectFx {
         gdpCat.add(stpImageView, 2, 0);
     }
 
-    public void setBorderPaneExposition(boolean noLRMargin, BorderPane brpExpo, StackPane skpNameExpo,
-            Label lblExpo, GridPane gridExpo) {
+    public void setBorderPaneExposition(boolean noLRMargin, BorderPane brpExpo, StackPane skpNameExpo, Label lblExpo,
+            GridPane gridExpo) {
 
         brpExpo.getStyleClass().add("pnl-show-item");
         skpNameExpo.getStyleClass().add("pnl-show-item-title");
@@ -167,12 +209,13 @@ public class GeneralObjectFx {
         final int rowIndex = count % 3;
         final int columnIndex = count == 0 ? 0 : count / 3;
         final BorderPane brpIthem = new BorderPane();
+        String dressName = dress.getName().equals("") ? "No name" : dress.getName();
 
         brpIthem.getStyleClass().add("pnl-specific-item");
 
         /* Name TOP__________________ */
         final StackPane stpName = new StackPane();
-        final Label lblName = new Label(dress.getName());
+        final Label lblName = new Label(dressName);
         lblName.getStyleClass().add("text-title-show-item");
         stpName.getChildren().add(lblName);
         StackPane.setMargin(lblName, NODOWN_INSET);
@@ -269,7 +312,9 @@ public class GeneralObjectFx {
 
         /* Image CENTER__________________ */
 
-        final File imgFile = outfitDress.get((outfitDress.size() * RANDOM_NUM) % Category.values().length).getImage();
+        final Random rand = new Random();
+
+        final File imgFile = outfitDress.get(rand.nextInt(outfitDress.size())).getImage();
         Image img;
         final ImageView imageView = new ImageView();
         final StackPane stpImageView = new StackPane();
@@ -387,4 +432,35 @@ public class GeneralObjectFx {
         }
     }
 
+    /**
+     * Check if the string is an Integer.
+     * 
+     * @param str
+     *            the value
+     * @return TRUE if is a Integer and False if not
+     */
+    public boolean isInteger(final String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the string is a Double.
+     * 
+     * @param str
+     *            the value
+     * @return TRUE if is a Double and False if not
+     */
+    public boolean isDouble(final String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }

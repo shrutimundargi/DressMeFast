@@ -33,6 +33,8 @@ import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
 import view.UI;
+import view.general.DialogPreviewIO;
+import view.general.GeneralObjectFx;
 import view.general.ProgramUIImpl;
 
 /**
@@ -55,6 +57,8 @@ public class FavoriteGraphic extends ProgramUIImpl implements UI {
     @FXML
     private ScrollPane scrollPnl;
     private VBox vBox;
+    private final DialogPreviewIO dialogItem;
+    private final GeneralObjectFx genObjFx;
 
     /**
      * 
@@ -71,6 +75,9 @@ public class FavoriteGraphic extends ProgramUIImpl implements UI {
         this.getSceneSetting().loadScreen(ACTUALSCREEN, this);
         super.getBtnFavorite().setStyle("-fx-background-image: url('/images/star.png');");
 
+        dialogItem = new DialogPreviewIO();
+        genObjFx = new GeneralObjectFx();
+
         /* Container (PANE) */
         vBox = new VBox();
 
@@ -81,8 +88,6 @@ public class FavoriteGraphic extends ProgramUIImpl implements UI {
         titleStackPnl.getStyleClass().add("pnl-main-title");
         titleStackPnl.getChildren().add(titlePane);
         /* ____________________ */
-
-
 
         vBox.getChildren().add(titleStackPnl);
 
@@ -114,113 +119,29 @@ public class FavoriteGraphic extends ProgramUIImpl implements UI {
      * @param Fav
      */
     private void showItemOfFavegory() {
-
-        final Insets standarInset = new Insets(UPDOWN, LEFTRIGHT, UPDOWN, LEFTRIGHT);
-        final Insets noUpInset = new Insets(0, LEFTRIGHT, UPDOWN, LEFTRIGHT);
-        final Insets noDownInset = new Insets(UPDOWN, LEFTRIGHT, 0, LEFTRIGHT);
-
-        // java.util.Collections.sort(FavsName);
-
-        final BorderPane brpFav = new BorderPane();
-        final StackPane skpNameFav = new StackPane();
-        final Label nameFav = new Label("Favorite");
-        final GridPane gridItem = new GridPane();
-
-        brpFav.getStyleClass().add("pnl-show-item");
-        skpNameFav.getStyleClass().add("pnl-show-item-title");
-        nameFav.getStyleClass().add("text-title-show-item");
-        gridItem.getStyleClass().add("pnl-show-item-dress");
-
-        VBox.setMargin(brpFav, standarInset);
-
-        /* Grid________________ */
-        gridItem.getColumnConstraints()
-                .addAll(DoubleStream.of(PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID).mapToObj(width -> {
-                    final ColumnConstraints constraints = new ColumnConstraints();
-                    constraints.setPercentWidth(width);
-                    constraints.setFillWidth(true);
-                    return constraints;
-                }).toArray(ColumnConstraints[]::new));
-
-        final RowConstraints rowConstraints = new RowConstraints();
-        rowConstraints.setVgrow(Priority.ALWAYS);
-        gridItem.getRowConstraints().add(rowConstraints);
+        final BorderPane brpBrand = new BorderPane();
+        final StackPane skpNameBrand = new StackPane();
+        final Label lblBrand = new Label("Favorite");
+        final GridPane gridBrand = new GridPane();
+        genObjFx.setBorderPaneExposition(false, brpBrand, skpNameBrand, lblBrand, gridBrand);
 
         /* Specific_Item__________________ */
         final Set<Dress> dressItemSet = super.getController().dress().getFavoriteDresses();
         final List<Dress> dressItem = new LinkedList<>(dressItemSet);
         for (int j = 0; j < dressItem.size(); j++) {
             final Dress dress = dressItem.get(j);
-            final BorderPane brpSpecificIthem = new BorderPane();
-            final int rowIndex = j % 3;
-            final int columnIndex = j == 0 ? 0 : j / 3;
+            final Button btnSelect = new Button("See more");
 
-            /* Name TOP__________________ */
-            final StackPane stpNameItem = new StackPane();
-            final Label nameSpecItem = new Label(dress.getName());
-            nameSpecItem.getStyleClass().add("text-title-show-item");
-            stpNameItem.getChildren().add(nameSpecItem);
-            StackPane.setMargin(nameSpecItem, noDownInset);
-            brpSpecificIthem.setTop(stpNameItem);
+            btnSelect.setOnAction(event -> {
+                dialogItem.createDialogDress(super.getSceneSetting().getMainStage(), dress, super.getController(),
+                        this);
+                this.showNowContent();
+            });
 
-            /* Image CENTER__________________ */
-            brpSpecificIthem.getStyleClass().add("pnl-specific-item");
-            final File imgFile = dress.getImage();
-            Image img;
-            final ImageView imageView = new ImageView();
-            final StackPane stpImageView = new StackPane();
-
-            BorderPane.setMargin(stpImageView, standarInset);
-            imageView.getStyleClass().add("image-item");
-
-            try {
-                img = new Image(new FileInputStream(imgFile.getAbsolutePath()));
-                imageView.setImage(img);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-
-            imageView.setFitHeight(HEIGHT_IMAGE);
-            imageView.setFitWidth(WIDTH_HEIGHT);
-            imageView.setPreserveRatio(true);
-
-            // snapshot the rounded image.
-            final SnapshotParameters parameters = new SnapshotParameters();
-            parameters.setFill(Color.TRANSPARENT);
-            final WritableImage image = imageView.snapshot(parameters, null);
-
-            // remove the rounding clip so that our effect can show through.
-            imageView.setClip(null);
-
-            // apply a shadow effect.
-            imageView.setEffect(new DropShadow(SHADOW_HEIGHT, Color.BLACK));
-
-            // store the rounded image in the imageView.
-            imageView.setImage(image);
-
-            stpImageView.getChildren().add(imageView);
-            brpSpecificIthem.setCenter(stpImageView);
-
-            /* Button see BUTTOM________________ */
-            final StackPane stpButtonSee = new StackPane();
-            final Button btnSee = new Button("See more");
-            btnSee.getStyleClass().add("btn-normal");
-            btnSee.getStyleClass().add("btn-small");
-            stpButtonSee.getChildren().add(btnSee);
-            brpSpecificIthem.setBottom(stpButtonSee);
-
-            StackPane.setMargin(btnSee, noUpInset);
-
-            GridPane.setMargin(brpSpecificIthem, standarInset);
-
-            gridItem.add(brpSpecificIthem, rowIndex, columnIndex);
+            genObjFx.setItemInsideGrid(false, j, dress, btnSelect, gridBrand);
         }
 
-        skpNameFav.getChildren().add(nameFav);
-        brpFav.setTop(skpNameFav);
-        brpFav.setCenter(gridItem);
-
-        vBox.getChildren().add(brpFav);
+        vBox.getChildren().add(gridBrand);
 
     }
 }
