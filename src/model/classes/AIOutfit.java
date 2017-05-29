@@ -36,7 +36,7 @@ public class AIOutfit implements Outfits {
      */
     public AIOutfit() {
         this.id = UUID.randomUUID();
-        this.name = null;
+        this.name = "AI Generated";
         this.wornCount = 0;
         this.outfit = new LinkedList<>();
         this.type = Outfit.AI;
@@ -164,7 +164,7 @@ public class AIOutfit implements Outfits {
             }
         }
 
-        if (!dressHands.isEmpty()) {
+        if (!dressHands.isEmpty() && randomHeadDress != null) {
             final Dress randomHandsDress = dressHands.get(randomizer.nextInt(dressHands.size()));
             if (randomHandsDress.getFavourited().booleanValue() || randomHeadDress.getWornCount() == 0
                     || randomHandsDress.getBrand().equals(randomHeadDress.getBrand())
@@ -173,7 +173,7 @@ public class AIOutfit implements Outfits {
             }
         }
 
-        if (!dressFoot.isEmpty()) {
+        if (!dressFoot.isEmpty() && randomBodyDress != null && randomLegsDress != null) {
             final Dress randomFootDress = dressFoot.get(randomizer.nextInt(dressFoot.size()));
             if (randomFootDress.getFavourited().booleanValue() || randomFootDress.getWornCount() == 0
                     || randomFootDress.getBrand().equals(randomBodyDress.getBrand())
