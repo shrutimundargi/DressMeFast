@@ -156,7 +156,7 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
 
         /******* ACTION *******/
         btnAddOutfit.setOnAction(event -> {
-            final String nameOutfit = txfName.getText();
+            final String nameOutfit = txfName.getText().equals("") ? "No name" : txfName.getText();
             final Category[] allCat = Category.values();
             if (!outfitItem.isEmpty() && !nameOutfit.equals("")) {
                 final List<UUID> dressesId = new LinkedList<>();

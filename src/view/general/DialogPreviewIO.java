@@ -38,7 +38,6 @@ import javafx.stage.Window;
 import model.enumerations.Category;
 import model.interfaces.Dress;
 import model.interfaces.Outfits;
-import view.ScreensGraphic;
 import view.UI;
 
 /**
@@ -53,12 +52,6 @@ public class DialogPreviewIO {
     private static final String ADD_CONT_TITLE_INFO_STYLE = "add-cont-title-info";
     private static final String REMEMBER = "Remember, ";
     private static final String OPSSS = "Opsss, ";
-    private static final String ONLYNUMBER = "[0-9]*";
-    private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.ADD;
-    private static final String NAMEOFSCREEN = "Add Item";
-    private static final String DESCRIPTIONOFPANE = "This page permit to add an item in your wordrobe,"
-            + " it's very easy, you just need to choose the specific category of the item,"
-            + " add a photo and then fill all the information about it.";
 
     private static final int PREFSIZE_IMG = 200;
     private static final int PREFSIZE_IMG_OFIMAGE = 235;
@@ -111,7 +104,7 @@ public class DialogPreviewIO {
         final StackPane stkVbox;
         final VBox dialogVbox;
         final Scene dialogScene;
-        final String dressName = dress.getName().equals("") ? "No name" : dress.getName();
+        final String dressName = dress.getName();
 
         dialog.setMinWidth(WIDTH_DIALOG);
         dialog.setMinHeight(HEIGHT_DIALOG);
@@ -468,7 +461,7 @@ public class DialogPreviewIO {
         final StackPane stkVbox;
         final VBox dialogVbox;
         final Scene dialogScene;
-        final String dressName = outfit.getName().equals("") ? "No name" : outfit.getName();
+        final String dressName = outfit.getName();
 
         dialog.setMinWidth(WIDTH_DIALOG);
         dialog.setMinHeight(HEIGHT_DIALOG);
@@ -517,6 +510,17 @@ public class DialogPreviewIO {
         stkDescription.getChildren().add(lblDescr);
         dialogVbox.getChildren().add(stkDescription);
         /* ____________________ */
+
+        /* Button Wear_______________ */
+        final Button btnWear = new Button("Weared recently");
+        final StackPane stkWear = new StackPane();
+        // stkWear.getStyleClass().add(PNL_OTHER_ADD);
+        genObjFx.setLittleMarginBtnStkP(btnWear, stkWear);
+        dialogVbox.getChildren().add(stkWear);
+        btnWear.setOnAction(event -> {
+
+        });
+        /* _____________________ */
 
         /* Separator___________ */
         final Separator sepTitle = new Separator();

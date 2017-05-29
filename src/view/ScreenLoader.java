@@ -66,16 +66,17 @@ public final class ScreenLoader {
      * 
      * @param screen
      *            screen to be loaded
+     * @param controller understood as the <i>class</i>Graphic that control the FXML
      * @return the Node loaded
      * @throws IOException
      *             if the resource is not found
      */
-    public Node loadFXMLInCache(final ScreensGraphic screen, Object controller) throws IOException {
+    public Node loadFXMLInCache(final ScreensGraphic screen, final Object controller) throws IOException {
 
         if (cache.containsKey(screen)) {
             return cache.get(screen);
         } else {
-            Node loadedNode = loadFXML(screen, controller);
+            final Node loadedNode = loadFXML(screen, controller);
             cache.put(screen, loadedNode);
             return loadedNode;
         }
@@ -86,12 +87,13 @@ public final class ScreenLoader {
      * 
      * @param screen
      *            screen to be loaded
+     * @param controller understood as the <i>class</i>Graphic that control the FXML
      * @return the Node loaded
      * @throws IOException
      *             if the resource is not found
      */
-    public Node loadFXML(final ScreensGraphic screen, Object controller) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
+    public Node loadFXML(final ScreensGraphic screen, final Object controller) throws IOException {
+        final FXMLLoader loader = new FXMLLoader();
         loader.setController(controller);
         loader.setLocation(Main.class.getResource(screen.getPath()));
         return loader.load();

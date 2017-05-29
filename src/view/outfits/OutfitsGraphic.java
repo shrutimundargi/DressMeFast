@@ -80,7 +80,7 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
         /* ____________________ */
 
         /* Button_______________ */
-        btnCreateOutfits = new Button("Create now an Outfits");
+        btnCreateOutfits = new Button("Create now an Outfit");
         btnCreateOutfits.getStyleClass().add("btn-outfits");
         skpBtnCrateOtf = new StackPane();
         VBox.setMargin(skpBtnCrateOtf, genObjFx.getStandardInset());

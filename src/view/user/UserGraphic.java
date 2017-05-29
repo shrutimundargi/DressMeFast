@@ -1,16 +1,11 @@
 package view.user;
 
-import java.util.OptionalDouble;
-import java.util.Set;
-
 import controller.Controller;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
-import model.interfaces.Dress;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.SetupView;
@@ -75,12 +70,6 @@ public class UserGraphic extends ProgramUIImpl implements UI {
         fillTheInfo();
     }
 
-    @FXML
-    private void pressLogout(ActionEvent event) {
-        super.getController().userController().logout();
-        super.getSceneSetting().displayScreen(ScreensGraphic.LOGIN);
-    }
-
     @Override
     public void resetAllComponent() {
         scrollPnl.setVvalue(scrollPnl.getMaxHeight());
@@ -88,10 +77,11 @@ public class UserGraphic extends ProgramUIImpl implements UI {
 
     private void fillTheInfo() {
         lblDateRegistration
-                .setText("Registreted the " + super.getController().userController().getSingUpDate().toString());
+                .setText("Registred the " + super.getController().userController().getSingUpDate().toString());
         lblNumItem.setText(String.valueOf((super.getController().dress().getAllDresses().size())));
         lblFavItem.setText(String.valueOf(super.getController().dress().getFavoriteDresses().size()));
         lblNumBrand.setText(String.valueOf(super.getController().dress().getAllBrand().size()));
         lblNumOutfits.setText(String.valueOf(super.getController().outfits().getAllOutfits().size()));
+        lblBrandMostUsed.setText(String.valueOf(super.getController().dress().getPopularBrand()));
     }
 }

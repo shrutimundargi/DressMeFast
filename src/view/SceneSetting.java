@@ -2,16 +2,11 @@ package view;
 
 import java.io.IOException;
 
-import controller.Controller;
 import javafx.application.Application;
-import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import view.login.LoginGraphic;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 
 /**
  * 
@@ -20,6 +15,8 @@ import javafx.fxml.FXMLLoader;
  */
 public class SceneSetting extends Application {
 
+    private static final int MIN_HEIGHT_STAGE = 700;
+    private static final int MIN_WIDTH_STAGE = 950;
     private final SetupView setup;
     private final ScreenLoader loader;
     private final Pane mainPane;
@@ -28,9 +25,10 @@ public class SceneSetting extends Application {
 
     /**
      * 
-     * @param controller
+     * @param setup is the main setup of the view where there are memorized the instance of all <i>Class</i>Graphic.
      */
     public SceneSetting(final SetupView setup) {
+        super();
         this.setup = setup;
         this.mainPane = new StackPane();
         this.mainScene = new Scene(this.mainPane);
@@ -38,17 +36,16 @@ public class SceneSetting extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(final Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setMinWidth(900);
-        this.primaryStage.setMinHeight(700);
+        this.primaryStage.setMinWidth(MIN_WIDTH_STAGE);
+        this.primaryStage.setMinHeight(MIN_HEIGHT_STAGE);
         this.primaryStage.setScene(mainScene);
         this.primaryStage.setOnCloseRequest(e -> {
             primaryStage.close();
             try {
                 super.stop();
             } catch (Exception e2) {
-                // TODO Auto-generated catch block
                 e2.printStackTrace();
             }
             setup.getController().saveData();

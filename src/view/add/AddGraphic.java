@@ -1,21 +1,16 @@
 package view.add;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.Locale;
 import java.util.Set;
 
 import org.controlsfx.control.textfield.TextFields;
 
 import controller.Controller;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -26,8 +21,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -50,10 +43,9 @@ public class AddGraphic extends ProgramUIImpl implements UI {
     private static final String ADD_CONT_TITLE_INFO_STYLE = "add-cont-title-info";
     private static final String REMEMBER = "Remember, ";
     private static final String OPSSS = "Opsss, ";
-    private static final String ONLYNUMBER = "[0-9]*";
     private static final ScreensGraphic ACTUALSCREEN = ScreensGraphic.ADD;
     private static final String NAMEOFSCREEN = "Add Item";
-    private static final String DESCRIPTIONOFPANE = "This page permit to add an item in your wordrobe,"
+    private static final String DESCRIPTIONOFPANE = "This page permits to add an item in your wardrobe,"
             + " it's very easy, you just need to choose the specific category of the item,"
             + " add a photo and then fill all the information about it.";
 
@@ -64,8 +56,8 @@ public class AddGraphic extends ProgramUIImpl implements UI {
     @FXML
     private ScrollPane scrollPnl;
 
-    private Image imgItem[];
-    private File imgFile[];
+    private final Image[] imgItem;
+    private final File[] imgFile;
     private final ImageView imvItem;
     private final StackPane imageStackPnl;
     private final ChoiceBox<Category> chbCategory;
@@ -74,7 +66,6 @@ public class AddGraphic extends ProgramUIImpl implements UI {
     private final TextField txfSize;
     private final TextField txfPrice;
     private final DatePicker dtpDate;
-    private final CheckBox ckbFavorite;
     private final TextArea txaInfo;
 
     private final GeneralObjectFx genObjFx;
@@ -121,7 +112,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         /* ____________________ */
 
         /* Category_______________ */
-        final Text txtChoiseBox = new Text("Select the ctegory");
+        final Text txtChoiseBox = new Text("Select the category");
         final StackPane pnlCategoryTitle = new StackPane();
         final StackPane pnlCategoryChb = new StackPane();
         chbCategory = genObjFx.setChoiseBoxCategory(txtChoiseBox, pnlCategoryTitle, pnlCategoryChb);
@@ -241,18 +232,6 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         pnlDateTxf.getChildren().add(dtpDate);
         /* ____________________ */
 
-        /* Favorite_______________ */
-        final Text txtFavorite = new Text("Set like favorite");
-        ckbFavorite = new CheckBox();
-        final StackPane pnlFavoriteTitle = new StackPane();
-        final StackPane pnlFavoriteCkb = new StackPane();
-        txtFavorite.getStyleClass().add(ADD_TITLE_INFO_STYLE);
-        pnlFavoriteTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
-        ckbFavorite.getStyleClass().add("check-box");
-        pnlFavoriteTitle.getChildren().add(txtFavorite);
-        pnlFavoriteCkb.getChildren().add(ckbFavorite);
-        /* ____________________ */
-
         /* Some information_______________ */
         final Text txtInfo = new Text("Information");
         txaInfo = new TextArea();
@@ -267,10 +246,8 @@ public class AddGraphic extends ProgramUIImpl implements UI {
 
         /* Button_______________ */
         final Button btnAdd = new Button("Add Item");
-        final StackPane pnlAdd = new StackPane();
-        btnAdd.getStyleClass().add("btn-normal");
-        pnlAdd.getStyleClass().add("pnl-button-add");
-        pnlAdd.getChildren().add(btnAdd);
+        final StackPane stkAdd = new StackPane();
+        genObjFx.setStandarBtnStkP(btnAdd, stkAdd);
         btnAdd.setOnAction((event) -> {
             final Alert alertEr = new Alert(AlertType.ERROR);
             final Alert alertOk = new Alert(AlertType.INFORMATION);
@@ -308,15 +285,16 @@ public class AddGraphic extends ProgramUIImpl implements UI {
                 alertEr.setContentText(messageFinal);
                 alertEr.showAndWait();
             } else {
+                final String name = txfName.getText().equals("") ? "No name" : txfName.getText();
+                final String brand = txfBrand.getText().equals("") ? "Not set" : txfBrand.getText();
                 final Integer size = txfSize.getText().equals("") ? -1 : Integer.valueOf(txfSize.getText());
                 final Double price = txfPrice.getText().equals("") ? -1 : Double.parseDouble(txfPrice.getText());
-                final String brand = txfBrand.getText().equals("") ? "Not setted" : txfBrand.getText();
 
                 alertOk.setTitle("Information Dialog");
                 alertOk.setHeaderText("Yea, you added your item");
                 alertOk.setContentText("The item is add in the category " + chbCategory.getValue() + "!");
 
-                super.getController().dress().addDress(txfName.getText(), brand, size, price,
+                super.getController().dress().addDress(name, brand, size, price,
                         dtpDate.getValue(), txaInfo.getText(), chbCategory.getValue(), imgFile[0]);
 
                 this.resetAllComponent();
@@ -348,11 +326,9 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         vBox.getChildren().add(pnlPriceTxf);
         vBox.getChildren().add(pnlDateTitle);
         vBox.getChildren().add(pnlDateTxf);
-        vBox.getChildren().add(pnlFavoriteTitle);
-        vBox.getChildren().add(pnlFavoriteCkb);
         vBox.getChildren().add(pnlInfoTitle);
         vBox.getChildren().add(pnlInfoTxa);
-        vBox.getChildren().add(pnlAdd);
+        vBox.getChildren().add(stkAdd);
         /* ___________________________________________ */
         VBox.setVgrow(scrollPnl, javafx.scene.layout.Priority.ALWAYS);
         /* ___________________________________________ */
@@ -378,7 +354,6 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         txfSize.clear();
         txfPrice.clear();
         dtpDate.setValue(null);
-        ckbFavorite.setSelected(false);
         txaInfo.clear();
     }
 

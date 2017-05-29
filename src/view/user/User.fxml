@@ -150,13 +150,13 @@
                               </Text>
                               <HBox styleClass="vBox-info-user">
                                  <children>
-                                    <Label styleClass="lbl-user-info" text="Number of item:" />
+                                    <Label styleClass="lbl-user-info" text="Number of items:" />
                                     <Label fx:id="lblNumItem" styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
                               <HBox styleClass="vBox-info-user">
                                  <children>
-                                    <Label styleClass="lbl-user-info" text="Favorited item:" />
+                                    <Label styleClass="lbl-user-info" text="Favorited items:" />
                                     <Label fx:id="lblFavItem" styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>
@@ -168,7 +168,7 @@
                               </HBox>
                               <HBox styleClass="vBox-info-user">
                                  <children>
-                                    <Label styleClass="lbl-user-info" text="Number of brand:" />
+                                    <Label styleClass="lbl-user-info" text="Number of brands:" />
                                     <Label fx:id="lblNumBrand" styleClass="lbl-user-theInfo" text="20" />
                                  </children>
                               </HBox>

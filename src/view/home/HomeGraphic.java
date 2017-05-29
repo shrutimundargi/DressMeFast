@@ -168,7 +168,7 @@ public class HomeGraphic extends ProgramUIImpl implements UI {
 
         final BorderPane brpHome = new BorderPane();
         final StackPane skpNameHome = new StackPane();
-        final Label lblHome = new Label("List of last added");
+        final Label lblHome = new Label("Last added");
         final GridPane gridHome = new GridPane();
         genObjFx.setBorderPaneExposition(true, brpHome, skpNameHome, lblHome, gridHome);
 
