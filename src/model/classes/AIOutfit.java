@@ -1,5 +1,6 @@
 package model.classes;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ public class AIOutfit implements Outfits {
     private Integer wornCount;
     private List<UUID> outfit;
     private final Outfit type;
+    private LocalDate date;
 
     /**
      * Creates a container of a single AI outfit.
@@ -38,6 +40,7 @@ public class AIOutfit implements Outfits {
         this.wornCount = 0;
         this.outfit = new LinkedList<>();
         this.type = Outfit.AI;
+        this.date = LocalDate.now();
     }
 
     @Override
@@ -66,6 +69,11 @@ public class AIOutfit implements Outfits {
     }
 
     @Override
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    @Override
     public Outfits createOutfit(final List<UUID> dressList) {
         throw new UnsupportedOperationException();
     }
@@ -79,6 +87,12 @@ public class AIOutfit implements Outfits {
     @Override
     public Status setWornCount() {
         this.wornCount++;
+        return Status.CHANGE_SUCCESFULL;
+    }
+
+    @Override
+    public Status setDate(final LocalDate date) {
+        this.date = date;
         return Status.CHANGE_SUCCESFULL;
     }
 
@@ -185,6 +199,7 @@ public class AIOutfit implements Outfits {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((date == null) ? 0 : date.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((outfit == null) ? 0 : outfit.hashCode());
@@ -205,6 +220,13 @@ public class AIOutfit implements Outfits {
             return false;
         }
         final AIOutfit other = (AIOutfit) obj;
+        if (date == null) {
+            if (other.date != null) {
+                return false;
+            }
+        } else if (!date.equals(other.date)) {
+            return false;
+        }
         if (id == null) {
             if (other.id != null) {
                 return false;
@@ -238,4 +260,5 @@ public class AIOutfit implements Outfits {
         }
         return true;
     }
+
 }

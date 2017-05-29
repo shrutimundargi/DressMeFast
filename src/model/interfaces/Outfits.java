@@ -1,6 +1,7 @@
 package model.interfaces;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -43,6 +44,11 @@ public interface Outfits extends Serializable {
     Outfit getOutfitType();
 
     /**
+     * @return the creation date of an outfit.
+     */
+    LocalDate getDate();
+
+    /**
      * @param dressList
      *            a container with some dresses.
      *
@@ -71,6 +77,14 @@ public interface Outfits extends Serializable {
      * @return the result of the operation.
      */
     Status setWornCount();
+
+    /**
+     * @param date
+     *            the updated date of an outfit when it's modified.
+     * 
+     * @return the result of the operation.
+     */
+    Status setDate(LocalDate date);
 
     /**
      * @param dressList
