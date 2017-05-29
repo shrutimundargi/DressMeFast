@@ -1,8 +1,10 @@
 package controller.outfits;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import model.enumerations.Outfit;
 import model.enumerations.Status;
 import model.interfaces.Outfits;
 
@@ -67,15 +69,32 @@ public interface OutfitsController {
     Status modifyOutfitsName(UUID outfitsid, String newName);
 
     /**
-     * @param outfits
-     *            : the outfits that you wont delete
+     * @param outfit
+     *            : the outfit that you wont delete
      */
-    void removeOutfit(Outfits outfits);
+    void removeOutfit(Outfits outfit);
 
     /**
-     * @param outfits
-     *            : the outfits that you wont delete
+     * @param outfit
+     *            : a specific outfit
+     * @return Return the creation date of an outfit
      */
-    void removeAIOutfit(Outfits outfits);
+    LocalDate getDate(Outfits outfit);
+
+    /**
+     * @param outfit
+     *            : a specific outfit
+     * 
+     * @param date
+     *            : the new date
+     */
+    void setDate(Outfits outfit, LocalDate date);
+
+    /**
+     * @param outfit
+     *            : a specific outfit
+     * @return Return the type of the specific outfit, this can be AI or USER
+     */
+    Outfit getType(Outfits outfit);
 
 }

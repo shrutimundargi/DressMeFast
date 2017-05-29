@@ -309,4 +309,11 @@ public interface DressController {
      */
     Status modifyDressPrice(Dress dress, double price);
 
+    /**
+     * @param ids
+     *            : the list of id of dresses
+     * @return Return a list of dresses associated to the ids pass
+     */
+    List<Dress> getDressesOfIds(List<UUID> ids);
+
 }

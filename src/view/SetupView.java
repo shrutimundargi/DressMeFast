@@ -27,12 +27,25 @@ import view.user.UserGraphic;
  * Initialization of the view and managing of the screen queue.
  *
  */
-@SuppressWarnings("restriction")
 public class SetupView {
-    private final Controller controller;
-    private final SceneSetting sceneSetting;
-    private final Queue<ScreensGraphic> backScreensQueue;
-    private final Queue<ScreensGraphic> aheadScreensQueue;
+
+    private Controller controller;
+    private SceneSetting sceneSetting;
+    private LoginGraphic loginGraphic;
+    private SignupGraphic signupGraphic;
+    private SignupDialogGraphic signupPopUpGraphic;
+    private HomeGraphic homeGraphic;
+    private UserGraphic userGraphic;
+    private BrandGraphic brandGraphic;
+    private AddGraphic addGraphic;
+    private FavoriteGraphic favoriteGraphic;
+    private OutfitsGraphic outfitsGraphic;
+    private NewOutfitGraphic newOutfitsGraphic;
+    private SizeGraphic sizeGraphic;
+    private CategoryGraphic categoryGraphic;
+
+    private Queue<ScreensGraphic> backScreensQueue;
+    private Queue<ScreensGraphic> aheadScreensQueue;
     private final Map<ScreensGraphic, UI> screenUI;
 
     /**
@@ -41,18 +54,6 @@ public class SetupView {
      *            a reference of the instance of the class Controller
      */
     public SetupView(final Controller controller) {
-        final LoginGraphic loginGraphic;
-        final SignupGraphic signupGraphic;
-        final SignupDialogGraphic signupPopUpGraphic;
-        final UserGraphic userGraphic;
-        final HomeGraphic homeGraphic;
-        final BrandGraphic brandGraphic;
-        final AddGraphic addGraphic;
-        final FavoriteGraphic favoriteGraphic;
-        final OutfitsGraphic outfitsGraphic;
-        final NewOutfitGraphic newOutfitsGraphic;
-        final SizeGraphic sizeGraphic;
-        final CategoryGraphic categoryGraphic;
         backScreensQueue = new LinkedList<>();
         aheadScreensQueue = new LinkedList<>();
         screenUI = new HashMap<>();
@@ -63,45 +64,45 @@ public class SetupView {
         this.controller = controller;
         this.sceneSetting = new SceneSetting(this);
 
-        loginGraphic = new LoginGraphic(sceneSetting, controller);
+        this.loginGraphic = new LoginGraphic(sceneSetting, controller);
         screenUI.put(ScreensGraphic.LOGIN, loginGraphic);
 
-        signupGraphic = new SignupGraphic(sceneSetting, controller);
+        this.signupGraphic = new SignupGraphic(sceneSetting, controller);
         screenUI.put(ScreensGraphic.SIGNUP, signupGraphic);
 
-        signupPopUpGraphic = new SignupDialogGraphic(sceneSetting, controller);
+        this.signupPopUpGraphic = new SignupDialogGraphic(sceneSetting, controller);
         screenUI.put(ScreensGraphic.DIALOGSIGNUP, signupPopUpGraphic);
 
-        homeGraphic = new HomeGraphic(sceneSetting, controller, this);
+        this.homeGraphic = new HomeGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.HOME, homeGraphic);
 
-        userGraphic = new UserGraphic(sceneSetting, controller, this);
+        this.userGraphic = new UserGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.USER, userGraphic);
 
-        brandGraphic = new BrandGraphic(sceneSetting, controller, this);
+        this.brandGraphic = new BrandGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.BRAND, brandGraphic);
 
-        addGraphic = new AddGraphic(sceneSetting, controller, this);
+        this.addGraphic = new AddGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.ADD, addGraphic);
 
-        favoriteGraphic = new FavoriteGraphic(sceneSetting, controller, this);
+        this.favoriteGraphic = new FavoriteGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.FAVORITE, favoriteGraphic);
 
-        outfitsGraphic = new OutfitsGraphic(sceneSetting, controller, this);
+        this.outfitsGraphic = new OutfitsGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.OUTFITS, outfitsGraphic);
 
-        newOutfitsGraphic = new NewOutfitGraphic(sceneSetting, controller, this);
+        this.newOutfitsGraphic = new NewOutfitGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.NEW_OUTFITS, newOutfitsGraphic);
 
-        sizeGraphic = new SizeGraphic(sceneSetting, controller, this);
+        this.sizeGraphic = new SizeGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.SIZE, sizeGraphic);
 
-        categoryGraphic = new CategoryGraphic(sceneSetting, controller, this);
+        this.categoryGraphic = new CategoryGraphic(sceneSetting, controller, this);
         screenUI.put(ScreensGraphic.CATEGORY, categoryGraphic);
 
         Platform.runLater(() -> {
             try {
-                final Stage primaryStage = new Stage();
+                Stage primaryStage = new Stage();
                 primaryStage.setTitle("Dress Me Fast");
                 sceneSetting.start(primaryStage);
             } catch (Exception e) {
@@ -112,10 +113,6 @@ public class SetupView {
         });
     }
 
-    /**
-     * Get the controller of the application.
-     * @return the controller
-     */
     public Controller getController() {
         return this.controller;
     }

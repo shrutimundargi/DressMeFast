@@ -1,5 +1,6 @@
 package controller.outfits;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -66,12 +67,7 @@ public final class OutfitsControllerImpl implements OutfitsController {
 
     @Override
     public void removeOutfit(final Outfits outfits) {
-        user.getWardobe().getOutfits().removeOutfit(outfits, Outfit.USER);
-    }
-
-    @Override
-    public void removeAIOutfit(final Outfits outfits) {
-        user.getWardobe().getOutfits().removeOutfit(outfits, Outfit.AI);
+        user.getWardobe().getOutfits().removeOutfit(outfits, outfits.getOutfitType());
     }
 
     @Override
@@ -84,4 +80,20 @@ public final class OutfitsControllerImpl implements OutfitsController {
             return 0;
         }
     }
+
+    @Override
+    public LocalDate getDate(final Outfits outfit) {
+        return outfit.getDate();
+    }
+
+    @Override
+    public void setDate(final Outfits outfit, final LocalDate date) {
+        user.getWardobe().getOutfits().getOutfit(outfit.getId()).setDate(date);
+    }
+
+    @Override
+    public Outfit getType(final Outfits outfit) {
+        return outfit.getOutfitType();
+    }
+
 }

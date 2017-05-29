@@ -30,7 +30,6 @@ import model.interfaces.User;
 public final class DressControllerImpl implements DressController {
     private static final String USER_ERROR = "User not found, you can't add a dress without a user";
     private static final String IMAGE_ERROR = "Impossible to save an image";
-    private static final String IMAGE_USED = "the image is open";
 
     private static final String MAIN_PATH = System.getProperty("user.home") + File.separator + "dmfData";
     private static final String IMAGE_PATH = MAIN_PATH + File.separator + "images";
@@ -258,16 +257,10 @@ public final class DressControllerImpl implements DressController {
 
         changeOutfit(map, Outfit.AI, dress);
 
-        System.out.println(dress.getImage().isFile());
-        System.out.println(dress.getImage().canWrite());
-        System.out.println(dress.getImage().canRead());
-        System.out.println(dress.getImage().renameTo(new File(dress.getImage().toString() + "_cazzo")));
-
         try {
-            FileUtils.forceDelete(new File(dress.getImage().toString()));
-        } catch (IOException e) {
-            final RuntimeException e2 = new MyException(IMAGE_USED);
-            throw e2;
+            dress.getImage().delete();
+        } catch (Exception e) {
+            throw new IllegalAccessError();
         }
 
         return user.getWardobe().getCategories().removeDressFromCategory(dress, dress.getCategoryName());
@@ -318,6 +311,11 @@ public final class DressControllerImpl implements DressController {
     @Override
     public Dress getDressFromUUID(final UUID id) {
         return user.getWardobe().getDressOfId(id);
+    }
+
+    @Override
+    public List<Dress> getDressesOfIds(final List<UUID> ids) {
+        return user.getWardobe().getDressesOfIds(ids);
     }
 
 }
