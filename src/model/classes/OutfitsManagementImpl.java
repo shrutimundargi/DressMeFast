@@ -25,6 +25,7 @@ public class OutfitsManagementImpl implements OutfitsManagement {
     private static final long serialVersionUID = -8825469807177612824L;
     private final Map<Outfit, List<Outfits>> outfitsMap;
     private final Queue<Outfits> outfitsQueue;
+    private static final int LAST_OUTFITS_ADDED = 4;
 
     /**
      * Creates a container for all the outfits.
@@ -95,7 +96,7 @@ public class OutfitsManagementImpl implements OutfitsManagement {
 
     @Override
     public Status addOutfitToQueue(final Outfits outfit) {
-        if (this.outfitsQueue.size() < 4) {
+        if (this.outfitsQueue.size() < LAST_OUTFITS_ADDED) {
             this.outfitsQueue.add(outfit);
             return Status.OUTFIT_ADDED;
         } else {

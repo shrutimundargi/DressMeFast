@@ -25,6 +25,7 @@ public class CategoriesManagementImpl implements CategoriesManagement {
     private static final long serialVersionUID = -6804650438287633952L;
     private final Map<Category, Categories> categoryMap;
     private final Queue<Dress> dressQueue;
+    private static final int LAST_DRESSES_ADDED = 4;
 
     /**
      * Creates the container to store all the categories and the ids of all the
@@ -113,7 +114,7 @@ public class CategoriesManagementImpl implements CategoriesManagement {
 
     @Override
     public Status addDressToQueue(final Dress dress, final Category category) {
-        if (this.dressQueue.size() < 4) {
+        if (this.dressQueue.size() < LAST_DRESSES_ADDED) {
             dress.setCategoryName(category);
             this.dressQueue.add(dress);
             return Status.DRESS_ADDED;
