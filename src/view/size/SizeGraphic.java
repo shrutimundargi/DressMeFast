@@ -154,13 +154,14 @@ public class SizeGraphic extends ProgramUIImpl implements UI {
             for (int j = 0; j < dressItem.size(); j++) {
                 final Dress dress = dressItem.get(j);
                 final Button btnSelect = new Button("See more");
+                final ImageView imageView = new ImageView();
+
+                genObjFx.setItemInsideGrid(false, j, dress, btnSelect, gridBrand);
 
                 btnSelect.setOnAction(event -> {
                     dialogItem.createDialogDress(super.getSceneSetting().getMainStage(), dress, super.getController(), this);
                     this.showNowContent();
                 });
-
-                genObjFx.setItemInsideGrid(false, j, dress, btnSelect, gridBrand);
             }
 
             vBox.getChildren().add(brpBrand);

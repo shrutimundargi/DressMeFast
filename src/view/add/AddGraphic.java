@@ -308,14 +308,15 @@ public class AddGraphic extends ProgramUIImpl implements UI {
                 alertEr.setContentText(messageFinal);
                 alertEr.showAndWait();
             } else {
+                final Integer size = txfSize.getText().equals("") ? -1 : Integer.valueOf(txfSize.getText());
+                final Double price = txfPrice.getText().equals("") ? -1 : Double.parseDouble(txfPrice.getText());
+                final String brand = txfBrand.getText().equals("") ? "Not setted" : txfBrand.getText();
+
                 alertOk.setTitle("Information Dialog");
                 alertOk.setHeaderText("Yea, you added your item");
                 alertOk.setContentText("The item is add in the category " + chbCategory.getValue() + "!");
 
-                final Integer size = txfSize.getText().equals("") ? -1 : Integer.valueOf(txfSize.getText());
-                final Double price = txfPrice.getText().equals("") ? -1 : Double.parseDouble(txfPrice.getText());
-
-                super.getController().dress().addDress(txfName.getText(), txfBrand.getText(), size, price,
+                super.getController().dress().addDress(txfName.getText(), brand, size, price,
                         dtpDate.getValue(), txaInfo.getText(), chbCategory.getValue(), imgFile[0]);
 
                 this.resetAllComponent();

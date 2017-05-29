@@ -88,7 +88,7 @@ public class LoginGraphic implements UI {
      * @param event
      */
     @FXML
-    public void goToSingup(ActionEvent event) {
+    public void goToSignup(ActionEvent event) {
         this.environment.displayScreen(ScreensGraphic.SIGNUP);
     }
 

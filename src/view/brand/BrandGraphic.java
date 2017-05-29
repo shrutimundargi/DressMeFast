@@ -144,12 +144,13 @@ public class BrandGraphic extends ProgramUIImpl implements UI {
                 final Dress dress = dressItem.get(j);
                 final Button btnSelect = new Button("See more");
 
+                genObjFx.setItemInsideGrid(false, j, dress, btnSelect, gridBrand);
+
                 btnSelect.setOnAction(event -> {
-                    dialogItem.createDialogDress(super.getSceneSetting().getMainStage(), dress, super.getController(), this);
+                    dialogItem.createDialogDress(super.getSceneSetting().getMainStage(), dress, super.getController(),
+                            this);
                     this.showNowContent();
                 });
-
-                genObjFx.setItemInsideGrid(false, j, dress, btnSelect, gridBrand);
             }
 
             vBox.getChildren().add(brpBrand);

@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import controller.Controller;
 import javafx.scene.Scene;
@@ -43,6 +47,8 @@ import view.UI;
  *
  */
 public class DialogPreviewIO {
+    private static final String PNL_OTHER_ADD = "pnl-other-add";
+    private static final String TEXT_FIELD_ADD = "text-field-add";
     private static final String ADD_TITLE_INFO_STYLE = "add-title-info";
     private static final String ADD_CONT_TITLE_INFO_STYLE = "add-cont-title-info";
     private static final String REMEMBER = "Remember, ";
@@ -82,10 +88,10 @@ public class DialogPreviewIO {
      *            of the specific graphic that permit to refresh the screen when
      *            you do a update or delete
      */
-    public void createDialogDress(final Window owner, final Dress dress, final Controller controller, final UI ui) {
+    public void createDialogDress(final Window owner, final Dress dress, final Controller controller, final UI ui) { // NOPMD
         final File[] imgFile = { dress.getImage() };
-        final Image[] imgItem = new Image[1];
-        final ImageView imvItem;
+        Image[] imgItem = new Image[1];
+        ImageView imvItem;
         final StackPane imageStackPnl;
         final ChoiceBox<Category> chbCategory;
         final TextField txfName;
@@ -104,8 +110,6 @@ public class DialogPreviewIO {
         final ScrollPane scrollPnlDialog;
         final StackPane stkVbox;
         final VBox dialogVbox;
-        final List<String> brandsName;
-        final int nBrand;
         final Scene dialogScene;
         final String dressName = dress.getName().equals("") ? "No name" : dress.getName();
 
@@ -219,7 +223,7 @@ public class DialogPreviewIO {
         final StackPane pnlNameTxf = new StackPane();
         txtName.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlNameTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
-        txfName.getStyleClass().add("text-field-add");
+        txfName.getStyleClass().add(TEXT_FIELD_ADD);
         txfName.setMaxWidth(PREFSIZE_TEXT);
         pnlNameTitle.getChildren().add(txtName);
         pnlNameTxf.getChildren().add(txfName);
@@ -233,7 +237,7 @@ public class DialogPreviewIO {
         txtBrand.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlBrandTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
 
-        txfBrand.getStyleClass().add("text-field-add");
+        txfBrand.getStyleClass().add(TEXT_FIELD_ADD);
         txfBrand.setMaxWidth(PREFSIZE_TEXT);
 
         pnlBrandTitle.getChildren().add(txtBrand);
@@ -241,15 +245,15 @@ public class DialogPreviewIO {
         /* ____________________ */
 
         /* Size_______________ */
-        int size = dress.getSize();
-        String sizeString = size == -1 ? "" : "" + size;
+        final int size = dress.getSize();
+        final String sizeString = size == -1 ? "" : "" + size; // NOPMD
         final Text txtSize = new Text("Size");
         txfSize = new TextField(sizeString);
         final StackPane pnlSizeTitle = new StackPane();
         final StackPane pnlSizeTxf = new StackPane();
         txtSize.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlSizeTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
-        txfSize.getStyleClass().add("text-field-add");
+        txfSize.getStyleClass().add(TEXT_FIELD_ADD);
         txfSize.setMaxWidth(PREFSIZE_TEXT);
         pnlSizeTitle.getChildren().add(txtSize);
         pnlSizeTxf.getChildren().add(txfSize);
@@ -257,14 +261,14 @@ public class DialogPreviewIO {
 
         /* Price_______________ */
         final double price = dress.getPrice();
-        final String priceString = price == -1.0 ? "" : "" + price;
+        final String priceString = price == -1.0 ? "" : "" + price; // NOPMD
         final Text txtPrice = new Text("Price");
         txfPrice = new TextField(priceString);
         final StackPane pnlPriceTitle = new StackPane();
         final StackPane pnlPriceTxf = new StackPane();
         txtPrice.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlPriceTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
-        txfPrice.getStyleClass().add("text-field-add");
+        txfPrice.getStyleClass().add(TEXT_FIELD_ADD);
         txfPrice.setMaxWidth(PREFSIZE_TEXT);
         pnlPriceTitle.getChildren().add(txtPrice);
         pnlPriceTxf.getChildren().add(txfPrice);
@@ -310,7 +314,7 @@ public class DialogPreviewIO {
         /* Update _____________ */
         final Button btnUpdate = new Button("Update");
         final StackPane stkUpdate = new StackPane();
-        stkUpdate.getStyleClass().add("pnl-other-add");
+        stkUpdate.getStyleClass().add(PNL_OTHER_ADD);
         genObjFx.setStandarBtnStkP(btnUpdate, stkUpdate);
         btnUpdate.setOnAction((event) -> {
             final Alert alertEr = new Alert(AlertType.ERROR);
@@ -359,7 +363,7 @@ public class DialogPreviewIO {
                 alertOk.setContentText("The item is add in the category " + chbCategory.getValue() + "!");
 
                 final Integer newSize = txfSize.getText().equals("") ? -1 : Integer.valueOf(txfSize.getText());
-                Double newPrice = txfPrice.getText().equals("") ? -1 : Double.parseDouble(txfPrice.getText());
+                final Double newPrice = txfPrice.getText().equals("") ? -1 : Double.parseDouble(txfPrice.getText());
 
                 controller.dress().modifyDressCategory(dress, chbCategory.getValue());
                 controller.dress().modifyDressBrand(dress, txfBrand.getText());
@@ -379,11 +383,12 @@ public class DialogPreviewIO {
         /* Button Delate_________ */
         final Button btnDelate = new Button("Delate");
         final StackPane stkDelate = new StackPane();
-        stkDelate.getStyleClass().add("pnl-other-add");
+        stkDelate.getStyleClass().add(PNL_OTHER_ADD);
         genObjFx.setLittleMarginBtnStkP(btnDelate, stkDelate);
         btnDelate.setOnAction(event -> {
-            controller.dress().deleteDress(dress);
+
             dialog.close();
+            controller.dress().deleteDress(dress);
             ui.showNowContent();
         });
         /* _____________________ */
@@ -391,7 +396,7 @@ public class DialogPreviewIO {
         /* Button Cancel_______________ */
         final Button btnCancel = new Button("Cancel");
         final StackPane stkCancel = new StackPane();
-        stkCancel.getStyleClass().add("pnl-other-add");
+        stkCancel.getStyleClass().add(PNL_OTHER_ADD);
         genObjFx.setLittleMarginBtnStkP(btnCancel, stkCancel);
         btnCancel.setOnAction(event -> {
             dialog.close();
@@ -451,7 +456,8 @@ public class DialogPreviewIO {
      *            you do a update or delete
      */
     public void createDialogOutfit(final Window owner, final Outfits outfit, final Controller controller, final UI ui) {
-        Category[] allCat = Category.values();
+        final Category[] allCat = Category.values();
+        final Map<Category, Dress> outfitItems = new HashMap<>();
 
         final URL url1 = this.getClass().getResource("../mainStyle.css");
         final URL url2 = this.getClass().getResource("../add/Add.css");
@@ -461,8 +467,6 @@ public class DialogPreviewIO {
         final ScrollPane scrollPnlDialog;
         final StackPane stkVbox;
         final VBox dialogVbox;
-        final List<String> brandsName;
-        final int nBrand;
         final Scene dialogScene;
         final String dressName = outfit.getName().equals("") ? "No name" : outfit.getName();
 
@@ -502,6 +506,16 @@ public class DialogPreviewIO {
         titlePane.getStyleClass().add("main-title");
         titleStackPnl.getChildren().add(titlePane);
         dialogVbox.getChildren().add(titleStackPnl);
+        /* ____________________ */
+
+        /* Description_________ */
+        final Label lblDescr = new Label("You've dressed that outfit " + "0" + " times");
+        final StackPane stkDescription = new StackPane();
+        lblDescr.getStyleClass().add("text-description");
+        lblDescr.setWrapText(true);
+        lblDescr.setTextAlignment(TextAlignment.JUSTIFY);
+        stkDescription.getChildren().add(lblDescr);
+        dialogVbox.getChildren().add(stkDescription);
         /* ____________________ */
 
         /* Separator___________ */
@@ -551,7 +565,8 @@ public class DialogPreviewIO {
             /******* ACTION *******/
             indexCat = i;
             btnAddItem.setOnAction((event) -> {
-                // createDialogSelectItem(Category.valueOf(allCat[indexCat].name()));
+                createDialogSelectItem(Category.valueOf(allCat[indexCat].name()), dialogVbox, outfitItems,
+                        dialogScene.getWindow(), controller);
             });
 
             dialogVbox.getChildren().add(brpCat);
@@ -560,17 +575,17 @@ public class DialogPreviewIO {
         /* Update _____________ */
         final Button btnUpdate = new Button("Update");
         final StackPane stkUpdate = new StackPane();
-        stkUpdate.getStyleClass().add("pnl-other-add");
+        stkUpdate.getStyleClass().add(PNL_OTHER_ADD);
         genObjFx.setStandarBtnStkP(btnUpdate, stkUpdate);
         dialogVbox.getChildren().add(stkUpdate);
         btnUpdate.setOnAction((event) -> {
 
         });
- 
+
         /* Button Delate_________ */
         final Button btnDelate = new Button("Delate");
         final StackPane stkDelate = new StackPane();
-        stkDelate.getStyleClass().add("pnl-other-add");
+        stkDelate.getStyleClass().add(PNL_OTHER_ADD);
         genObjFx.setLittleMarginBtnStkP(btnDelate, stkDelate);
         dialogVbox.getChildren().add(stkDelate);
         btnDelate.setOnAction(event -> {
@@ -583,7 +598,7 @@ public class DialogPreviewIO {
         /* Button Cancel_______________ */
         final Button btnCancel = new Button("Cancel");
         final StackPane stkCancel = new StackPane();
-        stkCancel.getStyleClass().add("pnl-other-add");
+        stkCancel.getStyleClass().add(PNL_OTHER_ADD);
         genObjFx.setLittleMarginBtnStkP(btnCancel, stkCancel);
         dialogVbox.getChildren().add(stkCancel);
         btnCancel.setOnAction(event -> {
@@ -591,7 +606,153 @@ public class DialogPreviewIO {
         });
         /* _____________________ */
 
+        final List<Dress> allDress = controller.dress().getAllDresses();
+        final List<UUID> idsOfDress = outfit.getOutfit();
+        final List<Dress> dressesOfOutfit = new LinkedList<>();
+
+        for (final UUID id : idsOfDress) {
+            final Dress dress = allDress.stream().filter(e -> e.getId() == id).findFirst().orElse(null);
+            addSpecItem(dress.getCategoryName(), dress, outfitItems, dialogVbox, owner, controller);
+            // dressesOfOutfit.add(allDress.stream().filter(e -> e.getId() ==
+            // id).findFirst().orElse(null));
+        }
+
         dialog.show();
+    }
+
+    private void createDialogSelectItem(final Category cat, final VBox vBoxOfCategory,
+            final Map<Category, Dress> outfitItems, final Window owner, final Controller controller) {
+        final URL url1 = this.getClass().getResource("../outfits/NewOutfit.css");
+        final URL url2 = this.getClass().getResource("../mainStyle.css");
+        final String css1 = url1.toExternalForm();
+        final String css2 = url2.toExternalForm();
+        final Stage dialog = new Stage();
+        final Scene dialogScene;
+        final ScrollPane scrollPnlDialog;
+        final StackPane stkVbox;
+        final VBox dialogVbox;
+        final List<String> brandsName;
+        final int nBrand;
+
+        dialog.setMinWidth(WIDTH_DIALOG);
+        dialog.setMinHeight(HEIGHT_DIALOG);
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(owner);
+        dialog.setTitle(cat.name());
+
+        scrollPnlDialog = new ScrollPane();
+        stkVbox = new StackPane();
+        VBox.setVgrow(scrollPnlDialog, Priority.ALWAYS);
+        scrollPnlDialog.setFitToWidth(true);
+
+        dialogVbox = new VBox();
+        stkVbox.getStyleClass().add("main-pane-user");
+        stkVbox.getStyleClass().add("pane-user");
+
+        brandsName = controller.dress().getAllBrandName(cat);
+        nBrand = brandsName.size();
+
+        // java.util.Collections.sort(brandsName);
+
+        for (int i = 0; i < nBrand; i++) {
+
+            final BorderPane brpBrand = new BorderPane();
+            final StackPane skpNameBrand = new StackPane();
+            final Label lblBrand = new Label(brandsName.get(i));
+            final GridPane gridBrand = new GridPane();
+            genObjFx.setBorderPaneExposition(false, brpBrand, skpNameBrand, lblBrand, gridBrand);
+
+            /* Specific_Item__________________ */
+            final List<Dress> dressItem = controller.dress().getAllBrandDress(cat, brandsName.get(i));
+            for (int j = 0; j < dressItem.size(); j++) {
+                final Dress dress = dressItem.get(j);
+                final Button btnSelect = new Button("Select");
+
+                genObjFx.setItemInsideGrid(false, j, dress, btnSelect, gridBrand);
+
+                btnSelect.setOnAction(event -> {
+                    outfitItems.put(cat, dress);
+                    addSpecItem(cat, dress, outfitItems, vBoxOfCategory, owner, controller);
+                    dialog.close();
+                });
+            }
+            dialogVbox.getChildren().add(brpBrand);
+        }
+
+        scrollPnlDialog.setContent(dialogVbox);
+        stkVbox.getChildren().add(scrollPnlDialog);
+
+        dialogScene = new Scene(stkVbox, WIDTH_DIALOG, HEIGHT_DIALOG);
+        dialogScene.getStylesheets().add(css1);
+        dialogScene.getStylesheets().add(css2);
+        dialog.setScene(dialogScene);
+
+        dialog.show();
+
+    }
+
+    private void addSpecItem(final Category cat, final Dress dress, final Map<Category, Dress> outfitItems,
+            final VBox vBoxOfCategory, final Window owner, final Controller controller) {
+        final Category[] allCat = Category.values();
+        int indexOfFirstCategory = 0;
+        int val = vBoxOfCategory.getChildren().size();
+        boolean bol = !(vBoxOfCategory.getChildren().get(0) instanceof BorderPane);
+        for (int i = 0; i < vBoxOfCategory.getChildren().size()
+                && !(vBoxOfCategory.getChildren().get(i) instanceof BorderPane); i++) {
+            indexOfFirstCategory = i + 1;
+        }
+        for (int i = 0; i < allCat.length - 1; i++) {
+            if (allCat[i].name().equals(cat.name())) {
+                final BorderPane brpCat = (BorderPane) vBoxOfCategory.getChildren().get(i + indexOfFirstCategory);
+                final GridPane gdpCat = (GridPane) brpCat.getCenter();
+                final Button btnRemoveItem;
+
+                /* Remove the Button and the Label */
+                while (!gdpCat.getChildren().isEmpty()) {
+                    gdpCat.getChildren().remove(0);
+                }
+
+                /* BUTTON Remove item */
+                btnRemoveItem = new Button("Remove it");
+
+                genObjFx.setItemOfOutfit(dress, btnRemoveItem, gdpCat);
+
+                /******* ACTION *******/
+                final Category categoryToRemove = allCat[i];
+                btnRemoveItem.setOnAction(event -> {
+                    final Button btnAddItem;
+                    final StackPane skpBtnAdd;
+                    final Label lblItemInfo;
+                    final StackPane skpLblInfoItem;
+
+                    outfitItems.remove(categoryToRemove);
+
+                    /* Remove the Button and the Label */
+                    while (!gdpCat.getChildren().isEmpty()) {
+                        gdpCat.getChildren().remove(0);
+                    }
+
+                    /* BUTTON add item */
+                    btnAddItem = new Button("Add item");
+                    skpBtnAdd = new StackPane();
+                    genObjFx.setSmallBtnStkP(btnAddItem, skpBtnAdd);
+
+                    /* LABEL No item selected */
+                    lblItemInfo = new Label("No item selected");
+                    skpLblInfoItem = new StackPane();
+                    genObjFx.setStandardLblStkP(lblItemInfo, skpLblInfoItem);
+
+                    gdpCat.add(skpBtnAdd, 0, 0);
+                    gdpCat.add(skpLblInfoItem, 1, 0);
+
+                    btnAddItem.setOnAction(e -> {
+                        createDialogSelectItem(Category.valueOf(categoryToRemove.name()), vBoxOfCategory, outfitItems,
+                                owner, controller);
+                    });
+                });
+            }
+
+        }
     }
 
     /**

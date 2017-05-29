@@ -3,6 +3,7 @@ package view.general;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -10,10 +11,12 @@ import java.util.stream.DoubleStream;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -31,6 +34,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.enumerations.Category;
 import model.interfaces.Dress;
 import model.interfaces.Outfits;
@@ -204,12 +209,20 @@ public class GeneralObjectFx {
         brpExpo.setCenter(gridExpo);
     }
 
+    /**
+     * 
+     * @param smallImage
+     * @param count
+     * @param dress
+     * @param btnAction
+     * @param gridExpo
+     */
     public void setItemInsideGrid(boolean smallImage, final int count, final Dress dress, final Button btnAction,
             final GridPane gridExpo) {
         final int rowIndex = count % 3;
         final int columnIndex = count == 0 ? 0 : count / 3;
         final BorderPane brpIthem = new BorderPane();
-        String dressName = dress.getName().equals("") ? "No name" : dress.getName();
+        final String dressName = dress.getName().equals("") ? "No name" : dress.getName();
 
         brpIthem.getStyleClass().add("pnl-specific-item");
 

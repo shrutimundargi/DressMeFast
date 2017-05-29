@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="600" prefWidth="900.0" styleClass="main-pane-log-sing" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="600" prefWidth="900.0" styleClass="main-pane-log-sign" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-center">
          <top>
-            <Label styleClass="title-log-sing" text="Login" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label styleClass="title-log-sign" text="Login" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Helvetica" size="50.0" />
                </font>
@@ -59,7 +59,7 @@
                   </Label>
                   <PasswordField fx:id="txfPassword" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Button mnemonicParsing="false" onAction="#loginAction" styleClass="btn-press" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Button mnemonicParsing="false" onAction="#goToSingup" styleClass="btnBT" text="Sing up" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                  <Button mnemonicParsing="false" onAction="#goToSignup" styleClass="btnBT" text="Sign up" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Text fx:id="txtErrUser" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtErr" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Text fx:id="txtErrPassw" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtErr" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>

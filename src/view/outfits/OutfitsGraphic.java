@@ -42,7 +42,7 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
 
     @FXML
     private ScrollPane scrollPnl;
-    final VBox vBox;
+    private VBox vBox;
     private final GeneralObjectFx genObjFx;
     private final DialogPreviewIO dialogItem;
 
@@ -158,4 +158,6 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
         }
         vBox.getChildren().add(gridOutfits);
     }
+    
+    
 }

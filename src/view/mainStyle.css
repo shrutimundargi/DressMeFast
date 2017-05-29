@@ -1,9 +1,9 @@
 
 /*	==========================
- 	 LOGIN & SING UP STYLE
+ 	 LOGIN & SIGN UP STYLE
  	========================== */
 
-.main-pane-log-sing{
+.main-pane-log-sign{
 	-fx-background-image: url("../../res/images/login-bg-4.jpg");
 	-fx-background-position: center center;
 	/*-fx-background-repeat: stretch;
@@ -11,7 +11,7 @@
 	-fx-text-fill: #EEEFEF;
 }
 
-.title-log-sing{
+.title-log-sign{
 	-fx-text-fill: white;
     -fx-font-size: 50.0px;
 }

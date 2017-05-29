@@ -44,8 +44,16 @@ public class SceneSetting extends Application {
         this.primaryStage.setMinHeight(700);
         this.primaryStage.setScene(mainScene);
         this.primaryStage.setOnCloseRequest(e -> {
+            primaryStage.close();
+            try {
+                super.stop();
+            } catch (Exception e2) {
+                // TODO Auto-generated catch block
+                e2.printStackTrace();
+            }
             setup.getController().saveData();
             System.exit(0);
+
         });
     }
 

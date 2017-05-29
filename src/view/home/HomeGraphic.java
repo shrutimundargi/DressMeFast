@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -175,12 +176,14 @@ public class HomeGraphic extends ProgramUIImpl implements UI {
         for (int j = 0; j < lastDress.size() && j < 3; j++) {
             final Dress dress = lastDress.get(j);
             final Button btnSee = new Button("See more");
-
-            btnSee.setOnAction(event -> {
-                dialogItem.createDialogDress(super.getSceneSetting().getMainStage(), dress, super.getController(), this);
-            });
+            final ImageView imageView = new ImageView();
 
             genObjFx.setItemInsideGrid(true, j, dress, btnSee, gridHome);
+
+            btnSee.setOnAction(event -> {
+                dialogItem.createDialogDress(super.getSceneSetting().getMainStage(), dress,
+                        super.getController(), this);
+            });
         }
         vBoxLastAdded.getChildren().add(brpHome);
 

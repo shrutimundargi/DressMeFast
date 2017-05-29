@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="570" prefWidth="700" styleClass="main-pane-log-sing" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="570" prefWidth="700" styleClass="main-pane-log-sign" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="pnl-center">
          <top>
-            <Label styleClass="title-log-sing" text="Join us!" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label styleClass="title-log-sign" text="Join us!" textFill="WHITE" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Helvetica" size="50.0" />
                </font>
