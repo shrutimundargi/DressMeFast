@@ -181,6 +181,11 @@ public class AIOutfit implements Outfits {
                 this.outfit.add(randomFootDress.getId());
             }
         }
+        if (dressBody.isEmpty() && dressHands.isEmpty() && dressHead.isEmpty() && dressLegs.isEmpty()
+                && dressNeck.isEmpty() && !dressFoot.isEmpty()) {
+            final Dress randomFootDress = dressFoot.get(randomizer.nextInt(dressFoot.size()));
+            this.outfit.add(randomFootDress.getId());
+        }
         return this;
     }
 
