@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import model.enumerations.Category;
+import model.enumerations.Outfit;
 import model.enumerations.Status;
 import model.interfaces.Categories;
 import model.interfaces.Dress;
@@ -26,6 +27,7 @@ public class AIOutfit implements Outfits {
     private String name;
     private Integer wornCount;
     private List<UUID> outfit;
+    private final Outfit type;
 
     /**
      * Creates a container of a single AI outfit.
@@ -35,6 +37,7 @@ public class AIOutfit implements Outfits {
         this.name = null;
         this.wornCount = 0;
         this.outfit = new LinkedList<>();
+        this.type = Outfit.AI;
     }
 
     @Override
@@ -55,6 +58,11 @@ public class AIOutfit implements Outfits {
     @Override
     public Integer getWornCount() {
         return this.wornCount;
+    }
+
+    @Override
+    public Outfit getOutfitType() {
+        return this.type;
     }
 
     @Override
@@ -180,6 +188,7 @@ public class AIOutfit implements Outfits {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((outfit == null) ? 0 : outfit.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
         result = prime * result + ((wornCount == null) ? 0 : wornCount.hashCode());
         return result;
     }
@@ -215,6 +224,9 @@ public class AIOutfit implements Outfits {
                 return false;
             }
         } else if (!outfit.equals(other.outfit)) {
+            return false;
+        }
+        if (type != other.type) {
             return false;
         }
         if (wornCount == null) {

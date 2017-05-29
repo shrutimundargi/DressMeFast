@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import model.enumerations.Category;
+import model.enumerations.Outfit;
 import model.enumerations.Status;
 
 /**
@@ -35,6 +36,11 @@ public interface Outfits extends Serializable {
      * @return how many times an outfit was worn.
      */
     Integer getWornCount();
+
+    /**
+     * @return the outfit's type.
+     */
+    Outfit getOutfitType();
 
     /**
      * @param dressList
