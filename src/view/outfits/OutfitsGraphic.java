@@ -102,6 +102,7 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
 
         btnUIOutfits.setOnAction((event) -> {
             super.getController().outfits().createAIOutfit();
+            showNowContent();
         });
 
         VBox.setVgrow(scrollPnl, Priority.ALWAYS);
@@ -110,14 +111,14 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
     }
 
     @Override
-    public void showNowContent() {
+    public final void showNowContent() {
         super.setupColorButtonsBH();
         resetAllComponent();
         showAllOutfits();
     }
 
     @Override
-    public void resetAllComponent() {
+    public final void resetAllComponent() {
         final int nComponent = vBox.getChildren().size();
         for (int i = 0; i < nComponent; i++) {
             if (vBox.getChildren().get(i) instanceof GridPane) {

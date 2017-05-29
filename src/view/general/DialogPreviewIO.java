@@ -514,7 +514,7 @@ public class DialogPreviewIO {
         final Button btnWear = new Button("Weared recently");
         final StackPane stkWear = new StackPane();
         // stkWear.getStyleClass().add(PNL_OTHER_ADD);
-        genObjFx.setLittleMarginBtnStkP(btnWear, stkWear);
+        genObjFx.setSmallBtnStkP(btnWear, stkWear);
         dialogVbox.getChildren().add(stkWear);
         btnWear.setOnAction(event -> {
 

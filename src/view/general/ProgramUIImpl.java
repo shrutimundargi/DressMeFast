@@ -124,7 +124,7 @@ public abstract class ProgramUIImpl implements ProgramUI {
         this.environment.displayScreen(ScreensGraphic.SIZE);
     }
 
-    @Override
+    @Override  
     public void goCategory(final ActionEvent event) {
         this.addScreenBack(ScreensGraphic.CATEGORY);
         this.environment.displayScreen(ScreensGraphic.CATEGORY);
