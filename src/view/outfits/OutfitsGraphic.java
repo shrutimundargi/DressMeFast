@@ -108,7 +108,7 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
         });
 
         btnUIOutfits.setOnAction((event) -> {
-
+            super.getController().outfits().createAIOutfit();
         });
 
         VBox.setVgrow(scrollPnl, Priority.ALWAYS);

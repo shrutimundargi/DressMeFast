@@ -548,7 +548,7 @@ public class DialogPreviewIO {
             gridCat = new GridPane();
             genObjFx.setBorderPaneExposition(false, brpCat, skpNameCat, lblCat, gridCat);
 
-            /* BUTTON add ithem */
+            /* BUTTON add item */
             btnAddItem = new Button("Add item");
             skpBtnAddItem = new StackPane();
             genObjFx.setSmallBtnStkP(btnAddItem, skpBtnAddItem);
@@ -614,14 +614,14 @@ public class DialogPreviewIO {
             }
         });
 
-        /* Button Delate_________ */
+        /* Button Delate ouftit_________ */
         final Button btnDelate = new Button("Delate");
         final StackPane stkDelate = new StackPane();
         stkDelate.getStyleClass().add(PNL_OTHER_ADD);
         genObjFx.setLittleMarginBtnStkP(btnDelate, stkDelate);
         dialogVbox.getChildren().add(stkDelate);
         btnDelate.setOnAction(event -> {
-
+            controller.outfits().removeOutfit(outfit);
             dialog.close();
             ui.showNowContent();
         });
