@@ -98,4 +98,14 @@ public final class OutfitsControllerImpl implements OutfitsController {
         return outfit.getOutfitType();
     }
 
+    @Override
+    public void outfitWorn(final Outfits outfit) {
+        outfit.setWornCount();
+    }
+
+    @Override
+    public int numberTimeOutfitWorn(final Outfits outfit) {
+        return outfit.getWornCount();
+    }
+
 }

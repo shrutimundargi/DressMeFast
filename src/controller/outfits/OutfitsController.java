@@ -97,4 +97,16 @@ public interface OutfitsController {
      */
     Outfit getType(Outfits outfit);
 
+    /**
+     * @param outfit
+     *            : a specific outfit
+     */
+    void outfitWorn(Outfits outfit);
+
+    /**
+     * @param outfit
+     *            : a specific outfit
+     * @return Return the number of time that the outfit was worn
+     */
+    int numberTimeOutfitWorn(Outfits outfit);
 }
