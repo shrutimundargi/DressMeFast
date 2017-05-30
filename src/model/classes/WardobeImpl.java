@@ -102,7 +102,7 @@ public class WardobeImpl implements Wardrobe {
                 maxEntry = entry;
             }
         }
-        return maxEntry.getKey();
+        return maxEntry == null ? "" : maxEntry.getKey();
     }
 
     @Override
