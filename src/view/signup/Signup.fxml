@@ -54,7 +54,7 @@
                   <PasswordField fx:id="txfPassword" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label text="Repeat password" textFill="WHITE" GridPane.rowIndex="5" />
                   <PasswordField fx:id="txfRepPassword" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Button mnemonicParsing="false" onAction="#registerAction" styleClass="btn-press" text="Sing up" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Button mnemonicParsing="false" onAction="#registerAction" styleClass="btn-press" text="Sign up" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <Button mnemonicParsing="false" onAction="#goToLogin" styleClass="btnBT" text="Back to login" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                   <Text fx:id="txtErrUser" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtErr" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Text fx:id="txtErrPassw" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtErr" GridPane.columnIndex="1" GridPane.rowIndex="4" />

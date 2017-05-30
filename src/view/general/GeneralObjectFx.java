@@ -75,8 +75,8 @@ public class GeneralObjectFx {
     }
 
     /**
-     * Method that set the standard CSS for the button and a little margin for
-     * the StackPane.
+     * Method that set the standard button and a little margin for the
+     * StackPane.
      * 
      * @param btn
      *            the button that we wont to put in the StackPane
@@ -90,9 +90,12 @@ public class GeneralObjectFx {
     }
 
     /**
+     * Method that set the small button and a little margin for the StackPane.
      * 
      * @param btn
+     *            the button that we wont to put in the StackPane
      * @param stkP
+     *            the StackPane where it will be receive the button
      */
     public void setSmallBtnStkP(final Button btn, final StackPane stkP) {
         btn.getStyleClass().add(BTN_NORMAL);
@@ -101,15 +104,35 @@ public class GeneralObjectFx {
         GridPane.setMargin(stkP, STANDARD_INSET);
     }
 
+    /**
+     * Method that set the standard button and a little margin for the
+     * StackPane.
+     * 
+     * @param lbl
+     *            the Label that we wont to put in the StackPane
+     * @param stkP
+     *            the StackPane where it will be receive the button
+     */
     public void setStandardLblStkP(final Label lbl, final StackPane stkP) {
         lbl.getStyleClass().add("text-info-item");
         stkP.getChildren().add(lbl);
     }
 
+    /**
+     * Used in the addGraphic when you need to select a category for the items.
+     * 
+     * @param txtName
+     *            the Text over the ChoiseBox
+     * @param stpTitle
+     *            the StackPane of the title
+     * @param stpChoiseBox
+     *            the StackPane for the ChoiceBoxs
+     * @return the ChoiceBox that permit to manage in other way.
+     */
     public ChoiceBox<Category> setChoiseBoxCategory(final Text txtName, final StackPane stpTitle,
             final StackPane stpChoiseBox) {
         final Category[] allCategory = Category.values();
-        ChoiceBox<Category> chBox = new ChoiceBox<>();
+        final ChoiceBox<Category> chBox = new ChoiceBox<>();
         txtName.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         stpTitle.getStyleClass().add("add-cont-title-info-first");
         chBox.getStyleClass().add("chb-category");
@@ -121,11 +144,20 @@ public class GeneralObjectFx {
         return chBox;
     }
 
+    /**
+     * Used in the graphic when you need a select a category to show the items.
+     * 
+     * @param txtName
+     *            the Text over the ChoiseBox
+     * @param vBox
+     *            for add the entire StackPane inside the @param
+     * @return the ChoiceBox that permit to manage in other way.
+     */
     public ChoiceBox<Category> setChoiseBoxCategoryBanner(final Text txtName, final VBox vBox) {
         final Category[] allCategory = Category.values();
         final StackPane stpTitle = new StackPane();
         final StackPane stpChoiseBox = new StackPane();
-        ChoiceBox<Category> chBox = new ChoiceBox<>();
+        final ChoiceBox<Category> chBox = new ChoiceBox<>();
 
         txtName.getStyleClass().add("add-title-info");
         stpTitle.getStyleClass().add("add-cont-title-info");
@@ -144,6 +176,16 @@ public class GeneralObjectFx {
         return chBox;
     }
 
+    /**
+     * Set the item of the outfit inside the GridPane.
+     * 
+     * @param dress
+     *            that we wont to add
+     * @param btn
+     *            button for the action of the preview's outfit
+     * @param gdpCat
+     *            where we wont to put the dress
+     */
     public void setItemOfOutfit(final Dress dress, final Button btn, final GridPane gdpCat) {
         /* BUTTON Remove item */
         final StackPane skpBtn = new StackPane();
@@ -194,8 +236,22 @@ public class GeneralObjectFx {
         gdpCat.add(stpImageView, 2, 0);
     }
 
-    public void setBorderPaneExposition(final boolean noLRMargin, final BorderPane brpExpo, final StackPane skpNameExpo, final Label lblExpo,
-            final GridPane gridExpo) {
+    /**
+     * Set the BorderPane with the specific class of CSS and the right column.
+     * 
+     * @param noLRMargin
+     *            if we wont the grid without the margin
+     * @param brpExpo
+     *            BorderPane of the exposition
+     * @param skpNameExpo
+     *            StackPane where the function set the Text inside its
+     * @param lblExpo
+     *            Text of the BordePane
+     * @param gridExpo
+     *            GridPane of the item
+     */
+    public void setBorderPaneExposition(final boolean noLRMargin, final BorderPane brpExpo, final StackPane skpNameExpo,
+            final Label lblExpo, final GridPane gridExpo) {
 
         brpExpo.getStyleClass().add("pnl-show-item");
         skpNameExpo.getStyleClass().add("pnl-show-item-title");
@@ -211,7 +267,7 @@ public class GeneralObjectFx {
         /* Grid________________ */
         gridExpo.getColumnConstraints()
                 .addAll(DoubleStream.of(PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID, PERCENT_WIDTH_GRID).mapToObj(width -> {
-                    ColumnConstraints constraints = new ColumnConstraints();
+                    final ColumnConstraints constraints = new ColumnConstraints();
                     constraints.setPercentWidth(width);
                     constraints.setFillWidth(true);
                     return constraints;
@@ -227,21 +283,27 @@ public class GeneralObjectFx {
     }
 
     /**
+     * Set item inside a grid.
      * 
      * @param smallImage
+     *            if we wont to have a small image (ex. in the home).
      * @param count
+     *            of the number of dress
      * @param dress
+     *            the specific dress
      * @param btnAction
+     *            button for the action of the preview's dress
      * @param gridExpo
+     *            GridPane of the item
      */
     public void setItemInsideGrid(final boolean smallImage, final int count, final Dress dress, final Button btnAction,
             final GridPane gridExpo) {
         final int rowIndex = count % 3;
         final int columnIndex = count == 0 ? 0 : count / 3;
-        final BorderPane brpIthem = new BorderPane();
+        final BorderPane brpItem = new BorderPane();
         final String dressName = dress.getName().equals("") ? "No name" : dress.getName();
 
-        brpIthem.getStyleClass().add("pnl-specific-item");
+        brpItem.getStyleClass().add("pnl-specific-item");
 
         /* Name TOP__________________ */
         final StackPane stpName = new StackPane();
@@ -249,7 +311,7 @@ public class GeneralObjectFx {
         lblName.getStyleClass().add("text-title-show-item");
         stpName.getChildren().add(lblName);
         StackPane.setMargin(lblName, NODOWN_INSET);
-        brpIthem.setTop(stpName);
+        brpItem.setTop(stpName);
 
         /* Image CENTER__________________ */
         final File imgFile = dress.getImage();
@@ -291,23 +353,29 @@ public class GeneralObjectFx {
         imageView.setImage(image);
 
         stpImageView.getChildren().add(imageView);
-        brpIthem.setCenter(stpImageView);
+        brpItem.setCenter(stpImageView);
 
         /* Button see BUTTOM________________ */
         final StackPane stpBtnAction = new StackPane();
         btnAction.getStyleClass().add(BTN_NORMAL);
         btnAction.getStyleClass().add(BTN_SMALL);
         stpBtnAction.getChildren().add(btnAction);
-        brpIthem.setBottom(stpBtnAction);
+        brpItem.setBottom(stpBtnAction);
 
         StackPane.setMargin(btnAction, NOUP_INSET);
 
-        GridPane.setMargin(brpIthem, STANDARD_INSET);
+        GridPane.setMargin(brpItem, STANDARD_INSET);
 
-        gridExpo.add(brpIthem, rowIndex, columnIndex);
+        gridExpo.add(brpItem, rowIndex, columnIndex);
 
     }
 
+    /**
+     * Add a TextField to a VBox.
+     * @param name of the field
+     * @param txf the specific TextField
+     * @param vBox the VBox where it will put the TextField
+     */
     public void addTextFieldToVBox(final String name, final TextField txf, final VBox vBox) {
         final Text txtName = new Text(name);
         final StackPane pnlNameTitle = new StackPane();
@@ -324,13 +392,25 @@ public class GeneralObjectFx {
 
     }
 
-    public void setOutfitInsideGrid(final int count, final Outfits outfit, final List<Dress> outfitDress,
+
+    /**
+     * Set outfit inside a grid.
+     * 
+     * @param count number of the item in the list of all outfit we wont to show 
+     * @param outfit that we wont to show in the preview
+     * @param outfitDresses List of all dresses of the outfit to permit to get a random image for the preview of the outfit
+     * @param btnAction
+     *            button for the action of the preview's outfit
+     * @param gridExpo
+     *            GridPane of the item
+     */
+    public void setOutfitInsideGrid(final int count, final Outfits outfit, final List<Dress> outfitDresses,
             final Button btnAction, final GridPane gridExpo) {
         final int rowIndex = count % 3;
         final int columnIndex = count == 0 ? 0 : count / 3;
-        final BorderPane brpIthem = new BorderPane();
+        final BorderPane brpItem = new BorderPane();
 
-        brpIthem.getStyleClass().add("pnl-specific-item");
+        brpItem.getStyleClass().add("pnl-specific-item");
 
         /* Name TOP__________________ */
         final StackPane stpName = new StackPane();
@@ -338,7 +418,7 @@ public class GeneralObjectFx {
         lblName.getStyleClass().add("text-title-show-item");
         stpName.getChildren().add(lblName);
         StackPane.setMargin(lblName, NODOWN_INSET);
-        brpIthem.setTop(stpName);
+        brpItem.setTop(stpName);
 
         /* Image CENTER__________________ */
         final ImageView imageView = new ImageView();
@@ -348,9 +428,9 @@ public class GeneralObjectFx {
         imageView.getStyleClass().add("image-item");
 
         final Random rand = new Random();
-        final int numDress = outfitDress.size();
+        final int numDress = outfitDresses.size();
         if (numDress > 0) {
-            final File imgFile = outfitDress.get(rand.nextInt(numDress)).getImage();
+            final File imgFile = outfitDresses.get(rand.nextInt(numDress)).getImage();
             Image img;
             try {
                 img = new Image(new FileInputStream(imgFile.getAbsolutePath()));
@@ -379,23 +459,28 @@ public class GeneralObjectFx {
         imageView.setImage(image);
 
         stpImageView.getChildren().add(imageView);
-        brpIthem.setCenter(stpImageView);
+        brpItem.setCenter(stpImageView);
 
         /* Button see BUTTOM________________ */
         final StackPane stpBtnAction = new StackPane();
         btnAction.getStyleClass().add(BTN_NORMAL);
         btnAction.getStyleClass().add(BTN_SMALL);
         stpBtnAction.getChildren().add(btnAction);
-        brpIthem.setBottom(stpBtnAction);
+        brpItem.setBottom(stpBtnAction);
 
         StackPane.setMargin(btnAction, NOUP_INSET);
 
-        GridPane.setMargin(brpIthem, STANDARD_INSET);
+        GridPane.setMargin(brpItem, STANDARD_INSET);
 
-        gridExpo.add(brpIthem, rowIndex, columnIndex);
+        gridExpo.add(brpItem, rowIndex, columnIndex);
 
     }
 
+    /**
+     * Get the standard Inset(15, 10, 15, 10).
+     * 
+     * @return the standard inset
+     */
     public Insets getStandardInset() {
         return STANDARD_INSET;
     }
@@ -410,8 +495,23 @@ public class GeneralObjectFx {
      * @param pane
      *            the StackPane
      */
-    public void mouseDragDropped(final DragEvent e, final File imgFile[], final Image imgItem[], final ImageView imageView,
-            final StackPane pane) {
+    /**
+     * The event of when you drop an image on the StackPane.
+     * 
+     * @param e
+     *            the event
+     * @param imgFile
+     *            File where the function will put the path of the image
+     * @param imgItem
+     *            Image where the function will put the image
+     * @param imageView
+     *            ImageView where the function will put the image for the
+     *            graphic
+     * @param pane
+     *            StackPane where will put the ImageView
+     */
+    public void mouseDragDropped(final DragEvent e, final File[] imgFile, final Image[] imgItem,
+            final ImageView imageView, final StackPane pane) {
         final Dragboard db = e.getDragboard();
         boolean success = false;
         if (db.hasFiles()) {
@@ -421,20 +521,8 @@ public class GeneralObjectFx {
             try {
                 imgItem[0] = new Image(new FileInputStream(imgFile[0].getAbsolutePath()));
             } catch (FileNotFoundException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
-            /*
-             * Platform.runLater(new Runnable() {
-             * 
-             * @Override public void run() { try { if
-             * (!pane.getChildren().isEmpty()) { pane.getChildren().remove(0); }
-             * 
-             * imgItem[0] = new Image(new
-             * FileInputStream(imgFile[0].getAbsolutePath()));
-             * //addImage(imgItem, imageView, pane); } catch
-             * (FileNotFoundException ex) { ex.printStackTrace(); } } });
-             */
         }
         e.setDropCompleted(success);
         e.consume();
@@ -445,6 +533,8 @@ public class GeneralObjectFx {
      * 
      * @param e
      *            the event
+     * @param pane
+     *            for setting the right CSS style
      */
     public void mouseDragOver(final DragEvent e, final StackPane pane) {
         final Dragboard db = e.getDragboard();

@@ -1,6 +1,5 @@
 package view.outfits;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 
@@ -130,18 +129,12 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
     private void showAllOutfits() {
         /* Outfits list ________ */
         final GridPane gridOutfits = new GridPane();
-
-        final List<Dress> allDress = super.getController().dress().getAllDresses();
         final List<Outfits> allOutfits = super.getController().outfits().getAllOutfits();
         for (int i = 0; i < allOutfits.size(); i++) {
             final Button btnSelect = new Button("See More");
             final Outfits outfit = allOutfits.get(i);
             final List<UUID> idsOfDress = outfit.getOutfit();
-            final List<Dress> dressesOfOutfit = new LinkedList<>();
-
-            for (final UUID id : idsOfDress) {
-                dressesOfOutfit.add(allDress.stream().filter(e -> e.getId() == id).findFirst().orElse(null));
-            }
+            final List<Dress> dressesOfOutfit = super.getController().dress().getDressesOfIds(idsOfDress);
 
             genObjFx.setOutfitInsideGrid(i, outfit, dressesOfOutfit, btnSelect, gridOutfits);
 

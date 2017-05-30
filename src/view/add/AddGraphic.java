@@ -39,6 +39,7 @@ import view.general.ProgramUIImpl;
  *
  */
 public class AddGraphic extends ProgramUIImpl implements UI {
+    private static final String TEXT_FIELD_ADD = "text-field-add";
     private static final String ADD_TITLE_INFO_STYLE = "add-title-info";
     private static final String ADD_CONT_TITLE_INFO_STYLE = "add-cont-title-info";
     private static final String REMEMBER = "Remember, ";
@@ -80,7 +81,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
      *            a reference of the instance of the class SetupView that permit
      *            to manage the important thing of the view, like
      */
-    public AddGraphic(final SceneSetting environment, final Controller controller, final SetupView setup) {
+    public AddGraphic(final SceneSetting environment, final Controller controller, final SetupView setup) { //NOPMD
         super(environment, controller, setup, ACTUALSCREEN);
         this.getSceneSetting().loadScreen(ACTUALSCREEN, this);
         super.getBtnAdd().setStyle("-fx-background-image: url('/images/add.png');");
@@ -173,7 +174,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
 
         txtName.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlNameTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
-        txfName.getStyleClass().add("text-field-add");
+        txfName.getStyleClass().add(TEXT_FIELD_ADD);
         txfName.setMaxWidth(PREFSIZE_TEXT);
         pnlNameTitle.getChildren().add(txtName);
         pnlNameTxf.getChildren().add(txfName);
@@ -187,7 +188,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         txtBrand.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlBrandTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
 
-        txfBrand.getStyleClass().add("text-field-add");
+        txfBrand.getStyleClass().add(TEXT_FIELD_ADD);
         txfBrand.setMaxWidth(PREFSIZE_TEXT);
 
         pnlBrandTitle.getChildren().add(txtBrand);
@@ -201,7 +202,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         final StackPane pnlSizeTxf = new StackPane();
         txtSize.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlSizeTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
-        txfSize.getStyleClass().add("text-field-add");
+        txfSize.getStyleClass().add(TEXT_FIELD_ADD);
         txfSize.setMaxWidth(PREFSIZE_TEXT);
         pnlSizeTitle.getChildren().add(txtSize);
         pnlSizeTxf.getChildren().add(txfSize);
@@ -214,7 +215,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         final StackPane pnlPriceTxf = new StackPane();
         txtPrice.getStyleClass().add(ADD_TITLE_INFO_STYLE);
         pnlPriceTitle.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
-        txfPrice.getStyleClass().add("text-field-add");
+        txfPrice.getStyleClass().add(TEXT_FIELD_ADD);
         txfPrice.setMaxWidth(PREFSIZE_TEXT);
         pnlPriceTitle.getChildren().add(txtPrice);
         pnlPriceTxf.getChildren().add(txfPrice);
@@ -247,6 +248,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
         /* Button_______________ */
         final Button btnAdd = new Button("Add Item");
         final StackPane stkAdd = new StackPane();
+        stkAdd.getStyleClass().add(ADD_CONT_TITLE_INFO_STYLE);
         genObjFx.setStandarBtnStkP(btnAdd, stkAdd);
         btnAdd.setOnAction((event) -> {
             final Alert alertEr = new Alert(AlertType.ERROR);
@@ -254,7 +256,7 @@ public class AddGraphic extends ProgramUIImpl implements UI {
             alertEr.setTitle("Error Dialog");
             alertEr.setHeaderText("There's somthing wrong!");
             String messageNecessaryField = OPSSS;
-            String messageNumericField = REMEMBER;
+            final String messageNumericField = REMEMBER;
             String messageFinal = "";
             // Check if all the necessary field are filled
             if (chbCategory.getValue() == null && imvItem.getImage() == null) {

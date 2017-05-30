@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import application.Main;
+import controller.Main;
 
 /**
  * An utility class to load and store the .fxml nodes of the view.

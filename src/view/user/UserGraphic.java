@@ -1,6 +1,7 @@
 package view.user;
 
 import controller.Controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -66,13 +67,32 @@ public class UserGraphic extends ProgramUIImpl implements UI {
         scrollPnl.setVvalue(scrollPnl.getMaxHeight());
     }
 
+    /**
+     * Pressing of the button ADD in the center menu.
+     * 
+     * @param event
+     *            javafx.scene.control.Button has been fired
+     */
+    @FXML
+    public void logoutAction(final ActionEvent event) {
+        super.getController().userController().logout();
+        super.getSceneSetting().displayScreen(ScreensGraphic.LOGIN);
+    }
+
     private void fillTheInfo() {
-        lblDateRegistration
-                .setText("Registred the " + super.getController().userController().getSingUpDate().toString());
-        lblNumItem.setText(String.valueOf((super.getController().dress().getAllDresses().size())));
-        lblFavItem.setText(String.valueOf(super.getController().dress().getFavoriteDresses().size()));
-        lblNumBrand.setText(String.valueOf(super.getController().dress().getAllBrand().size()));
-        lblNumOutfits.setText(String.valueOf(super.getController().outfits().getAllOutfits().size()));
-        lblBrandMostUsed.setText(String.valueOf(super.getController().dress().getPopularBrand()));
+        final String dateRegistration = super.getController().userController().getSingUpDate().toString();
+        final int numOfDresses = super.getController().dress().getAllDresses().size();
+        final int numFavDresses = super.getController().dress().getFavoriteDresses().size();
+        final int numBrand = super.getController().dress().getAllBrand().size();
+        final int numOutfits = super.getController().outfits().getAllOutfits() == null ? 0
+                : super.getController().outfits().getAllOutfits().size();
+        String popBrand = super.getController().dress().getPopularBrand();
+        popBrand = popBrand == null ? "" : popBrand;
+        lblDateRegistration.setText("Registred the " + dateRegistration);
+        lblNumItem.setText(String.valueOf((numOfDresses)));
+        lblFavItem.setText(String.valueOf(numFavDresses));
+        lblNumBrand.setText(String.valueOf(numBrand));
+        lblNumOutfits.setText(String.valueOf(numOutfits));
+        lblBrandMostUsed.setText(String.valueOf(popBrand));
     }
 }
