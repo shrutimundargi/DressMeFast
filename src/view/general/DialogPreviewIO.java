@@ -57,7 +57,7 @@ public class DialogPreviewIO {
     private static final int PREFSIZE_IMG_OFIMAGE = 235;
     private static final int PREFSIZE_TEXT = 235;
     private static final int HEIGHT_DIALOG = 400;
-    private static final int WIDTH_DIALOG = 660;
+    private static final int WIDTH_DIALOG = 670;
 
     private final GeneralObjectFx genObjFx;
 
@@ -105,6 +105,7 @@ public class DialogPreviewIO {
         final VBox dialogVbox;
         final Scene dialogScene;
         final String dressName = dress.getName();
+        final int wornCount = dress.getWornCount();
 
         dialog.setMinWidth(WIDTH_DIALOG);
         dialog.setMinHeight(HEIGHT_DIALOG);
@@ -131,7 +132,7 @@ public class DialogPreviewIO {
         /* ____________________ */
 
         /* Description_________ */
-        final Label lblDescr = new Label("You've dressed that item " + dress.getWornCount() + " times");
+        final Label lblDescr = new Label(getStringWorn(wornCount));
         final StackPane stkDescription = new StackPane();
         lblDescr.getStyleClass().add("text-description");
         lblDescr.setWrapText(true);
@@ -139,6 +140,20 @@ public class DialogPreviewIO {
         stkDescription.getChildren().add(lblDescr);
         dialogVbox.getChildren().add(stkDescription);
         /* ____________________ */
+
+        /* Button Wear_______________ */
+        final Button btnWear = new Button("Weared recently");
+        final StackPane stkWear = new StackPane();
+        // stkWear.getStyleClass().add(PNL_OTHER_ADD);
+        genObjFx.setSmallBtnStkP(btnWear, stkWear);
+        dialogVbox.getChildren().add(stkWear);
+        btnWear.setOnAction(event -> {
+            if (wornCount == dress.getWornCount()) {
+                controller.dress().dressWorn(dress);
+                lblDescr.setText(getStringWorn(wornCount));
+            }
+        });
+        /* _____________________ */
 
         /* Separator___________ */
         final Separator sepTitle = new Separator();
@@ -447,7 +462,7 @@ public class DialogPreviewIO {
      *            of the specific graphic that permit to refresh the screen when
      *            you do a update or delete
      */
-    public void createDialogOutfit(final Window owner, final Outfits outfit, final Controller controller, final UI ui) { //NOPMD
+    public void createDialogOutfit(final Window owner, final Outfits outfit, final Controller controller, final UI ui) { // NOPMD
         final Category[] allCat = Category.values();
         final Map<Category, Dress> outfitItems = new HashMap<>();
 
@@ -461,6 +476,7 @@ public class DialogPreviewIO {
         final VBox dialogVbox;
         final Scene dialogScene;
         final String dressName = outfit.getName();
+        final int wornCount = outfit.getWornCount();
 
         dialog.setMinWidth(WIDTH_DIALOG);
         dialog.setMinHeight(HEIGHT_DIALOG);
@@ -501,7 +517,7 @@ public class DialogPreviewIO {
         /* ____________________ */
 
         /* Description_________ */
-        final Label lblDescr = new Label("You've dressed that outfit " + "0" + " times");
+        final Label lblDescr = new Label(getStringWorn(wornCount));
         final StackPane stkDescription = new StackPane();
         lblDescr.getStyleClass().add("text-description");
         lblDescr.setWrapText(true);
@@ -517,7 +533,10 @@ public class DialogPreviewIO {
         genObjFx.setSmallBtnStkP(btnWear, stkWear);
         dialogVbox.getChildren().add(stkWear);
         btnWear.setOnAction(event -> {
-
+            if (wornCount == outfit.getWornCount()) {
+                controller.outfits().outfitWorn(outfit);
+                lblDescr.setText(getStringWorn(wornCount));
+            }
         });
         /* _____________________ */
 
@@ -826,6 +845,10 @@ public class DialogPreviewIO {
             pane.setPrefHeight(PREFSIZE_IMG);
             pane.setPrefWidth(PREFSIZE_IMG);
         }
+    }
+
+    private String getStringWorn(final int num) {
+        return "You've dressed that item " + num + " times";
     }
 
 }

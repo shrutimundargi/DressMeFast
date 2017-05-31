@@ -42,8 +42,11 @@ public abstract class ProgramUIImpl implements ProgramUI {
     private Button btnCategory;
     @FXML
     private Button btnUser;
+    /**
+     * This scrollPnl is set protected because it used from every class that extend this.
+     */
     @FXML
-    protected ScrollPane scrollPnl;
+    private ScrollPane scrollPnl;
 
     /**
      * 
@@ -124,7 +127,7 @@ public abstract class ProgramUIImpl implements ProgramUI {
         this.environment.displayScreen(ScreensGraphic.SIZE);
     }
 
-    @Override  
+    @Override
     public void goCategory(final ActionEvent event) {
         this.addScreenBack(ScreensGraphic.CATEGORY);
         this.environment.displayScreen(ScreensGraphic.CATEGORY);
@@ -139,7 +142,7 @@ public abstract class ProgramUIImpl implements ProgramUI {
     @Override
     public void goBack(final ActionEvent event) {
         if (setup.haveBackQueue()) {
-            ScreensGraphic sgBack = setup.getScreenBack();
+            final ScreensGraphic sgBack = setup.getScreenBack();
             this.setup.addScreenAhead(actualScreen, sgBack);
             this.environment.displayScreen(sgBack);
         }
@@ -148,7 +151,7 @@ public abstract class ProgramUIImpl implements ProgramUI {
     @Override
     public void goAhead(final ActionEvent event) {
         if (setup.haveAheadQueue()) {
-            ScreensGraphic sgAhead = setup.getScreenAhead();
+            final ScreensGraphic sgAhead = setup.getScreenAhead();
             this.addScreenBack(sgAhead);
             this.environment.displayScreen(sgAhead);
         }

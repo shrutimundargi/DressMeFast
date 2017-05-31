@@ -4,7 +4,6 @@ import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.text.Text;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.UI;
@@ -35,7 +34,7 @@ public class SignupDialogGraphic implements UI {
         this.controller = controller;
         this.environment = environment;
         this.environment.loadScreen(ACTUALSCREEN, this);
-        txtPopupName.setWrapText(true); //Futile bug, because the txtPopupName is already initialized with the fxml code.
+        txtPopupName.setWrapText(true); //Futile bug, because the txtPopupName is already initialized by default.
     }
 
     /**
