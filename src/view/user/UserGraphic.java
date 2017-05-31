@@ -58,7 +58,7 @@ public class UserGraphic extends ProgramUIImpl implements UI {
     public void showNowContent() {
         super.setupColorButtonsBH();
         txtUser.setText(super.getController().userController().getUsername());
-        resetAllComponent();
+        super.returnTopPane();
         fillTheInfo();
     }
 

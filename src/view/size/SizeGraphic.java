@@ -100,7 +100,7 @@ public class SizeGraphic extends ProgramUIImpl implements UI {
     public void showNowContent() {
         final Category switchCategory = chbCategory.getValue();
         super.setupColorButtonsBH();
-        returnTopPane();
+        super.returnTopPane();
         resetAllComponent();
         if (switchCategory != null) {
             showItemOfCategory(chbCategory.getValue());

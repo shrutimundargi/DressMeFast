@@ -20,8 +20,5 @@ public final class Main {
     public static void main(final String[] args) {
         final Controller controller = ControllerImpl.getInstance();
         new SetupView(controller);
-        controller.userController().signUp("a", "1");
-        controller.userController().logout();
-
     }
 }
