@@ -1,0 +1,19 @@
+.main-pane-popup{
+	-fx-background-color: #3D3D3D; 
+	-fx-padding: 15.0 15.0 0.0 15.0;
+	-fx-effect: dropshadow(three-pass-box, black, 10.0, 0.0, 0.0, 0.0);
+}
+
+.title-popup{
+	-fx-fill: white;
+	-fx-font-size: 30.0px;
+}
+
+.text-popup{
+	-fx-text-fill: white;
+	-fx-font-size: 18.0px;
+}
+
+stackPnlButton-popup{
+	-fx-padding: 0 15 15 15;
+}

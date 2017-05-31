@@ -1,0 +1,141 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.main-pane-user{
+	-fx-background-color: #292929;
+	-fx-padding: 9 0 9 0;
+}
+
+.pnl-center{
+	-fx-background-color: #4B4D4F; 
+	-fx-background-radius: 7.0px;
+	-fx-padding: 15.0 15.0 0.0 15.0;
+	-fx-min-height: 500.0px; 
+	-fx-min-width: 600.0px; 
+	-fx-max-height: 500.0px; 
+	-fx-max-width: 600.0px;
+	-fx-effect: dropshadow(three-pass-box, #494949, 10.0, 0.0, 0.0, 0.0);
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.title-login{
+	
+}
+
+.pnl-main-title{
+	-fx-padding: 0 0 20 0;
+}
+
+.info-underTitle{
+    -fx-fill: #C4C4C4;
+	-fx-font-size: 13.0px;
+}
+
+.text-description{
+	-fx-text-fill: white;
+	-fx-font-size: 16 px;
+	-fx-padding: 17 0 15 0;
+}
+
+.sep-title{
+	-fx-padding: 10 250 10 250;
+}
+
+.sep-title .line{
+	-fx-border-color: #878787;
+	-fx-border-width: 1 0 0 0;
+
+}
+
+
+.add-title-info{
+	-fx-fill: white;
+	-fx-font-size: 24.0px;
+	
+}
+
+.add-cont-title-info{
+	-fx-padding: 10 0 20 0;
+}
+
+.vbox-select-cat{
+	-fx-background-color: #424242;
+	-fx-padding: 17 0 23 0;
+}
+
+.pnl-category-chb{
+	
+}
+.chb-category {
+  	-fx-background-color: #333333;
+	-fx-border-color: #8A8A8A;
+	-fx-border-radius: 4.0;
+   	-fx-background-radius: 4px;
+  	-fx-mark-color: white;
+  	-fx-pref-width: 150px;
+}
+
+.chb-category > .label { 
+	-fx-text-fill: white;
+}
+
+.chb-category .context-menu { 
+	-fx-background-color: #333333;
+	-fx-pref-width: 146px;
+}
+.chb-category .menu-item:focused { 
+	-fx-background-color: #424242;
+}
+.chb-category .menu-item > .label { 
+	-fx-text-fill: white;
+}
+.chb-category .menu-item:focused > .label { 
+	-fx-text-fill: white;
+}
+
+.pnl-show-item {
+	-fx-border-radius: 12;
+	-fx-border-color: #515252;
+	-fx-background-color: #313131;
+	-fx-background-radius: 12px;
+}
+
+.pnl-show-item-title {
+	-fx-background-radius: 12px;
+	-fx-background-color:  #3D3D3D;
+	-fx-padding: 6 0 6 0;
+}
+
+.text-title-show-item {
+	-fx-text-fill: white;
+	-fx-font-size: 18.0px;
+}
+
+.pnl-show-item-dress {
+
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.pnl-specific-item{
+	-fx-border-radius: 12;
+	-fx-border-color: #515252;
+	-fx-background-color: #313131;
+	-fx-background-radius: 12px;
+}
+
+image-item{
+	-fx-border-radius: 10;
+	-fx-background-radius: 10;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+	-fx-padding: 10;
+	-fx-background-color: grey;
+	-fx-background-radius: 5;
+}

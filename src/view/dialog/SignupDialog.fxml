@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="brpBackground" prefHeight="328.0" prefWidth="483.0" styleClass="main-pane-log-sign" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="400.0" styleClass="main-pane-popup">
+         <top>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title-popup" text="Your in" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <GridPane BorderPane.alignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <StackPane GridPane.rowIndex="1">
+                     <children>
+                        <Label fx:id="txtPopupName" styleClass="text-popup" text="Label" />
+                     </children>
+                  </StackPane>
+               </children>
+            </GridPane>
+         </center>
+         <bottom>
+            <BorderPane>
+               <center>
+                  <Button mnemonicParsing="false" onAction="#goToHome" styleClass="btn-normal" text="Start">
+                     <BorderPane.margin>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </center>
+            </BorderPane>
+         </bottom>
+      </BorderPane>
+   </center>
+   <stylesheets>
+      <URL value="@SignupDialog.css" />
+      <URL value="@../mainStyle.css" />
+   </stylesheets>
+</BorderPane>

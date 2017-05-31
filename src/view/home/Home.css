@@ -1,0 +1,242 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.pnlHome{
+	-fx-font-weight: bold;
+}
+
+/* ============
+	Menu BAR
+   ============ 
+   * 
+   * Moved in file "mainStyle.css"
+   * 
+   * */
+   
+
+/* ===================
+	Center HOME 
+   =================== */
+   
+.centerHome{ 
+	-fx-background-color: #292929;
+	-fx-padding: 9 30 30 30;
+}
+
+.pnl-title{
+	-fx-padding: 5 0 20 20;
+}
+
+.gridP-home {
+	-fx-background-color: grey;
+}
+
+
+
+
+
+
+.pnl-preview-home{
+	-fx-border-radius: 12;
+	-fx-border-color: #515252;
+	-fx-background-color: #313131;
+	-fx-background-radius: 12px;
+}
+
+.pnl-preview-home-title{
+	-fx-background-radius: 12px;
+}
+
+.pnl-preview-home-no-title{
+
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.grid-preview-home{
+	
+}
+
+.pnl-img-dress-preview{
+	-fx-border-radius: 20px;
+}
+
+.img-dress-preview{
+   	-fx-background-radius: 5;
+   	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+   	
+}
+
+.btn-selection-center-home {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+   	-fx-border-radius: 12;
+   	-fx-background-radius: 12;
+    -fx-padding: 0 0 70 0; 
+    -fx-background-color:#3D3D3D; 
+   	-fx-effect: dropshadow(three-pass-box, #171917, 10.0, 0.0, 0.0, 0.0); 	
+}
+
+
+
+
+.btn-selection-center-home.brand { 
+	-fx-background-image: url('/images/clothes.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 75%;
+}
+
+
+.btn-selection-center-home.category { 
+	-fx-background-image: url('/images/clipboard-1.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 75%;
+}
+
+.btn-selection-center-home.star { 
+	-fx-background-image: url('/images/star.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 75%;
+}
+
+.btn-selection-center-home.outfits { 
+	-fx-background-image: url('/images/dress.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 75%;
+}
+
+.btn-selection-center-home.ruler { 
+	-fx-background-image: url('/images/ruler.png');
+    -fx-background-size: 50px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 75%;
+}
+
+.btn-selection-center-home.add { 
+	-fx-background-image: url('/images/add.png');
+    -fx-background-size: 40px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 50% 70%;
+}
+
+
+.pnl-main-title{
+	-fx-padding: 0 0 20 0;
+}
+
+.info-underTitle{
+    -fx-fill: #C4C4C4;
+	-fx-font-size: 13.0px;
+}
+
+.text-description{
+	-fx-text-fill: white;
+	-fx-font-size: 16 px;
+	-fx-padding: 17 0 15 0;
+}
+
+.sep-title{
+	-fx-padding: 10 250 10 250;
+}
+
+.sep-title .line{
+	-fx-border-color: #878787;
+	-fx-border-width: 1 0 0 0;
+
+}
+
+
+.add-title-info{
+	-fx-fill: white;
+	-fx-font-size: 24.0px;
+	
+}
+
+.add-cont-title-info{
+	-fx-padding: 10 0 20 0;
+}
+
+.vbox-select-cat{
+	-fx-background-color: #424242;
+	-fx-padding: 17 0 23 0;
+}
+
+.pnl-category-chb{
+	
+}
+.chb-category {
+  	-fx-background-color: #333333;
+	-fx-border-color: #8A8A8A;
+	-fx-border-radius: 4.0;
+   	-fx-background-radius: 4px;
+  	-fx-mark-color: white;
+  	-fx-pref-width: 150px;
+}
+
+.chb-category > .label { 
+	-fx-text-fill: white;
+}
+
+.chb-category .context-menu { 
+	-fx-background-color: #333333;
+	-fx-pref-width: 146px;
+}
+.chb-category .menu-item:focused { 
+	-fx-background-color: #424242;
+}
+.chb-category .menu-item > .label { 
+	-fx-text-fill: white;
+}
+.chb-category .menu-item:focused > .label { 
+	-fx-text-fill: white;
+}
+
+.pnl-show-item {
+	-fx-border-radius: 12;
+	-fx-border-color: #515252;
+	-fx-background-color: #313131;
+	-fx-background-radius: 12px;
+}
+
+.pnl-show-item-title {
+	-fx-background-radius: 12px;
+	-fx-background-color:  #3D3D3D;
+	-fx-padding: 6 0 6 0;
+}
+
+.text-title-show-item {
+	-fx-text-fill: white;
+	-fx-font-size: 18.0px;
+}
+
+.pnl-show-item-dress {
+
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.pnl-specific-item{
+	-fx-border-radius: 12;
+	-fx-border-color: #515252;
+	-fx-background-color: #313131;
+	-fx-background-radius: 12px;
+}
+
+image-item{
+	-fx-border-radius: 10;
+	-fx-background-radius: 10;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+	-fx-padding: 10;
+	-fx-background-color: grey;
+	-fx-background-radius: 5;
+}
+
+

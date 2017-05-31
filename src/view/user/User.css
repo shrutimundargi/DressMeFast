@@ -1,0 +1,98 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.main-pane-user{
+	-fx-background-color: #292929;
+	-fx-padding: 9 0 10 30;
+}
+
+.pnl-center{
+	-fx-background-color: #4B4D4F; 
+	-fx-background-radius: 7.0px;
+	-fx-padding: 15.0 15.0 0.0 15.0;
+	-fx-min-height: 500.0px; 
+	-fx-min-width: 600.0px; 
+	-fx-max-height: 500.0px; 
+	-fx-max-width: 600.0px;
+	-fx-effect: dropshadow(three-pass-box, #494949, 10.0, 0.0, 0.0, 0.0);
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+.text-registration{
+	-fx-padding: 15 0.0 25 0;
+	-fx-text-fill: white;
+}
+
+.info-underTitle{
+    -fx-text-fill: #A9A9A9;
+	-fx-font-size: 13.0px;
+}
+
+.text-information-user{
+	-fx-fill: white;
+	-fx-font-size: 30px;
+	-fx-padding: 17 0 15 0;
+}
+
+.vBox-info-user{
+	-fx-padding: 20 0 20 0;
+}
+
+.lbl-user-info{
+    -fx-text-fill: #C4C4C4;
+	-fx-font-size: 19.0px;
+	-fx-padding: 0;
+}
+
+.lbl-user-theInfo{
+	-fx-text-fill: white;
+	-fx-font-size: 20.0px;
+	-fx-padding: 0 0 0 15;
+}
+
+.btn-press{
+	-fx-background-color:none;
+    -fx-background-insets: 0.0,1.0,2.0,3.0,0.0;
+    -fx-text-fill: white;
+}
+.text-registration{
+	-fx-padding: 15 0.0 25 0;
+	-fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.title-page{
+	-fx-padding: 40 0.0 25 0;
+	-fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
+
+.text-information {
+	-fx-padding: 15 0.0 15 0;
+	-fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+}
+
+
+.panel-logout{
+	-fx-padding: 45 0.0 15 0;
+}
+
+.btnBT:hover {
+    -fx-text-fill: white;
+}
+
+.btn-logout{
+	
+}
+.panel-logout{
+	-fx-padding: 45 0.0 15 0;
+}
