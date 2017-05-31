@@ -23,8 +23,8 @@ import model.interfaces.Dress;
  *
  */
 public class Tester {
-    private static final String MAIN_PATH = System.getProperty("user.home") + File.separator
-            + "beyond_the_story_i-wallpaper-5120x2880.jpg";
+    private final ClassLoader classLoader = getClass().getClassLoader();
+    private final File file = new File(classLoader.getResource("images/login-bg-1.jpg").getFile());
 
     private static final double PRICE_OCCHIALE = 500;
     private static final double PRICE_COSTUME = 150;
@@ -93,19 +93,19 @@ public class Tester {
 
     private void addDress() {
         assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("maglietta", ARMANI, SIZE, PRICE_MAGLIETTA, data,
-                "ho speso troppo", Category.BODY, new File(MAIN_PATH))));
+                "ho speso troppo", Category.BODY, file)));
 
         assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("felpa", ARMANI, SIZE, PRICE_FELPA, data,
-                "ho venduto la casa per una felpa", Category.BODY, new File(MAIN_PATH))));
+                "ho venduto la casa per una felpa", Category.BODY, file)));
 
-        assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("pantaloni", "Lee", SIZE, 0, data, "li ho rubati",
-                Category.LEGS, new File(MAIN_PATH))));
+        assertEquals(Status.DRESS_ADDED,
+                (cont.dress().addDress("pantaloni", "Lee", SIZE, 0, data, "li ho rubati", Category.LEGS, file)));
 
         assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("costume", "nike", SIZE_COSTUME, PRICE_COSTUME, data,
-                "sono ingrassato ho dovuto cambiare taglia", Category.LEGS, new File(MAIN_PATH))));
+                "sono ingrassato ho dovuto cambiare taglia", Category.LEGS, file)));
 
         assertEquals(Status.DRESS_ADDED, (cont.dress().addDress("occhiali", "rayban", 0, PRICE_OCCHIALE, data,
-                "ho speso troppo", Category.HEAD, new File(MAIN_PATH))));
+                "ho speso troppo", Category.HEAD, file)));
 
         assertEquals(NUMBER_OF_DRESSES_ADDED, cont.dress().getNumberOfDresses());
     }

@@ -3,30 +3,12 @@ package controller;
 import controller.dress.DressController;
 import controller.outfits.OutfitsController;
 import controller.user.UserController;
-import view.ScreensGraphic;
-import view.UI;
 
 /**
  * Interface for the controller.
  *
  */
 public interface Controller {
-
-    /**
-     * @param name
-     *            : nameOfScreens
-     * @param uI
-     *            : user Interface
-     */
-    void attachUI(ScreensGraphic name, UI uI);
-
-    /**
-     * @param name
-     *            : name of Screen Graphic
-     * @return UI
-     */
-    UI getUI(ScreensGraphic name);
-
     /**
      * Allows access to authentication methods and user management.
      * 
@@ -38,7 +20,7 @@ public interface Controller {
     /**
      * Allows access to all methods of dress.
      * 
-     * @return An DressController date that allows access to all methods of
+     * @return A DressController date that allows access to all methods of
      *         dress
      */
     DressController dress();

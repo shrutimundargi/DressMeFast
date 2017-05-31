@@ -16,55 +16,55 @@ public interface OutfitsController {
 
     /**
      * @param dressesId
-     *            : A list containing all the id of the dresses
+     *            : A list containing all the ids of the dresses
      * @param name
-     *            : the name of the outfits
-     * @return Return OUTFIT_ADDED if Everything went well
+     *            : the name of the outfit
+     * @return Returns OUTFIT_ADDED if Everything went well
      */
     Status addOutfits(List<UUID> dressesId, String name);
 
     /**
-     * @return ReturnA list containing all the Outfits
+     * @return Returns a list containing all the Outfits
      */
     List<Outfits> getAllOutfits();
 
     /**
-     * @return Return A list containing all the ai outfits
+     * @return Returns a list containing all the AI outfits
      */
     List<Outfits> getAIOutfits();
 
     /**
-     * @return Return A list containing all the user outfits
+     * @return Returns a list containing all the user outfits
      */
     List<Outfits> getUserOutfits();
 
     /**
      * @param outfitsid
      *            : the id of the specific outfits
-     * @return Return the specific outfits
+     * @return Returns the specific outfits
      */
     Outfits getOutfits(UUID outfitsid);
 
     /**
-     * @return return 1 if there aren't dresses, otherwise return 0.
+     * @return Returns 1 if there aren't dresses, otherwise returns 0.
      */
     int createAIOutfit();
 
     /**
      * @param outfitsid
-     *            : the id of the specific outfits
+     *            : the id of the specific outfit
      * @param changeDresses
-     *            : A list containing the new dresses's id
-     * @return Return CHANGE_SUCCESFULL if Everything went well
+     *            : A list containing the new dresses id
+     * @return Returns CHANGE_SUCCESFULL if Everything went well
      */
     Status modifyOutfits(UUID outfitsid, List<UUID> changeDresses);
 
     /**
      * @param outfitsid
-     *            : the id of the specific outfits
+     *            : the id of the specific outfit
      * @param newName
-     *            : The new name for the outfits
-     * @return Return CHANGE_SUCCESFULL if Everything went well
+     *            : The new name for the outfit
+     * @return Returns CHANGE_SUCCESFULL if Everything went well
      */
     Status modifyOutfitsName(UUID outfitsid, String newName);
 
@@ -77,7 +77,7 @@ public interface OutfitsController {
     /**
      * @param outfit
      *            : a specific outfit
-     * @return Return the creation date of an outfit
+     * @return Returns the creation date of an outfit
      */
     LocalDate getDate(Outfits outfit);
 
@@ -93,7 +93,7 @@ public interface OutfitsController {
     /**
      * @param outfit
      *            : a specific outfit
-     * @return Return the type of the specific outfit, this can be AI or USER
+     * @return Returns the type of the specific outfit, this can be AI or USER
      */
     Outfit getType(Outfits outfit);
 
@@ -106,7 +106,7 @@ public interface OutfitsController {
     /**
      * @param outfit
      *            : a specific outfit
-     * @return Return the number of time that the outfit was worn
+     * @return Returns the number of time that the outfit was worn
      */
     int numberTimeOutfitWorn(Outfits outfit);
 }

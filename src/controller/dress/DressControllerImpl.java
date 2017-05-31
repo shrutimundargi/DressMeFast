@@ -45,6 +45,11 @@ public final class DressControllerImpl implements DressController {
 
     }
 
+    /**
+     * @param imagePath
+     *            : a specific image path
+     * @return Return the path of the image saved otherwise throw an error
+     */
     private String saveImage(final File imagePath) {
         File oldImagePath = imagePath;
         final File[] imageFolder = new File(MAIN_PATH + File.separator + "images" + File.separator).listFiles();

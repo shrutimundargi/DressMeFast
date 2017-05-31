@@ -28,7 +28,7 @@ public class DataManagementImpl implements DataManagement {
     private static final String IMAGE_PATH = MAIN_PATH + File.separator + "images";
 
     /**
-     * manage the dmfData folder and the images folder.
+     * Manage the dmfData folder and the images folder.
      */
     public DataManagementImpl() {
         final File mainFolder;

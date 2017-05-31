@@ -1,8 +1,5 @@
 package controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import controller.data_management.DataManagementImpl;
 import controller.dress.DressController;
 import controller.dress.DressControllerImpl;
@@ -12,8 +9,6 @@ import controller.user.UserController;
 import controller.user.UserControllerImpl;
 import model.classes.UserManagementImpl;
 import model.interfaces.UserManagement;
-import view.ScreensGraphic;
-import view.UI;
 
 /**
  * An implementation of the Controller.
@@ -26,7 +21,6 @@ public final class ControllerImpl implements Controller {
      */
     private final UserController userCtr;
     private final UserManagement userM;
-    private final Map<ScreensGraphic, UI> map;
 
     private static class SafeSingleton {
         private static final ControllerImpl SINGLETON = new ControllerImpl();
@@ -38,7 +32,6 @@ public final class ControllerImpl implements Controller {
     protected ControllerImpl() {
         userM = new UserManagementImpl();
         userCtr = new UserControllerImpl(userM);
-        map = new HashMap<>();
         loadData();
     }
 
@@ -49,6 +42,9 @@ public final class ControllerImpl implements Controller {
         return SafeSingleton.SINGLETON;
     }
 
+    /**
+     * This method loads all the informations of a user if exists otherwise create the container to store data
+     */
     private void loadData() {
         new DataManagementImpl().load(userM);
     }
@@ -56,16 +52,6 @@ public final class ControllerImpl implements Controller {
     @Override
     public void saveData() {
         new DataManagementImpl().save(userM.getUsersSet());
-    }
-
-    @Override
-    public void attachUI(final ScreensGraphic name, final UI uI) {
-        map.put(name, uI);
-    }
-
-    @Override
-    public UI getUI(final ScreensGraphic name) {
-        return map.get(name);
     }
 
     @Override

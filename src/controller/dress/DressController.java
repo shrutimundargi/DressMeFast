@@ -13,7 +13,7 @@ import model.interfaces.Dress;
 import model.interfaces.User;
 
 /**
- * Interface Used for Dress.
+ * Interface used for Dress.
  *
  */
 public interface DressController {
@@ -37,7 +37,7 @@ public interface DressController {
      *            : categories
      * @param image
      *            : the image
-     * @return the status of adding a dress operation
+     * @return the status of adding a dress
      *         <P>
      *         Return DRESS_NOT_ADDED if there is a problem with the adding
      *         otherwise return DRESS_ADDED
@@ -48,7 +48,7 @@ public interface DressController {
     /**
      * @param brandName
      *            : the name of the brand
-     * @return all dresses of one specific brand
+     * @return Return all dresses of one specific brand
      */
     Set<Dress> getDressesOfBrand(String brandName);
 
@@ -136,7 +136,7 @@ public interface DressController {
     Set<Dress> getFavoriteDresses();
 
     /**
-     * @return the last three dresses added
+     * @return the last dresses added
      */
     Set<Dress> getLastAddedDresses();
 
@@ -184,7 +184,7 @@ public interface DressController {
     /**
      * @param dress
      *            : dress
-     * @return Return true if the favorite tag is true, otherwise false
+     * @return Return true if the favorite tag is set, otherwise false
      */
     Boolean getFavoriteTag(Dress dress);
 
@@ -195,7 +195,7 @@ public interface DressController {
      *            : dress name
      * @return the status of the modify dress name operation
      *         <P>
-     *         If everything goes well return CHANGE_SUCCESFULL
+     *         If everything goes well returns CHANGE_SUCCESFULL
      */
     Status modifyDressName(Dress dress, String name);
 
@@ -206,7 +206,7 @@ public interface DressController {
      *            : brand
      * @return the status of the modify dress brand operation
      *         <P>
-     *         If everything goes well return CHANGE_SUCCESFULL
+     *         If everything goes well returns CHANGE_SUCCESFULL
      */
     Status modifyDressBrand(Dress dress, String brand);
 
@@ -217,7 +217,7 @@ public interface DressController {
      *            : new size
      * @return the status of the modify dress size operation
      *         <P>
-     *         If everything goes well return CHANGE_SUCCESFULL
+     *         If everything goes well returns CHANGE_SUCCESFULL
      */
     Status modifyDressSize(Dress dress, int size);
 
@@ -228,7 +228,7 @@ public interface DressController {
      *            : new data
      * @return the status of the modify dress purchase date operation
      *         <P>
-     *         If everything goes well return CHANGE_SUCCESFULL
+     *         If everything goes well returns CHANGE_SUCCESFULL
      */
     Status modifyDressPurchaseDate(Dress dress, LocalDate data);
 
@@ -239,7 +239,7 @@ public interface DressController {
      *            : new description
      * @return the status of the modify dress description operation
      *         <P>
-     *         If everything goes well return CHANGE_SUCCESFULL
+     *         If everything goes well returns CHANGE_SUCCESFULL
      */
     Status modifyDressDescription(Dress dress, String description);
 
@@ -250,7 +250,7 @@ public interface DressController {
      *            : new category
      * @return the status of the modify dress category operation
      *         <P>
-     *         If everything goes well return DRESS_MODIFIED otherwise
+     *         If everything goes well returns DRESS_MODIFIED otherwise
      *         DRESS_NOT_MODIFIED
      */
     Status modifyDressCategory(Dress dress, Category category);
@@ -262,47 +262,49 @@ public interface DressController {
      *            : new favorite
      * @return the status of the modify favorite tag operation
      *         <P>
-     *         If everything goes well return CHANGE_SUCCESFULL
+     *         If everything goes well returns CHANGE_SUCCESFULL
      */
     Status modifyFavoriteTag(Dress dress, Boolean favorite);
 
     /**
      * @param dress
      *            : the dress that you want delete
-     * @return the status of the delete dress operation
+     * @return the status of the delete dress
      */
     Status deleteDress(Dress dress);
 
     /**
+     * This method allows to increment the worn count of a dress.
+     * 
      * @param dress
-     *            : the dress that you wore
+     *            : a specific dress
      */
     void dressWorn(Dress dress);
 
     /**
      * @param dress
-     *            : the dress that you wont the information
-     * @return Return the number of time that the dress was worn
+     *            : the dress that you want the information
+     * @return Return the number of times that the dress was worn
      */
     int numberTimeDressWorn(Dress dress);
 
     /**
-     * @return Return all popular brand
+     * @return Return the most popular brand.
      */
     String getPopularBrand();
 
     /**
      * @param category
      *            : the category name
-     * @return Return all dress into a specific category
+     * @return Return all dresses inside a specific category
      */
     List<Dress> getDressIntoCategory(Category category);
 
     /**
      * @param dress
-     *            : the dress that you wont change price
+     *            : the dress that you want change price
      * @param price
-     *            : the price that you wont change
+     *            : the price that you want change
      * @return the status of the modify price operation
      *         <P>
      *         If everything goes well return CHANGE_SUCCESFULL
