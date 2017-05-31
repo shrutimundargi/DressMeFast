@@ -181,10 +181,41 @@ public class AIOutfit implements Outfits {
                 this.outfit.add(randomFootDress.getId());
             }
         }
+
+        if (!dressBody.isEmpty() && dressHands.isEmpty() && dressHead.isEmpty() && dressLegs.isEmpty()
+                && dressNeck.isEmpty() && dressFoot.isEmpty()) {
+            final Dress randomBodyDressTmp = dressBody.get(randomizer.nextInt(dressBody.size()));
+            this.outfit.add(randomBodyDressTmp.getId());
+        }
+
+        if (dressBody.isEmpty() && !dressHands.isEmpty() && dressHead.isEmpty() && dressLegs.isEmpty()
+                && dressNeck.isEmpty() && dressFoot.isEmpty()) {
+            final Dress randomHandsDressTmp = dressHands.get(randomizer.nextInt(dressHands.size()));
+            this.outfit.add(randomHandsDressTmp.getId());
+        }
+
+        if (dressBody.isEmpty() && dressHands.isEmpty() && !dressHead.isEmpty() && dressLegs.isEmpty()
+                && dressNeck.isEmpty() && dressFoot.isEmpty()) {
+            final Dress randomHeadDressTmp = dressHead.get(randomizer.nextInt(dressHead.size()));
+            this.outfit.add(randomHeadDressTmp.getId());
+        }
+
+        if (dressBody.isEmpty() && dressHands.isEmpty() && dressHead.isEmpty() && !dressLegs.isEmpty()
+                && dressNeck.isEmpty() && dressFoot.isEmpty()) {
+            final Dress randomLegsDressTmp = dressLegs.get(randomizer.nextInt(dressLegs.size()));
+            this.outfit.add(randomLegsDressTmp.getId());
+        }
+
+        if (dressBody.isEmpty() && dressHands.isEmpty() && dressHead.isEmpty() && dressLegs.isEmpty()
+                && !dressNeck.isEmpty() && dressFoot.isEmpty()) {
+            final Dress randomNeckDressTmp = dressNeck.get(randomizer.nextInt(dressNeck.size()));
+            this.outfit.add(randomNeckDressTmp.getId());
+        }
+
         if (dressBody.isEmpty() && dressHands.isEmpty() && dressHead.isEmpty() && dressLegs.isEmpty()
                 && dressNeck.isEmpty() && !dressFoot.isEmpty()) {
-            final Dress randomFootDress = dressFoot.get(randomizer.nextInt(dressFoot.size()));
-            this.outfit.add(randomFootDress.getId());
+            final Dress randomFootDressTmp = dressFoot.get(randomizer.nextInt(dressFoot.size()));
+            this.outfit.add(randomFootDressTmp.getId());
         }
         return this;
     }
