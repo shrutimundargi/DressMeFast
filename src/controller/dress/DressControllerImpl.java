@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -248,18 +249,17 @@ public final class DressControllerImpl implements DressController {
      */
     private void changeOutfit(final Map<Outfit, List<Outfits>> map, final Outfit outfitType, final Dress dress) {
         final Set<Outfits> outfitToRemove = new HashSet<>();
-
-        map.get(outfitType).forEach(e -> {
-            final List<UUID> dressList = user.getWardobe().getOutfits().getOutfit(e.getId()).getOutfit();
-            dressList.forEach(t -> {
-                if (t.equals(dress.getId())) {
-                    final List<UUID> dressListTmp = user.getWardobe().getOutfits().getOutfit(e.getId()).getOutfit();
-                    dressListTmp.remove(t);
-                    user.getWardobe().getOutfits().getOutfit(e.getId()).setOutfit(dressListTmp);
+        map.get(outfitType).forEach(outfits -> {
+            final List<UUID> dressList = user.getWardobe().getOutfits().getOutfit(outfits.getId()).getOutfit();
+            final List<UUID> dressesToRemove = new LinkedList<>();
+            dressList.forEach(id -> {
+                if (id.equals(dress.getId())) {
+                    dressesToRemove.add(id);
                 }
             });
-            if (e.getOutfit().size() == 0) {
-                outfitToRemove.add(e);
+            dressList.removeAll(dressesToRemove);
+            if (outfits.getOutfit().size() == 0) {
+                outfitToRemove.add(outfits);
             }
         });
         for (final Outfits outfit : outfitToRemove) {
