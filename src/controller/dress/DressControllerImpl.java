@@ -245,28 +245,27 @@ public final class DressControllerImpl implements DressController {
      *            : the outfit type
      * @param dress
      *            : a specific dress
-     * @return Return true if the dress was delete from the outfit otherwise
-     *         return false
      */
-    private boolean changeOutfit(final Map<Outfit, List<Outfits>> map, final Outfit outfit, final Dress dress) {
-        for (final Outfits list : map.get(outfit)) {
-            final List<UUID> dressList = user.getWardobe().getOutfits().getOutfit(list.getId()).getOutfit();
-            for (final UUID id : dressList) {
-                if (id.equals(dress.getId())) {
-                    if (dressList.size() == 1) {
-                        user.getWardobe().getOutfits().removeOutfit(list, list.getOutfitType());
-                        return true;
-                    } else if (dressList.size() > 1) {
-                        final List<UUID> dressListTmp = user.getWardobe().getOutfits().getOutfit(list.getId())
-                                .getOutfit();
-                        dressListTmp.remove(id);
-                        user.getWardobe().getOutfits().getOutfit(list.getId()).setOutfit(dressListTmp);
-                        return true;
-                    }
+    private void changeOutfit(final Map<Outfit, List<Outfits>> map, final Outfit outfitType, final Dress dress) {
+        final Set<Outfits> outfitToRemove = new HashSet<>();
+
+        map.get(outfitType).forEach(e -> {
+            final List<UUID> dressList = user.getWardobe().getOutfits().getOutfit(e.getId()).getOutfit();
+            dressList.forEach(t -> {
+                if (t.equals(dress.getId())) {
+                    final List<UUID> dressListTmp = user.getWardobe().getOutfits().getOutfit(e.getId()).getOutfit();
+                    dressListTmp.remove(t);
+                    user.getWardobe().getOutfits().getOutfit(e.getId()).setOutfit(dressListTmp);
                 }
+            });
+            if (e.getOutfit().size() == 0) {
+                outfitToRemove.add(e);
             }
+        });
+        for (final Outfits outfit : outfitToRemove) {
+            user.getWardobe().getOutfits().removeOutfit(user.getWardobe().getOutfits().getOutfit(outfit.getId()),
+                    outfit.getOutfitType());
         }
-        return false;
     }
 
     @Override

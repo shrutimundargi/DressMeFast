@@ -22,5 +22,6 @@ public final class Main {
         new SetupView(controller);
         controller.userController().signUp("a", "1");
         controller.userController().logout();
+
     }
 }
