@@ -9,7 +9,6 @@ import view.SetupView;
  */
 public final class Main {
     private Main() {
-        // TODO Auto-generated constructor stub
     }
 
     /**
