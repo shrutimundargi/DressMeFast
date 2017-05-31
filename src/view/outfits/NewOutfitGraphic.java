@@ -247,8 +247,8 @@ public class NewOutfitGraphic extends ProgramUIImpl implements UI {
     }
 
     private void createDialogSelectItem(final Category cat) {
-        final URL url1 = this.getClass().getResource("NewOutfit.css");
-        final URL url2 = this.getClass().getResource("../mainStyle.css");
+        final URL url1 = this.getClass().getResource("/view/mainStyle.css");
+        final URL url2 = this.getClass().getResource("/view/add/Add.css");
         final String css1 = url1.toExternalForm();
         final String css2 = url2.toExternalForm();
         final Stage dialog = new Stage();

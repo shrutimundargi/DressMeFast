@@ -6,7 +6,9 @@ import java.util.UUID;
 import controller.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
@@ -128,7 +130,11 @@ public class OutfitsGraphic extends ProgramUIImpl implements UI {
 
     private void showAllOutfits() {
         /* Outfits list ________ */
+        final BorderPane brpOutfit = new BorderPane();
+        final StackPane skpNameOutfit = new StackPane();
+        final Label lblOutfit = new Label("Favorite");
         final GridPane gridOutfits = new GridPane();
+        genObjFx.setBorderPaneExposition(false, brpOutfit, skpNameOutfit, lblOutfit, gridOutfits);
         final List<Outfits> allOutfits = super.getController().outfits().getAllOutfits();
         for (int i = 0; i < allOutfits.size(); i++) {
             final Button btnSelect = new Button("See More");

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="328.0" prefWidth="483.0" styleClass="main-pane-log-sign" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="brpBackground" prefHeight="328.0" prefWidth="483.0" styleClass="main-pane-log-sign" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="400.0" styleClass="main-pane-popup">
          <top>

@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.enumerations.Status;
@@ -25,7 +26,8 @@ public class SignupGraphic implements UI {
     private final SceneSetting environment;
     private final Controller controller;
     private Stage primaryStage;
-
+    @FXML
+    private BorderPane brpBackground;
     @FXML
     private TextField txfUser;
     @FXML
@@ -51,16 +53,7 @@ public class SignupGraphic implements UI {
         this.environment = environment;
         this.environment.loadScreen(ACTUALSCREEN, this);
         this.primaryStage = this.environment.getMainStage();
-    }
-
-    /**
-     * 
-     */
-    public void show() {
-        this.primaryStage = this.environment.getMainStage();
-        this.primaryStage.setOnCloseRequest(e -> System.exit(0));
-        this.environment.displayScreen(ACTUALSCREEN);
-
+        //brpBackgroung.setStyle("-fx-background-image: url('/images/add.png');");
     }
 
     /**
@@ -118,6 +111,7 @@ public class SignupGraphic implements UI {
 
     @Override
     public void showNowContent() {
+        /*brpBackground.setStyle("-fx-background-image: url('/images/login-bg-4.jpg');");*/
         txfUser.setText("");
         txfPassword.setText("");
         txfRepPassword.setText("");

@@ -95,8 +95,8 @@ public class DialogPreviewIO {
         final CheckBox ckbFavorite;
         final TextArea txaInfo;
 
-        final URL url1 = this.getClass().getResource("../mainStyle.css");
-        final URL url2 = this.getClass().getResource("../add/Add.css");
+        final URL url1 = this.getClass().getResource("/view/mainStyle.css");
+        final URL url2 = this.getClass().getResource("/view/add/Add.css");
         final String css1 = url1.toExternalForm();
         final String css2 = url2.toExternalForm();
         final Stage dialog = new Stage();
@@ -150,7 +150,7 @@ public class DialogPreviewIO {
         btnWear.setOnAction(event -> {
             if (wornCount == dress.getWornCount()) {
                 controller.dress().dressWorn(dress);
-                lblDescr.setText(getStringWorn(wornCount));
+                lblDescr.setText(getStringWorn(wornCount + 1));
             }
         });
         /* _____________________ */
@@ -366,7 +366,7 @@ public class DialogPreviewIO {
                 alertEr.showAndWait();
             } else {
                 alertOk.setTitle("Information Dialog");
-                alertOk.setHeaderText("Yea, you added your item");
+                alertOk.setHeaderText("You updated the item");
                 alertOk.setContentText("The item is add in the category " + chbCategory.getValue() + "!");
 
                 final Integer newSize = txfSize.getText().equals("") ? -1 : Integer.valueOf(txfSize.getText());
@@ -387,12 +387,12 @@ public class DialogPreviewIO {
         });
         /* _____________________ */
 
-        /* Button Delate_________ */
-        final Button btnDelate = new Button("Delate");
-        final StackPane stkDelate = new StackPane();
-        stkDelate.getStyleClass().add(PNL_OTHER_ADD);
-        genObjFx.setLittleMarginBtnStkP(btnDelate, stkDelate);
-        btnDelate.setOnAction(event -> {
+        /* Button Delete_________ */
+        final Button btnDelete = new Button("Delete");
+        final StackPane stkDelete = new StackPane();
+        stkDelete.getStyleClass().add(PNL_OTHER_ADD);
+        genObjFx.setLittleMarginBtnStkP(btnDelete, stkDelete);
+        btnDelete.setOnAction(event -> {
 
             dialog.close();
             controller.dress().deleteDress(dress);
@@ -428,7 +428,7 @@ public class DialogPreviewIO {
         dialogVbox.getChildren().add(pnlInfoTitle);
         dialogVbox.getChildren().add(pnlInfoTxa);
         dialogVbox.getChildren().add(stkUpdate);
-        dialogVbox.getChildren().add(stkDelate);
+        dialogVbox.getChildren().add(stkDelete);
         dialogVbox.getChildren().add(stkCancel);
         /* ___________________________________________ */
         VBox.setVgrow(scrollPnlDialog, Priority.ALWAYS);
@@ -466,8 +466,8 @@ public class DialogPreviewIO {
         final Category[] allCat = Category.values();
         final Map<Category, Dress> outfitItems = new HashMap<>();
 
-        final URL url1 = this.getClass().getResource("../mainStyle.css");
-        final URL url2 = this.getClass().getResource("../add/Add.css");
+        final URL url1 = this.getClass().getResource("/view/mainStyle.css");
+        final URL url2 = this.getClass().getResource("/view/add/Add.css");
         final String css1 = url1.toExternalForm();
         final String css2 = url2.toExternalForm();
         final Stage dialog = new Stage();
@@ -535,7 +535,7 @@ public class DialogPreviewIO {
         btnWear.setOnAction(event -> {
             if (wornCount == outfit.getWornCount()) {
                 controller.outfits().outfitWorn(outfit);
-                lblDescr.setText(getStringWorn(wornCount));
+                lblDescr.setText(getStringWorn(wornCount + 1));
             }
         });
         /* _____________________ */
@@ -607,7 +607,7 @@ public class DialogPreviewIO {
                 final List<UUID> dressesId = new LinkedList<>();
                 final Alert alertOk = new Alert(AlertType.INFORMATION);
                 alertOk.setTitle("Information Dialog");
-                alertOk.setHeaderText("Yea, you added a new outfit");
+                alertOk.setHeaderText("You updated the outfit");
 
                 for (int i = 0; i < allCat.length; i++) {
                     final Dress dressToAdd = outfitItems.get(allCat[i]);
@@ -636,13 +636,13 @@ public class DialogPreviewIO {
             }
         });
 
-        /* Button Delate ouftit_________ */
-        final Button btnDelate = new Button("Delate");
-        final StackPane stkDelate = new StackPane();
-        stkDelate.getStyleClass().add(PNL_OTHER_ADD);
-        genObjFx.setLittleMarginBtnStkP(btnDelate, stkDelate);
-        dialogVbox.getChildren().add(stkDelate);
-        btnDelate.setOnAction(event -> {
+        /* Button Delete ouftit_________ */
+        final Button btnDelete = new Button("Delete");
+        final StackPane stkDelete = new StackPane();
+        stkDelete.getStyleClass().add(PNL_OTHER_ADD);
+        genObjFx.setLittleMarginBtnStkP(btnDelete, stkDelete);
+        dialogVbox.getChildren().add(stkDelete);
+        btnDelete.setOnAction(event -> {
             controller.outfits().removeOutfit(outfit);
             dialog.close();
             ui.showNowContent();
@@ -674,8 +674,8 @@ public class DialogPreviewIO {
 
     private void createDialogSelectItem(final Category cat, final VBox vBoxOfCategory,
             final Map<Category, Dress> outfitItems, final Window owner, final Controller controller) {
-        final URL url1 = this.getClass().getResource("../outfits/NewOutfit.css");
-        final URL url2 = this.getClass().getResource("../mainStyle.css");
+        final URL url1 = this.getClass().getResource("/view/mainStyle.css");
+        final URL url2 = this.getClass().getResource("/view/add/Add.css");
         final String css1 = url1.toExternalForm();
         final String css2 = url2.toExternalForm();
         final Stage dialog = new Stage();

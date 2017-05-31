@@ -1,13 +1,13 @@
 package view;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import controller.Main;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 
 /**
  * An utility class to load and store the .fxml nodes of the view.
@@ -66,7 +66,8 @@ public final class ScreenLoader {
      * 
      * @param screen
      *            screen to be loaded
-     * @param controller understood as the <i>class</i>Graphic that control the FXML
+     * @param controller
+     *            understood as the <i>class</i>Graphic that control the FXML
      * @return the Node loaded
      * @throws IOException
      *             if the resource is not found
@@ -87,7 +88,8 @@ public final class ScreenLoader {
      * 
      * @param screen
      *            screen to be loaded
-     * @param controller understood as the <i>class</i>Graphic that control the FXML
+     * @param controller
+     *            understood as the <i>class</i>Graphic that control the FXML
      * @return the Node loaded
      * @throws IOException
      *             if the resource is not found

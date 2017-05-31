@@ -4,6 +4,13 @@ import controller.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BorderPane;
 import view.SceneSetting;
 import view.ScreensGraphic;
 import view.UI;
@@ -21,6 +28,8 @@ public class SignupDialogGraphic implements UI {
     private final Controller controller;
 
     @FXML
+    private BorderPane brpBackground;
+    @FXML
     private Label txtPopupName;
 
     /**
@@ -34,7 +43,9 @@ public class SignupDialogGraphic implements UI {
         this.controller = controller;
         this.environment = environment;
         this.environment.loadScreen(ACTUALSCREEN, this);
-        txtPopupName.setWrapText(true); //Futile bug, because the txtPopupName is already initialized by default.
+        txtPopupName.setWrapText(true); // Futile bug, because the txtPopupName
+                                        // is already initialized by default.
+
     }
 
     /**
@@ -50,6 +61,7 @@ public class SignupDialogGraphic implements UI {
 
     @Override
     public void showNowContent() {
+        /*brpBackground.setStyle("-fx-background-image: url('/images/login-bg-4.jpg');");*/
         txtPopupName
                 .setText("Thank you " + controller.userController().getUsername() + " for joining in Dress Me Fast");
     }

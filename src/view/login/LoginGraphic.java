@@ -5,6 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import model.enumerations.Status;
 import view.SceneSetting;
@@ -21,6 +28,8 @@ public class LoginGraphic implements UI {
 
     private final SceneSetting environment;
     private final Controller controller;
+    @FXML
+    private BorderPane brpBackground;
     @FXML
     private TextField txfUser;
     @FXML
@@ -48,6 +57,7 @@ public class LoginGraphic implements UI {
      */
     public void show() {
         this.environment.displayScreen(ACTUALSCREEN);
+        /*brpBackground.setStyle("-fx-background-image: url('/images/login-bg-4.jpg');");*/
 
     }
 
